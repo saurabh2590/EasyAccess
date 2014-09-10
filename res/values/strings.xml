@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!--  System-wide -->
+    <string name="appName">EasyAccess</string>
+    <string name="appNameTalkBackFriendly">Easy Access</string>
+    <string name="txtEmpty"></string>
+    <string name="action_settings">Settings</string>
+    <string name="txtJustDroidActivated">Easy Access is activated</string>
+    <string name="btnNavigationBack">Back</string> 
+    <string name="btnNavigationHome">Home</string>
+    <string name="delete">Backspace</string>
+    <string name="ttsError">Error occurred while initializing Text-To-Speech engine</string>
+    <string name="title_activity_calling">Calling Screen</string>
+    <string name="color">color</string>
+    <string name="settings">Settings</string>
+    <string name="settingsColor">Color Settings</string>
+    <string name="settingsFont">Font Settings</string>
+    <string name="settingsVolume">Volume Settings</string>
+    <string name="about">About Easy Access</string>
+    <string name="callLog">Call Log</string>
+    <string name="callLogOptions">Call Log Menu</string>
+    <string name="callHistory">Call History</string>
+    <string name="contacts">Contacts</string>
+    <string name="textMessages">Text Messages</string>
+    <string name="composeTextMessage">Compose Text Message</string>
+ 	<string name="textMessageRecipient">Text Message Recipient</string>
+ 	<string name="textSize">19</string>
+ 	
+    <!-- PhoneDialer.java -->
+    <string name="sim_absent">SIM card is absent. Cannot make call.</string>
+    <string name="network_locked">Network is locked. Cannot make call.</string>
+    <string name="pin_required">Pin is required to make call.</string>
+    <string name="puk_required">PUK is required to make the call.</string>
+    <string name="sim_ready">Sim is ready</string>
+    <string name="emergency_calls_only">Unable to make call. Only emergency calls can be made. The number you dialled is not an emergency number.</string>
+    <string name="no_service">Unable to make call. Service unavailable.</string>
+    <string name="power_off">Unable to make call. Aeroplane mode is on.</string>
+    <string name="service_unknown_reason">Unable to make call. Please try again later.</string>
+    <string name="state_in_service">Service available</string>
+    <string name="network_unavailable">Unable to make call due to unavailability of network. Please try again later.</string>
+    <string name="roaming_on">Please note that roaming is activated on your phone</string>
+    <string name="call_ended">Call Ended</string>
+    <string name="call_rejected">Call Rejected</string>
+    <string name="answer">Answer Call</string>
+    <string name="deleted">Deleted</string>
+
+    <!-- Homescreen1.java -->
+    <string name="btnPhoneDialer">Phone\nDialer</string>    
+    <string name="btnCallLog">Call\nLog</string>
+    <string name="btnTextMessages">Text\nMessages</string>
+    <string name="btnContacts">Contacts</string>
+    <string name="btnStatus">Status</string>
+    <string name="btnEmail">Email</string>
+    
+    <!-- Homescreen2.java -->
+    <string name="btnInternet">Internet</string>
+    <string name="btnAlarm">Alarm</string>
+    <string name="btnRadio">Radio</string>
+    <string name="btnMusicVideo">Music +\nVideo</string>
+    <string name="btnBooksNewspapers">Books + News\npapers</string>
+    <string name="btnMaps">Maps</string>
+    
+    <!-- Homescreen3.java -->
+    <string name="btnFileBrowser">File\nBrowser</string>
+    <string name="btnCameraApps">Camera\nApps</string>
+    <string name="btnSocialNetworks">Social\nNetworks</string>
+    <string name="btnSettings">Settings</string>
+    <string name="btnMoreAccessibleApps">More\nAccessible\nApps</string>
+    <string name="btnAllApps">All Apps</string>
+    
+    <!-- AlarmMenu.java -->
+    <string name="btnSetNewAlarm">Set New Alarm</string>
+	<string name="txtAlarmsEntry1">1st alarm at XX:XX on Month XX, 20xx</string>
+	<string name="txtAlarmsEntry2">2nd alarm at XX:XX on Month XX, 20xx</string> 
+	<string name="txtAlarmsEntry3">3rd alarm at XX:XX on Month XX, 20xx</string> 
+	<string name="txtAlarmsEntry4">4th alarm at XX:XX on Month XX, 20xx</string> 
+	<string name="txtAlarmsEntry5">5th alarm at XX:XX on Month XX, 20xx</string>     
+    
+    <!-- BooksNewspapersMenu.java -->
+    <string name="btnDarwinReader">DARWIN Reader</string>
+    <string name="btnIdealGroupReader">IDEAL Group Reader</string>
+    <string name="btnBookshareGoRead">Bookshare Go Read</string>
+    <string name="btnGooglePlayBooks">Google Play Books</string>
+    <string name="btnGoogleCurrents">Google Currents</string>    
+    
+ 	<!-- CameraMenu.java -->
+    <string name="btnPhoneCamera">Camera</string>
+    <string name="btnGoogleGoggles">Google Goggles</string>
+    <string name="btnOCRScanner">OCR Scanner</string>
+    <string name="btnColorIdentifier">Color Identifier</string>
+    <string name="btnMoneyIdentifier">Money Identifier</string>
+    <string name="btnLightDetector">Light Detector</string>  
+    
+ 	<!-- CallLogApp.java -->
+    <string name="tabCallsDialled">\nOut</string>
+    <string name="tabCallsReceived">\nIn</string>
+    <string name="tabCallsMissed">\nMissed</string>
+    <string name="tabCallsAll">\nAll</string>
+    <string name="totalTime">Total\nDuration</string>
+    <string name="tabCallsDialledTalkBackFriendly">Outgoing Calls</string>
+    <string name="tabCallsReceivedTalkBackFriendly">Incoming Calls</string>
+    <string name="tabCallsMissedTalkBackFriendly">Missed Calls</string>
+    <string name="tabCallsAllTalkBackFriendly">All Calls</string>
+    <string name="tabCallsTimeTalkBackFriendly">Total Duration</string>  
+    <string name="txtCallsDialledEntry1">Eva Krueger</string>
+    <string name="txtCallsDialledEntry2">Caspar Isemer</string>
+    <string name="txtCallsDialledEntry3">Zainab Chinikamwala</string>
+    <string name="txtCallsDialledEntry4">Homiyar Mobedji</string>
+    <string name="emptylog">The selected call log is empty</string>  
+    
+    <!-- CallLogOptions.java -->
+    <string name="btnCall">Call</string>
+    <string name="btnSendSMS">Send SMS</string>
+    <string name="btnViewCallHistory">View Call History</string>
+    <string name="btnDeleteFromLog">Delete Call from Log</string>
+    <string name="btnAddToContact">Save to Contacts</string>
+    <string name="btnViewContact">View Contact</string>
+    <string name="logdeletesuccess">Call log deleted</string>
+    <string name="logdeletefailure">Could not delete call log</string> 
+    
+    <!-- ContactsApp.java -->
+    <string name="inputContactsSearch">Enter name or number</string>
+    <string name="save">Save</string>
+    <string name="txtContactsDemoEntryREMOVE">Demo Entry</string>
+    <string name="loadingcontacts">Loading contacts</string>
+    <string name="contactsLoaded">Contacts loaded</string>
+    
+    <!-- ContactsDetails.java -->
+    <string name="contactDetails">Contact Details</string>
+    <string name="txtContactsName">Firstname Lastname</string>
+    <string name="btnContactsNumber1">Call Cellphone\n+49 177 111 1111</string>
+    <string name="btnContactsNumber2">Call Home\n+49 40 1111 1111</string>
+    <string name="btnContactsNumber3">Call Work\n+49 40 80817 1111</string>
+    <string name="call">call</string>
+    <string name="sendmessage">send message</string>
+    <string name="mail">email</string>   
+    
+    <!-- ContactsOtherOptions.java -->
+    <string name="otheroptions">More Options</string>
+    <string name="btnDelete">Delete</string>
+    <string name="btnCopyToSD">Copy to SD Card</string>
+    <string name="btnEdit">Edit Contact</string>
+    <string name="btnImportFromSD">Import All Contacts from SD card</string>
+    <string name="btnExportToSD">Export All Contacts to SD card</string> 
+    <string name="deletesuccess">Contact deleted</string>
+    <string name="deletefailure">Unable to delete contact</string> 
+    <string name="exporting">Exporting contacts to SD card</string>
+    <string name="importing">Importing contacts from the application directory in the SD card</string>
+    <string name="filesabsent">Could not find any file in the application\'s directory in the SD card</string>
+    <string name="importfailed">Could not import all contacts</string>
+    <string name="importsuccess">Successfully imported all contacts</string>
+    <string name="copycontactsuccess">Contact exported as V Card to SD card</string>
+    <string name="copycontactfailure">Could not export contact to SD card</string>
+    <string name="copyallcontactssuccess">All contacts exported as V Card to SD card</string>
+    <string name="copyallcontactsfailure">Could not export all contacts</string>
+    <string name="mediareadonly">Cannot write to SD card</string>
+    <string name="mediaunmounted">SD card is not mounted</string>
+    
+    <!-- SaveContact.java -->
+    <string name="contactsaved">Contact saved</string>
+    <string name="contactnotsaved">Unable to save contact</string>
+    <string name="contactupdated">Contact updated successfully</string>
+    <string name="contactnotupdated">Unable to update contact</string>
+    <string name="savecontact">Save Contact</string>
+    <string name="name">Name</string>
+    <string name="numberType">Type</string>
+    <string name="email">Email</string>
+    <string name="number">Number</string>
+    <string name="editcontact">Edit Contact</string>
+    <string-array name="type">
+        <item name="mobile">Mobile</item>
+        <item name="home">Home</item>
+        <item name="work">Work</item>
+        <item name="workmobile">Work Mobile</item>
+        <item name="homefax">Home Fax</item>
+        <item name="pager">Pager</item>
+        <item name="other">Other</item>
+    </string-array>
+    
+    <!--  ContactUpdate.java  -->
+    <string name="field">Field</string>
+    <string name="setprimary">Set Primary</string>
+    <string name="update">Update Contact</string>
+    <string name="setprimarynumbersuccess">Number has been set as primary</string> 
+    <string name="setprimarynumberfailed">Number could not be set as primary</string> 
+    <string name="setprimarymailsuccess">Email ID has been set as primary</string> 
+    <string name="setprimarymailfailed">Email ID could not be set as primary</string> 
+    
+    <!-- MapsMenu.java -->
+    <string name="btnGoogleMaps">Google Maps</string>
+    <string name="btnPlaceSaver">Place Saver</string>
+    <string name="btnTalkingCompass">Talking Compass</string>    
+    
+    <!-- MusicVideoMenu.java -->
+    <string name="btnMP3Player">MP3 Player</string>
+    <string name="btnYouTube">YouTube</string>
+    
+    <!-- PhoneDialerApp.java -->
+    <string name="phoneDialer">Phone Dialer</string>
+    <string name="btnKeypad1">1</string>
+    <string name="btnKeypad2">2</string>
+    <string name="btnKeypad3">3</string>
+    <string name="btnKeypad4">4</string>
+    <string name="btnKeypad5">5</string>
+    <string name="btnKeypad6">6</string>
+    <string name="btnKeypad7">7</string>
+    <string name="btnKeypad8">8</string>
+    <string name="btnKeypad9">9</string>
+    <string name="btnKeypad0">0</string>
+    <string name="btnKeypadStar">*</string>
+    <string name="btnKeypadStarTalkBackFriendly">Star</string>
+    <string name="btnKeypadHash">#</string>
+    <string name="btnKeypadHashTalkBackFriendly">Hash</string>
+    <string name="btnKeypadBackspace">&lt;</string>
+    <string name="btnKeypadBackspaceTalkBackFriendly">Delete</string>
+    <string name="txtDialNumber"> </string>
+    <string name="btnCallHangup">Call</string> 
+    <string name="noNumber">No number has been dialed</string>
+    
+    <!-- SettingsMenu.java -->
+    <string name="btnSettingsScreenCurtain">Screen Curtain</string>
+    <string name="btnSettingsColor">Color Settings</string>
+    <string name="btnSettingsFont">Font Settings</string>
+    <string name="btnSettingsVolume">Volume Settings</string>
+    <string name="btnSettingsAndroid">Android Settings</string>
+    <string name="btnAbout">About Easy Access</string>
+    
+    <!--  SettingsColor.java -->
+    <string name="txtPreview">Preview</string>
+    <string name="foreground">Text Color</string>
+    <string name="background">Background Color</string>
+    <string name="resetColors">Reset Colors</string>
+    <string name="appliedFgColorSuccess">Text color has been applied successfully</string>
+    <string name="appliedFgColorFailure">Could not apply text color</string>
+    <string name="appliedBgColorSuccess">Background color has been applied successfully</string>
+    <string name="appliedBgColorFailure">Could not apply background color</string>
+    <string name="resetColorsSuccess">Colors have been reset</string>
+    <string-array name="colors">
+        <item name="black">Black</item>
+        <item name="white">White</item>
+        <item name="blue">Blue</item>
+        <item name="cyan">Cyan</item>
+        <item name="green">Green</item>
+        <item name="grey">Grey</item>
+        <item name="magenta">Magenta</item>        
+        <item name="red">Red</item>
+        <item name="yellow">Yellow</item>
+    </string-array>
+    
+     <!--  SettingsFont.java -->
+    <string name="size">size</string>
+    <string name="defaultFontSize">19</string>
+    <string name="fonttype">fonttype</string>
+    <string name="fontSize">Text Size</string>
+    <string name="fontType">Text Type</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="minusDescription">minus</string>
+    <string name="fontStyle">Text Type</string>
+    <string name="maxLimit">36</string>
+    <string name="lowerLimit">12</string>
+    <string name="reachedMaxLimit">Reached maximum limit</string>
+    <string name="reachedLowerLimit">Reached lower limit</string>
+    <string name="appliedFontSizeSuccess">Text Size has been applied successfully</string>
+    <string name="appliedFontSizeFailure">Could not apply text size</string>
+    <string name="appliedTypeSuccess">Text type has been applied successfully</string>
+    <string name="appliedTypeFailure">Could not apply text type</string>
+    <string name="resetFont">Reset Text Size and Type</string>
+    <string name="resetFontSuccess">Font size and type have been reset</string>
+    <string name="none">0</string>
+    <string name="serif">1</string>
+    <string name="monospace">2</string>
+    <string-array name="fontTypes">
+        <item name="none">Normal</item>
+        <item name="serif">Serif</item>
+        <item name="monospace">Monospace</item>
+    </string-array>
+    
+    <!--  SettingsVolume.java -->
+    <string name="softest">Softest</string>
+    <string name="softer">Softer</string>
+    <string name="soft">Soft</string>
+    <string name="normal">Normal</string>
+    <string name="loud">Loud</string>
+    <string name="louder">Louder</string>
+     <string name="loudest">Loudest</string>
+    
+ 	<!-- SocialNetworksMenu.java -->
+    <string name="btnWhatsApp">WhatsApp</string>
+    <string name="btnFacebookFriendCaster">Facebook Friendcaster</string>
+    <string name="btnFacebookMessenger">Facebook Messenger</string>
+    <string name="btnGooglePlus">Google+</string>
+    <string name="btnSkype">Skype</string>
+    <string name="btnViber">Viber</string>      
+    
+    <!-- StatusApp.java -->
+    <string name="status">Status</string>
+    <string name="txtStatusBattery">Battery level at</string>
+    <string name="txtStatusSignal">Cell signal at</string>
+    <string name="txtStatusDataConnection">data enabled</string>
+    <string name="txtStatusMissedCalls">missed calls</string>
+    <string name="txtStatusUnreadTextMessages">unread text messages</string>
+    <string name="txtStatusUnreadEmails">unread eMails</string>
+    <string name="txtStatusNextAlarm">Next alarm at </string>
+    <string name="txtStatusTimeDate">XX:XX on Month XX, 20xx</string>
+    <string name="txtStatusLocation">Location data enabled</string>
+    <string name="txtStatusWifiStatusOn">Wi-Fi is ON</string>
+    <string name="txtStatusWifiStatusOff">Wi-Fi is OFF</string>
+    <string name="txtStatusBluetooth">Bluetooth is enabled</string>
+    <string name="txtStatusBrightness">Brightness is set to automatic</string>
+    <string name="txtStatusBrightnessLow">Brightness is set to low</string>
+    <string name="txtStatusBrightnessMedium">Brightness is set to medium</string>
+    <string name="txtStatusBrightnessBright">Brightness is set to bright</string>
+    
+ 	<!-- TextMessagesApp.java -->
+    <string name="tabTextMsgsInbox">Inbox</string>
+    <string name="tabTextMsgsSent">Sent</string>
+    <string name="tabTextMsgsWrite">Write</string>
+    <string name="emptymessages">No messages</string>
+    <string name="read">Read</string>
+    <string name="unread">Unread</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="reachedBeginning">Reached beginning of list</string>
+    <string name="reachedEnd">Reached end of list</string>
+    <string name="tabTextMsgsWriteTalkBackFriendly">Write new message</string>
+    <string name="txtTextMsgsEntry1">Unread\nEva Krueger, August 5</string>
+    <string name="txtTextMsgsEntry2">Read\nCaspar Isemer, August 4</string>
+    <string name="txtTextMsgsEntry3">Read\nZainab Chinikamwala, July 29</string>
+    <string name="txtTextMsgsEntry4">Unread\nHomiyar Mobedji, July 27</string>
+    <string name="txtTextMsgsEntry5">Read\nEva Krueger, July 24</string> 
+    <string name="setAsDefault">Use Easy Access instead of Messaging as your SMS app?</string>
+    
+    <!-- TextMessagesComposerApp.java -->
+    <string name="btnTextMsgsSend">Send Text Message</string>
+    <string name="inputTextMsgsRecipient">Enter name or number</string>
+    <string name="inputTextMsgsTypedMessage">Type your message</string>  
+    <string name="sendingSms">Sending SMS</string>
+    <string name="sentSms">SMS has been sent</string>
+    <string name="noService">Could not send SMS due to unavailability of service</string>
+    <string name="radioOff">Radio is off. Could not send SMS</string>
+    <string name="smsNotSent">Could not send SMS</string>
+    <string name="smsDelivered">SMS has been delivered successfully</string>
+    <string name="smsNotDelivered">SMS could not be delivered</string>
+    
+ 	<!-- TextMessagesViewerApp.java -->
+ 	<string name="conversation">Conversation</string>
+    <string name="btnTextMsgsReply">Reply</string>
+    <string name="btnTextMsgsCall">Call</string>
+    <string name="btnTextMsgsDeleteThread">Delete All</string>
+    <string name="btnTextMsgsDelete">Delete</string>
+    <string name="btnProceed">Proceed</string>
+    <string name="deleteThreadSuccess">Thread has been deleted successfully</string>
+    <string name="deleteThreadFailure">Could not delete thread</string>
+    <string name="deleteMessageSuccess">Message has been deleted successfully</string>
+    <string name="deleteMessageFailure">Could not delete message</string>
+    <string name="txtTextMsgsContent">Hey, it is so awesome that Kannan, TV and Eve are so excited, too, and willing to help us to build Easy Access for real! Woohoo :) Eva</string>
+    <string name="txtTextMsgsAuthorReceived">From: Eva Krueger</string>
+    <string name="txtTextMsgsTimestampReceived">Received: 18:37 on Sunday, August 4, 2013</string>
+    
+    <!-- About.java -->
+    <string name="txtAboutHeaderMission">Easy Access mission</string>
+    <string name="txtAboutMission">\"Easy Access\'s mission is to invent a completely new operating mode, embedded in the Android DNA, to make mobile technology accessible for seniors, the blind and visually impaired.\"</string>
+    <string name="txtAboutSignature">\nEva Krueger and Caspar Isemer</string>
+    <string name="txtAboutHeaderFactFinding">Focus group research</string>
+    <string name="txtAboutFactFinding">We thank the following people in particular for their amazing openness and utmost patience during our focus group research in India:</string>
+    <string name="txtAboutFocusGroup">
+        \nZainab Chinikamwala
+        \nKetan Khotari, Sight Savers
+        \nDipendra Manocha, President, DAISY Forum of India
+        \nDr. Homiyar Mobedji, CEO, Technical Training Institute of the Poona Blind Men\'s Association
+        \nDr. Sam Taraporevala, Director, Xavier\'s Resource Centre for the Visually Challenged
+    </string>
+    <string name="txtAboutHeaderSupporters">Supporters</string>
+    <string name="txtAboutCertificates">We further thank the following people for their generous funding and support of Easy Access:</string>
+    <string name="txtAboutDonors">
+		\nAlastair Bruce
+		\nAlexandra Grosskurth
+		\nAnna Kauer
+		\nAxel Reichmann
+		\nBastiaan Gielliet
+		\nDr. Bernd Fauser
+		\nBirte Gloy
+		\nCarola Rienth
+		\nChristian Baerwind
+		\nChristian Lutterbeck
+		\nChristian Veer
+		\nChristina Brauer
+		\nChristoph Wittmer
+		\nDavid Noack
+		\nDirk Bensien
+		\nDirk Pape
+		\nElias Schelto Witsen		
+		\nEmilia Niewiadomska
+		\nEva Brauckmann
+		\nFabian Roecker
+		\nFrank Kohl-Boas
+		\nFranziska Maack
+		\nFrauke Cooper
+		\nProf. Dr. Friedrich-Eckart and Dr. Annette Isemer
+		\nGert-Jan Lagas
+		\nDr. Herbert Schriever
+		\nHidde de Vries
+		\nIna Strauch
+		\nInga Weireter
+		\nJan Birkhahn
+		\nJan Hieronimi
+		\nJannika Bock
+		\nDr. Joern Winterberg
+		\nDr. Johannes Wilms
+		\nJuan Marin
+		\nKate Cullimore
+		\nKerstin Friedrich
+		\nKlaas Flechsig
+		\nLaura-Marie Arens
+		\nLeopold Graeubig
+		\nLeon Ineke
+		\nLutz Behrendt
+		\nMagdalena Sternberg
+		\nMaike Schnell
+		\nMarc Lueers
+		\nMartin Brauckmann
+		\nMatthias Zacek
+		\nMax Saile
+		\nMaximilian Albert
+		\nMichael Braun
+		\nMichalina Seekamp
+		\nMoritz Habermann
+		\nNadine Tylla-Schulze
+		\nNicole Mueller
+		\nPetar Markovic
+		\nPetri Kokko
+		\nSabine van Velsen
+		\nSabrina Mause
+		\nSarah Fix-Baehre
+		\nSebastian Busshardt
+		\nSebastian Schuele
+		\nSilvia Tornier
+		\nSimon Krueger
+		\nSoeren Lueders
+		\nStefan Alich
+		\nStefan Lein
+		\nStefan Volk
+		\nSven Angel
+		\nThomas Steffen
+		\nThorsten Hermes
+		\nTimo Seewald
+		\nTobias Guhlke
+		\nTobias Pohl
+		\nTobias Schmidt
+		\nUlrich and Eva Krueger
+		\nDr. Ulrich Bork
+		\nUwe Eisenbeis
+    </string>
+    
+</resources>

@@ -1,0 +1,261 @@
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="@color/homescreen_background"
+    android:id="@+id/settingsfont" >
+     
+<ScrollView 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1" 
+    android:fillViewport="true">
+
+ 	<LinearLayout
+ 	    android:id="@+id/linearLayout"
+ 	    android:layout_width="fill_parent"
+ 	    android:layout_height="wrap_content"
+ 	    android:background="@color/homescreen_background"
+ 	    android:orientation="vertical" >
+	    	    
+	    <TableLayout
+		    android:gravity="center_vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent" > 				
+			
+			<TableRow
+			    android:layout_weight="1"
+			    android:gravity="center_vertical" >	
+
+			    <TextView  
+					android:id="@+id/txtPreview"
+					android:text="@string/txtPreview"
+					android:contentDescription="@string/txtPreview"
+					android:layout_weight="1"
+				    android:layout_width="fill_parent" 
+				    android:layout_height="match_parent" 
+				    android:background="@drawable/card"
+				    android:textColor="@drawable/card_textcolor" 
+				    android:textSize="@dimen/card_textsize_regular"
+				    android:gravity="center"
+					android:focusable="false"
+					android:layout_span="3"
+				/>
+			   </TableRow>
+				<TableRow
+			   android:layout_weight="1"
+			   android:gravity="center_vertical" >
+				
+				    <TextView  
+						android:id="@+id/txtFontSize"
+						android:text="@string/fontSize"
+						android:contentDescription="@string/fontSize"
+					    android:background="@color/homescreen_background"
+					    android:textColor="@color/card_textcolor_regular"
+					    android:textSize="@dimen/card_textsize_regular"
+					    android:gravity="center"
+					   	android:layout_weight="1"
+					    android:layout_width="fill_parent" 
+					    android:layout_height="match_parent" 
+					    android:focusable="true"
+					    android:nextFocusDown="@+id/btnIncrease"
+					/>
+				</TableRow>
+			
+			
+			
+			<TableRow
+			    android:layout_weight="1"
+			    android:gravity="center_vertical" >
+			    <Button
+				    android:id="@+id/btnIncrease"
+				    android:layout_weight="1"
+				    android:layout_height="match_parent" 
+				    android:padding="20dp" 
+				    android:text="@string/plus"
+				    android:contentDescription="@string/plus"
+				    android:focusable="true"
+				    android:nextFocusDown="@+id/txtNumber"
+					android:nextFocusUp="@id/txtFontSize" />
+				
+				</TableRow>
+				<TableRow
+			    android:layout_weight="1"
+			    android:gravity="center_vertical" >
+
+				<TextView
+				    android:id="@+id/txtNumber"
+				    android:layout_width="wrap_content"
+				    android:layout_height="match_parent"
+				    android:layout_weight="1"
+				    android:gravity="center"
+				    android:maxLength="2"
+				    android:focusable="true"
+				    android:nextFocusDown="@+id/btnDecrease"
+					android:nextFocusUp="@id/btnIncrease" />
+				</TableRow>
+				<TableRow
+			    android:layout_weight="1"
+			    android:gravity="center_vertical" >
+				<Button
+				    android:id="@+id/btnDecrease"
+				    android:layout_weight="1"
+				    android:layout_height="match_parent"
+				    android:layout_width="wrap_content"
+				    android:padding="20dp" 
+				    android:text="@string/minus"
+				    android:contentDescription="@string/minusDescription"
+				   android:nextFocusDown="@+id/txtFontType"
+					android:nextFocusUp="@id/txtNumber" />							    
+			</TableRow>	
+			<TableRow
+			    android:layout_weight="1" 
+			    android:gravity="center_vertical" >
+			   
+				<TextView  
+					android:id="@+id/txtFontType"
+					android:text="@string/fontType"
+					android:contentDescription="@string/fontType"
+				    android:layout_width="wrap_content" 
+				    android:layout_height="match_parent" 
+				    android:background="@color/homescreen_background"
+				    android:textColor="@color/card_textcolor_regular"
+				    android:textSize="@dimen/card_textsize_regular"
+				    android:gravity="center"
+					android:layout_weight="1"
+					android:focusable="true"
+				    android:nextFocusDown="@+id/fontType"
+					android:nextFocusUp="@+id/btnDecrease"
+				/>
+				
+			</TableRow>
+			
+			
+			<TableRow
+			    android:layout_weight="0" 
+			    android:gravity="center_vertical" >
+				
+			    <Spinner
+				    android:id="@+id/fontType"
+				    android:contentDescription="@string/fontStyle"
+				    android:prompt="@string/fontStyle"
+				    android:entries="@array/fontTypes"
+				    android:layout_width="match_parent"
+				    android:layout_height="match_parent"
+				    android:layout_span="5"
+				    android:layout_weight="1"
+				    android:nextFocusDown="@+id/btnApplyFont"
+					android:nextFocusUp="@+id/txtFontType" />
+			    
+			</TableRow>
+			
+			<TableRow
+			    android:layout_weight="0" 
+			    android:gravity="center_vertical" >
+		
+				<TextView  
+					android:id="@+id/txtEmpty5"
+				    android:text="@string/txtEmpty"			
+				    android:layout_width="match_parent" 
+				    android:layout_height="12dp"
+				    android:background="@color/homescreen_background"
+				    android:focusable="false"
+				/>			
+				
+			</TableRow>	
+			
+			<TableRow
+			    android:layout_weight="0" 
+			    android:gravity="center_vertical" >
+		
+				<TextView  
+					android:id="@+id/txtEmpty6"
+				    android:text="@string/txtEmpty"			
+				    android:layout_width="1px" 
+				    android:layout_height="12dp"
+				    android:background="@color/homescreen_background"
+				    android:focusable="false"
+				/>			
+				
+			</TableRow>
+			
+			<TableRow 
+			     android:layout_weight="1" 
+			    android:gravity="center_vertical" >
+
+			   <Button
+				    android:id="@+id/btnApplyFont"
+				    android:layout_width="match_parent"
+				    android:layout_height="match_parent"
+				    android:padding="20dp"
+				    android:layout_weight="1"
+				    android:layout_gravity="right"
+				    android:text="@string/resetFont"
+				    android:textSize="@dimen/card_textsize_regular"
+				    android:nextFocusUp="@+id/fontType"
+				    android:nextFocusDown="@+id/btnNavigationBack" /> 	    
+			</TableRow>
+			
+		</TableLayout>
+		
+	</LinearLayout>
+  </ScrollView>
+	<LinearLayout 
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" 
+	    android:background="@color/navigation_bar_background" 
+	    android:layout_weight="0">	
+	</LinearLayout>
+
+ 	<TableLayout
+ 	    android:layout_width="fill_parent"
+ 	    android:layout_height="wrap_content"
+ 	    android:layout_weight="0"
+ 	    android:gravity="bottom"
+ 	    android:paddingTop="3dp"
+ 	    android:stretchColumns="0,2"
+ 	    android:weightSum="3" >
+
+ 	    <TableRow
+ 	        
+ 	        android:gravity="center_vertical" >
+
+ 	        <Button
+ 	            android:id="@+id/btnNavigationBack"
+ 	            android:layout_width="0dip"
+ 	            android:layout_height="50dp"
+ 	            android:layout_weight="1"
+ 	            android:background="@color/navigation_bar_background"
+ 	            android:contentDescription="@string/btnNavigationBack"
+ 	            android:focusable="true"
+ 	            android:gravity="center"
+ 	            android:text="@string/btnNavigationBack"
+ 	            android:textColor="@color/navigation_bar_textcolor"
+ 	            android:textSize="@dimen/card_textsize_navigation"
+ 	            android:textStyle="bold" />
+
+ 	        <TextView
+ 	            android:id="@+id/txtEmpty5"
+ 	            android:layout_width="12dp"
+ 	            android:layout_height="match_parent"
+ 	            android:background="@color/navigation_bar_background"
+ 	            />
+
+ 	        <Button
+ 	            android:id="@+id/btnNavigationHome"
+ 	            android:layout_width="0dip"
+ 	            android:layout_height="match_parent"
+ 	            android:layout_weight="1"
+ 	            android:background="@color/navigation_bar_background"
+ 	            android:contentDescription="@string/btnNavigationHome"
+ 	            android:focusable="true"
+ 	            android:gravity="center"
+ 	            android:text="@string/btnNavigationHome"
+ 	            android:textColor="@color/navigation_bar_textcolor"
+ 	            android:textSize="@dimen/card_textsize_navigation"
+ 	            android:textStyle="bold" />
+ 	    </TableRow>
+ 	</TableLayout>
+		
+</LinearLayout>		

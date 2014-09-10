@@ -1,0 +1,8 @@
+justdroid
+Copyright 2013 Caspar Isemer and Eva Krueger, http://justdroid.org
+
+This product includes software developed by
+the justdroid project (http://www.justdroid.org/)
+to invent a completely new operating mode,
+embedded in the Android DNA, to make mobile technology
+accessible for seniors, the blind and visually impaired.

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="DefaultLocale">
+        <ignore path="src/org/justdroid/justdroid/ContactsApp.java" />
+        <ignore path="src/org/justdroid/justdroid/ContactsDetailsMenu.java" />
+        <ignore path="src/org/justdroid/justdroid/SettingsColor.java" />
+    </issue>
+    <issue id="NewApi">
+        <ignore path="src/org/justdroid/justdroid/textmessages/SmsReceiver.java" />
+    </issue>
+</lint>

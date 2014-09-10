@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <!--  App specific entries -->
+	<dimen name="card_textsize_regular">19sp</dimen>
+	<dimen name="card_textsize_phonedialer">36sp</dimen>
+	<dimen name="card_textsize_listitems">26sp</dimen>
+	<dimen name="card_textsize_navigation">22sp</dimen>
+	<dimen name="card_textsize_tabs">26sp</dimen>
+	<dimen name="keypad_height">60dp</dimen>
+	<dimen name="tab_height">100dp</dimen>
+	<dimen name="navigation_bar_height">40dp</dimen>
+	<dimen name="keypad_backspace_width">42dp</dimen>
+	
+</resources>

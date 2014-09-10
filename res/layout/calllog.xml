@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@color/homescreen_background"
+    android:id="@+id/calllog" >
+    
+  <!--   <GridView 
+                android:id="@+id/gridView"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:numColumns="3"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="20dp" 
+                android:layout_weight="1"
+                android:gravity="center"></GridView>-->
+    
+    <TableLayout  android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" 
+	    android:background="@color/homescreen_background" >
+        <TableRow>
+            <Button  
+						android:id="@+id/tabCallsDialled"
+						android:text="@string/tabCallsDialled"
+						android:contentDescription="@string/tabCallsDialledTalkBackFriendly"
+						android:background="@drawable/card"
+					    android:textColor="@drawable/card_textcolor" 
+					    android:textStyle="bold"
+					    android:textSize="@dimen/card_textsize_tabs"
+					    android:gravity="center"
+						android:focusable="true"
+						android:layout_weight="1"
+					/>
+					<Button  
+						android:id="@+id/tabCallsReceived"
+						android:text="@string/tabCallsReceived"
+						android:contentDescription="@string/tabCallsReceivedTalkBackFriendly"
+						android:background="@drawable/card"
+					    android:textColor="@drawable/card_textcolor" 
+					    android:textStyle="bold"
+					    android:textSize="@dimen/card_textsize_tabs"
+					    android:gravity="center"
+						android:focusable="true"
+						android:layout_weight="1"
+					/>				
+					<Button  
+						android:id="@+id/tabCallsMissed"
+						android:text="@string/tabCallsMissed"
+						android:contentDescription="@string/tabCallsMissedTalkBackFriendly"
+						android:background="@drawable/card"
+					    android:textColor="@drawable/card_textcolor" 
+					    android:textStyle="bold"
+					    android:textSize="@dimen/card_textsize_tabs"
+					    android:gravity="center"
+						android:focusable="true"
+						android:layout_weight="1"
+					/>
+					<Button  
+						android:id="@+id/tabCallsAll"
+						android:text="@string/tabCallsAll"
+						android:contentDescription="@string/tabCallsAllTalkBackFriendly"
+						android:background="@drawable/card"
+					    android:textColor="@drawable/card_textcolor" 
+					    android:textStyle="bold"
+					    android:textSize="@dimen/card_textsize_tabs"
+					    android:gravity="center"
+						android:focusable="true"
+						android:layout_weight="1"
+					/>
+					<Button  
+						android:id="@+id/tabTime"
+						android:text="@string/totalTime"
+						android:contentDescription="@string/tabCallsTimeTalkBackFriendly"
+						android:background="@drawable/card"
+					    android:textColor="@drawable/card_textcolor" 
+					    android:textStyle="bold"
+					    android:textSize="@dimen/card_textsize_tabs"
+					    android:gravity="center"
+						android:focusable="true"
+						android:layout_weight="1"
+					/>
+        </TableRow>
+    </TableLayout>
+  <!--  <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:fillViewport="true" > 
+	<LinearLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" 
+	    android:background="@color/homescreen_background" 
+	    android:layout_weight="0"> 
+				   
+					<Button  
+						android:id="@+id/tabCallsDialled"
+						android:text="@string/tabCallsDialled"
+						android:contentDescription="@string/tabCallsDialledTalkBackFriendly"
+						android:layout_weight="1"
+						android:layout_width="wrap_content"
+						android:paddingLeft="25dp"
+						android:paddingRight="25dp"
+					    android:layout_height="@dimen/keypad_height" 
+					    android:background="@drawable/card"
+					    android:textColor="@drawable/card_textcolor" 
+					    android:textStyle="bold"
+					    android:textSize="@dimen/card_textsize_tabs"
+					    android:gravity="center"
+						android:focusable="true"
+					/>
+					
+			 	 	<TextView  
+						android:id="@+id/txtEmpty3"
+						android:text="@string/txtEmpty"
+					    android:layout_width="12dp" 
+					    android:layout_height="1px"
+					   	android:background="@color/homescreen_background"	    
+					    android:focusable="false"
+					/>		
+					
+					<Button  
+						android:id="@+id/tabCallsReceived"
+						android:text="@string/tabCallsReceived"
+						android:contentDescription="@string/tabCallsReceivedTalkBackFriendly"
+						android:layout_weight="1"
+						android:layout_width="wrap_content"
+						android:paddingLeft="25dp"
+						android:paddingRight="25dp"
+					    android:layout_height="@dimen/keypad_height" 
+					    android:background="@drawable/card"
+					    android:textColor="@drawable/card_textcolor" 
+					    android:textStyle="bold"
+					    android:textSize="@dimen/card_textsize_tabs"
+					    android:gravity="center"
+						android:focusable="true"
+					/>
+					
+			 		<TextView  
+						android:id="@+id/txtEmpty4"
+						android:text="@string/txtEmpty"
+					    android:layout_width="12dp" 
+					    android:layout_height="1px"
+					    android:background="@color/homescreen_background"		    
+					    android:focusable="false"
+					/>		
+				
+					<Button  
+						android:id="@+id/tabCallsMissed"
+						android:text="@string/tabCallsMissed"
+						android:contentDescription="@string/tabCallsMissedTalkBackFriendly"
+						android:layout_weight="1"
+						android:paddingLeft="25dp"
+						android:paddingRight="25dp"
+						android:layout_width="wrap_content"
+					    android:layout_height="@dimen/keypad_height" 
+					    android:background="@drawable/card"
+					    android:textColor="@drawable/card_textcolor" 
+					    android:textStyle="bold"
+					    android:textSize="@dimen/card_textsize_tabs"
+					    android:gravity="center"
+						android:focusable="true"
+					/>
+					
+					<TextView  
+						android:id="@+id/txtEmpty5"
+						android:text="@string/txtEmpty"
+					    android:layout_width="12dp" 
+					    android:layout_height="1px"
+					    android:background="@color/homescreen_background"		    
+					    android:focusable="false"
+					/>		
+				
+					<Button  
+						android:id="@+id/tabCallsAll"
+						android:text="@string/tabCallsAll"
+						android:contentDescription="@string/tabCallsAllTalkBackFriendly"
+						android:layout_weight="1"
+						android:paddingLeft="25dp"
+						android:paddingRight="25dp"
+						android:layout_width="wrap_content"
+					    android:layout_height="@dimen/keypad_height" 
+					    android:background="@drawable/card"
+					    android:textColor="@drawable/card_textcolor" 
+					    android:textStyle="bold"
+					    android:textSize="@dimen/card_textsize_tabs"
+					    android:gravity="center"
+						android:focusable="true"
+					/>
+					
+					<TextView  
+						android:id="@+id/txtEmpty6"
+						android:text="@string/txtEmpty"
+					    android:layout_width="12dp" 
+					    android:layout_height="1px"
+					    android:background="@color/homescreen_background"		    
+					    android:focusable="false"
+					/>		
+				
+					<Button  
+						android:id="@+id/tabTime"
+						android:text="@string/totalTime"
+						android:contentDescription="@string/tabCallsAllTalkBackFriendly"
+						android:layout_weight="1"
+						android:paddingLeft="25dp"
+						android:paddingRight="25dp"
+						android:layout_width="wrap_content"
+					    android:layout_height="@dimen/keypad_height" 
+					    android:background="@drawable/card"
+					    android:textColor="@drawable/card_textcolor" 
+					    android:textStyle="bold"
+					    android:textSize="@dimen/card_textsize_tabs"
+					    android:gravity="center"
+						android:focusable="true"
+					/>
+			</LinearLayout>
+	  </HorizontalScrollView> -->
+   
+ 	<LinearLayout 
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="0dp" 
+	    android:background="@color/homescreen_background" 
+	    android:layout_weight="2"> 
+	    
+		<ListView
+	        android:id="@+id/lstCallLogs"
+	        android:textColor="@color/card_textcolor_regular"
+	        android:textSize="@dimen/card_textsize_phonedialer"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" />
+		   
+	</LinearLayout>   
+    
+	<LinearLayout 
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" 
+	    android:background="@color/navigation_bar_background" 
+	    android:layout_weight="0">
+	
+		<TableLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_centerVertical="true"
+		    android:gravity="center_vertical"
+		    android:stretchColumns="0,2"
+		    android:weightSum="3" 
+		    android:paddingTop="1px" 
+		    android:paddingBottom="1px" >
+		
+			<TableRow
+			    android:layout_weight="1" 
+			    android:gravity="center_vertical" >
+			   
+				<Button  
+					android:id="@+id/btnNavigationBack"
+					android:text="@string/btnNavigationBack"
+					android:contentDescription="@string/btnNavigationBack"
+					android:layout_weight="1"
+				    android:layout_width="0dip" 
+				    android:layout_height="@dimen/navigation_bar_height" 
+					android:background="@color/navigation_bar_background"
+				    android:textColor="@color/navigation_bar_textcolor" 
+				    android:textStyle="bold"
+				    android:textSize="@dimen/card_textsize_navigation"
+				    android:gravity="center"
+					android:focusable="true"
+				/>	
+				
+				<TextView  
+					android:id="@+id/txtEmpty14"
+					android:text="@string/txtEmpty"
+				    android:layout_width="12px" 
+				    android:layout_height="1px"
+				    android:background="@color/navigation_bar_background"		    
+				    android:focusable="false"
+				/>		
+				
+				<Button  
+					android:id="@+id/btnNavigationHome"
+					android:text="@string/btnNavigationHome"
+					android:contentDescription="@string/btnNavigationHome"
+					android:layout_weight="1"
+				    android:layout_width="0dip" 
+				    android:layout_height="@dimen/navigation_bar_height" 
+					android:background="@color/navigation_bar_background"
+				    android:textColor="@color/navigation_bar_textcolor" 		    
+				    android:textStyle="bold"
+				    android:textSize="@dimen/card_textsize_navigation"
+				    android:gravity="center"
+					android:focusable="true"
+				/>
+			</TableRow>
+		</TableLayout>	
+	</LinearLayout>
+
+</LinearLayout>		
