@@ -1,14 +1,6 @@
 /*
-	   _           _      _           _     _ 
-	  (_)         | |    | |         (_)   | |
-	   _ _   _ ___| |_ __| |_ __ ___  _  __| |
-	  | | | | / __| __/ _` | '__/ _ \| |/ _` |
-	  | | |_| \__ \ || (_| | | | (_) | | (_| |
-	  | |\__,_|___/\__\__,_|_|  \___/|_|\__,_|
-	 _/ |                                     
-	|__/ 
 	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://justdroid.org	
+	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org	
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -37,7 +29,7 @@ import android.view.View.OnFocusChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-/** AboutActivity displays the details about JustDroid, the people involved and the supporters of 
+/** AboutActivity displays the details about easyaccess, the people involved and the supporters of 
  * the project **/
 
 public class AboutActivity extends EasyAccessActivity {

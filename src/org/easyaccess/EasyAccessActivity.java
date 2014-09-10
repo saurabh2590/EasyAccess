@@ -1,14 +1,6 @@
 /*
-	   _           _      _           _     _ 
-	  (_)         | |    | |         (_)   | |
-	   _ _   _ ___| |_ __| |_ __ ___  _  __| |
-	  | | | | / __| __/ _` | '__/ _ \| |/ _` |
-	  | | |_| \__ \ || (_| | | | (_) | | (_| |
-	  | |\__,_|___/\__\__,_|_|  \___/|_|\__,_|
-	 _/ |                                     
-	|__/ 
 	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://justdroid.org	
+	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org	
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -142,7 +134,7 @@ public class EasyAccessActivity extends Activity implements KeyListener{
 			getActionBar().setDisplayShowTitleEnabled(false);
 		}
 		
-		/** Find justdroid-specific Back and Home buttons **/
+		/** Find easyaccess-specific Back and Home buttons **/
 		Button btnNavigationBack = (Button) findViewById(R.id.btnNavigationBack);
 		Button btnNavigationHome = (Button) findViewById(R.id.btnNavigationHome);
 		
@@ -200,7 +192,7 @@ public class EasyAccessActivity extends Activity implements KeyListener{
 		finish();
 	}
 	
-	/** Back and Home button functionalities for all the activities that extend JustDroidActivity **/
+	/** Back and Home button functionalities for all the activities that extend easyaccessActivity **/
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event)
 	{

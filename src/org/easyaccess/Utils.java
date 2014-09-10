@@ -23,7 +23,7 @@ import android.widget.TextView;
 public class Utils {
 	/** 
 	* Consists of constants and static methods that would be used by various classes the constitute
-	* JustDroid.
+	* easyaccess.
 	**/
 	
 	public static HashMap<String, String> callingDetails = null;
@@ -31,9 +31,9 @@ public class Utils {
 	public static int ringing = 0;
 	public static int loudspeaker = 0;
 	public static int INIT = 0;
-	public static String CALL_ENDED = "org.justdroid.justdroid.CallStateService.CALL_ENDED";
-	public static String INCOMING_CALL = "org.justdroid.justdroid.CallStateService.INCOMING_CALL";
-	public static String END_CALL = "org.justdroid.justdroid.CallStateService.END_CALL";
+	public static String CALL_ENDED = "org.easyaccess.easyaccess.CallStateService.CALL_ENDED";
+	public static String INCOMING_CALL = "org.easyaccess.easyaccess.CallStateService.INCOMING_CALL";
+	public static String END_CALL = "org.easyaccess.easyaccess.CallStateService.END_CALL";
 	public static ArrayList<String> callers = new ArrayList<String>();
 	public static ArrayList<String> numbers = new ArrayList<String>();
 	@SuppressWarnings("serial")

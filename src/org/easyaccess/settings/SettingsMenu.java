@@ -1,14 +1,6 @@
 /*
-	   _           _      _           _     _ 
-	  (_)         | |    | |         (_)   | |
-	   _ _   _ ___| |_ __| |_ __ ___  _  __| |
-	  | | | | / __| __/ _` | '__/ _ \| |/ _` |
-	  | | |_| \__ \ || (_| | | | (_) | | (_| |
-	  | |\__,_|___/\__\__,_|_|  \___/|_|\__,_|
-	 _/ |                                     
-	|__/ 
 	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://justdroid.org	
+	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org	
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -43,7 +35,7 @@ import android.widget.LinearLayout;
 
 public class SettingsMenu extends EasyAccessActivity {
 	/**
-	* The Settings menu in JustDroid displays all the options for modifying the settings of JustDroid.
+	* The Settings menu in easyaccess displays all the options for modifying the settings of easyaccess.
 	*/
 	
 	/** Declare all the Buttons used in the activity **/
@@ -104,7 +96,7 @@ public class SettingsMenu extends EasyAccessActivity {
         startActivity(intent);
 	}
 	
-	/** Launches the About JustDroid activity. **/
+	/** Launches the About easyaccess activity. **/
 	void startSettingsAbout() {
 		Intent intent = new Intent(SettingsMenu.this, AboutActivity.class);
         startActivity(intent);
@@ -182,7 +174,7 @@ public class SettingsMenu extends EasyAccessActivity {
 	        }
 	    });
 		
-		/** If About JustDroid button is pressed, launch the About JustDroid activity **/
+		/** If About easyaccess button is pressed, launch the About easyaccess activity **/
 		btnAbout.setOnClickListener(new OnClickListener() {
 	        public void onClick(View v) {
 	        	if(screenCurtainFlag == 1) {

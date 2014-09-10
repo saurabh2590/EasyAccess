@@ -1,14 +1,6 @@
 /*
-	   _           _      _           _     _ 
-	  (_)         | |    | |         (_)   | |
-	   _ _   _ ___| |_ __| |_ __ ___  _  __| |
-	  | | | | / __| __/ _` | '__/ _ \| |/ _` |
-	  | | |_| \__ \ || (_| | | | (_) | | (_| |
-	  | |\__,_|___/\__\__,_|_|  \___/|_|\__,_|
-	 _/ |                                     
-	|__/ 
 	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://justdroid.org
+	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -112,7 +104,7 @@ public class HomescreenActivity extends EasyAccessFragment implements KeyListene
 		View v = inflater.inflate(R.layout.homescreen1, container, false);
 		this.view = v;
 		
-		/** Launch respective justdroid app, depending on which button is pressed **/
+		/** Launch respective easyaccess app, depending on which button is pressed **/
 		/*attachListener((Button)v.findViewById(R.id.btnPhoneDialer));
 		attachListener((Button)v.findViewById(R.id.btnCallLog));
 		attachListener((Button)v.findViewById(R.id.btnTextMessages));

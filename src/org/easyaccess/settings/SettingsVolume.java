@@ -1,14 +1,7 @@
 /*
-	   _           _      _           _     _ 
-	  (_)         | |    | |         (_)   | |
-	   _ _   _ ___| |_ __| |_ __ ___  _  __| |
-	  | | | | / __| __/ _` | '__/ _ \| |/ _` |
-	  | | |_| \__ \ || (_| | | | (_) | | (_| |
-	  | |\__,_|___/\__\__,_|_|  \___/|_|\__,_|
-	 _/ |                                     
-	|__/ 
-	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://justdroid.org
+	  
+	 
+	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -44,7 +37,7 @@ import android.widget.TextView;
 
 public class SettingsVolume extends EasyAccessActivity {
 	/**
-	* The Volume option in JustDroid Settings lists the options for various levels of volume. The
+	* The Volume option in easyaccess Settings lists the options for various levels of volume. The
 	* options are Softest, Softer, Soft, Normal, Louder, Loudest.
 	*/
 	

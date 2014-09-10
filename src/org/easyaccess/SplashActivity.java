@@ -1,14 +1,6 @@
 /*
-	   _           _      _           _     _ 
-	  (_)         | |    | |         (_)   | |
-	   _ _   _ ___| |_ __| |_ __ ___  _  __| |
-	  | | | | / __| __/ _` | '__/ _ \| |/ _` |
-	  | | |_| \__ \ || (_| | | | (_) | | (_| |
-	  | |\__,_|___/\__\__,_|_|  \___/|_|\__,_|
-	 _/ |                                     
-	|__/ 
-	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://justdroid.org
+
+	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -42,7 +34,7 @@ import android.widget.Toast;
 
 public class SplashActivity extends Activity implements OnInitListener{
 
-	/** Create the Splash screen on justdroid startup **/
+	/** Create the Splash screen on easyaccess startup **/
 	
 	// Declare constants and variables
 	private static String TAG = SplashActivity.class.getName();
@@ -138,7 +130,7 @@ public class SplashActivity extends Activity implements OnInitListener{
 	            Log.e(TAG, e.getMessage());
 	            // ImageView so that TalkBack can read it out loud
 	            ImageView imageView = (ImageView)findViewById(R.id.splash);
-	            imageView.setContentDescription(getString(R.string.txtJustDroidActivated));
+	            imageView.setContentDescription(getString(R.string.txteasyaccessActivated));
 	         }
 		}
 	}

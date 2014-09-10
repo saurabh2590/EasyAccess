@@ -280,7 +280,7 @@ public class CallStateService extends Service implements OnInitListener,
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.justdroid.justdroid.phonedialer.Accelerometer.AccelerometerListener
+	 * org.easyaccess.easyaccess.phonedialer.Accelerometer.AccelerometerListener
 	 * #onAccelerationChanged(float, float, float)
 	 */
 	@Override
@@ -291,7 +291,7 @@ public class CallStateService extends Service implements OnInitListener,
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.justdroid.justdroid.phonedialer.Accelerometer.AccelerometerListener
+	 * org.easyaccess.easyaccess.phonedialer.Accelerometer.AccelerometerListener
 	 * #onShake(float)
 	 */
 	@Override

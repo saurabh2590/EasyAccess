@@ -8,7 +8,7 @@
 	 _/ |                                     
 	|__/ 
 	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://justdroid.org
+	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ import android.widget.Toast;
 
 public class SettingsFont extends EasyAccessActivity {
 	/**
-	* The Font option in JustDroid allows the user to set a font size and select the font type used
+	* The Font option in easyaccess allows the user to set a font size and select the font type used
 	* in the app.
 	*/
 	
