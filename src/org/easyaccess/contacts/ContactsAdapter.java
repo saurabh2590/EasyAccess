@@ -1,3 +1,19 @@
+/*
+	
+	Copyright 2014 Caspar Isemer, Eva Krueger and IDEAL Group Inc.(http://www.ideal-group.org), http://easyaccess.org
+	
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+		http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License. 
+*/
 package org.easyaccess.contacts;
 
 import java.util.ArrayList;
@@ -16,14 +32,13 @@ import android.widget.ArrayAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
-
 @SuppressWarnings("rawtypes")
 public class ContactsAdapter extends ArrayAdapter implements SectionIndexer {
 	/**
-	 * A custom adapter to display the contacts in a ListView. It implements quick
-	 * letter navigation.
+	 * A custom adapter to display the contacts in a ListView. It implements
+	 * quick letter navigation.
 	 */
-	
+
 	/** Declare variables **/
 	private final Context context;
 	private ArrayList<String> values;
@@ -56,7 +71,8 @@ public class ContactsAdapter extends ArrayAdapter implements SectionIndexer {
 		final TextView textView = (TextView) rowView
 				.findViewById(R.id.textView1);
 		textView.setText(values.get(position));
-		textView.setContentDescription(values.get(position).replaceAll(".(?=[0-9])", "$0 "));
+		textView.setContentDescription(values.get(position).replaceAll(
+				".(?=[0-9])", "$0 "));
 		SharedPreferences preferences = context.getSharedPreferences(context
 				.getResources().getString(R.string.color), 0);
 		if (preferences.getInt("bgcolor", 0) != 0
@@ -107,7 +123,6 @@ public class ContactsAdapter extends ArrayAdapter implements SectionIndexer {
 
 			textView.setTextSize(Integer.valueOf(context.getResources()
 					.getString(R.string.textSize)));
-//					* context.getResources().getDisplayMetrics().density);
 		}
 		return rowView;
 	}

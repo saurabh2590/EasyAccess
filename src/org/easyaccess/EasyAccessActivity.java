@@ -1,6 +1,6 @@
 /*
 	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org	
+	Copyright 2014 Caspar Isemer, Eva Krueger and IDEAL Group Inc.(http://www.ideal-group.org), http://easyaccess.org
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -103,27 +103,7 @@ public class EasyAccessActivity extends Activity implements KeyListener{
 	    	TTS.speak(text);
 	}
 	
-	/*
-	@Override
-	public void onResume() {
-		super.onResume();
-		//Screen Curtain functionality
-		WindowManager windowManager = getWindowManager();
-		LayoutInflater inflater = getLayoutInflater();
-		LayoutParamsAndViewUtils layoutParamsAndView = ScreenCurtainFunctions.prepareForCurtainCheck(inflater);
-    	
-    	ScreenCurtainFunctions appState = ((ScreenCurtainFunctions) getApplicationContext());
-    	if(appState.getState() && !curtainSet) {
-    		curtainView = layoutParamsAndView.getView();
-    		windowManager.addView(curtainView, layoutParamsAndView.getLayoutParams());
-    		curtainSet = true;
-    	} else if(!appState.getState() && curtainSet) {
-    		windowManager.removeView(curtainView);
-    		curtainSet = false;
-    	} 	
-	}*/
 	
-		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

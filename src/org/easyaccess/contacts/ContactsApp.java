@@ -1,6 +1,6 @@
 /*
 	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org
+	Copyright 2014 Caspar Isemer, Eva Krueger and IDEAL Group Inc.(http://www.ideal-group.org), http://easyaccess.org
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -13,8 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
- */
-
+*/
 package org.easyaccess.contacts;
 
 import java.io.EOFException;
@@ -305,9 +304,7 @@ public class ContactsApp extends Activity implements KeyListener {
 	 */
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
-		if (event.getAction() == KeyEvent.ACTION_DOWN) { // &&
-															// !(inputContacts.getText().toString().trim().equals("")))
-															// {
+		if (event.getAction() == KeyEvent.ACTION_DOWN) {
 			if (!inputContacts.hasFocus()) {
 				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {// go to the
 																	// previous
@@ -403,7 +400,8 @@ public class ContactsApp extends Activity implements KeyListener {
 										0,
 										inputContacts.getText().toString()
 												.length() - 1));
-						inputContacts.setContentDescription(inputContacts.getText().toString()
+						inputContacts.setContentDescription(inputContacts
+								.getText().toString()
 								.replaceAll(".(?=[0-9])", "$0 "));
 						inputContacts.setSelection(inputContacts.getText()
 								.toString().length(), inputContacts.getText()
@@ -596,7 +594,6 @@ public class ContactsApp extends Activity implements KeyListener {
 								.getAllContacts();
 						ContactsApp.this.outputStream
 								.writeObject(ContactsApp.this.contactsMap);
-						// ContactsApp.this.outputStream.flush();
 						ContactsApp.this.outputStream.close();
 						name = contactsMap.get("name");
 						number = contactsMap.get("number");

@@ -1,6 +1,6 @@
 /*
 	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org
+	Copyright 2014 Caspar Isemer, Eva Krueger and IDEAL Group Inc.(http://www.ideal-group.org), http://easyaccess.org
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -13,8 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
- */
-
+*/
 package org.easyaccess.contacts;
 
 import java.util.ArrayList;
@@ -397,7 +396,6 @@ public class ContactsDetailsMenu extends EasyAccessActivity {
 						+ Html.fromHtml("<br/>" + num));
 				btnSms.setContentDescription("Send Message to " + numType + " "
 						+ num.replaceAll(".(?=[0-9])", "$0 "));
-				// btnCall.setBackground(getResources().getDrawable(R.drawable.card));
 				btnSms.setTextColor(getResources().getColor(
 						R.drawable.card_textcolor));
 				btnSms.setTypeface(Typeface.DEFAULT_BOLD);
@@ -409,7 +407,6 @@ public class ContactsDetailsMenu extends EasyAccessActivity {
 				btnSms.setFocusable(true);
 				params = new LinearLayout.LayoutParams(
 						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-				// params.weight = 1.0f;
 				btnCall.setLayoutParams(params);
 				layout = (LinearLayout) findViewById(R.id.linearLayout);
 				layout.addView(btnSms);

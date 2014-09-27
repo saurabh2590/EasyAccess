@@ -1,7 +1,6 @@
 /*
-	  
-	 
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org
+	
+	Copyright 2014 Caspar Isemer, Eva Krueger and IDEAL Group Inc.(http://www.ideal-group.org), http://easyaccess.org
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.

@@ -1,7 +1,6 @@
 /*
-	    
 	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org
+	Copyright 2014 Caspar Isemer, Eva Krueger and IDEAL Group Inc.(http://www.ideal-group.org), http://easyaccess.org
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -14,8 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
- */
-
+*/
 package org.easyaccess.phonedialer;
 
 import java.lang.reflect.Method;
@@ -50,7 +48,8 @@ import android.widget.Toast;
 import com.android.internal.telephony.ITelephony;
 
 /**
- * The PhoneDialer option in easyaccess allows the user to make and receive calls.
+ * The PhoneDialer option in easyaccess allows the user to make and receive
+ * calls.
  */
 
 public class PhoneDialerApp extends EasyAccessActivity {
@@ -78,8 +77,8 @@ public class PhoneDialerApp extends EasyAccessActivity {
 				.getSystemService(Context.TELEPHONY_SERVICE);
 		if (telManager.getVoiceMailNumber() != null) {
 			txtDialNumber.setText(telManager.getVoiceMailNumber());
-			txtDialNumber.setContentDescription(telManager.getVoiceMailNumber().
-					replaceAll(".(?=[0-9])", "$0 "));
+			txtDialNumber.setContentDescription(telManager.getVoiceMailNumber()
+					.replaceAll(".(?=[0-9])", "$0 "));
 			strDialNumber = txtDialNumber.getText().toString();
 		}
 	}
@@ -112,7 +111,8 @@ public class PhoneDialerApp extends EasyAccessActivity {
 				vibrator.vibrate(vibrateLength);
 				strDialNumber = strDialNumber + strDialDigit;
 				txtDialNumber.setText(strDialNumber);
-				txtDialNumber.setContentDescription(strDialNumber.replaceAll(".(?=[0-9])", "$0 "));
+				txtDialNumber.setContentDescription(strDialNumber.replaceAll(
+						".(?=[0-9])", "$0 "));
 			}
 		});
 	}
@@ -139,9 +139,9 @@ public class PhoneDialerApp extends EasyAccessActivity {
 						if (!(((TextView) view).getText().toString().equals(""))) {
 							TTS.speak(TTS.readNumber(((TextView) view)
 									.getText().toString()));
-						}
-						else {
-							TTS.speak(((TextView) view).getContentDescription().toString());
+						} else {
+							TTS.speak(((TextView) view).getContentDescription()
+									.toString());
 						}
 					}
 				}
@@ -337,15 +337,6 @@ public class PhoneDialerApp extends EasyAccessActivity {
 
 		attachOnFocusChangeListener(R.id.btnCallHangup);
 
-		/*
-		 * btnCall.setOnTouchListener(new OnTouchListener() {
-		 * 
-		 * @Override public boolean onTouch(View view, MotionEvent arg1) {
-		 * Vibrator vibrator = (Vibrator)
-		 * getSystemService(Context.VIBRATOR_SERVICE); vibrator.vibrate(200);
-		 * TTS.speak(((Button)view).getText().toString()); return false; } });
-		 */
-
 		// if we came here from the calling screen, the user wants to type a
 		// digit
 		if (getIntent().getExtras() != null
@@ -377,18 +368,15 @@ public class PhoneDialerApp extends EasyAccessActivity {
 				Toast.makeText(getApplicationContext(),
 						"Please not that roaming is activated",
 						Toast.LENGTH_SHORT).show();
-			}/*
-			 * else { Toast.makeText(getApplicationContext(),
-			 * "You are in your home network", Toast.LENGTH_SHORT).show(); }
-			 */
+			}
 		}
 
 		// if we came here from the Contacts app, make a call
 		if (getIntent().getExtras() != null
 				&& getIntent().getExtras().getString("call") != null) {
 			txtDialNumber.setText(getIntent().getExtras().getString("call"));
-			txtDialNumber.setContentDescription(getIntent().getExtras().getString("call").
-					replaceAll(".(?=[0-9])", "$0 "));
+			txtDialNumber.setContentDescription(getIntent().getExtras()
+					.getString("call").replaceAll(".(?=[0-9])", "$0 "));
 			makeCall();
 		}
 
@@ -429,7 +417,6 @@ public class PhoneDialerApp extends EasyAccessActivity {
 		btnKeypadBackspace.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (strDialNumber != null && !strDialNumber.isEmpty()) {
-					// TTS.speak(getResources().getString(R.string.btnKeypadBackspaceTalkBackFriendly));
 					Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 					vibrator.vibrate(800);
 					// check if keyboard is connected or accessibility services
@@ -447,7 +434,8 @@ public class PhoneDialerApp extends EasyAccessActivity {
 					strDialNumber = strDialNumber.substring(0,
 							strDialNumber.length() - 1);
 					txtDialNumber.setText(strDialNumber);
-					txtDialNumber.setContentDescription(strDialNumber.replaceAll(".(?=[0-9])", "$0 "));
+					txtDialNumber.setContentDescription(strDialNumber
+							.replaceAll(".(?=[0-9])", "$0 "));
 				}
 			}
 		});
@@ -479,15 +467,6 @@ public class PhoneDialerApp extends EasyAccessActivity {
 				return false;
 			}
 		});
-
-		/*
-		 * txtDialNumber.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View view) {
-		 * if(!(((TextView)view).getText().toString().equals("")))
-		 * TTS.speak(TTS.readNumber(((TextView)view).getText().toString())); }
-		 * });
-		 */
 
 		/**
 		 * If call/hang up button is pressed, dial the number or hang up the

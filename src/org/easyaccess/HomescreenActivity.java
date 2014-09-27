@@ -1,6 +1,6 @@
 /*
 	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org
+	Copyright 2014 Caspar Isemer, Eva Krueger and IDEAL Group Inc.(http://www.ideal-group.org), http://easyaccess.org
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
 	See the License for the specific language governing permissions and
 	limitations under the License. 
 */
-
 package org.easyaccess;
 
 import org.easyaccess.calllog.CallLogApp;
@@ -105,13 +104,6 @@ public class HomescreenActivity extends EasyAccessFragment implements KeyListene
 		this.view = v;
 		
 		/** Launch respective easyaccess app, depending on which button is pressed **/
-		/*attachListener((Button)v.findViewById(R.id.btnPhoneDialer));
-		attachListener((Button)v.findViewById(R.id.btnCallLog));
-		attachListener((Button)v.findViewById(R.id.btnTextMessages));
-		attachListener((Button)v.findViewById(R.id.btnContacts));
-		attachListener((Button)v.findViewById(R.id.btnStatus));
-		attachListener((Button)v.findViewById(R.id.btnSettings));*/
-		
 		attachListener((Button)v.findViewById(R.id.btnPhoneDialer), PhoneDialerApp.class);
 		attachListener((Button)v.findViewById(R.id.btnCallLog), CallLogApp.class);
 		attachListener((Button)v.findViewById(R.id.btnTextMessages), TextMessagesApp.class);

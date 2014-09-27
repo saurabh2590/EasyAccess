@@ -1,14 +1,6 @@
 /*
-	   _           _      _           _     _ 
-	  (_)         | |    | |         (_)   | |
-	   _ _   _ ___| |_ __| |_ __ ___  _  __| |
-	  | | | | / __| __/ _` | '__/ _ \| |/ _` |
-	  | | |_| \__ \ || (_| | | | (_) | | (_| |
-	  | |\__,_|___/\__\__,_|_|  \___/|_|\__,_|
-	 _/ |                                     
-	|__/ 
 	
-	Copyright 2013 Caspar Isemer and and Eva Krueger, http://easyaccess.org
+	Copyright 2014 Caspar Isemer, Eva Krueger and IDEAL Group Inc.(http://www.ideal-group.org), http://easyaccess.org
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -22,7 +14,6 @@
 	See the License for the specific language governing permissions and
 	limitations under the License. 
 */
-
 package org.easyaccess.settings;
 
 import org.easyaccess.EasyAccessActivity;
