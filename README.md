@@ -2,6 +2,7 @@ EasyAccess
 ==========
 
 Easy Access is the new Android shell for making it easier for people with blindness to use their Android Smart phone. As a part of this project we focused on most important and basic six operations of the Android Smart Phone which are -
+
 1. Phone Dialer
 2. Contacts
 3. Call Log
@@ -28,6 +29,7 @@ The documentation is available from the following webpage:
 http://ideal-group.org/ea-docs/
 
 The main purpose for developing and releasing "EasyAccess for Android" is to encourage and support other developers:
+
 1. To do as we are doing;
 2. Take our source code and improve upon it;
 3. Make some money; and,
