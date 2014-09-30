@@ -13,17 +13,15 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 
 package com.android.internal.telephony;
 
 public interface ITelephony {
 	boolean endCall();
 
-	  
-    void answerRingingCall();
+	void answerRingingCall();
 
-   
-    void silenceRinger();
+	void silenceRinger();
 
 }

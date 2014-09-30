@@ -13,14 +13,14 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 package org.easyaccess;
 
 import android.view.View;
 import android.view.WindowManager.LayoutParams;
 
 public class LayoutParamsAndViewUtils {
-	
+
 	private LayoutParams layoutParams;
 	private View view;
 
@@ -44,5 +44,5 @@ public class LayoutParamsAndViewUtils {
 	public void setLayoutParams(LayoutParams layoutParams) {
 		this.layoutParams = layoutParams;
 	}
-	
+
 }

@@ -13,8 +13,9 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 package org.easyaccess.phonedialer;
+
 /** Adapted from http://androidexample.com/MultiThread_in_Android/GUI/index.php?view=article_discription&aid=109&aaid=131 */
 import java.util.List;
 

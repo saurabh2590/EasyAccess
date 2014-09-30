@@ -13,7 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 
 package org.easyaccess;
 
@@ -35,126 +35,136 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class EasyAccessActivity extends Activity implements KeyListener{
-	
+public class EasyAccessActivity extends Activity implements KeyListener {
+
 	/** Declare variables used for the Screen Curtain feature **/
 	protected View curtainView;
 	protected boolean curtainSet = false;
-	
+
 	/**
- 	* Attaches onFocusChangeListener to the button passed as a parameter. When the button receives 
- 	* focus, giveFeedback method is called, that reads aloud the string passed to it as a parameter.
- 	* @param button is an instance of Button.
- 	*/
+	 * Attaches onFocusChangeListener to the button passed as a parameter. When
+	 * the button receives focus, giveFeedback method is called, that reads
+	 * aloud the string passed to it as a parameter.
+	 * 
+	 * @param button
+	 *            is an instance of Button.
+	 */
 	protected void attachListener(Button button) {
 		final String text = button.getText().toString();
-		
+
 		button.setOnFocusChangeListener(new OnFocusChangeListener() {
-			
+
 			@Override
 			public void onFocusChange(View view, boolean hasFocus) {
-				if(hasFocus) {
+				if (hasFocus) {
 					giveFeedback(text);
 				}
 			}
 		});
 	}
-	
+
 	/**
-	* Turns off the screen curtain functionality if it is on. 
-	*/
+	 * Turns off the screen curtain functionality if it is on.
+	 */
 	protected void turnOffScreenCurtain() {
 		WindowManager windowManager = getWindowManager();
-    	ScreenCurtainFunctions appState = ((ScreenCurtainFunctions) getApplicationContext());
-    	if(appState.getState()) {
-    		windowManager.removeView(curtainView);
-    		curtainSet = false;
-    		appState.setState(false);
-    	}
+		ScreenCurtainFunctions appState = ((ScreenCurtainFunctions) getApplicationContext());
+		if (appState.getState()) {
+			windowManager.removeView(curtainView);
+			curtainSet = false;
+			appState.setState(false);
+		}
 	}
-	
+
 	/**
- 	* Attachs onFocusChangeListener to the spinner passed as a parameter. When the spinner receives 
- 	* focus, giveFeedback method is called, that reads aloud the string passed to it as a parameter.
- 	* @param spinner is an instance of Spinner.
- 	*/
+	 * Attachs onFocusChangeListener to the spinner passed as a parameter. When
+	 * the spinner receives focus, giveFeedback method is called, that reads
+	 * aloud the string passed to it as a parameter.
+	 * 
+	 * @param spinner
+	 *            is an instance of Spinner.
+	 */
 	protected void attachListenerToSpinner(Spinner spinner) {
 		final String text = spinner.getContentDescription().toString();
 		spinner.setOnFocusChangeListener(new OnFocusChangeListener() {
-			
+
 			@Override
 			public void onFocusChange(View view, boolean hasFocus) {
-				if(hasFocus) {
+				if (hasFocus) {
 					giveFeedback(text);
 				}
 			}
 		});
 	}
-	
-	/** Announces the text passed as a parameter, and causes the device to vibrate for 300 milliseconds.
-	* @param text The text that is to be read aloud.
-	*/
+
+	/**
+	 * Announces the text passed as a parameter, and causes the device to
+	 * vibrate for 300 milliseconds.
+	 * 
+	 * @param text
+	 *            The text that is to be read aloud.
+	 */
 	public void giveFeedback(String text) {
-		//vibrate
+		// vibrate
 		Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-	    vibrator.vibrate(300);
-	    //TTS feedback
-	    if(!TTS.isSpeaking())
-	    	TTS.speak(text);
+		vibrator.vibrate(300);
+		// TTS feedback
+		if (!TTS.isSpeaking())
+			TTS.speak(text);
 	}
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//hide the action bar
-		if(getActionBar() != null) {
+		// hide the action bar
+		if (getActionBar() != null) {
 			getActionBar().setDisplayShowHomeEnabled(false);
 			getActionBar().setDisplayShowTitleEnabled(false);
 		}
-		
+
 		/** Find easyaccess-specific Back and Home buttons **/
 		Button btnNavigationBack = (Button) findViewById(R.id.btnNavigationBack);
 		Button btnNavigationHome = (Button) findViewById(R.id.btnNavigationHome);
-		
+
 		/** If Back navigation button is pressed, go back to previous activity **/
 		btnNavigationBack.setOnClickListener(new View.OnClickListener() {
-	        public void onClick(View v) {
-	        	turnOffScreenCurtain();
-	        	finish();
-	        }
-	    });
+			public void onClick(View v) {
+				turnOffScreenCurtain();
+				finish();
+			}
+		});
 
 		/** If Home navigation button is pressed, go back to previous activity **/
 		btnNavigationHome.setOnClickListener(new View.OnClickListener() {
-	        public void onClick(View v) {
-	        	turnOffScreenCurtain();
-	        	finish();
-	        	Intent intent = new Intent(getApplicationContext(), SwipingUtils.class);
-	        	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	        	intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-	        	startActivity(intent);
-	        }
-	    });
-		
+			public void onClick(View v) {
+				turnOffScreenCurtain();
+				finish();
+				Intent intent = new Intent(getApplicationContext(),
+						SwipingUtils.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+				startActivity(intent);
+			}
+		});
+
 		OnFocusChangeListener focusChangeListener = new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View view, boolean hasFocus) {
-				if(hasFocus) {
-					TTS.speak(((TextView)view).getText().toString());
+				if (hasFocus) {
+					TTS.speak(((TextView) view).getText().toString());
 				}
 			}
 		};
-		
+
 		/** Attach onFocusChange listener to back and home buttons **/
 		btnNavigationBack.setOnFocusChangeListener(focusChangeListener);
 		btnNavigationHome.setOnFocusChangeListener(focusChangeListener);
 	}
-	
+
 	@Override
 	public void clearMetaKeyState(View arg0, Editable arg1, int arg2) {
-		
+
 	}
 
 	@Override
@@ -163,7 +173,8 @@ public class EasyAccessActivity extends Activity implements KeyListener{
 	}
 
 	@Override
-	public boolean onKeyDown(View view, Editable arg1, int keyCode, KeyEvent keyEvent) {
+	public boolean onKeyDown(View view, Editable arg1, int keyCode,
+			KeyEvent keyEvent) {
 		return false;
 	}
 
@@ -171,40 +182,49 @@ public class EasyAccessActivity extends Activity implements KeyListener{
 	public void onBackPressed() {
 		finish();
 	}
-	
-	/** Back and Home button functionalities for all the activities that extend easyaccessActivity **/
+
+	/**
+	 * Back and Home button functionalities for all the activities that extend
+	 * easyaccessActivity
+	 **/
 	@Override
-	public boolean dispatchKeyEvent(KeyEvent event)
-	{
-		if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {//go to the previous screen
-	    	//check if keyboard is connected and accessibility services are disabled
-        	if(!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-        		TTS.speak("Back");
-        	turnOffScreenCurtain();
-        	finish();
-	    }
-	    else if(event.getKeyCode() == KeyEvent.KEYCODE_F1) {//go to the home screen
-	    	//check if keyboard is connected and accessibility services are disabled
-        	if(!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-        		TTS.speak("Home");
-        	turnOffScreenCurtain();
+	public boolean dispatchKeyEvent(KeyEvent event) {
+		if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {// go to the previous
+															// screen
+			// check if keyboard is connected and accessibility services are
+			// disabled
+			if (!Utils.isAccessibilityEnabled(getApplicationContext())
+					&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+				TTS.speak("Back");
+			turnOffScreenCurtain();
 			finish();
-			Intent intent = new Intent(getApplicationContext(), SwipingUtils.class);
-        	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        	intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-        	startActivity(intent);
-	    }
-	    return super.dispatchKeyEvent(event);
+		} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {// go to the home
+																// screen
+			// check if keyboard is connected and accessibility services are
+			// disabled
+			if (!Utils.isAccessibilityEnabled(getApplicationContext())
+					&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+				TTS.speak("Home");
+			turnOffScreenCurtain();
+			finish();
+			Intent intent = new Intent(getApplicationContext(),
+					SwipingUtils.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+			startActivity(intent);
+		}
+		return super.dispatchKeyEvent(event);
 	}
-	
+
 	@Override
 	public boolean onKeyOther(View arg0, Editable arg1, KeyEvent arg2) {
 		return false;
 	}
 
 	@Override
-	public boolean onKeyUp(View view, Editable arg1, int keyCode, KeyEvent keyEvent) {
+	public boolean onKeyUp(View view, Editable arg1, int keyCode,
+			KeyEvent keyEvent) {
 		return false;
 	}
-	
+
 }

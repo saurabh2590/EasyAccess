@@ -1,185 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textmessagesviewer"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
     android:background="@color/homescreen_background"
-    android:id="@+id/textmessagesviewer" >
-    <TableLayout 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content" 
-	    android:background="@color/homescreen_background" 
-	    android:layout_weight="0"> 
-		    
-			<TableRow>
-			    <Button  
-						android:id="@+id/btnTextMsgsCall"
-						android:text="@string/btnTextMsgsCall"
-						android:contentDescription="@string/btnTextMsgsCall"
-						android:layout_weight="1"
-						android:layout_width="wrap_content"
-						android:paddingLeft="25dp"
-						android:paddingRight="25dp"
-					    android:layout_height="@dimen/keypad_height" 
-					    android:background="@drawable/card"
-					    android:textColor="@drawable/card_textcolor" 
-					    android:textStyle="bold"
-					    android:textSize="@dimen/card_textsize_tabs"
-					    android:gravity="center"
-						android:focusable="true"
-					/>
-					
-			 	 	<TextView  
-						android:id="@+id/txtEmpty3"
-						android:text="@string/txtEmpty"
-					    android:layout_width="12dp" 
-					    android:layout_height="1px"
-					   	android:background="@color/homescreen_background"	    
-					    android:focusable="false"
-					/>		
-					
-					<Button  
-						android:id="@+id/btnTextMsgsReply"
-						android:text="@string/btnTextMsgsReply"
-						android:contentDescription="@string/btnTextMsgsReply"
-						android:layout_weight="1"
-						android:layout_width="wrap_content"
-						android:paddingLeft="25dp"
-						android:paddingRight="25dp"
-					    android:layout_height="@dimen/keypad_height" 
-					    android:background="@drawable/card"
-					    android:textColor="@drawable/card_textcolor" 
-					    android:textStyle="bold"
-					    android:textSize="@dimen/card_textsize_tabs"
-					    android:gravity="center"
-						android:focusable="true"
-					/>
-					
-			 		<TextView  
-						android:id="@+id/txtEmpty4"
-						android:text="@string/txtEmpty"
-					    android:layout_width="12dp" 
-					    android:layout_height="1px"
-					    android:background="@color/homescreen_background"		    
-					    android:focusable="false"
-					/>		
-				
-					<Button  
-						android:id="@+id/btnTextMsgsDeleteThread"
-						android:text="@string/btnTextMsgsDeleteThread"
-						android:contentDescription="@string/btnTextMsgsDeleteThread"
-						android:layout_weight="1"
-						android:paddingLeft="25dp"
-						android:paddingRight="25dp"
-						android:layout_width="wrap_content"
-					    android:layout_height="@dimen/keypad_height" 
-					    android:background="@drawable/card"
-					    android:textColor="@drawable/card_textcolor" 
-					    android:textStyle="bold"
-					    android:textSize="@dimen/card_textsize_tabs"
-					    android:gravity="center"
-						android:focusable="true"
-					/>
-			</TableRow>
-				   
-			</TableLayout>
-		
- 	<LinearLayout 
-	    android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content" 
-	    android:background="@color/homescreen_background" 
-	    android:layout_weight="1"> 
-	    
-		<ScrollView 
-		    android:orientation="vertical"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content" 
-		    android:background="@color/homescreen_background" >
-		   
-		    <LinearLayout 
- 	    android:id="@+id/textLinearLayout"
-	    android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content" 
-	    android:background="@color/homescreen_background" >
-			</LinearLayout>
-		</ScrollView>
+    android:orientation="vertical" >
 
-		<ProgressBar
-	  	    android:id="@+id/progressBarMessages"
-	  	    android:layout_gravity="center"
-	  	    android:indeterminate="true"
-	  	    android:layout_marginTop="100dp"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:contentDescription="Loading Messages"
-	        style="?android:attr/progressBarStyleLarge"
-	        android:visibility="gone" />
-    
-	</LinearLayout>   
-    
-	<LinearLayout 
-	    android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content" 
-	    android:background="@color/navigation_bar_background" 
-	    android:layout_weight="0">
-	
-		<TableLayout
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:layout_centerVertical="true"
-		    android:gravity="center_vertical"
-		    android:stretchColumns="0,2"
-		    android:weightSum="3" 
-		    android:paddingTop="1px" 
-		    android:paddingBottom="1px" >
-		
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >
-			   
-				<Button  
-					android:id="@+id/btnNavigationBack"
-					android:text="@string/btnNavigationBack"
-					android:contentDescription="@string/btnNavigationBack"
-					android:layout_weight="1"
-				    android:layout_width="0dip" 
-				    android:layout_height="@dimen/navigation_bar_height" 
-					android:background="@color/navigation_bar_background"
-				    android:textColor="@color/navigation_bar_textcolor" 
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_navigation"
-				    android:gravity="center"
-					android:focusable="true"
-				/>	
-				
-				<TextView  
-					android:id="@+id/txtEmpty14"
-					android:text="@string/txtEmpty"
-				    android:layout_width="12px" 
-				    android:layout_height="1px"
-				    android:background="@color/navigation_bar_background"		    
-				    android:focusable="false"
-				/>		
-				
-				<Button  
-					android:id="@+id/btnNavigationHome"
-					android:text="@string/btnNavigationHome"
-					android:contentDescription="@string/btnNavigationHome"
-					android:layout_weight="1"
-				    android:layout_width="0dip" 
-				    android:layout_height="@dimen/navigation_bar_height" 
-					android:background="@color/navigation_bar_background"
-				    android:textColor="@color/navigation_bar_textcolor" 		    
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_navigation"
-				    android:gravity="center"
-					android:focusable="true"
-				/>
-			</TableRow>
-		</TableLayout>	
-	</LinearLayout>
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/homescreen_background" >
 
-</LinearLayout>		
+        <TableRow>
+
+            <Button
+                android:id="@+id/btnTextMsgsCall"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/keypad_height"
+                android:layout_weight="1"
+                android:background="@drawable/card"
+                android:contentDescription="@string/btnTextMsgsCall"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:text="@string/btnTextMsgsCall"
+                android:textColor="@drawable/card_textcolor"
+                android:textSize="@dimen/card_textsize_tabs"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtEmpty3"
+                android:layout_width="12dp"
+                android:layout_height="1px"
+                android:background="@color/homescreen_background"
+                android:focusable="false"
+                android:text="@string/txtEmpty" />
+
+            <Button
+                android:id="@+id/btnTextMsgsReply"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/keypad_height"
+                android:layout_weight="1"
+                android:background="@drawable/card"
+                android:contentDescription="@string/btnTextMsgsReply"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:text="@string/btnTextMsgsReply"
+                android:textColor="@drawable/card_textcolor"
+                android:textSize="@dimen/card_textsize_tabs"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtEmpty4"
+                android:layout_width="12dp"
+                android:layout_height="1px"
+                android:background="@color/homescreen_background"
+                android:focusable="false"
+                android:text="@string/txtEmpty" />
+
+            <Button
+                android:id="@+id/btnTextMsgsDeleteThread"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/keypad_height"
+                android:layout_weight="1"
+                android:background="@drawable/card"
+                android:contentDescription="@string/btnTextMsgsDeleteThread"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:text="@string/btnTextMsgsDeleteThread"
+                android:textColor="@drawable/card_textcolor"
+                android:textSize="@dimen/card_textsize_tabs"
+                android:textStyle="bold" />
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/homescreen_background"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/homescreen_background"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/textLinearLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/homescreen_background"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBarMessages"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:contentDescription="Loading Messages"
+            android:indeterminate="true"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/navigation_bar_background"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingBottom="1px"
+            android:paddingTop="1px"
+            android:stretchColumns="0,2"
+            android:weightSum="3" >
+
+            <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnNavigationBack"
+                    android:layout_width="0dip"
+                    android:layout_height="@dimen/navigation_bar_height"
+                    android:layout_weight="1"
+                    android:background="@color/navigation_bar_background"
+                    android:contentDescription="@string/btnNavigationBack"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnNavigationBack"
+                    android:textColor="@color/navigation_bar_textcolor"
+                    android:textSize="@dimen/card_textsize_navigation"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtEmpty14"
+                    android:layout_width="12px"
+                    android:layout_height="1px"
+                    android:background="@color/navigation_bar_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+
+                <Button
+                    android:id="@+id/btnNavigationHome"
+                    android:layout_width="0dip"
+                    android:layout_height="@dimen/navigation_bar_height"
+                    android:layout_weight="1"
+                    android:background="@color/navigation_bar_background"
+                    android:contentDescription="@string/btnNavigationHome"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnNavigationHome"
+                    android:textColor="@color/navigation_bar_textcolor"
+                    android:textSize="@dimen/card_textsize_navigation"
+                    android:textStyle="bold" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</LinearLayout>

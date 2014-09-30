@@ -13,7 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 package org.easyaccess.contacts;
 
 import java.util.ArrayList;
@@ -312,7 +312,8 @@ public class ContactsDetailsMenu extends EasyAccessActivity {
 			btnEditContactName.setText("Edit "
 					+ this.contactDetails.get("name").get(0));
 			btnEditContactName.setContentDescription("Edit "
-					+ this.contactDetails.get("name").get(0).replaceAll(".(?=[0-9])", "$0 "));
+					+ this.contactDetails.get("name").get(0)
+							.replaceAll(".(?=[0-9])", "$0 "));
 
 			for (int i = 0; i < contactDetails.get("numbers").size(); i++) {
 
@@ -322,7 +323,8 @@ public class ContactsDetailsMenu extends EasyAccessActivity {
 				final Button btnEditNumber = new Button(getApplicationContext());
 				btnCall.setText("Call " + numType
 						+ Html.fromHtml("<br/>" + num));
-				btnCall.setContentDescription("Call " + numType + " " + num.replaceAll(".(?=[0-9])", "$0 "));
+				btnCall.setContentDescription("Call " + numType + " "
+						+ num.replaceAll(".(?=[0-9])", "$0 "));
 				btnCall.setTextColor(getResources().getColor(
 						R.drawable.card_textcolor));
 				btnCall.setTypeface(Typeface.DEFAULT_BOLD);

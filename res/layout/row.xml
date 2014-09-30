@@ -6,11 +6,11 @@
 
     <TextView
         android:id="@+id/textView1"
-        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/card"
-        android:textColor="@drawable/card_textcolor" 
+        android:padding="20dp"
+        android:textColor="@drawable/card_textcolor"
         android:textSize="@dimen/card_textsize_listitems" />
 
 </LinearLayout>

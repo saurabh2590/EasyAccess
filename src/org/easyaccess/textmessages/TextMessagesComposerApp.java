@@ -13,7 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 package org.easyaccess.textmessages;
 
 import org.easyaccess.R;
@@ -480,31 +480,25 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 
 	@Override
 	public void clearMetaKeyState(View arg0, Editable arg1, int arg2) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public int getInputType() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public boolean onKeyDown(View arg0, Editable arg1, int arg2, KeyEvent arg3) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean onKeyOther(View arg0, Editable arg1, KeyEvent arg2) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean onKeyUp(View arg0, Editable arg1, int arg2, KeyEvent arg3) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

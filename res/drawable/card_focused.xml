@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
-<!-- Bottom 2dp Shadow -->
-<item>
-    <shape android:shape="rectangle">
-        <solid android:color="@color/card_shadow" />
-        <corners android:radius="2dp" />
-    </shape>
-</item>
+    <!-- Bottom 2dp Shadow -->
+    <item>
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/card_shadow" />
 
-<!-- White Top color -->
-<item android:bottom="4px">
-    <shape android:shape="rectangle">
-	    <solid android:color="@color/card_background_pressed" />
-	    <corners android:radius="2dp" />
-    </shape>
-</item>
+            <corners android:radius="2dp" />
+        </shape>
+    </item>
+
+    <!-- White Top color -->
+    <item android:bottom="4px">
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/card_background_pressed" />
+
+            <corners android:radius="2dp" />
+        </shape>
+    </item>
 
 </layer-list>

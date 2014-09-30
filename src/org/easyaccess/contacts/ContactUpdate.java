@@ -13,7 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 package org.easyaccess.contacts;
 
 import java.util.ArrayList;
@@ -58,13 +58,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 public class ContactUpdate extends Activity implements KeyListener {
 
 	/**
 	 * Displays options to update the details of the contact.
 	 */
-	
+
 	/** Declare variables and UI elements **/
 	private EditText editField;
 	private TextView txtType;
@@ -232,10 +231,7 @@ public class ContactUpdate extends Activity implements KeyListener {
 		while (cursor.moveToNext()) {
 			String mail = cursor
 					.getString(cursor
-							.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS)); // TODO:
-																								// change
-																								// to
-																								// ADDRESS
+							.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS)); 
 			Log.e(mail,
 					cursor.getString(cursor
 							.getColumnIndex(ContactsContract.CommonDataKinds.Email.IS_PRIMARY)));
@@ -645,7 +641,8 @@ public class ContactUpdate extends Activity implements KeyListener {
 				this.editFlag = NAME;
 				this.name = getIntent().getExtras().getString("name");
 				editField.setText(this.name);
-				editField.setContentDescription(this.name.replaceAll(".(?=[0-9])", "$0 "));
+				editField.setContentDescription(this.name.replaceAll(
+						".(?=[0-9])", "$0 "));
 				txtType.setVisibility(View.GONE);
 				spinnerType.setVisibility(View.GONE);
 				btnSetPrimary.setVisibility(View.GONE);
@@ -654,7 +651,8 @@ public class ContactUpdate extends Activity implements KeyListener {
 				this.editFlag = NUMBER;
 				this.number = getIntent().getExtras().getString("number");
 				editField.setText(this.number);
-				editField.setContentDescription(this.number.replaceAll(".(?=[0-9])", "$0 "));
+				editField.setContentDescription(this.number.replaceAll(
+						".(?=[0-9])", "$0 "));
 				editField.setInputType(InputType.TYPE_CLASS_PHONE);
 				this.numType = getIntent().getExtras().getString("numtype");
 				txtType.setVisibility(View.VISIBLE);
@@ -799,8 +797,6 @@ public class ContactUpdate extends Activity implements KeyListener {
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-
 			}
 		});
 
@@ -878,8 +874,6 @@ public class ContactUpdate extends Activity implements KeyListener {
 	 */
 	@Override
 	public void clearMetaKeyState(View arg0, Editable arg1, int arg2) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/*
@@ -889,7 +883,6 @@ public class ContactUpdate extends Activity implements KeyListener {
 	 */
 	@Override
 	public int getInputType() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -901,7 +894,6 @@ public class ContactUpdate extends Activity implements KeyListener {
 	 */
 	@Override
 	public boolean onKeyDown(View arg0, Editable arg1, int arg2, KeyEvent arg3) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -913,7 +905,6 @@ public class ContactUpdate extends Activity implements KeyListener {
 	 */
 	@Override
 	public boolean onKeyOther(View arg0, Editable arg1, KeyEvent arg2) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -925,7 +916,6 @@ public class ContactUpdate extends Activity implements KeyListener {
 	 */
 	@Override
 	public boolean onKeyUp(View arg0, Editable arg1, int arg2, KeyEvent arg3) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -1035,7 +1025,8 @@ public class ContactUpdate extends Activity implements KeyListener {
 												0,
 												editField.getText().toString()
 														.length() - 1));
-						editField.setContentDescription(editField.getText().toString().replaceAll(".(?=[0-9])", "$0 "));
+						editField.setContentDescription(editField.getText()
+								.toString().replaceAll(".(?=[0-9])", "$0 "));
 						editField.setSelection(editField.getText().toString()
 								.length(), editField.getText().toString()
 								.length());

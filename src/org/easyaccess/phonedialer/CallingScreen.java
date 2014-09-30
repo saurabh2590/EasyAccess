@@ -13,7 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 package org.easyaccess.phonedialer;
 
 import java.lang.reflect.Method;
@@ -256,7 +256,8 @@ public class CallingScreen extends Activity {
 
 	public void displayCall(String details, String number) {
 		recipientTextView.setText(details);
-		recipientTextView.setContentDescription(details.replaceAll(".(?=[0-9])", "$0 "));
+		recipientTextView.setContentDescription(details.replaceAll(
+				".(?=[0-9])", "$0 "));
 
 		// store outgoing call details
 		if (!Utils.numbers.contains(number)) {
@@ -288,7 +289,7 @@ public class CallingScreen extends Activity {
 	}
 
 	/**
-	 * Class to detect gestures on the Calling Screen. 
+	 * Class to detect gestures on the Calling Screen.
 	 */
 	private class GestureListener extends
 			GestureDetector.SimpleOnGestureListener {

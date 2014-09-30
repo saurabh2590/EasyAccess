@@ -13,7 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 package org.easyaccess.calllog;
 
 import org.easyaccess.EasyAccessActivity;
@@ -42,32 +42,38 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/** Lists the options associated with a call log such as call, send sms, view call history, 
- * delete call log, view contact, save contact. **/
+/**
+ * Lists the options associated with a call log such as call, send sms, view
+ * call history, delete call log, view contact, save contact.
+ **/
 
 public class CallLogOptions extends EasyAccessActivity {
-	private Button btnCall, btnSendSMS, btnViewCallHistory, btnDeleteFromLog, btnContact;
+	private Button btnCall, btnSendSMS, btnViewCallHistory, btnDeleteFromLog,
+			btnContact;
 	private TextView txtContactName;
 	private String name, number, id;
-	
-	/** 
-	* Attaches onLongClick listener to the button passed as parameter.
-	* @param button The button with which the onLongClick listener is to be associated.
-	**/
-	void attachOnClickListener(Button button) {		
-		button.setOnClickListener(new OnClickListener() {			
+
+	/**
+	 * Attaches onLongClick listener to the button passed as parameter.
+	 * 
+	 * @param button
+	 *            The button with which the onLongClick listener is to be
+	 *            associated.
+	 **/
+	void attachOnClickListener(Button button) {
+		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				startNewActivity(view);
 			}
 		});
-		
+
 		button.setOnKeyListener(new OnKeyListener() {
-			
+
 			@Override
 			public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-				if(keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-					switch(keyCode) {
+				if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
+					switch (keyCode) {
 					case KeyEvent.KEYCODE_DPAD_CENTER:
 					case KeyEvent.KEYCODE_ENTER:
 						startNewActivity(view);
@@ -78,22 +84,28 @@ public class CallLogOptions extends EasyAccessActivity {
 			}
 		});
 	}
-	
+
 	/**
-	* Launches a new activity based on the parameter passed.
-	* @param view The view that was clicked. Based on the ID of the view, the corresponding 
-	* activity is launched. If the ID corresponds to the call button, the PhoneDialerApp activity 
-	* is launched. If the ID corresponds to the send SMS button, the TextMessageComposerApp activity 
-	* is launched. If the ID corresponds to the view call history button, the CallLogHistory activity 
-	* is launched. If the ID corresponds to the delete from log button, that particular log is 
-	* deleted. If the ID corresponds to the contact button, the ContactDetailsMenu activity is launched 
-	* if the contact exists in the phone, otherwise the SaveContact activity is launched.
-	*/
+	 * Launches a new activity based on the parameter passed.
+	 * 
+	 * @param view
+	 *            The view that was clicked. Based on the ID of the view, the
+	 *            corresponding activity is launched. If the ID corresponds to
+	 *            the call button, the PhoneDialerApp activity is launched. If
+	 *            the ID corresponds to the send SMS button, the
+	 *            TextMessageComposerApp activity is launched. If the ID
+	 *            corresponds to the view call history button, the
+	 *            CallLogHistory activity is launched. If the ID corresponds to
+	 *            the delete from log button, that particular log is deleted. If
+	 *            the ID corresponds to the contact button, the
+	 *            ContactDetailsMenu activity is launched if the contact exists
+	 *            in the phone, otherwise the SaveContact activity is launched.
+	 */
 	void startNewActivity(View view) {
 		Intent intent;
-		switch(view.getId()) {
+		switch (view.getId()) {
 		case R.id.btnCall:
-			//pass number to dialer app
+			// pass number to dialer app
 			intent = new Intent(getApplicationContext(), PhoneDialerApp.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			intent.putExtra("call", CallLogOptions.this.number);
@@ -101,14 +113,17 @@ public class CallLogOptions extends EasyAccessActivity {
 			finish();
 			break;
 		case R.id.btnSendSMS:
-			intent = new Intent(getApplicationContext(), TextMessagesComposerApp.class);
+			intent = new Intent(getApplicationContext(),
+					TextMessagesComposerApp.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			intent.putExtra("number", CallLogOptions.this.number);
-			String type = (((new ContactManager(getApplicationContext())).
-					getNameFromNumber(CallLogOptions.this.number)).get("type"));
-			if(type != null) {
-				intent.putExtra("name", (((new ContactManager(getApplicationContext())).
-						getNameFromNumber(CallLogOptions.this.number)).get("name")));
+			String type = (((new ContactManager(getApplicationContext()))
+					.getNameFromNumber(CallLogOptions.this.number)).get("type"));
+			if (type != null) {
+				intent.putExtra("name", (((new ContactManager(
+						getApplicationContext()))
+						.getNameFromNumber(CallLogOptions.this.number))
+						.get("name")));
 				intent.putExtra("type", type);
 			}
 			startActivity(intent);
@@ -117,48 +132,58 @@ public class CallLogOptions extends EasyAccessActivity {
 			intent = new Intent(getApplicationContext(), CallLogHistory.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			intent.putExtra("number", CallLogOptions.this.number);
-			intent.putExtra("name", (((new ContactManager(getApplicationContext())).
-					getNameFromNumber(CallLogOptions.this.number)).get("name")));
+			intent.putExtra("name",
+					(((new ContactManager(getApplicationContext()))
+							.getNameFromNumber(CallLogOptions.this.number))
+							.get("name")));
 			intent.putExtra("id", CallLogOptions.this.id);
 			startActivity(intent);
 			break;
 		case R.id.btnDeleteFromLog:
-			if(getContentResolver().delete(Uri.parse("content://call_log/calls"), 
-					CallLog.Calls._ID +"=?", new String[]{CallLogOptions.this.id}) != 0) {
-				if(TTS.isSpeaking())
+			if (getContentResolver().delete(
+					Uri.parse("content://call_log/calls"),
+					CallLog.Calls._ID + "=?",
+					new String[] { CallLogOptions.this.id }) != 0) {
+				if (TTS.isSpeaking())
 					TTS.stop();
-				//check if keyboard is connected but accessibility services are disabled
-	        	if(!Utils.isAccessibilityEnabled(getApplicationContext()) && 
-	        			getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-					TTS.speak(getResources().getString(R.string.logdeletesuccess));
-				Toast.makeText(getApplicationContext(), 
-						getResources().getString(R.string.logdeletesuccess), Toast.LENGTH_SHORT).show();
+				// check if keyboard is connected but accessibility services are
+				// disabled
+				if (!Utils.isAccessibilityEnabled(getApplicationContext())
+						&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+					TTS.speak(getResources().getString(
+							R.string.logdeletesuccess));
+				Toast.makeText(getApplicationContext(),
+						getResources().getString(R.string.logdeletesuccess),
+						Toast.LENGTH_SHORT).show();
 				finish();
-			}
-			else {
-				//check if keyboard is connected but accessibility services are disabled
-	        	if(!Utils.isAccessibilityEnabled(getApplicationContext()) && 
-	        			getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-					TTS.speak(getResources().getString(R.string.logdeletefailure));
-				Toast.makeText(getApplicationContext(), 
-						getResources().getString(R.string.logdeletefailure), Toast.LENGTH_SHORT).show();
+			} else {
+				// check if keyboard is connected but accessibility services are
+				// disabled
+				if (!Utils.isAccessibilityEnabled(getApplicationContext())
+						&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+					TTS.speak(getResources().getString(
+							R.string.logdeletefailure));
+				Toast.makeText(getApplicationContext(),
+						getResources().getString(R.string.logdeletefailure),
+						Toast.LENGTH_SHORT).show();
 			}
 			break;
 		case R.id.btnContact:
-			if(!CallLogOptions.this.name.equals("")) {				
-				//view contact
-				intent = new Intent(getApplicationContext(), ContactsDetailsMenu.class);
+			if (!CallLogOptions.this.name.equals("")) {
+				// view contact
+				intent = new Intent(getApplicationContext(),
+						ContactsDetailsMenu.class);
 				intent.putExtra("number", CallLogOptions.this.number);
 				intent.putExtra("name", CallLogOptions.this.name);
-				intent.putExtra("id", new ContactManager(getApplicationContext()).
-						getId(CallLogOptions.this.number));
+				intent.putExtra("id", new ContactManager(
+						getApplicationContext())
+						.getId(CallLogOptions.this.number));
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(intent);
-			}
-			else {
-				//save to contacts
+			} else {
+				// save to contacts
 				intent = new Intent(getApplicationContext(), SaveContact.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);						
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				intent.putExtra("number", CallLogOptions.this.number);
 				startActivity(intent);
 			}
@@ -166,14 +191,14 @@ public class CallLogOptions extends EasyAccessActivity {
 			break;
 		}
 	}
-	
+
 	/** Create the Call Log activity **/
 	@SuppressLint("HandlerLeak")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.calllogoptions);
 		super.onCreate(savedInstanceState);
-		
+
 		/** Find UI elements **/
 		btnCall = (Button) findViewById(R.id.btnCall);
 		btnSendSMS = (Button) findViewById(R.id.btnSendSMS);
@@ -181,62 +206,68 @@ public class CallLogOptions extends EasyAccessActivity {
 		btnDeleteFromLog = (Button) findViewById(R.id.btnDeleteFromLog);
 		btnContact = (Button) findViewById(R.id.btnContact);
 		txtContactName = (TextView) findViewById(R.id.txtContactsName);
-		
+
 		txtContactName.setOnFocusChangeListener(new OnFocusChangeListener() {
-			
+
 			@Override
 			public void onFocusChange(View view, boolean arg1) {
-				giveFeedback(((TextView)view).getText().toString());
+				giveFeedback(((TextView) view).getText().toString());
 			}
 		});
-		
+
 		attachListener(btnCall);
 		attachListener(btnSendSMS);
 		attachListener(btnViewCallHistory);
 		attachListener(btnDeleteFromLog);
-		
+
 		/** Retrieve the parameters passed to the activity **/
 		this.name = getIntent().getExtras().getString("name");
 		this.number = getIntent().getExtras().getString("number");
 		this.number = this.number.trim();
 		this.id = getIntent().getExtras().getString("id");
-		
-		if(this.name.toString().equals("")) {
+
+		if (this.name.toString().equals("")) {
 			txtContactName.setText(this.number);
-			txtContactName.setContentDescription(this.number.replaceAll(".(?=[0-9])", "$0 "));
-		}
-		else {
+			txtContactName.setContentDescription(this.number.replaceAll(
+					".(?=[0-9])", "$0 "));
+		} else {
 			txtContactName.setText(this.name.toString());
-			txtContactName.setContentDescription(this.name.toString().replaceAll(".(?=[0-9])", "$0 "));
+			txtContactName.setContentDescription(this.name.toString()
+					.replaceAll(".(?=[0-9])", "$0 "));
 		}
-		//Set the text of the last button depending on whether the number is saved in the phone
-		if(this.name.trim().equals("")) {
-			btnContact.setText(getResources().getString(R.string.btnAddToContact));
-			btnContact.setContentDescription(getResources().getString(R.string.btnAddToContact));
-		}
-		else {
-			btnContact.setText(getResources().getString(R.string.btnViewContact));
-			btnContact.setContentDescription(getResources().getString(R.string.btnViewContact));
+		// Set the text of the last button depending on whether the number is
+		// saved in the phone
+		if (this.name.trim().equals("")) {
+			btnContact.setText(getResources().getString(
+					R.string.btnAddToContact));
+			btnContact.setContentDescription(getResources().getString(
+					R.string.btnAddToContact));
+		} else {
+			btnContact.setText(getResources()
+					.getString(R.string.btnViewContact));
+			btnContact.setContentDescription(getResources().getString(
+					R.string.btnViewContact));
 		}
 		attachListener(btnContact);
-		
+
 		/** Handle long click events **/
 		attachOnClickListener(btnCall);
 		attachOnClickListener(btnSendSMS);
 		attachOnClickListener(btnViewCallHistory);
 		attachOnClickListener(btnDeleteFromLog);
 		attachOnClickListener(btnContact);
-	}	
-	
+	}
+
 	@Override
 	public void onResume() {
 		super.onResume();
-		//check if keyboard is connected and accessibility services are disabled
-    	if(!Utils.isAccessibilityEnabled(getApplicationContext()) &&
-    			getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-    		TTS.speak(getResources().getString(R.string.callLogOptions));
-    	}
-		//get the root layout
+		// check if keyboard is connected and accessibility services are
+		// disabled
+		if (!Utils.isAccessibilityEnabled(getApplicationContext())
+				&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
+			TTS.speak(getResources().getString(R.string.callLogOptions));
+		}
+		// get the root layout
 		LinearLayout layout = (LinearLayout) findViewById(R.id.calllogoptions);
 		Utils.applyFontColorChanges(getApplicationContext(), layout);
 		Utils.applyFontSizeChanges(getApplicationContext(), layout);

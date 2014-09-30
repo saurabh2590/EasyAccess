@@ -13,7 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 package org.easyaccess;
 
 import java.util.ArrayList;
@@ -35,94 +35,99 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+public class SwipingUtils extends FragmentActivity {
 
-public class SwipingUtils extends FragmentActivity{
-	
 	protected View curtainView;
 	protected boolean curtainSet = false;
-	
+
 	MyPageAdapter pageAdapter;
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
-		//check if keyboard is connected or accessibility services are enabled
-    	if(Utils.isAccessibilityEnabled(getApplicationContext()) ||
-    			getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-    		TTS.speak(getResources().getString(R.string.appNameTalkBackFriendly));
-    	}
+		// check if keyboard is connected or accessibility services are enabled
+		if (Utils.isAccessibilityEnabled(getApplicationContext())
+				|| getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
+			TTS.speak(getResources()
+					.getString(R.string.appNameTalkBackFriendly));
+		}
 		WindowManager windowManager = getWindowManager();
 		LayoutInflater inflater = getLayoutInflater();
-		LayoutParamsAndViewUtils layoutParamsAndView = ScreenCurtainFunctions.prepareForCurtainCheck(inflater);
-    	
-    	ScreenCurtainFunctions appState = ((ScreenCurtainFunctions) getApplicationContext());
-    	if(appState.getState() && !curtainSet) {
-    		curtainView = layoutParamsAndView.getView();
-    		windowManager.addView(curtainView, layoutParamsAndView.getLayoutParams());
-    		curtainSet = true;
-    	} else if(!appState.getState() && curtainSet) {
-    		windowManager.removeView(curtainView);
-    		curtainSet = false;
-    	}
+		LayoutParamsAndViewUtils layoutParamsAndView = ScreenCurtainFunctions
+				.prepareForCurtainCheck(inflater);
+
+		ScreenCurtainFunctions appState = ((ScreenCurtainFunctions) getApplicationContext());
+		if (appState.getState() && !curtainSet) {
+			curtainView = layoutParamsAndView.getView();
+			windowManager.addView(curtainView,
+					layoutParamsAndView.getLayoutParams());
+			curtainSet = true;
+		} else if (!appState.getState() && curtainSet) {
+			windowManager.removeView(curtainView);
+			curtainSet = false;
+		}
 	}
-    
+
 	@Override
 	public void onBackPressed() {
-		//do nothing
+		// do nothing
 	}
-    
+
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.swiping);
-                     
-        ScreenCurtainFunctions appState = ((ScreenCurtainFunctions)getApplicationContext());
-        appState.setState(false);
-        
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.swiping);
+
+		ScreenCurtainFunctions appState = ((ScreenCurtainFunctions) getApplicationContext());
+		appState.setState(false);
+
 		/** Set Roboto as the standard font **/
 		if (Build.VERSION.SDK_INT < 11) {
-		    ViewGroup godfatherView = (ViewGroup) this.getWindow().getDecorView();
-		    FontUtils.setRobotoFont(this, godfatherView);
+			ViewGroup godfatherView = (ViewGroup) this.getWindow()
+					.getDecorView();
+			FontUtils.setRobotoFont(this, godfatherView);
 		}
-        
-        List<Fragment> fragments = getFragments();
-        
-        pageAdapter = new MyPageAdapter(getSupportFragmentManager(), fragments);
-        
-        ViewPager pager = (ViewPager)findViewById(R.id.viewpager);
-        pager.setAdapter(pageAdapter);
-        
-    }
-    
+
+		List<Fragment> fragments = getFragments();
+
+		pageAdapter = new MyPageAdapter(getSupportFragmentManager(), fragments);
+
+		ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
+		pager.setAdapter(pageAdapter);
+
+	}
+
 	/**
-	* Adds a fragment to the list and returns the populatd list.
-	* @return The populated list is returned.
-	*/
-	private List<Fragment> getFragments(){
-    	List<Fragment> fList = new ArrayList<Fragment>();
+	 * Adds a fragment to the list and returns the populatd list.
+	 * 
+	 * @return The populated list is returned.
+	 */
+	private List<Fragment> getFragments() {
+		List<Fragment> fList = new ArrayList<Fragment>();
 
-    	fList.add(new HomescreenActivity());
-    	return fList;
-    }
-    
-    private class MyPageAdapter extends FragmentPagerAdapter {
-    	
-    	/** Adapter for loading fragments **/
-    	
-    	private List<Fragment> fragments;
+		fList.add(new HomescreenActivity());
+		return fList;
+	}
 
-        public MyPageAdapter(FragmentManager fm, List<Fragment> fragments) {
-            super(fm);
-            this.fragments = fragments;
-        }
-        @Override
-        public Fragment getItem(int position) {
-            return this.fragments.get(position);
-        }
-     
-        @Override
-        public int getCount() {
-            return this.fragments.size();
-        }
-    }
+	private class MyPageAdapter extends FragmentPagerAdapter {
+
+		/** Adapter for loading fragments **/
+
+		private List<Fragment> fragments;
+
+		public MyPageAdapter(FragmentManager fm, List<Fragment> fragments) {
+			super(fm);
+			this.fragments = fragments;
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+			return this.fragments.get(position);
+		}
+
+		@Override
+		public int getCount() {
+			return this.fragments.size();
+		}
+	}
 }

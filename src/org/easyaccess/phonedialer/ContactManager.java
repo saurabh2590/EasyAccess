@@ -13,7 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 package org.easyaccess.phonedialer;
 
 import java.util.ArrayList;
@@ -310,9 +310,9 @@ public class ContactManager {
 							ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
 							null,
 							ContactsContract.CommonDataKinds.Phone.CONTACT_ID
-									//+ " = ? AND " +
-							+ " = ?",
-									//Data.IS_PRIMARY + "=1",
+							// + " = ? AND " +
+									+ " = ?",
+							// Data.IS_PRIMARY + "=1",
 							new String[] { id }, null);
 					if (pCur.moveToFirst()) {
 						String phoneNumber = pCur

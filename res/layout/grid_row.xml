@@ -10,12 +10,12 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-		android:background="@drawable/card"
-	    android:textColor="@drawable/card_textcolor" 
-	    android:textStyle="bold"
-	    android:textSize="@dimen/card_textsize_tabs"
-	    android:gravity="center"
-		android:focusable="true" >
+        android:background="@drawable/card"
+        android:focusable="true"
+        android:gravity="center"
+        android:textColor="@drawable/card_textcolor"
+        android:textSize="@dimen/card_textsize_tabs"
+        android:textStyle="bold" >
     </Button>
 
 </LinearLayout>

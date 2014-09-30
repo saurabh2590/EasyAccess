@@ -1,209 +1,202 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/about"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
+    android:layout_height="fill_parent"
     android:background="@color/homescreen_background"
-    android:id="@+id/about" > 
+    android:orientation="vertical" >
 
- 	<LinearLayout 
-	    android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content" 
-	    android:background="@color/homescreen_background" 
-	    android:layout_weight="1"> 
-	    
-<ScrollView 
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    android:background="@color/homescreen_background" >
-   
-	<TableLayout
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:paddingLeft="12dp" 
-		android:paddingRight="12dp"
-		android:paddingTop="12dp" 
-		android:paddingBottom="12dp">   
-	   
-		<TextView
-			android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:id="@+id/txtAboutHeaderMission"
-		    android:text="@string/txtAboutHeaderMission" 
-		    android:contentDescription="@string/txtAboutHeaderMission"
-		    android:textColor="@color/card_textcolor_regular"
-			android:textSize="@dimen/card_textsize_listitems" 
-			android:layout_marginBottom="12dp" 
-			android:textStyle="bold" 
-			android:focusable="true"/>	    
-	    
-		<TextView
-			android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:id="@+id/txtAboutMission"
-		    android:text="@string/txtAboutMission" 
-		    android:contentDescription="@string/txtAboutMission"
-		    android:textColor="@color/card_textcolor_regular"
-			android:textSize="@dimen/card_textsize_listitems" 
-			android:focusable="true"/>
-		
-		<TextView
-			android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:id="@+id/txtAboutSignature"
-		    android:text="@string/txtAboutSignature"
-		    android:contentDescription="@string/txtAboutSignature"
-		    android:textColor="@color/card_textcolor_regular"
-			android:textSize="@dimen/card_textsize_listitems"  
-			android:focusable="true"/>
-		
-		<View
-		    android:layout_width="fill_parent"
-		    android:layout_height="1dp"
-		    android:layout_marginTop="32dp"
-		    android:layout_marginBottom="32dp"
-		    android:background="@android:color/darker_gray"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/homescreen_background"
+        android:orientation="vertical" >
 
-		<TextView
-			android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:id="@+id/txtAboutHeaderResearch"
-		    android:text="@string/txtAboutHeaderFactFinding" 
-		    android:contentDescription="@string/txtAboutHeaderFactFinding"
-		    android:textColor="@color/card_textcolor_regular"
-			android:textSize="@dimen/card_textsize_listitems" 
-			android:layout_marginBottom="12dp" 
-			android:textStyle="bold" 
-			android:focusable="true"/>			
-		
-		<TextView
-		    android:id="@+id/txtAboutFactFinding"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:contentDescription="@string/txtAboutFactFinding"
-		    android:focusable="true"
-		    android:text="@string/txtAboutFactFinding"
-		    android:textColor="@color/card_textcolor_regular"
-		    android:textSize="@dimen/card_textsize_listitems" />
-		
-		<TextView
-			android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:id="@+id/txtAboutFocusGroup"
-		    android:text="@string/txtAboutFocusGroup" 
-		    android:contentDescription="@string/txtAboutFocusGroup"
-		    android:textColor="@color/card_textcolor_regular"
-			android:textSize="@dimen/card_textsize_listitems"  
-			android:focusable="true"/>
-		
-		<View
-		    android:layout_width="fill_parent"
-		    android:layout_height="1dp"
-		    android:layout_marginTop="32dp"
-		    android:layout_marginBottom="32dp"
-		    android:background="@android:color/darker_gray"/>
-		
-		<TextView
-			android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:id="@+id/txtAboutHeaderSupporters"
-		    android:text="@string/txtAboutHeaderSupporters" 
-		    android:contentDescription="@string/txtAboutHeaderSupporters"
-		    android:textColor="@color/card_textcolor_regular"
-			android:textSize="@dimen/card_textsize_listitems" 
-			android:layout_marginBottom="12dp" 
-			android:textStyle="bold" 
-			android:focusable="true"/>	
-		
-		<TextView
-			android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:id="@+id/txtAboutCertificates"
-		    android:text="@string/txtAboutCertificates" 
-		    android:contentDescription="@string/txtAboutCertificates"
-		    android:textColor="@color/card_textcolor_regular"
-			android:textSize="@dimen/card_textsize_listitems"  
-			android:focusable="true"/>
-		
-		<TextView
-			android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:id="@+id/txtAboutDonors"
-		    android:text="@string/txtAboutDonors" 
-		    android:contentDescription="@string/txtAboutDonors"
-		    android:textColor="@color/card_textcolor_regular"
-			android:textSize="@dimen/card_textsize_listitems"  
-			android:focusable="true"
-			android:nextFocusDown="@+id/btnNavigationBack" />
-		      
-	</TableLayout>	    
-</ScrollView>    
-	</LinearLayout>
-  
-	<LinearLayout 
-	    android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content" 
-	    android:background="@color/navigation_bar_background" 
-	    android:layout_weight="0">
-	
-		<TableLayout
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:gravity="center_vertical"
-		    android:stretchColumns="0,2"
-		    android:weightSum="3" 
-		    android:paddingTop="1px" 
-		    android:paddingBottom="12dp" >
-		
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >
-			   
-				<Button  
-					android:id="@+id/btnNavigationBack"
-					android:text="@string/btnNavigationBack"
-					android:contentDescription="@string/btnNavigationBack"
-					android:layout_weight="1"
-				    android:layout_width="0dip" 
-				    android:layout_height="@dimen/navigation_bar_height" 
-					android:background="@color/navigation_bar_background"
-				    android:textColor="@color/navigation_bar_textcolor" 
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_navigation"
-				    android:gravity="center"
-					android:focusable="true"
-				/>	
-				
-				<TextView  
-					android:id="@+id/txtEmpty5"
-					android:text="@string/txtEmpty"
-				    android:layout_width="12dp" 
-				    android:layout_height="1px"
-				    android:background="@color/navigation_bar_background"		    
-				    android:focusable="false"
-				/>		
-				
-				<Button  
-					android:id="@+id/btnNavigationHome"
-					android:text="@string/btnNavigationHome"
-					android:contentDescription="@string/btnNavigationHome"
-					android:layout_weight="1"
-				    android:layout_width="0dip" 
-				    android:layout_height="@dimen/navigation_bar_height" 
-					android:background="@color/navigation_bar_background"
-				    android:textColor="@color/navigation_bar_textcolor" 		    
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_navigation"
-				    android:gravity="center"
-					android:focusable="true"
-				/>
-			</TableRow>
-		</TableLayout>	
-	</LinearLayout>
-	    
-</LinearLayout>	
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/homescreen_background"
+            android:orientation="vertical" >
 
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="12dp" >
 
+                <TextView
+                    android:id="@+id/txtAboutHeaderMission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="@string/txtAboutHeaderMission"
+                    android:focusable="true"
+                    android:text="@string/txtAboutHeaderMission"
+                    android:textColor="@color/card_textcolor_regular"
+                    android:textSize="@dimen/card_textsize_listitems"
+                    android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/txtAboutMission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/txtAboutMission"
+                    android:focusable="true"
+                    android:text="@string/txtAboutMission"
+                    android:textColor="@color/card_textcolor_regular"
+                    android:textSize="@dimen/card_textsize_listitems" />
+
+                <TextView
+                    android:id="@+id/txtAboutSignature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/txtAboutSignature"
+                    android:focusable="true"
+                    android:text="@string/txtAboutSignature"
+                    android:textColor="@color/card_textcolor_regular"
+                    android:textSize="@dimen/card_textsize_listitems" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/txtAboutHeaderResearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="@string/txtAboutHeaderFactFinding"
+                    android:focusable="true"
+                    android:text="@string/txtAboutHeaderFactFinding"
+                    android:textColor="@color/card_textcolor_regular"
+                    android:textSize="@dimen/card_textsize_listitems"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtAboutFactFinding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/txtAboutFactFinding"
+                    android:focusable="true"
+                    android:text="@string/txtAboutFactFinding"
+                    android:textColor="@color/card_textcolor_regular"
+                    android:textSize="@dimen/card_textsize_listitems" />
+
+                <TextView
+                    android:id="@+id/txtAboutFocusGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/txtAboutFocusGroup"
+                    android:focusable="true"
+                    android:text="@string/txtAboutFocusGroup"
+                    android:textColor="@color/card_textcolor_regular"
+                    android:textSize="@dimen/card_textsize_listitems" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/txtAboutHeaderSupporters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="@string/txtAboutHeaderSupporters"
+                    android:focusable="true"
+                    android:text="@string/txtAboutHeaderSupporters"
+                    android:textColor="@color/card_textcolor_regular"
+                    android:textSize="@dimen/card_textsize_listitems"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtAboutCertificates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/txtAboutCertificates"
+                    android:focusable="true"
+                    android:text="@string/txtAboutCertificates"
+                    android:textColor="@color/card_textcolor_regular"
+                    android:textSize="@dimen/card_textsize_listitems" />
+
+                <TextView
+                    android:id="@+id/txtAboutDonors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/txtAboutDonors"
+                    android:focusable="true"
+                    android:nextFocusDown="@+id/btnNavigationBack"
+                    android:text="@string/txtAboutDonors"
+                    android:textColor="@color/card_textcolor_regular"
+                    android:textSize="@dimen/card_textsize_listitems" />
+            </TableLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/navigation_bar_background"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingTop="1px"
+            android:stretchColumns="0,2"
+            android:weightSum="3" >
+
+            <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnNavigationBack"
+                    android:layout_width="0dip"
+                    android:layout_height="@dimen/navigation_bar_height"
+                    android:layout_weight="1"
+                    android:background="@color/navigation_bar_background"
+                    android:contentDescription="@string/btnNavigationBack"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnNavigationBack"
+                    android:textColor="@color/navigation_bar_textcolor"
+                    android:textSize="@dimen/card_textsize_navigation"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtEmpty5"
+                    android:layout_width="12dp"
+                    android:layout_height="1px"
+                    android:background="@color/navigation_bar_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+
+                <Button
+                    android:id="@+id/btnNavigationHome"
+                    android:layout_width="0dip"
+                    android:layout_height="@dimen/navigation_bar_height"
+                    android:layout_weight="1"
+                    android:background="@color/navigation_bar_background"
+                    android:contentDescription="@string/btnNavigationHome"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnNavigationHome"
+                    android:textColor="@color/navigation_bar_textcolor"
+                    android:textSize="@dimen/card_textsize_navigation"
+                    android:textStyle="bold" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</LinearLayout>

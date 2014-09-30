@@ -1,297 +1,288 @@
- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settingsfont"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
+    android:layout_height="fill_parent"
     android:background="@color/homescreen_background"
-    android:id="@+id/settingsfont" >
-     
-<ScrollView 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1" >
+    android:orientation="vertical" >
 
- 	<LinearLayout
- 	    android:id="@+id/linearLayout"
- 	    android:layout_width="fill_parent"
- 	    android:layout_height="wrap_content"
- 	    android:background="@color/homescreen_background"
- 	    android:orientation="vertical" >
-	    	    
-	    <TableLayout
-		    android:gravity="center_vertical"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:layout_centerVertical="true"
-		    android:paddingLeft="12px" 
-			android:paddingRight="12px"
-			android:paddingTop="12px" 
-			android:paddingBottom="12px" > 				
-			
-			<TableRow
-			    android:layout_weight="0"
-			    android:gravity="center_vertical" >
-			    <RadioGroup 
-			        android:id="@+id/rgVolume"
-			        android:layout_height="wrap_content"
-			        android:layout_width="match_parent" >
-			        <RadioButton 
-			            android:id="@+id/radioSoftest"
-			            android:contentDescription="@string/softest"
-			            android:layout_height="wrap_content"
-			        	android:layout_width="match_parent"
-			        	android:textColor="@color/card_textcolor_regular"
-				    	android:textSize="@dimen/card_textsize_regular"
-			        	android:text="@string/softest"
-			        	android:layout_marginTop="20dp"
-			        	android:nextFocusDown="@+id/radioSofter" />
-			        <RadioButton 
-			            android:id="@+id/radioSofter"
-			            android:contentDescription="@string/softer"
-			            android:layout_height="wrap_content"
-			        	android:layout_width="match_parent"
-			        	android:textColor="@color/card_textcolor_regular"
-				    	android:textSize="@dimen/card_textsize_regular"
-			        	android:text="@string/softer"
-			        	android:layout_marginTop="20dp"
-			        	android:nextFocusUp="@+id/radioSoftest"
-			        	android:nextFocusDown="@+id/radioSoft" />
-			        <RadioButton 
-			            android:id="@+id/radioSoft"
-			            android:contentDescription="@string/soft"
-			            android:layout_height="wrap_content"
-			        	android:layout_width="match_parent"
-			        	android:textColor="@color/card_textcolor_regular"
-				   		android:textSize="@dimen/card_textsize_regular"
-			        	android:text="@string/soft"
-			        	android:layout_marginTop="20dp"
-			        	android:nextFocusUp="@+id/radioSofter"
-			        	android:nextFocusDown="@+id/radioNormal" />
-			        <RadioButton 
-			            android:id="@+id/radioNormal"
-			            android:contentDescription="@string/normal"
-			            android:layout_height="wrap_content"
-			        	android:layout_width="match_parent"
-			        	android:textColor="@color/card_textcolor_regular"
-				    	android:textSize="@dimen/card_textsize_regular"
-			        	android:text="@string/normal"
-			        	android:layout_marginTop="20dp"
-			        	android:nextFocusUp="@+id/radioSoft"
-			        	android:nextFocusDown="@+id/radioLoud" />
-			        <RadioButton 
-			            android:id="@+id/radioLoud"
-			            android:contentDescription="@string/loud"
-			            android:layout_height="wrap_content"
-			        	android:layout_width="match_parent"
-			        	android:textColor="@color/card_textcolor_regular"
-				    	android:textSize="@dimen/card_textsize_regular"
-			        	android:text="@string/loud"
-			        	android:layout_marginTop="20dp" 
-			        	android:nextFocusUp="@+id/radioNormal"
-			        	android:nextFocusDown="@+id/radioLouder"/>
-			        <RadioButton 
-			            android:id="@+id/radioLouder"
-			            android:contentDescription="@string/louder"
-			            android:layout_height="wrap_content"
-			        	android:layout_width="match_parent"
-			        	android:textColor="@color/card_textcolor_regular"
-				    	android:textSize="@dimen/card_textsize_regular"
-			        	android:text="@string/louder"
-			        	android:layout_marginTop="20dp"
-			        	android:nextFocusUp="@+id/radioLoud"
-			        	android:nextFocusDown="@+id/radioLoudest" />
-			        <RadioButton 
-			            android:id="@+id/radioLoudest"
-			            android:contentDescription="@string/loudest"
-			            android:layout_height="wrap_content"
-			        	android:layout_width="match_parent"
-			        	android:textColor="@color/card_textcolor_regular"
-				    	android:textSize="@dimen/card_textsize_regular"
-			        	android:text="@string/loudest"
-			        	android:layout_marginTop="20dp"
-			        	android:nextFocusDown="@+id/btnNavigationBack"
-			        	android:nextFocusUp="@+id/radioLouder" />
-			    </RadioGroup>
-				
-			</TableRow> 
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty1"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="1px" 
-				    android:layout_height="12dp"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				    android:layout_weight="1"
-				/>			
-			</TableRow>
-			
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >			
-			</TableRow> 
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty2"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="1px" 
-				    android:layout_height="12dp"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				    android:layout_weight="1"
-				/>			
-			</TableRow>			
-			
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >	
-			</TableRow> 
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty3"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="1px" 
-				    android:layout_height="12px"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				    android:layout_weight="1"
-				/>			
-			</TableRow>			
-			
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >	
-			</TableRow> 			
-						
-			<TableRow
-			    android:gravity="center_vertical" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty4"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="match_parent" 
-				    android:layout_height="12dp"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				    android:layout_weight="1"
-				/>
-							
-			</TableRow>			
-			
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >
-				
-			</TableRow> 			
-			
-			<TableRow
-			    android:layout_weight="0" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty5"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="1px" 
-				    android:layout_height="12dp"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				    android:layout_weight="1"
-				/>			
-			</TableRow>
-			
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >
-				
-			</TableRow>
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >			
-				
-			</TableRow>	
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >
-			    
-			</TableRow>
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >			
-				
-			</TableRow>
-			
-		</TableLayout> 	    
-	</LinearLayout>
-  </ScrollView>
-	<LinearLayout 
-	    android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content" 
-	    android:background="@color/navigation_bar_background" 
-	    android:layout_weight="0">	
-	</LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
 
- 	<TableLayout
- 	    android:layout_width="fill_parent"
- 	    android:layout_height="wrap_content"
- 	    android:layout_weight="0"
- 	    android:gravity="bottom"
- 	    android:paddingTop="3dp"
- 	    android:stretchColumns="0,2"
- 	    android:weightSum="3" >
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/homescreen_background"
+            android:orientation="vertical" >
 
- 	    <TableRow
- 	        
- 	        android:gravity="center_vertical" >
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:paddingBottom="12px"
+                android:paddingLeft="12px"
+                android:paddingRight="12px"
+                android:paddingTop="12px" >
 
- 	        <Button
- 	            android:id="@+id/btnNavigationBack"
- 	            android:layout_width="0dip"
- 	            android:layout_height="50dp"
- 	            android:layout_weight="1"
- 	            android:background="@color/navigation_bar_background"
- 	            android:contentDescription="@string/btnNavigationBack"
- 	            android:focusable="true"
- 	            android:gravity="center"
- 	            android:text="@string/btnNavigationBack"
- 	            android:textColor="@color/navigation_bar_textcolor"
- 	            android:textSize="@dimen/card_textsize_navigation"
- 	            android:textStyle="bold" />
+                <TableRow
+                    android:layout_weight="0"
+                    android:gravity="center_vertical" >
 
- 	        <TextView
- 	            android:id="@+id/txtEmpty5"
- 	            android:layout_width="12dp"
- 	            android:layout_height="match_parent"
- 	            android:background="@color/navigation_bar_background"
- 	            />
+                    <RadioGroup
+                        android:id="@+id/rgVolume"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
 
- 	        <Button
- 	            android:id="@+id/btnNavigationHome"
- 	            android:layout_width="0dip"
- 	            android:layout_height="match_parent"
- 	            android:layout_weight="1"
- 	            android:background="@color/navigation_bar_background"
- 	            android:contentDescription="@string/btnNavigationHome"
- 	            android:focusable="true"
- 	            android:gravity="center"
- 	            android:text="@string/btnNavigationHome"
- 	            android:textColor="@color/navigation_bar_textcolor"
- 	            android:textSize="@dimen/card_textsize_navigation"
- 	            android:textStyle="bold" />
- 	    </TableRow>
- 	</TableLayout>
-		
-</LinearLayout>		
+                        <RadioButton
+                            android:id="@+id/radioSoftest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:contentDescription="@string/softest"
+                            android:nextFocusDown="@+id/radioSofter"
+                            android:text="@string/softest"
+                            android:textColor="@color/card_textcolor_regular"
+                            android:textSize="@dimen/card_textsize_regular" />
+
+                        <RadioButton
+                            android:id="@+id/radioSofter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:contentDescription="@string/softer"
+                            android:nextFocusDown="@+id/radioSoft"
+                            android:nextFocusUp="@+id/radioSoftest"
+                            android:text="@string/softer"
+                            android:textColor="@color/card_textcolor_regular"
+                            android:textSize="@dimen/card_textsize_regular" />
+
+                        <RadioButton
+                            android:id="@+id/radioSoft"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:contentDescription="@string/soft"
+                            android:nextFocusDown="@+id/radioNormal"
+                            android:nextFocusUp="@+id/radioSofter"
+                            android:text="@string/soft"
+                            android:textColor="@color/card_textcolor_regular"
+                            android:textSize="@dimen/card_textsize_regular" />
+
+                        <RadioButton
+                            android:id="@+id/radioNormal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:contentDescription="@string/normal"
+                            android:nextFocusDown="@+id/radioLoud"
+                            android:nextFocusUp="@+id/radioSoft"
+                            android:text="@string/normal"
+                            android:textColor="@color/card_textcolor_regular"
+                            android:textSize="@dimen/card_textsize_regular" />
+
+                        <RadioButton
+                            android:id="@+id/radioLoud"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:contentDescription="@string/loud"
+                            android:nextFocusDown="@+id/radioLouder"
+                            android:nextFocusUp="@+id/radioNormal"
+                            android:text="@string/loud"
+                            android:textColor="@color/card_textcolor_regular"
+                            android:textSize="@dimen/card_textsize_regular" />
+
+                        <RadioButton
+                            android:id="@+id/radioLouder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:contentDescription="@string/louder"
+                            android:nextFocusDown="@+id/radioLoudest"
+                            android:nextFocusUp="@+id/radioLoud"
+                            android:text="@string/louder"
+                            android:textColor="@color/card_textcolor_regular"
+                            android:textSize="@dimen/card_textsize_regular" />
+
+                        <RadioButton
+                            android:id="@+id/radioLoudest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:contentDescription="@string/loudest"
+                            android:nextFocusDown="@+id/btnNavigationBack"
+                            android:nextFocusUp="@+id/radioLouder"
+                            android:text="@string/loudest"
+                            android:textColor="@color/card_textcolor_regular"
+                            android:textSize="@dimen/card_textsize_regular" />
+                    </RadioGroup>
+                </TableRow>
+
+                <TableRow
+                    android:layout_weight="0"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/txtEmpty1"
+                        android:layout_width="1px"
+                        android:layout_height="12dp"
+                        android:layout_weight="1"
+                        android:background="@color/homescreen_background"
+                        android:focusable="false"
+                        android:text="@string/txtEmpty" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+                </TableRow>
+
+                <TableRow
+                    android:layout_weight="0"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/txtEmpty2"
+                        android:layout_width="1px"
+                        android:layout_height="12dp"
+                        android:layout_weight="1"
+                        android:background="@color/homescreen_background"
+                        android:focusable="false"
+                        android:text="@string/txtEmpty" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+                </TableRow>
+
+                <TableRow
+                    android:layout_weight="0"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/txtEmpty3"
+                        android:layout_width="1px"
+                        android:layout_height="12px"
+                        android:layout_weight="1"
+                        android:background="@color/homescreen_background"
+                        android:focusable="false"
+                        android:text="@string/txtEmpty" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+                </TableRow>
+
+                <TableRow android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/txtEmpty4"
+                        android:layout_width="match_parent"
+                        android:layout_height="12dp"
+                        android:layout_weight="1"
+                        android:background="@color/homescreen_background"
+                        android:focusable="false"
+                        android:text="@string/txtEmpty" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+                </TableRow>
+
+                <TableRow android:layout_weight="0" >
+
+                    <TextView
+                        android:id="@+id/txtEmpty5"
+                        android:layout_width="1px"
+                        android:layout_height="12dp"
+                        android:layout_weight="1"
+                        android:background="@color/homescreen_background"
+                        android:focusable="false"
+                        android:text="@string/txtEmpty" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+                </TableRow>
+
+                <TableRow
+                    android:layout_weight="0"
+                    android:gravity="center_vertical" >
+                </TableRow>
+
+                <TableRow
+                    android:layout_weight="0"
+                    android:gravity="center_vertical" >
+                </TableRow>
+
+                <TableRow
+                    android:layout_weight="0"
+                    android:gravity="center_vertical" >
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/navigation_bar_background"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="bottom"
+        android:paddingTop="3dp"
+        android:stretchColumns="0,2"
+        android:weightSum="3" >
+
+        <TableRow android:gravity="center_vertical" >
+
+            <Button
+                android:id="@+id/btnNavigationBack"
+                android:layout_width="0dip"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/navigation_bar_background"
+                android:contentDescription="@string/btnNavigationBack"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/btnNavigationBack"
+                android:textColor="@color/navigation_bar_textcolor"
+                android:textSize="@dimen/card_textsize_navigation"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtEmpty6"
+                android:layout_width="12dp"
+                android:layout_height="match_parent"
+                android:background="@color/navigation_bar_background" />
+
+            <Button
+                android:id="@+id/btnNavigationHome"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/navigation_bar_background"
+                android:contentDescription="@string/btnNavigationHome"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/btnNavigationHome"
+                android:textColor="@color/navigation_bar_textcolor"
+                android:textSize="@dimen/card_textsize_navigation"
+                android:textStyle="bold" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

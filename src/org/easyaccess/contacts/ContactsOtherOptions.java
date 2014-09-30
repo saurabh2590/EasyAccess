@@ -13,7 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 package org.easyaccess.contacts;
 
 import java.io.File;
@@ -54,8 +54,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Displays options that can be performed on the contact, such as delete, export contacts to SD card, 
- * import contact, delete contact.
+ * Displays options that can be performed on the contact, such as delete, export
+ * contacts to SD card, import contact, delete contact.
  */
 public class ContactsOtherOptions extends EasyAccessActivity {
 
@@ -342,7 +342,8 @@ public class ContactsOtherOptions extends EasyAccessActivity {
 	/**
 	 * Returns true if the SD card can be used. Otherwise, returns false.
 	 * 
-	 * @return true if the SD card is available for use. Otherwie, returns false.
+	 * @return true if the SD card is available for use. Otherwie, returns
+	 *         false.
 	 */
 	private boolean getSDcardStatus() {
 		if (Environment.getExternalStorageState().equals(
@@ -453,7 +454,8 @@ public class ContactsOtherOptions extends EasyAccessActivity {
 				getApplicationContext()).getDetailsFromId(this.id);
 
 		contactName.setText(contactDetails.get("name").get(0));
-		contactName.setContentDescription(contactDetails.get("name").get(0).replaceAll(".(?=[0-9])", "$0 "));
+		contactName.setContentDescription(contactDetails.get("name").get(0)
+				.replaceAll(".(?=[0-9])", "$0 "));
 
 		contactName.setOnFocusChangeListener(new OnFocusChangeListener() {
 

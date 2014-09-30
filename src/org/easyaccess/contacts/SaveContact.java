@@ -13,7 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 package org.easyaccess.contacts;
 
 import java.util.ArrayList;
@@ -56,10 +56,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
-* Saves the contact in the phone.
-*/
+ * Saves the contact in the phone.
+ */
 
-public class SaveContact extends Activity implements KeyListener {	
+public class SaveContact extends Activity implements KeyListener {
 	/** Declare variables and UI elements **/
 	private EditText editName, editNumber, editEmail;
 	private TextView txtType;
@@ -371,10 +371,12 @@ public class SaveContact extends Activity implements KeyListener {
 		if (getIntent().getExtras() != null) {
 			this.number = getIntent().getExtras().getString("number");
 			editNumber.setText(this.number);
-			editNumber.setContentDescription(this.number.replaceAll(".(?=[0-9])", "$0 "));
+			editNumber.setContentDescription(this.number.replaceAll(
+					".(?=[0-9])", "$0 "));
 			if (getIntent().getExtras().getString("name") != null) {
 				editName.setText(getIntent().getExtras().getString("name"));
-				editName.setContentDescription(getIntent().getExtras().getString("name").replaceAll(".(?=[0-9])", "$0 "));
+				editName.setContentDescription(getIntent().getExtras()
+						.getString("name").replaceAll(".(?=[0-9])", "$0 "));
 			}
 			if (getIntent().getExtras().getString("email") != null) {
 				editEmail.setText(getIntent().getExtras().getString("email"));
@@ -624,8 +626,6 @@ public class SaveContact extends Activity implements KeyListener {
 	 */
 	@Override
 	public void clearMetaKeyState(View arg0, Editable arg1, int arg2) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/*
@@ -635,7 +635,6 @@ public class SaveContact extends Activity implements KeyListener {
 	 */
 	@Override
 	public int getInputType() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -647,7 +646,6 @@ public class SaveContact extends Activity implements KeyListener {
 	 */
 	@Override
 	public boolean onKeyDown(View arg0, Editable arg1, int arg2, KeyEvent arg3) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -659,7 +657,6 @@ public class SaveContact extends Activity implements KeyListener {
 	 */
 	@Override
 	public boolean onKeyOther(View arg0, Editable arg1, KeyEvent arg2) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -671,7 +668,6 @@ public class SaveContact extends Activity implements KeyListener {
 	 */
 	@Override
 	public boolean onKeyUp(View arg0, Editable arg1, int arg2, KeyEvent arg3) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -782,7 +778,8 @@ public class SaveContact extends Activity implements KeyListener {
 											0,
 											editName.getText().toString()
 													.length() - 1));
-							editName.setContentDescription(editName.getText().toString().replaceAll(".(?=[0-9])", "$0 "));
+							editName.setContentDescription(editName.getText()
+									.toString().replaceAll(".(?=[0-9])", "$0 "));
 							editName.setSelection(editName.getText().toString()
 									.length(), editName.getText().toString()
 									.length());
@@ -882,7 +879,9 @@ public class SaveContact extends Activity implements KeyListener {
 											0,
 											editNumber.getText().toString()
 													.length() - 1));
-							editNumber.setContentDescription(editNumber.getText().toString().replaceAll(".(?=[0-9])", "$0 "));
+							editNumber.setContentDescription(editNumber
+									.getText().toString()
+									.replaceAll(".(?=[0-9])", "$0 "));
 							editNumber.setSelection(editNumber.getText()
 									.toString().length(), editNumber.getText()
 									.toString().length());

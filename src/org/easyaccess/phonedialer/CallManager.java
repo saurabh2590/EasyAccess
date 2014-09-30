@@ -13,7 +13,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 package org.easyaccess.phonedialer;
 
 import org.easyaccess.R;
@@ -153,7 +153,8 @@ public class CallManager extends PhoneStateListener {
 	/**
 	 * Set the state of SIM Card
 	 * 
-	 * @param String that consists of the state of the SIM card.
+	 * @param String
+	 *            that consists of the state of the SIM card.
 	 */
 	public void setState(String state) {
 		this.simState = state;
@@ -162,7 +163,8 @@ public class CallManager extends PhoneStateListener {
 	/**
 	 * Set thet state of the Phone Service.
 	 * 
-	 * @param state String that consists of the state of the service.
+	 * @param state
+	 *            String that consists of the state of the service.
 	 */
 	public void setServiceState(String state) {
 		this.serviceState = state;

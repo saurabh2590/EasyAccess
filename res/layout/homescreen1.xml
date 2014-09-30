@@ -1,201 +1,187 @@
- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/homescreen1"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
+    android:layout_height="fill_parent"
     android:background="@color/homescreen_background"
-    android:id="@+id/homescreen1" > 
-    
-<TableLayout
-    android:gravity="center_vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="0dp"
-    android:layout_centerVertical="true"
-    android:layout_weight="1"
-    android:stretchColumns="0,2" 
-    android:weightSum="3"
-    android:paddingLeft="12px" 
-	android:paddingRight="12px"
-	android:paddingTop="12px" 
-	android:paddingBottom="12px" > 
+    android:orientation="vertical" >
 
-	<TableRow
-	    android:layout_weight="1" 
-	    android:gravity="center_vertical" >
-	   
-		<Button  
-			android:id="@+id/btnPhoneDialer"
-			android:text="@string/btnPhoneDialer"
-			android:contentDescription="@string/btnPhoneDialer"
-			android:layout_weight="1"
-		    android:layout_width="0dip" 
-		    android:layout_height="match_parent" 
-		    android:background="@drawable/card"
-		    android:textColor="@drawable/card_textcolor" 
-		    android:textStyle="bold"
-		    android:textSize="@dimen/card_textsize_regular"
-		    android:gravity="center"
-			android:focusable="true"
-			android:nextFocusRight="@+id/btnCallLog"
-   			android:nextFocusDown="@+id/btnTextMessages"
-		/>	
-		
-		<TextView  
-			android:id="@+id/txtEmpty1"
-			android:text="@string/txtEmpty"
-		    android:layout_width="12px" 
-		    android:layout_height="1px"
-		    android:background="@color/homescreen_background"		    
-		    android:focusable="false"
-		/>		
-		
-		<Button  
-			android:id="@+id/btnCallLog"
-			android:text="@string/btnCallLog"
-			android:contentDescription="@string/btnCallLog"
-			android:layout_weight="1"
-		    android:layout_width="0dip" 
-		    android:layout_height="match_parent" 
-			android:background="@drawable/card"
-		    android:textColor="@drawable/card_textcolor" 		    
-		    android:textStyle="bold"
-		    android:textSize="@dimen/card_textsize_regular"
-		    android:gravity="center"
-			android:focusable="true"
-			android:nextFocusLeft="@+id/btnPhoneDialer"
-   			android:nextFocusDown="@+id/btnContacts"
-		/>
-	</TableRow>  
-	
-	<TableRow
-	    android:layout_weight="0" 
-	    android:gravity="center_vertical" >
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_centerVertical="true"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:paddingBottom="12px"
+        android:paddingLeft="12px"
+        android:paddingRight="12px"
+        android:paddingTop="12px"
+        android:stretchColumns="0,2"
+        android:weightSum="3" >
 
-		<TextView  
-			android:id="@+id/txtEmpty2"
-		    android:text="@string/txtEmpty"			
-		    android:layout_width="1px" 
-		    android:layout_height="12px"
-		    android:layout_span="2"
-		    android:background="@color/homescreen_background"
-		    android:focusable="false"
-		/>			
-	
-	</TableRow>
+        <TableRow
+            android:layout_weight="1"
+            android:gravity="center_vertical" >
 
-	<TableRow
-	    android:layout_weight="1" 
-	    android:gravity="center_vertical" >
-		
-		<Button  
-			android:id="@+id/btnTextMessages"
-			android:text="@string/btnTextMessages"
-			android:contentDescription="@string/btnTextMessages"			
-			android:layout_weight="1"
-		    android:layout_width="0dip" 
-		    android:layout_height="match_parent" 
-		    android:background="@drawable/card" 
-		    android:textColor="@drawable/card_textcolor"  
-		    android:textStyle="bold"
-		    android:textSize="@dimen/card_textsize_regular"
-		    android:gravity="center"
-			android:focusable="true"
-			android:nextFocusRight="@+id/btnContacts"
-   			android:nextFocusUp="@+id/btnPhoneDialer"
-   			android:nextFocusDown="@+id/btnStatus"
-		/>
-		
-		<TextView  
-			android:id="@+id/txtEmpty3"
-		    android:text="@string/txtEmpty"			
-		    android:layout_width="12px" 
-		    android:layout_height="1px"
-		    android:background="@color/homescreen_background"
-		    android:focusable="false"
-		/>			
-		
-		<Button  
-			android:id="@+id/btnContacts"
-			android:text="@string/btnContacts"
-			android:contentDescription="@string/btnContacts"			
-			android:layout_weight="1"
-		    android:layout_width="0dip" 
-		    android:layout_height="match_parent" 
-		    android:background="@drawable/card" 
-		    android:textColor="@drawable/card_textcolor" 
-		    android:textStyle="bold"
-		    android:textSize="@dimen/card_textsize_regular"
-		    android:gravity="center"
-			android:focusable="true"
-			android:nextFocusLeft="@+id/btnTextMessages"
-   			android:nextFocusUp="@+id/btnCallLog"
-   			android:nextFocusDown="@+id/btnEmail"
-		/>	
-	</TableRow> 
+            <Button
+                android:id="@+id/btnPhoneDialer"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/card"
+                android:contentDescription="@string/btnPhoneDialer"
+                android:focusable="true"
+                android:gravity="center"
+                android:nextFocusDown="@+id/btnTextMessages"
+                android:nextFocusRight="@+id/btnCallLog"
+                android:text="@string/btnPhoneDialer"
+                android:textColor="@drawable/card_textcolor"
+                android:textSize="@dimen/card_textsize_regular"
+                android:textStyle="bold" />
 
-	<TableRow
-	    android:layout_weight="0" 
-	    android:gravity="center_vertical" >
+            <TextView
+                android:id="@+id/txtEmpty1"
+                android:layout_width="12px"
+                android:layout_height="1px"
+                android:background="@color/homescreen_background"
+                android:focusable="false"
+                android:text="@string/txtEmpty" />
 
-		<TextView  
-			android:id="@+id/txtEmpty4"
-		    android:text="@string/txtEmpty"			
-		    android:layout_width="1px" 
-		    android:layout_height="12px"
-		    android:layout_span="2"
-		    android:background="@color/homescreen_background"
-		    android:focusable="false"
-		/>			
-	
-	</TableRow> 	
-	
-	<TableRow
-	    android:layout_weight="1" 
-	    android:gravity="center_vertical" >
-		
-		<Button  
-			android:id="@+id/btnStatus"
-			android:text="@string/btnStatus"
-			android:contentDescription="@string/btnStatus"			
-			android:layout_weight="1"
-		    android:layout_width="0dip" 
-		    android:layout_height="match_parent" 
-		    android:background="@drawable/card" 
-		    android:textColor="@drawable/card_textcolor"
-		    android:textStyle="bold"
-		    android:textSize="@dimen/card_textsize_regular"
-		    android:gravity="center"
-			android:focusable="true"
-			android:nextFocusRight="@+id/btnEmail"
-   			android:nextFocusUp="@+id/btnTextMessages"		
-		/>
-		
-		<TextView  
-			android:id="@+id/txtEmpty5"
-		    android:text="@string/txtEmpty"			
-		    android:layout_width="12px" 
-		    android:layout_height="1px"
-		    android:background="@color/homescreen_background"
-		    android:focusable="false"
-		/>			
-		
-		<Button  
-			android:id="@+id/btnSettings"
-			android:text="@string/btnSettings"
-			android:contentDescription="@string/btnSettings"			
-			android:layout_weight="1"
-		    android:layout_width="0dip" 
-		    android:layout_height="match_parent" 
-		    android:background="@drawable/card" 
-		    android:textColor="@drawable/card_textcolor" 
-		    android:textStyle="bold"
-		    android:textSize="@dimen/card_textsize_regular"
-		    android:gravity="center"
-			android:focusable="true"
-			android:nextFocusUp="@+id/btnContacts"
-   			android:nextFocusLeft="@+id/btnStatus"
-		/>	
-	</TableRow>   
-    
-</TableLayout>
-		
-</LinearLayout>		
+            <Button
+                android:id="@+id/btnCallLog"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/card"
+                android:contentDescription="@string/btnCallLog"
+                android:focusable="true"
+                android:gravity="center"
+                android:nextFocusDown="@+id/btnContacts"
+                android:nextFocusLeft="@+id/btnPhoneDialer"
+                android:text="@string/btnCallLog"
+                android:textColor="@drawable/card_textcolor"
+                android:textSize="@dimen/card_textsize_regular"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_weight="0"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/txtEmpty2"
+                android:layout_width="1px"
+                android:layout_height="12px"
+                android:layout_span="2"
+                android:background="@color/homescreen_background"
+                android:focusable="false"
+                android:text="@string/txtEmpty" />
+        </TableRow>
+
+        <TableRow
+            android:layout_weight="1"
+            android:gravity="center_vertical" >
+
+            <Button
+                android:id="@+id/btnTextMessages"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/card"
+                android:contentDescription="@string/btnTextMessages"
+                android:focusable="true"
+                android:gravity="center"
+                android:nextFocusDown="@+id/btnStatus"
+                android:nextFocusRight="@+id/btnContacts"
+                android:nextFocusUp="@+id/btnPhoneDialer"
+                android:text="@string/btnTextMessages"
+                android:textColor="@drawable/card_textcolor"
+                android:textSize="@dimen/card_textsize_regular"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtEmpty3"
+                android:layout_width="12px"
+                android:layout_height="1px"
+                android:background="@color/homescreen_background"
+                android:focusable="false"
+                android:text="@string/txtEmpty" />
+
+            <Button
+                android:id="@+id/btnContacts"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/card"
+                android:contentDescription="@string/btnContacts"
+                android:focusable="true"
+                android:gravity="center"
+                android:nextFocusDown="@+id/btnEmail"
+                android:nextFocusLeft="@+id/btnTextMessages"
+                android:nextFocusUp="@+id/btnCallLog"
+                android:text="@string/btnContacts"
+                android:textColor="@drawable/card_textcolor"
+                android:textSize="@dimen/card_textsize_regular"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_weight="0"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/txtEmpty4"
+                android:layout_width="1px"
+                android:layout_height="12px"
+                android:layout_span="2"
+                android:background="@color/homescreen_background"
+                android:focusable="false"
+                android:text="@string/txtEmpty" />
+        </TableRow>
+
+        <TableRow
+            android:layout_weight="1"
+            android:gravity="center_vertical" >
+
+            <Button
+                android:id="@+id/btnStatus"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/card"
+                android:contentDescription="@string/btnStatus"
+                android:focusable="true"
+                android:gravity="center"
+                android:nextFocusRight="@+id/btnEmail"
+                android:nextFocusUp="@+id/btnTextMessages"
+                android:text="@string/btnStatus"
+                android:textColor="@drawable/card_textcolor"
+                android:textSize="@dimen/card_textsize_regular"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtEmpty5"
+                android:layout_width="12px"
+                android:layout_height="1px"
+                android:background="@color/homescreen_background"
+                android:focusable="false"
+                android:text="@string/txtEmpty" />
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/card"
+                android:contentDescription="@string/btnSettings"
+                android:focusable="true"
+                android:gravity="center"
+                android:nextFocusLeft="@+id/btnStatus"
+                android:nextFocusUp="@+id/btnContacts"
+                android:text="@string/btnSettings"
+                android:textColor="@drawable/card_textcolor"
+                android:textSize="@dimen/card_textsize_regular"
+                android:textStyle="bold" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
