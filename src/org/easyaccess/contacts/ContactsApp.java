@@ -210,7 +210,8 @@ public class ContactsApp extends Activity implements KeyListener {
 					found = 1;
 				}
 			}
-		} else { // user entered a number
+		} else {
+			// user entered a number
 			for (int i = 0; i < number.size(); i++) {
 				if (number.get(i).toString()
 						.startsWith(inputContacts.getText().toString())) {
@@ -237,9 +238,7 @@ public class ContactsApp extends Activity implements KeyListener {
 				btnCall.setVisibility(View.VISIBLE);
 				btnSave.setVisibility(View.VISIBLE);
 
-				// setonFocusChangeListener
 				btnCall.setOnFocusChangeListener(new OnFocusChangeListener() {
-
 					@Override
 					public void onFocusChange(View arg0, boolean arg1) {
 						// vibrate
@@ -254,16 +253,13 @@ public class ContactsApp extends Activity implements KeyListener {
 
 				// go to PhoneDialerApp on click
 				btnCall.setOnClickListener(new OnClickListener() {
-
 					@Override
 					public void onClick(View view) {
 						callContact(inputContacts.getText().toString());
 					}
 				});
 
-				// setonFocusChangeListener
 				btnSave.setOnFocusChangeListener(new OnFocusChangeListener() {
-
 					@Override
 					public void onFocusChange(View view, boolean hasFocus) {
 						if (hasFocus) {
@@ -281,13 +277,13 @@ public class ContactsApp extends Activity implements KeyListener {
 
 				// go to SaveContact on click
 				btnSave.setOnClickListener(new OnClickListener() {
-
 					@Override
 					public void onClick(View view) {
 						saveContact(inputContacts.getText().toString());
 					}
 				});
-			} else { // user typed letters in the alphabet
+			} else {
+				// user typed letters in the alphabet
 				contactsAdapter = new ContactsAdapter(getApplicationContext(),
 						new ArrayList<String>());
 				btnCall.setVisibility(View.GONE);
@@ -306,19 +302,16 @@ public class ContactsApp extends Activity implements KeyListener {
 	public boolean dispatchKeyEvent(KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {
 			if (!inputContacts.hasFocus()) {
-				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {// go to the
-																	// previous
-																	// screen
+				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+					// go to the previous screen
 					// check if keyboard is connected and accessibility services
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 						TTS.speak("Back");
 					finish();
-				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {// go to
-																		// the
-																		// home
-																		// screen
+				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {
+					// go to the home screen
 					// check if keyboard is connected and accessibility services
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
@@ -335,77 +328,42 @@ public class ContactsApp extends Activity implements KeyListener {
 			} else {
 				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
 					deletedFlag = 1;
-					if (inputContacts.getText().toString().length() != 0) {
+					String inputContactsText = inputContacts.getText()
+							.toString();
+					if (inputContactsText.length() != 0) {
 						// check if keyboard is connected and accessibility
 						// services are disabled
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-							if (inputContacts
-									.getText()
-									.toString()
-									.substring(
-											inputContacts.getText().toString()
-													.length() - 1,
-											inputContacts.getText().toString()
-													.length())
-									.matches("-?\\d+(\\.\\d+)?")) {
+							if (inputContactsText.substring(
+									inputContactsText.length() - 1,
+									inputContactsText.length()).matches(
+									"-?\\d+(\\.\\d+)?")) {
 								TTS.speak("Deleted "
-										+ inputContacts
-												.getText()
-												.toString()
-												.substring(
-														inputContacts.getText()
-																.toString()
-																.length() - 1,
-														inputContacts.getText()
-																.toString()
-																.length())
+										+ inputContactsText.substring(
+												inputContactsText.length() - 1,
+												inputContactsText.length())
 										+ ". "
-										+ TTS.readNumber(inputContacts
-												.getText()
-												.toString()
-												.substring(
-														0,
-														inputContacts.getText()
-																.toString()
-																.length() - 1)));
+										+ TTS.readNumber(inputContactsText
+												.substring(0, inputContactsText
+														.length() - 1)));
 							} else {
 								TTS.speak("Deleted "
-										+ inputContacts
-												.getText()
-												.toString()
-												.substring(
-														inputContacts.getText()
-																.toString()
-																.length() - 1,
-														inputContacts.getText()
-																.toString()
-																.length())
+										+ inputContactsText.substring(
+												inputContactsText.length() - 1,
+												inputContactsText.length())
 										+ ". "
-										+ inputContacts
-												.getText()
-												.toString()
-												.substring(
-														0,
-														inputContacts.getText()
-																.toString()
-																.length() - 1));
+										+ inputContactsText.substring(0,
+												inputContactsText.length() - 1));
 							}
 						}
-						inputContacts.setText(inputContacts
-								.getText()
-								.toString()
-								.substring(
-										0,
-										inputContacts.getText().toString()
-												.length() - 1));
-						inputContacts.setContentDescription(inputContacts
-								.getText().toString()
+						inputContacts.setText(inputContactsText.substring(0,
+								inputContactsText.length() - 1));
+						inputContacts.setContentDescription(inputContactsText
 								.replaceAll(".(?=[0-9])", "$0 "));
-						inputContacts.setSelection(inputContacts.getText()
-								.toString().length(), inputContacts.getText()
-								.toString().length());
+						inputContacts.setSelection(inputContactsText.length(),
+								inputContactsText.length());
 						return false;
 					} else {
 						// check if keyboard is connected and accessibility
@@ -509,7 +467,7 @@ public class ContactsApp extends Activity implements KeyListener {
 		name = new ArrayList<String>();
 		number = new ArrayList<String>();
 		contactManager = new ContactManager(getApplicationContext());
-		/** display all contacts in the listview **/
+		// display all contacts in the listview
 
 		// get all contacts and pass to the list adapter
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -620,7 +578,7 @@ public class ContactsApp extends Activity implements KeyListener {
 		contactsListView.setScrollingCacheEnabled(true);
 		contactsListView.setItemsCanFocus(true);
 
-		/** handle click events **/
+		// handle click events
 		contactsListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -819,7 +777,7 @@ public class ContactsApp extends Activity implements KeyListener {
 	 */
 	@Override
 	public int getInputType() {
-	
+
 		return 0;
 	}
 
@@ -853,6 +811,6 @@ public class ContactsApp extends Activity implements KeyListener {
 	 */
 	@Override
 	public boolean onKeyUp(View arg0, Editable arg1, int arg2, KeyEvent arg3) {
-			return false;
+		return false;
 	}
 }

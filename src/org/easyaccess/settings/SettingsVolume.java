@@ -141,7 +141,7 @@ public class SettingsVolume extends EasyAccessActivity {
 
 		Utils.audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
-		/** Find UI elements **/
+		// Find UI elements
 		rgVolume = (RadioGroup) findViewById(R.id.rgVolume);
 
 		attachListener((RadioButton) findViewById(R.id.radioLoud));
@@ -152,7 +152,7 @@ public class SettingsVolume extends EasyAccessActivity {
 		attachListener((RadioButton) findViewById(R.id.radioSofter));
 		attachListener((RadioButton) findViewById(R.id.radioSoftest));
 
-		/** attach OnCheckedChangeListener to the RadioGroup **/
+		// attach OnCheckedChangeListener to the RadioGroup
 		attachListenerToRadioGroup();
 	}
 
@@ -165,7 +165,7 @@ public class SettingsVolume extends EasyAccessActivity {
 				&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
 			TTS.speak(getResources().getString(R.string.settingsVolume));
 		}
-		/** Display the current media volume **/
+		// Display the current media volume
 		if (Utils.audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) <= 3) {
 			((RadioButton) findViewById(R.id.radioSoftest)).setChecked(true);
 		} else if (Utils.audioManager
@@ -189,10 +189,8 @@ public class SettingsVolume extends EasyAccessActivity {
 			((RadioButton) findViewById(R.id.radioLoudest)).setChecked(true);
 		}
 
-		/**
-		 * Apply the selected font color, font size and font type to the
-		 * activity
-		 **/
+		// Apply the selected font color, font size and font type to the
+		// activity
 		LinearLayout layout = (LinearLayout) findViewById(R.id.settingsfont);
 		Utils.applyFontColorChanges(getApplicationContext(), layout);
 		Utils.applyFontSizeChanges(getApplicationContext(), layout);

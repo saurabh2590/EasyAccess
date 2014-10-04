@@ -87,7 +87,6 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 	protected void attachListenerToSpinner(Spinner spinner) {
 		final String text = spinner.getContentDescription().toString();
 		spinner.setOnFocusChangeListener(new OnFocusChangeListener() {
-
 			@Override
 			public void onFocusChange(View view, boolean hasFocus) {
 				if (hasFocus) {
@@ -123,11 +122,11 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 			getActionBar().setDisplayShowTitleEnabled(false);
 		}
 
-		/** Find easyaccess-specific Back and Home buttons **/
+		// Find easyaccess-specific Back and Home buttons
 		Button btnNavigationBack = (Button) findViewById(R.id.btnNavigationBack);
 		Button btnNavigationHome = (Button) findViewById(R.id.btnNavigationHome);
 
-		/** If Back navigation button is pressed, go back to previous activity **/
+		// If Back navigation button is pressed, go back to previous activity
 		btnNavigationBack.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				turnOffScreenCurtain();
@@ -135,7 +134,7 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 			}
 		});
 
-		/** If Home navigation button is pressed, go back to previous activity **/
+		// If Home navigation button is pressed, go back to previous activity
 		btnNavigationHome.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				turnOffScreenCurtain();
@@ -157,7 +156,7 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 			}
 		};
 
-		/** Attach onFocusChange listener to back and home buttons **/
+		// Attach onFocusChange listener to back and home buttons
 		btnNavigationBack.setOnFocusChangeListener(focusChangeListener);
 		btnNavigationHome.setOnFocusChangeListener(focusChangeListener);
 	}
@@ -189,8 +188,8 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 	 **/
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
-		if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {// go to the previous
-															// screen
+		if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+			// go to the previous screen
 			// check if keyboard is connected and accessibility services are
 			// disabled
 			if (!Utils.isAccessibilityEnabled(getApplicationContext())
@@ -198,8 +197,8 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 				TTS.speak("Back");
 			turnOffScreenCurtain();
 			finish();
-		} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {// go to the home
-																// screen
+		} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {
+			// go to the home screen
 			// check if keyboard is connected and accessibility services are
 			// disabled
 			if (!Utils.isAccessibilityEnabled(getApplicationContext())

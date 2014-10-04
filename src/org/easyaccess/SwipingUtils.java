@@ -81,7 +81,7 @@ public class SwipingUtils extends FragmentActivity {
 		ScreenCurtainFunctions appState = ((ScreenCurtainFunctions) getApplicationContext());
 		appState.setState(false);
 
-		/** Set Roboto as the standard font **/
+		// Set Roboto as the standard font
 		if (Build.VERSION.SDK_INT < 11) {
 			ViewGroup godfatherView = (ViewGroup) this.getWindow()
 					.getDecorView();
@@ -111,7 +111,7 @@ public class SwipingUtils extends FragmentActivity {
 
 	private class MyPageAdapter extends FragmentPagerAdapter {
 
-		/** Adapter for loading fragments **/
+		//Adapter for loading fragments 
 
 		private List<Fragment> fragments;
 

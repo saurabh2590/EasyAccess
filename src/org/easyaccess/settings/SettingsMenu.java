@@ -113,7 +113,7 @@ public class SettingsMenu extends EasyAccessActivity {
 		setContentView(R.layout.settings);
 		super.onCreate(savedInstanceState);
 
-		/** Find UI elements **/
+		// Find UI elements
 		btnSettingsScreenCurtain = (Button) findViewById(R.id.btnSettingsScreenCurtain);
 		btnSettingsColor = (Button) findViewById(R.id.btnSettingsColor);
 		btnSettingsFont = (Button) findViewById(R.id.btnSettingsFont);
@@ -123,7 +123,7 @@ public class SettingsMenu extends EasyAccessActivity {
 
 		screenCurtainFlag = 0;
 
-		/** If Screen Curtain button is pressed, call addScreenCurtain method **/
+		// If Screen Curtain button is pressed, call addScreenCurtain method
 		btnSettingsScreenCurtain.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				screenCurtainFlag = 1;
@@ -131,7 +131,7 @@ public class SettingsMenu extends EasyAccessActivity {
 			}
 		});
 
-		/** If Color Settings button is pressed, launch the Color Settings menu **/
+		// If Color Settings button is pressed, launch the Color Settings menu
 		btnSettingsColor.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if (screenCurtainFlag == 1) {
@@ -142,7 +142,7 @@ public class SettingsMenu extends EasyAccessActivity {
 			}
 		});
 
-		/** If Font Settings button is pressed, launch the Font Settings menu **/
+		// If Font Settings button is pressed, launch the Font Settings menu
 		btnSettingsFont.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if (screenCurtainFlag == 1) {
@@ -153,9 +153,7 @@ public class SettingsMenu extends EasyAccessActivity {
 			}
 		});
 
-		/**
-		 * If Volume Settings button is pressed, launch the Volume Settings menu
-		 **/
+		// If Volume Settings button is pressed, launch the Volume Settings menu
 		btnSettingsVolume.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (screenCurtainFlag == 1) {
@@ -166,10 +164,7 @@ public class SettingsMenu extends EasyAccessActivity {
 			}
 		});
 
-		/**
-		 * If Android Settings button is pressed, launch the regular Android
-		 * settings
-		 **/
+		// If Android Settings button is pressed, launch the regular Android
 		btnSettingsAndroid.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if (screenCurtainFlag == 1) {
@@ -180,10 +175,7 @@ public class SettingsMenu extends EasyAccessActivity {
 			}
 		});
 
-		/**
-		 * If About easyaccess button is pressed, launch the About easyaccess
-		 * activity
-		 **/
+		// If About easyaccess button is pressed, launch the About easyaccess
 		btnAbout.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if (screenCurtainFlag == 1) {
@@ -194,7 +186,7 @@ public class SettingsMenu extends EasyAccessActivity {
 			}
 		});
 
-		/** Attach onFocusChange listener to the buttons **/
+		// Attach onFocusChange listener to the buttons
 		attachListener(btnSettingsScreenCurtain);
 		attachListener(btnSettingsColor);
 		attachListener(btnSettingsFont);
@@ -214,10 +206,9 @@ public class SettingsMenu extends EasyAccessActivity {
 		}
 		// get the root layout
 		LinearLayout layout = (LinearLayout) findViewById(R.id.settings);
-		/**
-		 * Apply the selected font color, font size and font type to the
-		 * activity
-		 **/
+		// Apply the selected font color, font size and font type to the
+		// activity
+
 		Utils.applyFontColorChanges(getApplicationContext(), layout);
 		Utils.applyFontSizeChanges(getApplicationContext(), layout);
 		Utils.applyFontTypeChanges(getApplicationContext(), layout);

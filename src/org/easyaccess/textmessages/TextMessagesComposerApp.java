@@ -92,24 +92,21 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 	public boolean dispatchKeyEvent(KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {
 			if (!editMessage.hasFocus()) {
-				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {// go to the
-																	// previous
-																	// screen
+				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+					// go to the previous screen
 					// check if keyboard is connected and accessibility services
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-						TTS.speak("Back");
+						TTS.speak(getString(R.string.btnNavigationBack));
 					finish();
-				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {// go to
-																		// the
-																		// home
-																		// screen
+				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {
+					// go to the home screen
 					// check if keyboard is connected and accessibility services
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-						TTS.speak("Home");
+						TTS.speak(getString(R.string.btnNavigationHome));
 					finish();
 					Intent intent = new Intent(getApplicationContext(),
 							SwipingUtils.class);
@@ -121,74 +118,39 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 			} else {
 				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
 					deletedFlag = 1;
-					if (editMessage.getText().toString().length() != 0) {
+					String editMessageText = editMessage.getText().toString();
+					if (editMessageText.length() != 0) {
 						// check if keyboard is connected and accessibility
 						// services are disabled
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-							if (editMessage
-									.getText()
-									.toString()
-									.substring(
-											editMessage.getText().toString()
-													.length() - 1,
-											editMessage.getText().toString()
-													.length())
-									.matches("-?\\d+(\\.\\d+)?")) {
+							if (editMessageText.substring(
+									editMessageText.length() - 1,
+									editMessageText.length()).matches(
+									"-?\\d+(\\.\\d+)?")) {
 								TTS.speak("Deleted "
-										+ editMessage
-												.getText()
-												.toString()
-												.substring(
-														editMessage.getText()
-																.toString()
-																.length() - 1,
-														editMessage.getText()
-																.toString()
-																.length())
+										+ editMessageText.substring(
+												editMessageText.length() - 1,
+												editMessageText.length())
 										+ ". "
-										+ TTS.readNumber(editMessage
-												.getText()
-												.toString()
-												.substring(
-														0,
-														editMessage.getText()
-																.toString()
-																.length() - 1)));
+										+ TTS.readNumber(editMessageText
+												.substring(0, editMessageText
+														.length() - 1)));
 							} else {
 								TTS.speak("Deleted "
-										+ editMessage
-												.getText()
-												.toString()
-												.substring(
-														editMessage.getText()
-																.toString()
-																.length() - 1,
-														editMessage.getText()
-																.toString()
-																.length())
+										+ editMessageText.substring(
+												editMessageText.length() - 1,
+												editMessageText.length())
 										+ ". "
-										+ editMessage
-												.getText()
-												.toString()
-												.substring(
-														0,
-														editMessage.getText()
-																.toString()
-																.length() - 1));
+										+ editMessageText.substring(0,
+												editMessageText.length() - 1));
 							}
 						}
-						editMessage.setText(editMessage
-								.getText()
-								.toString()
-								.substring(
-										0,
-										editMessage.getText().toString()
-												.length() - 1));
-						editMessage.setSelection(editMessage.getText()
-								.toString().length(), editMessage.getText()
-								.toString().length());
+						editMessage.setText(editMessageText.substring(0,
+								editMessageText.length() - 1));
+						editMessage.setSelection(editMessageText.length(),
+								editMessageText.length());
 						return false;
 					} else {
 						// check if keyboard is connected and accessibility
@@ -196,7 +158,7 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-							TTS.speak("Back");
+							TTS.speak(getString(R.string.btnNavigationBack));
 						finish();
 					}
 				} else {
@@ -224,9 +186,9 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 						Utils.giveFeedback(getApplicationContext(),
-								getResources().getString(R.string.smsDelivered));
+								getString(R.string.smsDelivered));
 					Toast.makeText(getApplicationContext(),
-							getResources().getString(R.string.smsDelivered),
+							getString(R.string.smsDelivered),
 							Toast.LENGTH_SHORT).show();
 					break;
 				case Activity.RESULT_CANCELED:
@@ -235,35 +197,33 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-						Utils.giveFeedback(
-								getApplicationContext(),
-								getResources().getString(
-										R.string.smsNotDelivered));
+						Utils.giveFeedback(getApplicationContext(),
+								getString(R.string.smsNotDelivered));
 					Toast.makeText(getApplicationContext(),
-							getResources().getString(R.string.smsNotDelivered),
+							getString(R.string.smsNotDelivered),
 							Toast.LENGTH_SHORT).show();
 					break;
 				}
 			}
 		};
 
-		/** Find UI elements **/
+		// Find UI elements
 		btnTextMsgsSend = (Button) findViewById(R.id.btnTextMsgsSend);
 		txtRecipient = (TextView) findViewById(R.id.inputTextMessagesRecipient);
 		editMessage = (EditText) findViewById(R.id.inputTextMessagesTypedMessage);
 
-		/** Find easyaccess-specific Back and Home buttons **/
+		// Find easyaccess-specific Back and Home buttons
 		Button btnNavigationBack = (Button) findViewById(R.id.btnNavigationBack);
 		Button btnNavigationHome = (Button) findViewById(R.id.btnNavigationHome);
 
-		/** If Back navigation button is pressed, go back to previous activity **/
+		// If Back navigation button is pressed, go back to previous activity
 		btnNavigationBack.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				finish();
 			}
 		});
 
-		/** If Home navigation button is pressed, go back to previous activity **/
+		// If Home navigation button is pressed, go back to previous activity
 		btnNavigationHome.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				finish();
@@ -284,7 +244,7 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 			}
 		};
 
-		/** Attach onFocusChange listener to back and home buttons **/
+		// Attach onFocusChange listener to back and home buttons
 		btnNavigationBack.setOnFocusChangeListener(focusChangeListener);
 		btnNavigationHome.setOnFocusChangeListener(focusChangeListener);
 
@@ -296,9 +256,7 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 			txtRecipient.setText(this.name + " " + this.type);
 			txtRecipient.setContentDescription(this.name.replaceAll(
 					".(?=[0-9])", "$0 ") + " " + this.type);
-		}
-
-		else if (getIntent().hasExtra("number")) {
+		} else if (getIntent().hasExtra("number")) {
 			this.number = getIntent().getExtras().getString("number");
 			if (txtRecipient.getText().toString().trim().equals(""))
 				txtRecipient.setText(this.number);
@@ -306,10 +264,8 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 					".(?=[0-9])", "$0 "));
 		}
 
-		/**
-		 * If Send button is pressed, send the text message to the selected
-		 * recipient
-		 **/
+		// If Send button is pressed, send the text message to the selected
+		// recipient
 		btnTextMsgsSend.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				sendMessage();
@@ -373,10 +329,9 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 		// disabled
 		if (!Utils.isAccessibilityEnabled(getApplicationContext())
 				&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-			Utils.giveFeedback(getApplicationContext(), getResources()
-					.getString(R.string.sendingSms));
-		Toast.makeText(getApplicationContext(),
-				getResources().getString(R.string.sendingSms),
+			Utils.giveFeedback(getApplicationContext(),
+					getString(R.string.sendingSms));
+		Toast.makeText(getApplicationContext(), getString(R.string.sendingSms),
 				Toast.LENGTH_SHORT).show();
 		try {
 
@@ -396,10 +351,10 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 						if (!Utils.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 							Utils.giveFeedback(getApplicationContext(),
-									getResources().getString(R.string.sentSms));
+									getString(R.string.sentSms));
 						Toast.makeText(getApplicationContext(),
-								getResources().getString(R.string.sentSms),
-								Toast.LENGTH_SHORT).show();
+								getString(R.string.sentSms), Toast.LENGTH_SHORT)
+								.show();
 						break;
 					case SmsManager.RESULT_ERROR_NO_SERVICE:
 						TTS.stop();
@@ -409,10 +364,9 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 							Utils.giveFeedback(getApplicationContext(),
-									getResources()
-											.getString(R.string.noService));
+									getString(R.string.noService));
 						Toast.makeText(getApplicationContext(),
-								getResources().getString(R.string.noService),
+								getString(R.string.noService),
 								Toast.LENGTH_SHORT).show();
 						break;
 					case SmsManager.RESULT_ERROR_RADIO_OFF:
@@ -423,9 +377,9 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 							Utils.giveFeedback(getApplicationContext(),
-									getResources().getString(R.string.radioOff));
+									getString(R.string.radioOff));
 						Toast.makeText(getApplicationContext(),
-								getResources().getString(R.string.radioOff),
+								getString(R.string.radioOff),
 								Toast.LENGTH_SHORT).show();
 						break;
 					default:
@@ -435,12 +389,10 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-							Utils.giveFeedback(
-									getApplicationContext(),
-									getResources().getString(
-											R.string.smsNotSent));
+							Utils.giveFeedback(getApplicationContext(),
+									getString(R.string.smsNotSent));
 						Toast.makeText(getApplicationContext(),
-								getResources().getString(R.string.smsNotSent),
+								getString(R.string.smsNotSent),
 								Toast.LENGTH_SHORT).show();
 						break;
 					}
@@ -469,7 +421,7 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 		// disabled
 		if (!Utils.isAccessibilityEnabled(getApplicationContext())
 				&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-			TTS.speak(getResources().getString(R.string.composeTextMessage));
+			TTS.speak(getString(R.string.composeTextMessage));
 		}
 		// get the root layout
 		LinearLayout layout = (LinearLayout) findViewById(R.id.textmessagescomposer);

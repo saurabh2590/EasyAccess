@@ -144,8 +144,8 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 							break;
 						case 3:
 							confirmDelete(
-									"Are your sure you want to delete all the messages from "
-											+ "this number?", 1, null);
+									getString(R.string.deleteConfirmation), 1,
+									null);
 							break;
 						}
 						break;
@@ -174,10 +174,9 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 			TTS.stop();
 		// giveFeedback(message);
 		AlertDialog confirmBox = new AlertDialog.Builder(this)
-				// set message, title, and icon
-				.setTitle(getResources().getString(R.string.btnTextMsgsDelete))
+				.setTitle(getString(R.string.btnTextMsgsDelete))
 				.setMessage(message)
-				.setPositiveButton("Yes",
+				.setPositiveButton(getString(R.string.label_yes),
 						new DialogInterface.OnClickListener() {
 
 							public void onClick(DialogInterface dialog,
@@ -192,14 +191,10 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 												.isAccessibilityEnabled(getApplicationContext())
 												&& getResources()
 														.getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-											TTS.speak(getResources()
-													.getString(
-															R.string.deleteThreadSuccess));
+											TTS.speak(getString(R.string.deleteThreadSuccess));
 										Toast.makeText(
 												getApplicationContext(),
-												getResources()
-														.getString(
-																R.string.deleteThreadSuccess),
+												getString(R.string.deleteThreadSuccess),
 												Toast.LENGTH_SHORT).show();
 										// reload activity
 										finish();
@@ -216,14 +211,10 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 												.isAccessibilityEnabled(getApplicationContext())
 												&& getResources()
 														.getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-											TTS.speak(getResources()
-													.getString(
-															R.string.deleteThreadFailure));
+											TTS.speak(getString(R.string.deleteThreadFailure));
 										Toast.makeText(
 												getApplicationContext(),
-												getResources()
-														.getString(
-																R.string.deleteThreadFailure),
+												getString(R.string.deleteThreadFailure),
 												Toast.LENGTH_SHORT).show();
 									}
 								} else {
@@ -235,14 +226,10 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 												.isAccessibilityEnabled(getApplicationContext())
 												&& getResources()
 														.getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-											TTS.speak(getResources()
-													.getString(
-															R.string.deleteMessageSuccess));
+											TTS.speak(getString(R.string.deleteMessageSuccess));
 										Toast.makeText(
 												getApplicationContext(),
-												getResources()
-														.getString(
-																R.string.deleteMessageSuccess),
+												getString(R.string.deleteMessageSuccess),
 												Toast.LENGTH_SHORT).show();
 										// reload activity
 										finish();
@@ -262,14 +249,10 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 												.isAccessibilityEnabled(getApplicationContext())
 												&& getResources()
 														.getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-											TTS.speak(getResources()
-													.getString(
-															R.string.deleteMessageFailure));
+											TTS.speak(getString(R.string.deleteMessageFailure));
 										Toast.makeText(
 												getApplicationContext(),
-												getResources()
-														.getString(
-																R.string.deleteMessageFailure),
+												getString(R.string.deleteMessageFailure),
 												Toast.LENGTH_SHORT).show();
 									}
 								}
@@ -277,13 +260,15 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 							}
 						})
 
-				.setNegativeButton("No", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
+				.setNegativeButton(getString(R.string.label_no),
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
 
-						dialog.dismiss();
+								dialog.dismiss();
 
-					}
-				}).create();
+							}
+						}).create();
 		confirmBox.show();
 	}
 
@@ -456,9 +441,8 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 			final TextView txtMessage = new TextView(getApplicationContext());
 			// create Button
 			final Button btnDelete = new Button(getApplicationContext());
-			btnDelete.setText(getResources().getString(R.string.btnDelete));
-			btnDelete.setContentDescription(getResources().getString(
-					R.string.btnDelete));
+			btnDelete.setText(getString(R.string.btnDelete));
+			btnDelete.setContentDescription(getString(R.string.btnDelete));
 			// display subject, body, date, type of message(sent or received)
 			String text = "";
 			if (records.get(me.getKey()).get(0) == null)
@@ -472,10 +456,12 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 			String date = simpleDateFormat.format(dateTemp);
 			markMessageRead(me.getKey().toString());
 			if (records.get(me.getKey()).get(2) == Integer.toString(INBOX)) {
-				text += Html.fromHtml("<br/>") + "Received on " + date;
+				text += Html.fromHtml("<br/>")
+						+ getString(R.string.received_on) + date;
 				txtMessage.setGravity(Gravity.LEFT);
 			} else {
-				text += Html.fromHtml("<br/>") + "Sent on " + date;
+				text += Html.fromHtml("<br/>") + getString(R.string.sent_on)
+						+ date;
 				txtMessage.setGravity(Gravity.RIGHT);
 			}
 			txtMessage.setWidth(params.width / 3);
@@ -486,13 +472,13 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 					R.color.card_textcolor_regular));
 
 			txtMessage.setTextSize(Integer.valueOf(getApplicationContext()
-					.getResources().getString(R.string.textSize))
+					.getString(R.string.textSize))
 					* getApplicationContext().getResources()
 							.getDisplayMetrics().density);
 			SharedPreferences preferences = getApplicationContext()
 					.getSharedPreferences(
-							getApplicationContext().getResources().getString(
-									R.string.color), 0);
+							getApplicationContext().getString(R.string.color),
+							0);
 			int bgColor = preferences.getInt("bgcolor", 0);
 			int fgColor = preferences.getInt("fgcolor", 0);
 			try {
@@ -525,8 +511,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 			btnDelete.setTextColor(fgColor);
 
 			preferences = getApplicationContext().getSharedPreferences(
-					getApplicationContext().getResources().getString(
-							R.string.fonttype), 0);
+					getApplicationContext().getString(R.string.fonttype), 0);
 			if (preferences.getInt("typeface", -1) != -1) {
 				switch (preferences.getInt("typeface", -1)) {
 				case Utils.NONE:
@@ -548,19 +533,18 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 			}
 
 			preferences = getApplicationContext().getSharedPreferences(
-					getApplicationContext().getResources().getString(
-							R.string.size), 0);
+					getApplicationContext().getString(R.string.size), 0);
 			if (preferences.getFloat("size", 0) != 0) {
 				float fontSize = preferences.getFloat("size", 0);
 				txtMessage.setTextSize(fontSize);
 				btnDelete.setTextSize(fontSize);
 			} else {
 				txtMessage.setTextSize(Integer.valueOf(getApplicationContext()
-						.getResources().getString(R.string.textSize))
+						.getString(R.string.textSize))
 						* getApplicationContext().getResources()
 								.getDisplayMetrics().density);
 				btnDelete.setTextSize(Integer.valueOf(getApplicationContext()
-						.getResources().getString(R.string.textSize))
+						.getString(R.string.textSize))
 						* getApplicationContext().getResources()
 								.getDisplayMetrics().density);
 			}
@@ -580,8 +564,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 
 				@Override
 				public void onClick(View view) {
-					confirmDelete(
-							"Are you sure you want to delete this message?", 0,
+					confirmDelete(getString(R.string.deleteSingleConfirm), 0,
 							me.getKey().toString());
 				}
 			});
@@ -599,7 +582,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 		setContentView(R.layout.textmessages_viewer);
 		super.onCreate(savedInstanceState);
 
-		/** Find UI elements **/
+		// Find UI elements
 		btnReply = (Button) findViewById(R.id.btnTextMsgsReply);
 		btnCall = (Button) findViewById(R.id.btnTextMsgsCall);
 		btnDeleteThread = (Button) findViewById(R.id.btnTextMsgsDeleteThread);
@@ -607,7 +590,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 		progressBar = (ProgressBar) findViewById(R.id.progressBarMessages);
 		progressBar.setVisibility(View.VISIBLE);
 
-		/** attach onFocus and onTouch listeners **/
+		// attach onFocus and onTouch listeners
 		attachListener(btnReply);
 		attachListener(btnCall);
 		attachListener(btnDeleteThread);
@@ -618,10 +601,8 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 
 		attachKeyListener(btnReply, 1);
 
-		/**
-		 * If Reply button is pressed, open the Text Messages Composer to write
-		 * a reply to this text message
-		 **/
+		// If Reply button is pressed, open the Text Messages Composer to write
+		// a reply to this text message
 		btnReply.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				reply();
@@ -630,7 +611,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 
 		attachKeyListener(btnCall, 2);
 
-		/** If Call button is pressed, call the sender of the text message **/
+		// If Call button is pressed, call the sender of the text message
 		btnCall.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				call();
@@ -639,15 +620,11 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 
 		attachKeyListener(btnDeleteThread, 3);
 
-		/**
-		 * If Delete button is pressed, bring up Yes/No dialog to confirm to
-		 * delete this message
-		 **/
+		// If Delete button is pressed, bring up Yes/No dialog to confirm to
+		// delete this message
 		btnDeleteThread.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				confirmDelete(
-						"Are your sure you want to delete all the messages from this number?",
-						1, null);
+				confirmDelete(getString(R.string.deleteConfirmation), 1, null);
 			}
 		});
 
@@ -673,10 +650,11 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 			// disabled
 			if (!Utils.isAccessibilityEnabled(getApplicationContext())
 					&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-				TTS.speak(getResources().getString(R.string.conversation)
-						+ ", Loading messages");
-			Toast.makeText(getApplicationContext(), "Loading messages",
-					Toast.LENGTH_SHORT).show();
+				TTS.speak(getString(R.string.conversation) + ", "
+						+ getString(R.string.loading_msgs));
+			Toast.makeText(getApplicationContext(),
+					getString(R.string.loading_msgs), Toast.LENGTH_SHORT)
+					.show();
 			runThread(this.address);
 		}
 

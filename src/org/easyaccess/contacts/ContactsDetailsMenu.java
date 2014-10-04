@@ -297,10 +297,10 @@ public class ContactsDetailsMenu extends EasyAccessActivity {
 		setContentView(R.layout.contactsdetails);
 		super.onCreate(savedInstanceState);
 
-		/** get UI elements **/
+		// get UI elements
 		btnContactName = (TextView) findViewById(R.id.txtContactsName);
 		btnEditContactName = (Button) findViewById(R.id.btnEditContactName);
-		/** get the details of the contact from the number **/
+		// get the details of the contact from the number
 		this.number = getIntent().getExtras().getString("number");
 		this.contactId = getIntent().getExtras().getString("id");
 		this.contactDetails = new ContactManager(getApplicationContext())
@@ -392,7 +392,7 @@ public class ContactsDetailsMenu extends EasyAccessActivity {
 					}
 				});
 
-				/** Button to send SMS **/
+				// Button to send SMS
 				final Button btnSms = new Button(getApplicationContext());
 				btnSms.setText("Send Message to " + numType
 						+ Html.fromHtml("<br/>" + num));

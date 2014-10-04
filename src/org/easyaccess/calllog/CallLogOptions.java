@@ -199,7 +199,7 @@ public class CallLogOptions extends EasyAccessActivity {
 		setContentView(R.layout.calllogoptions);
 		super.onCreate(savedInstanceState);
 
-		/** Find UI elements **/
+		// Find UI elements
 		btnCall = (Button) findViewById(R.id.btnCall);
 		btnSendSMS = (Button) findViewById(R.id.btnSendSMS);
 		btnViewCallHistory = (Button) findViewById(R.id.btnViewCallHistory);
@@ -220,7 +220,7 @@ public class CallLogOptions extends EasyAccessActivity {
 		attachListener(btnViewCallHistory);
 		attachListener(btnDeleteFromLog);
 
-		/** Retrieve the parameters passed to the activity **/
+		// Retrieve the parameters passed to the activity
 		this.name = getIntent().getExtras().getString("name");
 		this.number = getIntent().getExtras().getString("number");
 		this.number = this.number.trim();
@@ -250,7 +250,7 @@ public class CallLogOptions extends EasyAccessActivity {
 		}
 		attachListener(btnContact);
 
-		/** Handle long click events **/
+		// Handle long click events
 		attachOnClickListener(btnCall);
 		attachOnClickListener(btnSendSMS);
 		attachOnClickListener(btnViewCallHistory);

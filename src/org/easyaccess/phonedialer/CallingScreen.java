@@ -81,11 +81,11 @@ public class CallingScreen extends Activity {
 				String typeOfNumber = Utils.callingDetails.get("type");
 				if (getIntent().getExtras().getInt("type", -1) == Utils.OUTGOING) {
 					// outgoing call
-					callerDetails = "Calling " + name + ": " + typeOfNumber;
+					callerDetails = getString(R.string.calling) + name + ": " + typeOfNumber;
 					answerButton.setVisibility(View.GONE);
 				} else {
 					// incoming call
-					callerDetails = "Call from " + name + ": " + typeOfNumber;
+					callerDetails = getString(R.string.call_from) + name + ": " + typeOfNumber;
 					answerButton.setVisibility(View.VISIBLE);
 				}
 			} else if (Utils.callingDetails != null) {
@@ -93,12 +93,12 @@ public class CallingScreen extends Activity {
 				// from the Bundle
 				if (getIntent().getExtras().getInt("type", -1) == Utils.OUTGOING) {
 					// outgoing call
-					callerDetails = "Calling "
+					callerDetails = getString(R.string.calling)
 							+ Utils.callingDetails.get("number");
 					answerButton.setVisibility(View.GONE);
 				} else {
 					// incoming call
-					callerDetails = "Call from "
+					callerDetails = getString(R.string.call_from)
 							+ Utils.callingDetails.get("number");
 					answerButton.setVisibility(View.VISIBLE);
 				}
@@ -107,8 +107,8 @@ public class CallingScreen extends Activity {
 				displayCall(callerDetails, Utils.callingDetails.get("number"));
 			}
 		} else {
-			recipientTextView.setText("Error!");
-			recipientTextView.setContentDescription("Error");
+			recipientTextView.setText(getString(R.string.error)+"!");
+			recipientTextView.setContentDescription(getString(R.string.error));
 		}
 
 		answerButton.setOnClickListener(new OnClickListener() {

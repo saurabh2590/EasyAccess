@@ -261,8 +261,7 @@ public class ContactManager {
 					String mail = emailCur
 							.getString(emailCur
 									.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
-					if (email.size() == 0 || !email.contains(mail))// ||
-																	// emailCur.getString(emailCur.getColumnIndex(ContactsContract.CommonDataKinds.Email.IS_PRIMARY)).equals("1"))
+					if (email.size() == 0 || !email.contains(mail))
 						email.add(mail);
 				}
 				emailCur.close();
@@ -310,10 +309,7 @@ public class ContactManager {
 							ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
 							null,
 							ContactsContract.CommonDataKinds.Phone.CONTACT_ID
-							// + " = ? AND " +
-									+ " = ?",
-							// Data.IS_PRIMARY + "=1",
-							new String[] { id }, null);
+									+ " = ?", new String[] { id }, null);
 					if (pCur.moveToFirst()) {
 						String phoneNumber = pCur
 								.getString(pCur

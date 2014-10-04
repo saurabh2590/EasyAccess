@@ -77,8 +77,8 @@ public class SettingsColor extends EasyAccessActivity {
 				SettingsColor.this.getPackageName());
 
 		switch (spinner.getId()) {
-		case R.id.fcolors: // spinner associated with text colors was passed as
-							// parameter
+		case R.id.fcolors:
+			// spinner associated with text colors was passed as parameter
 			// save in SharedPreferences
 			preferences = getSharedPreferences(
 					getResources().getString(R.string.color), 0);
@@ -119,8 +119,8 @@ public class SettingsColor extends EasyAccessActivity {
 						Toast.LENGTH_SHORT).show();
 			}
 			break;
-		case R.id.bcolors: // spinner associated with background colors was
-							// passed as parameter
+		case R.id.bcolors:
+			// spinner associated with background colors was passed as parameter
 			// save in SharedPreferences
 			preferences = getSharedPreferences(
 					getResources().getString(R.string.color), 0);
@@ -320,10 +320,8 @@ public class SettingsColor extends EasyAccessActivity {
 
 		// initialize the flag when the activity comes to the foreground
 		SettingsColor.flag = 0;
-		/**
-		 * Apply the selected font color, font size and font type to the
-		 * activity
-		 **/
+		// Apply the selected font color, font size and font type to the
+		// activity
 		LinearLayout layout = (LinearLayout) findViewById(R.id.settingscolor);
 		Utils.applyFontColorChanges(getApplicationContext(), layout);
 		Utils.applyFontSizeChanges(getApplicationContext(), layout);
@@ -340,15 +338,15 @@ public class SettingsColor extends EasyAccessActivity {
 				|| getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
 			msg = " ";
 			if (fgColorValue == -1) {
-				msg = " Foreground Color Black";
+				msg = getString(R.string.foreground_color_black);
 			} else {
-				msg += " Foreground Color "
+				msg += " " + getString(R.string.foreground_color) + " "
 						+ Utils.colorNames.get(getColorIndex(fgColorValue));
 			}
 			if (bgColorValue == -1) {
-				msg += ",  Background Color White";
+				msg += ", " + getString(R.string.backgroud_color_white);
 			} else {
-				msg += " Background Color "
+				msg += " " + getString(R.string.background_color) + " "
 						+ Utils.colorNames.get(getColorIndex(bgColorValue));
 			}
 			new java.util.Timer().schedule(new java.util.TimerTask() {
@@ -359,7 +357,7 @@ public class SettingsColor extends EasyAccessActivity {
 			}, 1000);
 		}
 
-		/** Display the selected colors in the corresponding spinners **/
+		// Display the selected colors in the corresponding spinners
 		if (fgColorValue == -1) {
 			fgColorValue = 0;
 			spinnerFg.setSelection(fgColorValue);
@@ -379,7 +377,7 @@ public class SettingsColor extends EasyAccessActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.settingscolor);
 		super.onCreate(savedInstanceState);
-		/** Find UI elements **/
+		// Find UI elements
 		spinnerFg = (Spinner) findViewById(R.id.fcolors);
 		spinnerBg = (Spinner) findViewById(R.id.bcolors);
 		txtPreview = (TextView) findViewById(R.id.txtPreview);
@@ -393,24 +391,24 @@ public class SettingsColor extends EasyAccessActivity {
 		spinnerBg.setAdapter(adapter);
 		spinnerFg.setSelection(0);
 		spinnerBg.setSelection(1);
-		/** Attach onFocusChanged listener to both the Spinners **/
+		// Attach onFocusChanged listener to both the Spinners
 		attachListenerToSpinner(spinnerFg);
 		attachListenerToSpinner(spinnerBg);
 
-		/** Attach onFocusChanged listener to the Text Views **/
+		// Attach onFocusChanged listener to the Text Views
 		attachListenerToTextView(txtForeground);
 		attachListenerToTextView(txtBackground);
 
-		/** Attach onItemSelected listener to both the Spinners **/
+		// Attach onItemSelected listener to both the Spinners
 		attachListenerToSpinnerItem(spinnerFg);
 		attachListenerToSpinnerItem(spinnerBg);
 
-		/** Attach onFocusChanged listener to reset button **/
+		// Attach onFocusChanged listener to reset button
 		attachListener(btnReset);
-		/** Attach onKey listener to reset button **/
+		// Attach onKey listener to reset button
 		attachKeyListener(btnReset);
 
-		/** Attach onClick listener to reset button */
+		// Attach onClick listener to reset button
 		btnReset.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -418,7 +416,7 @@ public class SettingsColor extends EasyAccessActivity {
 			}
 		});
 
-		/** Attach onKey listener to the spinner containing text colors **/
+		// Attach onKey listener to the spinner containing text colors
 		spinnerFg.setOnKeyListener(new OnKeyListener() {
 
 			@Override
@@ -455,7 +453,7 @@ public class SettingsColor extends EasyAccessActivity {
 			}
 		});
 
-		/** Attach onKey listener to the spinner containing background colors **/
+		// Attach onKey listener to the spinner containing background colors
 		spinnerBg.setOnKeyListener(new OnKeyListener() {
 
 			@Override

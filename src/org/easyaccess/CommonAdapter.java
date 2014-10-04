@@ -142,12 +142,7 @@ public class CommonAdapter extends ArrayAdapter {
 			textView.setTextSize(fontSize);
 		} else {
 			textView.setTextSize(Integer.valueOf(context.getResources()
-					.getString(R.string.textSize)));/*
-													 * context.getResources().
-													 * getDisplayMetrics
-													 * ().density);
-													 */
-			// textView.setTextSize(context.getResources().getDimension(R.dimen.card_textsize_regular));
+					.getString(R.string.textSize)));
 		}
 		return rowView;
 	}

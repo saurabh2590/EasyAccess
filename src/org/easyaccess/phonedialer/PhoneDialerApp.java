@@ -202,8 +202,7 @@ public class PhoneDialerApp extends EasyAccessActivity {
 					announceCall(callingDetails, 1);
 				}
 
-				// pass the details to the Calling Activity
-				// make call
+				// pass the details to the Calling Activity make call
 				announceCall(callingDetails, 0);
 				Utils.callingDetails = callingDetails;
 				Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"
@@ -269,11 +268,11 @@ public class PhoneDialerApp extends EasyAccessActivity {
 				// disabled
 				if (!Utils.isAccessibilityEnabled(getApplicationContext())
 						&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-					TTS.speak("Putting the current call on hold and calling "
+					TTS.speak(getString(R.string.current_call_on_hold)
 							+ details.get("name") + " " + details.get("type"));
 				Toast.makeText(
 						getApplicationContext(),
-						"Putting the current call on hold and calling "
+						getString(R.string.current_call_on_hold)
 								+ details.get("name") + " "
 								+ details.get("type"), Toast.LENGTH_SHORT)
 						.show();
@@ -282,11 +281,11 @@ public class PhoneDialerApp extends EasyAccessActivity {
 				// disabled
 				if (!Utils.isAccessibilityEnabled(getApplicationContext())
 						&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-					TTS.speak("Putting the current call on hold and calling "
+					TTS.speak(getString(R.string.current_call_on_hold)
 							+ TTS.readNumber(txtDialNumber.getText().toString()));
 				Toast.makeText(
 						getApplicationContext(),
-						"Putting the current call on hold and calling "
+						getString(R.string.current_call_on_hold)
 								+ txtDialNumber.getText(), Toast.LENGTH_SHORT)
 						.show();
 			}
@@ -296,22 +295,24 @@ public class PhoneDialerApp extends EasyAccessActivity {
 				// disabled
 				if (Utils.isAccessibilityEnabled(getApplicationContext())
 						|| getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-					TTS.speak("Calling " + details.get("name") + " "
-							+ details.get("type"));
+					TTS.speak(getString(R.string.calling) + details.get("name")
+							+ " " + details.get("type"));
 				Toast.makeText(
 						getApplicationContext(),
-						"Calling " + details.get("name") + " "
+						getString(R.string.calling) + details.get("name") + " "
 								+ details.get("type"), Toast.LENGTH_SHORT)
 						.show();
 			} else {
-				Toast.makeText(getApplicationContext(),
-						"Calling " + txtDialNumber.getText().toString(),
+				Toast.makeText(
+						getApplicationContext(),
+						getString(R.string.calling)
+								+ txtDialNumber.getText().toString(),
 						Toast.LENGTH_SHORT).show();
 				// check if keyboard is connected or accessibility services are
 				// disabled
 				if (Utils.isAccessibilityEnabled(getApplicationContext())
 						|| getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-					TTS.speak("Calling "
+					TTS.speak(getString(R.string.calling)
 							+ TTS.readNumber(txtDialNumber.getText().toString()));
 			}
 		}
@@ -364,9 +365,9 @@ public class PhoneDialerApp extends EasyAccessActivity {
 				// disabled
 				if (!Utils.isAccessibilityEnabled(getApplicationContext())
 						&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-					TTS.speak("Please note that roaming is activated");
+					TTS.speak(getString(R.string.roaming_activated));
 				Toast.makeText(getApplicationContext(),
-						"Please not that roaming is activated",
+						getString(R.string.roaming_activated),
 						Toast.LENGTH_SHORT).show();
 			}
 		}
@@ -380,7 +381,7 @@ public class PhoneDialerApp extends EasyAccessActivity {
 			makeCall();
 		}
 
-		/** If "X" is pressed on keypad, append "X" to the dialed number **/
+		// If "X" is pressed on keypad, append "X" to the dialed number
 		appendDialNumber(R.id.btnKeypad1, 100, "1");
 		appendDialNumber(R.id.btnKeypad2, 150, "2");
 		appendDialNumber(R.id.btnKeypad3, 200, "3");
@@ -410,10 +411,8 @@ public class PhoneDialerApp extends EasyAccessActivity {
 		attachOnFocusChangeListener(R.id.btnKeypadBackspace);
 		attachOnFocusChangeListener(R.id.btnCallHangup);
 
-		/**
-		 * If backspace is pressed on keypad, trim the right-most digit off the
-		 * dialled number
-		 **/
+		// If backspace is pressed on keypad, trim the right-most digit off the
+		// dialled number
 		btnKeypadBackspace.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (strDialNumber != null && !strDialNumber.isEmpty()) {
@@ -440,9 +439,7 @@ public class PhoneDialerApp extends EasyAccessActivity {
 			}
 		});
 
-		/**
-		 * get voicemail number when the button with the digit 1 is long pressed
-		 **/
+		// get voicemail number when the button with the digit 1 is long pressed
 		btnKeypad1.setOnLongClickListener(new OnLongClickListener() {
 
 			@Override
@@ -468,10 +465,8 @@ public class PhoneDialerApp extends EasyAccessActivity {
 			}
 		});
 
-		/**
-		 * If call/hang up button is pressed, dial the number or hang up the
-		 * call
-		 **/
+		// If call/hang up button is pressed, dial the number or hang up the
+		// call
 		btnCallHangup.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				checkAndMakeCall();
@@ -493,7 +488,7 @@ public class PhoneDialerApp extends EasyAccessActivity {
 				return false;
 			}
 		});
-		/** Put most everything before here **/
+
 	}
 
 	/*

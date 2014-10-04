@@ -71,7 +71,7 @@ public class AboutActivity extends EasyAccessActivity {
 		setContentView(R.layout.about);
 		super.onCreate(savedInstanceState);
 
-		/** Find UI elements **/
+		// Find UI elements
 		txtHeader = (TextView) findViewById(R.id.txtAboutHeaderMission);
 		txtMission = (TextView) findViewById(R.id.txtAboutMission);
 		txtSignature = (TextView) findViewById(R.id.txtAboutSignature);
@@ -82,7 +82,7 @@ public class AboutActivity extends EasyAccessActivity {
 		txtCertificates = (TextView) findViewById(R.id.txtAboutCertificates);
 		txtDonors = (TextView) findViewById(R.id.txtAboutDonors);
 
-		/** Attach the onFocusChangedListener to each of the TextViews **/
+		// Attach the onFocusChangedListener to each of the TextViews
 		attachListenerToTextView(txtHeader);
 		attachListenerToTextView(txtMission);
 		attachListenerToTextView(txtSignature);
@@ -101,14 +101,13 @@ public class AboutActivity extends EasyAccessActivity {
 		// disabled
 		if (!Utils.isAccessibilityEnabled(getApplicationContext())
 				&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-			TTS.speak(getResources().getString(R.string.about));
+			TTS.speak(getString(R.string.about));
 		}
 		// get the root layout
 		LinearLayout layout = (LinearLayout) findViewById(R.id.about);
-		/**
-		 * Apply the selected font color, font size and font type to the
-		 * activity
-		 **/
+		// Apply the selected font color, font size and font type to the
+		// activity
+
 		Utils.applyFontColorChanges(getApplicationContext(), layout);
 		Utils.applyFontSizeChanges(getApplicationContext(), layout);
 		Utils.applyFontTypeChanges(getApplicationContext(), layout);

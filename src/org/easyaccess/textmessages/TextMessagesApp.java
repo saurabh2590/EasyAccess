@@ -346,7 +346,7 @@ public class TextMessagesApp extends EasyAccessActivity implements
 		});
 
 		attachKeyListener(btnInbox, 1);
-		/** If Inbox tab is pressed, bring up the text messages inbox **/
+		// If Inbox tab is pressed, bring up the text messages inbox
 		btnInbox.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				loadInboxMessages();
@@ -354,7 +354,7 @@ public class TextMessagesApp extends EasyAccessActivity implements
 		});
 
 		attachKeyListener(btnSent, 2);
-		/** If Sent tab is pressed, bring up the sent text messages **/
+		// If Sent tab is pressed, bring up the sent text messages
 		btnSent.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				loadSentMessages();
@@ -362,10 +362,8 @@ public class TextMessagesApp extends EasyAccessActivity implements
 		});
 
 		attachKeyListener(btnCompose, 3);
-		/**
-		 * If Write tab is pressed, launch the easyaccess Text Messages Composer
-		 * app
-		 **/
+		// If Write tab is pressed, launch the easyaccess Text Messages Composer
+		// app
 		btnCompose.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -386,27 +384,23 @@ public class TextMessagesApp extends EasyAccessActivity implements
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-						TTS.speak(getResources().getString(
-								R.string.emptymessages));
+						TTS.speak(getString(R.string.emptymessages));
 					Toast.makeText(getApplicationContext(),
-							getResources().getString(R.string.emptymessages),
+							getString(R.string.emptymessages),
 							Toast.LENGTH_SHORT).show();
 				} else {
 					for (int i = 0; i < bundle.size(); i++) {
 						Bundle tempBundle = bundle.getBundle(Integer
 								.toString(i));
 						record = new HashMap<String, String>();
-						String read = getResources().getString(R.string.unread), subject = " ";
+						String read = getString(R.string.unread), subject = " ";
 						// address, date, read, subject, body
-						if (TextMessagesApp.this.typeOfMessage != SENT) { // sent
-																			// messages
-																			// are
-																			// always
-																			// read
+						if (TextMessagesApp.this.typeOfMessage != SENT) {
+							// sent messages are always read
 							if (tempBundle.containsKey("read")
 									&& tempBundle.getString("read").equals("1")) {
 								record.put("read", "1");
-								read = getResources().getString(R.string.read);
+								read = getString(R.string.read);
 							} else {
 								record.put("read", "0");
 							}
@@ -458,7 +452,7 @@ public class TextMessagesApp extends EasyAccessActivity implements
 		// disabled
 		if (!Utils.isAccessibilityEnabled(getApplicationContext())
 				&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-			TTS.speak(getResources().getString(R.string.textMessages));
+			TTS.speak(getString(R.string.textMessages));
 		}
 		if (this.cursor != null) {
 			this.cursor.moveToFirst();
@@ -507,10 +501,9 @@ public class TextMessagesApp extends EasyAccessActivity implements
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-							giveFeedback(getResources().getString(
-									R.string.reachedEnd));
+							giveFeedback(getString(R.string.reachedEnd));
 						Toast.makeText(getApplicationContext(),
-								getResources().getString(R.string.reachedEnd),
+								getString(R.string.reachedEnd),
 								Toast.LENGTH_SHORT).show();
 					} else {
 						// check if keyboard is connected but accessibility
@@ -518,11 +511,10 @@ public class TextMessagesApp extends EasyAccessActivity implements
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-							giveFeedback(getResources()
-									.getString(R.string.next));
+							giveFeedback(getString(R.string.next));
 						Toast.makeText(getApplicationContext(),
-								getResources().getString(R.string.next),
-								Toast.LENGTH_SHORT).show();
+								getString(R.string.next), Toast.LENGTH_SHORT)
+								.show();
 						runThread(TextMessagesApp.this.typeOfMessage);
 					}
 				} else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
@@ -539,12 +531,9 @@ public class TextMessagesApp extends EasyAccessActivity implements
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-							giveFeedback(getResources().getString(
-									R.string.reachedBeginning));
-						Toast.makeText(
-								getApplicationContext(),
-								getResources().getString(
-										R.string.reachedBeginning),
+							giveFeedback(getString(R.string.reachedBeginning));
+						Toast.makeText(getApplicationContext(),
+								getString(R.string.reachedBeginning),
 								Toast.LENGTH_SHORT).show();
 					} else {
 						// check if keyboard is connected but accessibility
@@ -552,10 +541,9 @@ public class TextMessagesApp extends EasyAccessActivity implements
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-							giveFeedback(getResources().getString(
-									R.string.previous));
+							giveFeedback(getString(R.string.previous));
 						Toast.makeText(getApplicationContext(),
-								getResources().getString(R.string.previous),
+								getString(R.string.previous),
 								Toast.LENGTH_SHORT).show();
 						runThread(TextMessagesApp.this.typeOfMessage);
 					}

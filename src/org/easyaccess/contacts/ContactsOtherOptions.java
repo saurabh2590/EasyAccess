@@ -437,14 +437,14 @@ public class ContactsOtherOptions extends EasyAccessActivity {
 		setContentView(R.layout.contactsotheroptions);
 		super.onCreate(savedInstanceState);
 
-		/** get UI elements **/
+		// get UI elements
 		contactName = (TextView) findViewById(R.id.txtContactsName);
 		btnDelete = (Button) findViewById(R.id.btnDelete);
 		btnCopyToSD = (Button) findViewById(R.id.btnCopyToSD);
 		btnImport = (Button) findViewById(R.id.btnImportFromSD);
 		btnExport = (Button) findViewById(R.id.btnExportToSD);
 
-		/** get the details of the contact from the number **/
+		// get the details of the contact from the number
 		if (getIntent().getExtras() != null) {
 			this.id = getIntent().getExtras().getString("id");
 			this.contactNumber = getIntent().getExtras().getString("number");

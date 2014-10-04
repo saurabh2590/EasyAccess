@@ -164,7 +164,7 @@ public class TextMessagesComposerRecipientApp extends Activity implements
 			}
 		};
 
-		/** Attach onFocusChange listener to back and home buttons **/
+		// Attach onFocusChange listener to back and home buttons
 		btnNavigationBack.setOnFocusChangeListener(focusChangeListener);
 		btnNavigationHome.setOnFocusChangeListener(focusChangeListener);
 
@@ -172,10 +172,8 @@ public class TextMessagesComposerRecipientApp extends Activity implements
 
 		btnProceed.setVisibility(View.GONE);
 
-		/**
-		 * If Send button is pressed, send the text message to the selected
-		 * recipient
-		 **/
+		// If Send button is pressed, send the text message to the selected
+		// recipient
 		btnProceed.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				proceed();
@@ -374,28 +372,23 @@ public class TextMessagesComposerRecipientApp extends Activity implements
 
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
-		if (event.getAction() == KeyEvent.ACTION_DOWN) { // &&
-															// !(inputContacts.getText().toString().trim().equals("")))
-															// {
+		if (event.getAction() == KeyEvent.ACTION_DOWN) {
 			if (!editRecipient.hasFocus()) {
-				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {// go to the
-																	// previous
-																	// screen
+				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+					// go to the previous screen
 					// check if keyboard is connected and accessibility services
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-						TTS.speak("Back");
+						TTS.speak(getString(R.string.btnNavigationBack));
 					finish();
-				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {// go to
-																		// the
-																		// home
-																		// screen
+				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {
+					// go to the home screen
 					// check if keyboard is connected and accessibility services
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-						TTS.speak("Home");
+						TTS.speak(getString(R.string.btnNavigationHome));
 					finish();
 					Intent intent = new Intent(getApplicationContext(),
 							SwipingUtils.class);
@@ -407,77 +400,42 @@ public class TextMessagesComposerRecipientApp extends Activity implements
 			} else {
 				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
 					deletedFlag = 1;
-					if (editRecipient.getText().toString().length() != 0) {
+					String editRecipientText = editRecipient.getText()
+							.toString();
+					if (editRecipientText.length() != 0) {
 						// check if keyboard is connected and accessibility
 						// services are disabled
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-							if (editRecipient
-									.getText()
-									.toString()
-									.substring(
-											editRecipient.getText().toString()
-													.length() - 1,
-											editRecipient.getText().toString()
-													.length())
-									.matches("-?\\d+(\\.\\d+)?")) {
+							if (editRecipientText.substring(
+									editRecipientText.length() - 1,
+									editRecipientText.length()).matches(
+									"-?\\d+(\\.\\d+)?")) {
 								TTS.speak("Deleted "
-										+ editRecipient
-												.getText()
-												.toString()
-												.substring(
-														editRecipient.getText()
-																.toString()
-																.length() - 1,
-														editRecipient.getText()
-																.toString()
-																.length())
+										+ editRecipientText.substring(
+												editRecipientText.length() - 1,
+												editRecipientText.length())
 										+ ". "
-										+ TTS.readNumber(editRecipient
-												.getText()
-												.toString()
-												.substring(
-														0,
-														editRecipient.getText()
-																.toString()
-																.length() - 1)));
+										+ TTS.readNumber(editRecipientText
+												.substring(0, editRecipientText
+														.length() - 1)));
 							} else {
 								TTS.speak("Deleted "
-										+ editRecipient
-												.getText()
-												.toString()
-												.substring(
-														editRecipient.getText()
-																.toString()
-																.length() - 1,
-														editRecipient.getText()
-																.toString()
-																.length())
+										+ editRecipientText.substring(
+												editRecipientText.length() - 1,
+												editRecipientText.length())
 										+ ". "
-										+ editRecipient
-												.getText()
-												.toString()
-												.substring(
-														0,
-														editRecipient.getText()
-																.toString()
-																.length() - 1));
+										+ editRecipientText.substring(0,
+												editRecipientText.length() - 1));
 							}
 						}
-						editRecipient.setText(editRecipient
-								.getText()
-								.toString()
-								.substring(
-										0,
-										editRecipient.getText().toString()
-												.length() - 1));
-						editRecipient.setContentDescription(editRecipient
-								.getText().toString()
+						editRecipient.setText(editRecipientText.substring(0,
+								editRecipientText.length() - 1));
+						editRecipient.setContentDescription(editRecipientText
 								.replaceAll(".(?=[0-9])", "$0 "));
-						editRecipient.setSelection(editRecipient.getText()
-								.toString().length(), editRecipient.getText()
-								.toString().length());
+						editRecipient.setSelection(editRecipientText.length(),
+								editRecipientText.length());
 						return false;
 					} else {
 						// check if keyboard is connected and accessibility
@@ -485,7 +443,7 @@ public class TextMessagesComposerRecipientApp extends Activity implements
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-							TTS.speak("Back");
+							TTS.speak(getString(R.string.btnNavigationBack));
 						finish();
 					}
 				} else {
@@ -503,7 +461,7 @@ public class TextMessagesComposerRecipientApp extends Activity implements
 		// disabled
 		if (!Utils.isAccessibilityEnabled(getApplicationContext())
 				&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-			TTS.speak(getResources().getString(R.string.textMessageRecipient));
+			TTS.speak(getString(R.string.textMessageRecipient));
 		}
 		// get the root layout
 		LinearLayout layout = (LinearLayout) findViewById(R.id.textmessagescomposer);

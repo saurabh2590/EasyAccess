@@ -111,14 +111,11 @@ public class HomescreenActivity extends EasyAccessFragment implements
 	@Override
 	public View onCreateView(final LayoutInflater inflater,
 			final ViewGroup container, Bundle savedInstanceState) {
-
 		View v = inflater.inflate(R.layout.homescreen1, container, false);
 		this.view = v;
 
-		/**
-		 * Launch respective easyaccess app, depending on which button is
-		 * pressed
-		 **/
+		// Launch respective easyaccess app, depending on which button is
+		// pressed
 		attachListener((Button) v.findViewById(R.id.btnPhoneDialer),
 				PhoneDialerApp.class);
 		attachListener((Button) v.findViewById(R.id.btnCallLog),
@@ -180,18 +177,18 @@ public class HomescreenActivity extends EasyAccessFragment implements
 	public boolean onKeyDown(View view, Editable text, int keyCode,
 			KeyEvent keyEvent) {
 		switch (keyCode) {
-		case KeyEvent.KEYCODE_DEL:// go to the previous screen
-			// check if keyboard is connected and accessibility services are
-			// disabled
+		case KeyEvent.KEYCODE_DEL:
+			// go to the previous screen, check if keyboard is connected and
+			// accessibility services are disabled
 			if (!Utils.isAccessibilityEnabled(getActivity()
 					.getApplicationContext())
 					&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 				TTS.speak("Back");
 			getActivity().finish();
 			break;
-		case KeyEvent.KEYCODE_F1:// go to the home screen
-			// check if keyboard is connected and accessibility services are
-			// disabled
+		case KeyEvent.KEYCODE_F1:
+			// go to the home screen check if keyboard is connected and
+			// accessibility services are disabled
 			if (!Utils.isAccessibilityEnabled(getActivity()
 					.getApplicationContext())
 					&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)

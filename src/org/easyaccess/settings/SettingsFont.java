@@ -160,9 +160,8 @@ public class SettingsFont extends EasyAccessActivity {
 			public void onItemSelected(AdapterView<?> arg0, View view,
 					int position, long arg3) {
 				// flag value is used so that the font type is not applied when
-				// the activity is
-				// started. OnItemSelected is called after the activity is
-				// created.
+				// the activity is started.
+				// OnItemSelected is called after the activity is created.
 				if (flag == 1) {
 					String typeface = Integer.toString(position);
 					// save in SharedPreferences
@@ -518,7 +517,7 @@ public class SettingsFont extends EasyAccessActivity {
 		setContentView(R.layout.settingsfont);
 		super.onCreate(savedInstanceState);
 
-		/** find UI elements **/
+		// find UI elements
 		txtPreview = (TextView) findViewById(R.id.txtPreview);
 		txtFontSize = (TextView) findViewById(R.id.txtFontSize);
 		txtFontType = (TextView) findViewById(R.id.txtFontType);
@@ -530,30 +529,30 @@ public class SettingsFont extends EasyAccessActivity {
 		adapter = new SpinnerAdapter(getApplicationContext(), Utils.fontType);
 		spinnerFontType.setAdapter(adapter);
 
-		/** Attach onFocusChanged listener to both the TextViews **/
+		// Attach onFocusChanged listener to both the TextViews
 		attachListenerToTextView(txtFontSize);
 		attachListenerToTextView(txtNumber);
 		attachListenerToTextView(txtFontType);
 
-		/** Attach onFocusChanged listener to all the buttons **/
+		// Attach onFocusChanged listener to all the buttons
 		attachListener(btnIncrease);
 		attachListener(btnDecrease);
 		attachListener(btnReset);
 
-		/** Attach onClick listener to all the buttons **/
+		// Attach onClick listener to all the buttons
 		attachOnClickListenerToButton(btnReset);
 		attachOnClickListenerToButton(btnIncrease);
 		attachOnClickListenerToButton(btnDecrease);
 
-		/** Attach onItemSelected listener to both the Spinners **/
+		// Attach onItemSelected listener to both the Spinners
 		attachListenerToSpinnerItem(spinnerFontType);
 		attachListenerToSpinner(spinnerFontType);
 
-		/**
-		 * Attach OnKey listener to increase button, decrease button and reset
-		 * button attachKeyListener(btnReset); attachKeyListener(btnIncrease);
-		 * attachKeyListener(btnDecrease);
-		 */
+		// Attach OnKey listener to increase button, decrease button and reset
+		// button
+		attachKeyListener(btnReset);
+		attachKeyListener(btnIncrease);
+		attachKeyListener(btnDecrease);
 	}
 
 	@Override
@@ -589,7 +588,8 @@ public class SettingsFont extends EasyAccessActivity {
 			new java.util.Timer().schedule(new java.util.TimerTask() {
 				@Override
 				public void run() {
-					TTS.speak("Font Size "
+					TTS.speak(getString(R.string.fontSize)
+							+ " "
 							+ Float.toString(getSharedPreferences(
 									getResources().getString(R.string.size), 0)
 									.getFloat(
@@ -597,7 +597,9 @@ public class SettingsFont extends EasyAccessActivity {
 											Float.valueOf(getResources()
 													.getString(
 															R.string.defaultFontSize))))
-							+ ", Font Type "
+							+ ", "
+							+ getString(R.string.fontType)
+							+ " "
 							+ Utils.fontType
 									.get(getSharedPreferences(
 											getResources().getString(
@@ -607,10 +609,9 @@ public class SettingsFont extends EasyAccessActivity {
 			}, 1000);
 		}
 
-		/**
-		 * Apply the selected font color, font size and font type to the
-		 * activity
-		 **/
+		// Apply the selected font color, font size and font type to the
+		// activity
+
 		LinearLayout layout = (LinearLayout) findViewById(R.id.settingsfont);
 		Utils.applyFontColorChanges(getApplicationContext(), layout);
 		Utils.applyFontSizeChanges(getApplicationContext(), layout);

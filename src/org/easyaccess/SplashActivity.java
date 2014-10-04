@@ -125,8 +125,7 @@ public class SplashActivity extends Activity implements OnInitListener {
 				Log.e(TAG, e.getMessage());
 				// ImageView so that TalkBack can read it out loud
 				ImageView imageView = (ImageView) findViewById(R.id.splash);
-				imageView
-						.setContentDescription(getString(R.string.txteasyaccessActivated));
+				imageView.setContentDescription(getString(R.string.txteasyaccessActivated));
 			}
 		}
 	}

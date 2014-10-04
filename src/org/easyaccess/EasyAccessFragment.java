@@ -34,15 +34,14 @@ public class EasyAccessFragment extends Fragment {
 		Intent intent = getActivity().getPackageManager()
 				.getLaunchIntentForPackage(uriTarget);
 		if (intent != null) {
-			// Start installed app
+			//Start installed app
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
 		} else {
-			// If app is not installed, bring user to the Play Store
+			//If app is not installed, bring user to the Play Store
 			intent = new Intent(Intent.ACTION_VIEW);
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			intent.setData(Uri.parse("market://details?id=" + uriTarget));
-
 			// Error handling in case Play Store cannot be launched
 			try {
 				startActivity(intent);

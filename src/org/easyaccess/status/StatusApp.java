@@ -140,12 +140,12 @@ public class StatusApp extends EasyAccessActivity {
 		setContentView(R.layout.status);
 		super.onCreate(savedInstanceState);
 
-		/** Initialize variables **/
+		// Initialize variables
 		currentSignalStrength = 1;
 		oldTime = System.currentTimeMillis();
 		dbm = -1024;
 
-		/** Find UI elements **/
+		// Find UI elements
 		txtStatusBattery = (TextView) findViewById(R.id.txtStatusBattery);
 		txtStatusSignal = (TextView) findViewById(R.id.txtStatusSignal);
 		txtStatusDataConnection = (TextView) findViewById(R.id.txtStatusDataConnection);
@@ -194,10 +194,8 @@ public class StatusApp extends EasyAccessActivity {
 		super.onResume();
 		displayMissedCalls();
 
-		/**
-		 * Apply the selected font color, font size and font type to the
-		 * activity
-		 **/
+		// Apply the selected font color, font size and font type to the
+		// activity
 		LinearLayout layout = (LinearLayout) findViewById(R.id.status);
 		Utils.applyFontColorChanges(getApplicationContext(), layout);
 		Utils.applyFontSizeChanges(getApplicationContext(), layout);
@@ -224,12 +222,11 @@ public class StatusApp extends EasyAccessActivity {
 			viewBeforeMissedCalls.setVisibility(View.VISIBLE);
 			txtStatusMissedCalls.setVisibility(View.VISIBLE);
 			txtStatusMissedCalls.setText(Integer.toString(getMissedCallCount())
-					+ " "
-					+ getResources().getString(R.string.txtStatusMissedCalls));
+					+ " " + getString(R.string.txtStatusMissedCalls));
 			txtStatusMissedCalls.setContentDescription(Integer
 					.toString(getMissedCallCount())
 					+ " "
-					+ getResources().getString(R.string.txtStatusMissedCalls));
+					+ getString(R.string.txtStatusMissedCalls));
 			attachListener(txtStatusMissedCalls);
 		} else {
 			viewBeforeMissedCalls.setVisibility(View.GONE);
@@ -253,10 +250,10 @@ public class StatusApp extends EasyAccessActivity {
 				Message msg = new Message();
 				Bundle bundle = new Bundle();
 
-				/** Retrieve battery level **/
+				// Retrieve battery level
 				bundle.putString("batteryLevel", getBatteryLevel());
 
-				/** Check if device is connected to a network **/
+				// Check if device is connected to a network
 				if (isConnected()) {
 					if (isWifiConnected()) {
 						bundle.putString("dataConnection", Utils.WIFI);
@@ -269,20 +266,20 @@ public class StatusApp extends EasyAccessActivity {
 					bundle.putString("dataConnection", "null");
 				}
 
-				/** Retrieve the number of unread SMS **/
+				// Retrieve the number of unread SMS
 				bundle.putString("unreadText",
 						Integer.toString(getUnreadText()));
 
-				/** Retrieve the number of unread eMails **/
+				// Retrieve the number of unread eMails
 				bundle.putString("unreadMails", getAllUnreadMails());
 
-				/** Retrieve the time and day of the next alarm **/
+				// Retrieve the time and day of the next alarm
 				bundle.putString("nextAlarm", getNextAlarm());
 
-				/** Retrieve the current time and date **/
+				// Retrieve the current time and date
 				bundle.putString("currentTime", getCurrentDateAndTime());
 
-				/** Retrieve the brightness mode and status **/
+				// Retrieve the brightness mode and status
 				if (getBrightnessMode() == 0) { // manual
 					bundle.putString("brightness", "0");
 				} else {
@@ -295,10 +292,9 @@ public class StatusApp extends EasyAccessActivity {
 				handler.sendMessage(msg);
 			}
 		};
-		/**
-		 * Execute the set of tasks periodically according to the specified
-		 * number of seconds to retrieve the updated values
-		 **/
+		// Execute the set of tasks periodically according to the specified
+		// number of seconds to retrieve the updated values
+
 		executor.scheduleAtFixedRate(periodicTask, 0, seconds, TimeUnit.SECONDS);
 	}
 
@@ -336,12 +332,11 @@ public class StatusApp extends EasyAccessActivity {
 	 **/
 
 	public void displayBatteryLevel(Message msg) {
-		txtStatusBattery.setText(getResources().getString(
-				R.string.txtStatusBattery)
-				+ " " + msg.getData().getString("batteryLevel") + "%");
-		txtStatusBattery.setContentDescription(getResources().getString(
-				R.string.txtStatusBattery)
-				+ " " + msg.getData().getString("batteryLevel") + "%");
+		txtStatusBattery.setText(getString(R.string.txtStatusBattery) + " "
+				+ msg.getData().getString("batteryLevel") + "%");
+		txtStatusBattery
+				.setContentDescription(getString(R.string.txtStatusBattery)
+						+ " " + msg.getData().getString("batteryLevel") + "%");
 		attachListener(txtStatusBattery);
 	}
 
@@ -355,40 +350,38 @@ public class StatusApp extends EasyAccessActivity {
 	public void displaySignalStrength(Message msg) {
 		if (msg.getData().getString("signalStrength") != null
 				&& msg.getData().getString("signalStrength").equals("0")) {
-			txtStatusSignal
-					.setText(getResources().getString(R.string.txtStatusSignal)
-							+ " " + msg.getData().getString("signalStrength")
-							+ " bars");
+			txtStatusSignal.setText(getString(R.string.txtStatusSignal) + " "
+					+ msg.getData().getString("signalStrength") + " bars");
 			if (msg.getData().getString("signalStrength").equals("1")) {
-				txtStatusSignal.setContentDescription(getResources().getString(
-						R.string.txtStatusSignal)
-						+ " "
-						+ msg.getData().getString("signalStrength")
-						+ " bars - poor");
+				txtStatusSignal
+						.setContentDescription(getString(R.string.txtStatusSignal)
+								+ " "
+								+ msg.getData().getString("signalStrength")
+								+ " bars - poor");
 			} else if (msg.getData().getString("signalStrength").equals("2")) {
-				txtStatusSignal.setContentDescription(getResources().getString(
-						R.string.txtStatusSignal)
-						+ " "
-						+ msg.getData().getString("signalStrength")
-						+ " bars - fair");
+				txtStatusSignal
+						.setContentDescription(getString(R.string.txtStatusSignal)
+								+ " "
+								+ msg.getData().getString("signalStrength")
+								+ " bars - fair");
 			} else if (msg.getData().getString("signalStrength").equals("3")) {
-				txtStatusSignal.setContentDescription(getResources().getString(
-						R.string.txtStatusSignal)
-						+ " "
-						+ msg.getData().getString("signalStrength")
-						+ " bars - average");
+				txtStatusSignal
+						.setContentDescription(getString(R.string.txtStatusSignal)
+								+ " "
+								+ msg.getData().getString("signalStrength")
+								+ " bars - average");
 			} else if (msg.getData().getString("signalStrength").equals("4")) {
-				txtStatusSignal.setContentDescription(getResources().getString(
-						R.string.txtStatusSignal)
-						+ " "
-						+ msg.getData().getString("signalStrength")
-						+ " bars - good");
+				txtStatusSignal
+						.setContentDescription(getString(R.string.txtStatusSignal)
+								+ " "
+								+ msg.getData().getString("signalStrength")
+								+ " bars - good");
 			} else {
-				txtStatusSignal.setContentDescription(getResources().getString(
-						R.string.txtStatusSignal)
-						+ " "
-						+ msg.getData().getString("signalStrength")
-						+ " bars - no signal");
+				txtStatusSignal
+						.setContentDescription(getString(R.string.txtStatusSignal)
+								+ " "
+								+ msg.getData().getString("signalStrength")
+								+ " bars - no signal");
 
 			}
 			attachListener(txtStatusSignal);
@@ -414,14 +407,11 @@ public class StatusApp extends EasyAccessActivity {
 			viewBeforeDataConnection.setVisibility(View.VISIBLE);
 			txtStatusDataConnection.setText(msg.getData().getString(
 					"dataConnection")
-					+ " "
-					+ getResources()
-							.getString(R.string.txtStatusDataConnection));
+					+ " " + getString(R.string.txtStatusDataConnection));
 			txtStatusDataConnection.setContentDescription(msg.getData()
 					.getString("dataConnection")
 					+ " "
-					+ getResources()
-							.getString(R.string.txtStatusDataConnection));
+					+ getString(R.string.txtStatusDataConnection));
 			attachListener(txtStatusDataConnection);
 		}
 	}
@@ -444,14 +434,11 @@ public class StatusApp extends EasyAccessActivity {
 			viewBeforeUnreadTextMessages.setVisibility(View.VISIBLE);
 			txtStatusUnreadTextMessages.setText(msg.getData().getString(
 					"unreadText")
-					+ " "
-					+ getResources().getString(
-							R.string.txtStatusUnreadTextMessages));
+					+ " " + getString(R.string.txtStatusUnreadTextMessages));
 			txtStatusUnreadTextMessages.setContentDescription(msg.getData()
 					.getString("unreadText")
 					+ " "
-					+ getResources().getString(
-							R.string.txtStatusUnreadTextMessages));
+					+ getString(R.string.txtStatusUnreadTextMessages));
 			attachListener(txtStatusUnreadTextMessages);
 		}
 	}
@@ -492,12 +479,11 @@ public class StatusApp extends EasyAccessActivity {
 		if (msg.getData().getString("nextAlarm") != null) {
 			viewBeforeAlarm.setVisibility(View.VISIBLE);
 			txtStatusNextAlarm.setVisibility(View.VISIBLE);
-			txtStatusNextAlarm.setText(getResources().getString(
-					R.string.txtStatusNextAlarm)
+			txtStatusNextAlarm.setText(getString(R.string.txtStatusNextAlarm)
 					+ " " + msg.getData().getString("nextAlarm"));
-			txtStatusNextAlarm.setContentDescription(getResources().getString(
-					R.string.txtStatusNextAlarm)
-					+ " " + msg.getData().getString("nextAlarm"));
+			txtStatusNextAlarm
+					.setContentDescription(getString(R.string.txtStatusNextAlarm)
+							+ " " + msg.getData().getString("nextAlarm"));
 			attachListener(txtStatusNextAlarm);
 		} else {
 			txtStatusNextAlarm.setVisibility(View.GONE);
@@ -527,10 +513,9 @@ public class StatusApp extends EasyAccessActivity {
 
 	public void displayGpsStatus() {
 		if (isGpsEnabled()) {
-			txtStatusLocation.setText(getResources().getString(
-					R.string.txtStatusLocation));
-			txtStatusLocation.setContentDescription(getResources().getString(
-					R.string.txtStatusLocation));
+			txtStatusLocation.setText(getString(R.string.txtStatusLocation));
+			txtStatusLocation
+					.setContentDescription(getString(R.string.txtStatusLocation));
 		} else {
 			viewBeforeLocation.setVisibility(View.GONE);
 			txtStatusLocation.setVisibility(View.GONE);
@@ -544,8 +529,8 @@ public class StatusApp extends EasyAccessActivity {
 	 */
 	public void displayBluetoothStatus() {
 		if (isBluetoothEnabled()) {
-			txtStatusBluetooth.setContentDescription(getResources().getString(
-					R.string.txtStatusBluetooth));
+			txtStatusBluetooth
+					.setContentDescription(getString(R.string.txtStatusBluetooth));
 			attachListener(txtStatusBluetooth);
 		} else {
 			viewBeforeBluetooth.setVisibility(View.GONE);
@@ -566,29 +551,29 @@ public class StatusApp extends EasyAccessActivity {
 		txtStatusBrightness.setVisibility(View.VISIBLE);
 		viewBeforeBrightness.setVisibility(View.VISIBLE);
 		if (msg.getData().getString("brightness").equals(Utils.AUTOMATIC)) {
-			txtStatusBrightness.setText(getResources().getString(
-					R.string.txtStatusBrightness));
-			txtStatusBrightness.setContentDescription(getResources().getString(
-					R.string.txtStatusBrightness));
+			txtStatusBrightness
+					.setText(getString(R.string.txtStatusBrightness));
+			txtStatusBrightness
+					.setContentDescription(getString(R.string.txtStatusBrightness));
 		} else {
 			switch (getBrightnessValue()) {
 			case 30:
-				txtStatusBrightness.setText(getResources().getString(
-						R.string.txtStatusBrightnessLow));
-				txtStatusBrightness.setContentDescription(getResources()
-						.getString(R.string.txtStatusBrightnessLow));
+				txtStatusBrightness
+						.setText(getString(R.string.txtStatusBrightnessLow));
+				txtStatusBrightness
+						.setContentDescription(getString(R.string.txtStatusBrightnessLow));
 				break;
 			case 102:
-				txtStatusBrightness.setText(getResources().getString(
-						R.string.txtStatusBrightnessMedium));
-				txtStatusBrightness.setContentDescription(getResources()
-						.getString(R.string.txtStatusBrightnessMedium));
+				txtStatusBrightness
+						.setText(getString(R.string.txtStatusBrightnessMedium));
+				txtStatusBrightness
+						.setContentDescription(getString(R.string.txtStatusBrightnessMedium));
 				break;
 			case 255:
-				txtStatusBrightness.setText(getResources().getString(
-						R.string.txtStatusBrightnessBright));
-				txtStatusBrightness.setContentDescription(getResources()
-						.getString(R.string.txtStatusBrightnessBright));
+				txtStatusBrightness
+						.setText(getString(R.string.txtStatusBrightnessBright));
+				txtStatusBrightness
+						.setContentDescription(getString(R.string.txtStatusBrightnessBright));
 				break;
 			default:
 				txtStatusBrightness.setVisibility(View.GONE);
@@ -657,10 +642,10 @@ public class StatusApp extends EasyAccessActivity {
 				if (LocationManager.GPS_PROVIDER.equals(s)) {
 					viewBeforeLocation.setVisibility(View.VISIBLE);
 					txtStatusLocation.setVisibility(View.VISIBLE);
-					txtStatusLocation.setText(getResources().getString(
-							R.string.txtStatusLocation));
-					txtStatusLocation.setContentDescription(getResources()
-							.getString(R.string.txtStatusLocation));
+					txtStatusLocation
+							.setText(getString(R.string.txtStatusLocation));
+					txtStatusLocation
+							.setContentDescription(getString(R.string.txtStatusLocation));
 					attachListener(txtStatusLocation);
 				}
 			}
@@ -669,17 +654,17 @@ public class StatusApp extends EasyAccessActivity {
 			public void onStatusChanged(String provider, int status,
 					Bundle extras) {
 				viewBeforeLocation.setVisibility(View.VISIBLE);
-				txtStatusLocation.setText(getResources().getString(
-						R.string.txtStatusLocation));
-				txtStatusLocation.setContentDescription(getResources()
-						.getString(R.string.txtStatusLocation));
+				txtStatusLocation
+						.setText(getString(R.string.txtStatusLocation));
+				txtStatusLocation
+						.setContentDescription(getString(R.string.txtStatusLocation));
 				attachListener(txtStatusLocation);
 			}
 		};
-		/**
+		/*
 		 * Register the listener with the Location Manager to receive GPS status
 		 * updates
-		 **/
+		 */
 		locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,
 				locationListener);
 	}
@@ -689,7 +674,7 @@ public class StatusApp extends EasyAccessActivity {
 	 */
 
 	public void listenToChangeInBluetoothStatus() {
-		/** Receiver to listen to changes in bluetooth status **/
+		/* Receiver to listen to changes in bluetooth status */
 		mReceiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
@@ -712,10 +697,10 @@ public class StatusApp extends EasyAccessActivity {
 				}
 			}
 		};
-		/**
+		/*
 		 * Register for broadcast event associated with change in state of
 		 * Bluetooth
-		 **/
+		 */
 		IntentFilter filter = new IntentFilter(
 				BluetoothAdapter.ACTION_STATE_CHANGED);
 		this.registerReceiver(mReceiver, filter);
@@ -953,11 +938,9 @@ public class StatusApp extends EasyAccessActivity {
 						// starting from the second statement
 						unreadEmails += "<br/>";
 					}
-					unreadEmails += count
-							+ " "
-							+ getResources().getString(
-									R.string.txtStatusUnreadEmails) + " in "
-							+ account.name + ".";
+					unreadEmails += count + " "
+							+ getString(R.string.txtStatusUnreadEmails)
+							+ " in " + account.name + ".";
 					line++;
 				}
 			}
@@ -1047,12 +1030,11 @@ public class StatusApp extends EasyAccessActivity {
 			if (strength != -1) {
 				viewBeforeSignal.setVisibility(View.VISIBLE);
 				txtStatusSignal.setVisibility(View.VISIBLE);
-				txtStatusSignal.setText(getResources().getString(
-						R.string.txtStatusSignal)
+				txtStatusSignal.setText(getString(R.string.txtStatusSignal)
 						+ " " + strength + " bars");
-				txtStatusSignal.setContentDescription(getResources().getString(
-						R.string.txtStatusSignal)
-						+ " " + strength + " bars");
+				txtStatusSignal
+						.setContentDescription(getString(R.string.txtStatusSignal)
+								+ " " + strength + " bars");
 				attachListener(txtStatusSignal);
 			}
 		}

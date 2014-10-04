@@ -308,15 +308,10 @@ public class Utils {
 			float fontSize = preferences.getFloat("size", 0);
 			Utils.iterateToApplyFontSize(layout, fontSize);
 		} else {
-			// Utils.iterateToApplyFontSize(layout,
-			// context.getResources().getDimension(R.dimen.card_textsize_regular));
 			Utils.iterateToApplyFontSize(
 					layout,
 					Integer.valueOf(context.getResources().getString(
-							R.string.defaultFontSize)));// *
-														// context.getResources().
-			// getDisplayMetrics().density);
-			// context.getResources().getDimension(R.dimen.card_textsize_regular));
+							R.string.defaultFontSize)));
 		}
 	}
 

@@ -120,11 +120,11 @@ public class CallLogHistory extends EasyAccessActivity {
 		setContentView(R.layout.callloghistory);
 		super.onCreate(savedInstanceState);
 
-		/** Find UI elements **/
+		// Find UI elements
 		txtContactName = (TextView) findViewById(R.id.txtContactName);
 		callLogHistoryListView = (ListView) findViewById(R.id.lstCallLogHistory);
 
-		/** Handle click events **/
+		// Handle click events
 		// retrieve the passed number
 		this.number = getIntent().getExtras().getString("number");
 		this.id = getIntent().getExtras().getString("id");

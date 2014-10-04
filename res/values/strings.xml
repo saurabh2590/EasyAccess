@@ -43,7 +43,11 @@
     <string name="call_rejected">Call Rejected</string>
     <string name="answer">Answer Call</string>
     <string name="deleted">Deleted</string>
-
+	<string name="current_call_on_hold">Putting the current call on hold and calling </string>
+	<string name="calling">Calling </string>
+	<string name="call_from">Call from </string>
+	<string name="error">Error</string>
+	<string name="roaming_activated">Please note that roaming is activated.</string>
     <!-- Homescreen1.java -->
     <string name="btnPhoneDialer">Phone\nDialer</string>    
     <string name="btnCallLog">Call\nLog</string>
@@ -235,6 +239,10 @@
     <string name="appliedBgColorSuccess">Background color has been applied successfully</string>
     <string name="appliedBgColorFailure">Could not apply background color</string>
     <string name="resetColorsSuccess">Colors have been reset</string>
+    <string name="foreground_color_black">Foreground Color Black</string>
+    <string name="foreground_color">Foreground Color</string>
+    <string name="backgroud_color_white"> Background Color White</string>
+    <string name="background_color">Background Color</string>
     <string-array name="colors">
         <item name="black">Black</item>
         <item name="white">White</item>
@@ -357,7 +365,13 @@
     <string name="txtTextMsgsContent">Hey, it is so awesome that Kannan, TV and Eve are so excited, too, and willing to help us to build Easy Access for real! Woohoo :) Eva</string>
     <string name="txtTextMsgsAuthorReceived">From: Eva Krueger</string>
     <string name="txtTextMsgsTimestampReceived">Received: 18:37 on Sunday, August 4, 2013</string>
-    
+    <string name="deleteConfirmation">Are your sure you want to delete all the messages from this number?</string>
+    <string name="deleteSingleConfirm">Are you sure you want to delete this message?</string>
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
+    <string name="loading_msgs">Loading messages </string>
+    <string name="received_on">Received on </string>
+    <string name="sent_on">Sent on</string>
     <!-- About.java -->
     <string name="txtAboutHeaderMission">Easy Access mission</string>
     <string name="txtAboutMission">\"Easy Access\'s mission is to invent a completely new operating mode, embedded in the Android DNA, to make mobile technology accessible for seniors, the blind and visually impaired.\"</string>

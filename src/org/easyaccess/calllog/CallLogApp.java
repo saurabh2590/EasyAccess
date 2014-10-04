@@ -68,7 +68,6 @@ public class CallLogApp extends EasyAccessActivity {
 	private final int TYPE_ALL = 4;
 	private final int TYPE_TIME = 5;
 	private CommonAdapter callLogsAdapter;
-	// private GridView gridView;
 	private ArrayList<HashMap<String, String>> records;
 	static String[] topBar;
 
@@ -235,7 +234,7 @@ public class CallLogApp extends EasyAccessActivity {
 		setContentView(R.layout.calllog);
 		super.onCreate(savedInstanceState);
 
-		/** Find UI elements **/
+		// Find UI elements
 		tabCallsDialled = (Button) findViewById(R.id.tabCallsDialled);
 		tabCallsReceived = (Button) findViewById(R.id.tabCallsReceived);
 		tabCallsMissed = (Button) findViewById(R.id.tabCallsMissed);
@@ -250,9 +249,6 @@ public class CallLogApp extends EasyAccessActivity {
 				getResources().getString(R.string.tabCallsAll),
 				getResources().getString(R.string.totalTime) };
 
-		// gridView = (GridView) findViewById(R.id.gridView);
-		// gridView.setAdapter(new GridAdapter(getApplicationContext()));
-
 		attachListener(tabCallsDialled);
 		attachListener(tabCallsReceived);
 		attachListener(tabCallsMissed);
@@ -261,59 +257,48 @@ public class CallLogApp extends EasyAccessActivity {
 
 		this.records = new ArrayList<HashMap<String, String>>();
 
-		/**
-		 * If Dialed tab is pressed, display dialed calls; clicking on the
-		 * contact name would dial the number
-		 **/
+		// If Dialed tab is pressed, display dialed calls; clicking on the
+		// contact name would dial the number
 		tabCallsDialled.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				runThread(TYPE_DIALED);
 			}
 		});
 
-		/**
-		 * If Received tab is pressed, display received calls; clicking on the
-		 * contact name would dial the number
-		 **/
+		// If Received tab is pressed, display received calls; clicking on the
+		// contact name would dial the number
 		tabCallsReceived.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				runThread(TYPE_RECEIVED);
 			}
 		});
 
-		/**
-		 * If Missed tab is pressed, display missed calls; clicking on the
-		 * contact name would dial the number
-		 **/
+		// If Missed tab is pressed, display missed calls; clicking on the
+		// contact name would dial the number
 		tabCallsMissed.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				runThread(TYPE_MISSED);
 			}
 		});
 
-		/**
-		 * If All tab is pressed, display all calls; clicking on the contact
-		 * name would dial the number
-		 **/
+		// If All tab is pressed, display all calls; clicking on the contact
+		// name would dial the number
 		tabCallsAll.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				runThread(TYPE_ALL);
 			}
 		});
 
-		/**
-		 * If Total Time tab is pressed, display the total incoming and outgoing
-		 * minutes
-		 **/
+		// If Total Time tab is pressed, display the total incoming and outgoing
+		// minutes
 		tabTime.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				runThread(TYPE_TIME);
 			}
 		});
 
-		/** Handle click events **/
+		// Handle click events
 		callLogsListView.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view,
 					int position, long arg3) {

@@ -69,8 +69,8 @@ public class SaveContact extends Activity implements KeyListener {
 	private SpinnerAdapter adapter;
 	private String number;
 	private int typeIndex;
-	private int currentSelection = -1, deletedFlagName = 0,
-			deletedFlagNumber = 0, deletedFlagEmail = 0;
+	private int currentSelection = -1, deletedFlagName = 0;
+	private int deletedFlagNumber = 0, deletedFlagEmail = 0;
 	private boolean editFlag;
 
 	/**
@@ -149,7 +149,7 @@ public class SaveContact extends Activity implements KeyListener {
 				.withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null)
 				.build());
 
-		// first and last names
+		// first and last name
 		op_list.add(ContentProviderOperation
 				.newInsert(Data.CONTENT_URI)
 				.withValueBackReference(Data.RAW_CONTACT_ID, 0)
@@ -211,7 +211,7 @@ public class SaveContact extends Activity implements KeyListener {
 
 		ArrayList<ContentProviderOperation> ops = new ArrayList<ContentProviderOperation>();
 
-		// first and last names
+		// first and last name
 		ops.add(ContentProviderOperation
 				.newUpdate(ContactsContract.RawContacts.CONTENT_URI)
 				.withSelection(Data._ID + "=?", new String[] { id })
@@ -322,7 +322,7 @@ public class SaveContact extends Activity implements KeyListener {
 		setContentView(R.layout.savecontact);
 		super.onCreate(savedInstanceState);
 
-		/** get UI elements **/
+		// get UI elements
 		editName = (EditText) findViewById(R.id.editName);
 		editNumber = (EditText) findViewById(R.id.editNumber);
 		editEmail = (EditText) findViewById(R.id.editEmail);
@@ -332,18 +332,18 @@ public class SaveContact extends Activity implements KeyListener {
 		adapter = new SpinnerAdapter(getApplicationContext(), Utils.numberType);
 		spinnerType.setAdapter(adapter);
 
-		/** Find easyaccess-specific Back and Home buttons **/
+		// Find easyaccess-specific Back and Home buttons
 		Button btnNavigationBack = (Button) findViewById(R.id.btnNavigationBack);
 		Button btnNavigationHome = (Button) findViewById(R.id.btnNavigationHome);
 
-		/** If Back navigation button is pressed, go back to previous activity **/
+		// If Back navigation button is pressed, go back to previous activity
 		btnNavigationBack.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				finish();
 			}
 		});
 
-		/** If Home navigation button is pressed, go back to previous activity **/
+		// If Home navigation button is pressed, go back to previous activity
 		btnNavigationHome.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				finish();
@@ -364,7 +364,7 @@ public class SaveContact extends Activity implements KeyListener {
 			}
 		};
 
-		/** Attach onFocusChange listener to back and home buttons **/
+		// Attach onFocusChange listener to back and home buttons
 		btnNavigationBack.setOnFocusChangeListener(focusChangeListener);
 		btnNavigationHome.setOnFocusChangeListener(focusChangeListener);
 
@@ -678,24 +678,19 @@ public class SaveContact extends Activity implements KeyListener {
 	 */
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
-		if (event.getAction() == KeyEvent.ACTION_DOWN) { // &&
-															// !(editName.getText().toString().trim().equals("")))
-															// {
+		if (event.getAction() == KeyEvent.ACTION_DOWN) {
 			if (!editName.hasFocus() && !editNumber.hasFocus()
 					&& !editEmail.hasFocus()) {
-				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {// go to the
-																	// previous
-																	// screen
+				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+					// go to the previous screen
 					// check if keyboard is connected and accessibility services
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 						TTS.speak("Back");
 					finish();
-				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {// go to
-																		// the
-																		// home
-																		// screen
+				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {
+					// go to the home screen
 					// check if keyboard is connected and accessibility services
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
@@ -713,71 +708,37 @@ public class SaveContact extends Activity implements KeyListener {
 				if (editName.hasFocus()) {
 					if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
 						deletedFlagName = 1;
-						if (editName.getText().toString().length() != 0) {
+						String editNameText = editName.getText().toString();
+						if (editNameText.length() != 0) {
 							// check if keyboard is connected and accessibility
 							// services are disabled
 							if (!Utils
 									.isAccessibilityEnabled(getApplicationContext())
 									&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-								if (editName
-										.getText()
-										.toString()
-										.substring(
-												editName.getText().toString()
-														.length() - 1,
-												editName.getText().toString()
-														.length())
-										.matches("-?\\d+(\\.\\d+)?")) {
+								if (editNameText.substring(
+										editNameText.length() - 1,
+										editNameText.length()).matches(
+										"-?\\d+(\\.\\d+)?")) {
 									TTS.speak("Deleted "
-											+ editName
-													.getText()
-													.toString()
-													.substring(
-															editName.getText()
-																	.toString()
-																	.length() - 1,
-															editName.getText()
-																	.toString()
-																	.length())
+											+ editNameText.substring(
+													editNameText.length() - 1,
+													editNameText.length())
 											+ ". "
-											+ TTS.readNumber(editName
-													.getText()
-													.toString()
-													.substring(
-															0,
-															editName.getText()
-																	.toString()
-																	.length() - 1)));
+											+ TTS.readNumber(editNameText
+													.substring(0, editNameText
+															.length() - 1)));
 								} else {
 									TTS.speak("Deleted "
-											+ editName
-													.getText()
-													.toString()
-													.substring(
-															editName.getText()
-																	.toString()
-																	.length() - 1,
-															editName.getText()
-																	.toString()
-																	.length())
+											+ editNameText.substring(
+													editNameText.length() - 1,
+													editNameText.length())
 											+ ". "
-											+ editName
-													.getText()
-													.toString()
-													.substring(
-															0,
-															editName.getText()
-																	.toString()
-																	.length() - 1));
+											+ editNameText.substring(0,
+													editNameText.length() - 1));
 								}
 							}
-							editName.setText(editName
-									.getText()
-									.toString()
-									.substring(
-											0,
-											editName.getText().toString()
-													.length() - 1));
+							editName.setText(editNameText.substring(0,
+									editNameText.length() - 1));
 							editName.setContentDescription(editName.getText()
 									.toString().replaceAll(".(?=[0-9])", "$0 "));
 							editName.setSelection(editName.getText().toString()
@@ -797,94 +758,52 @@ public class SaveContact extends Activity implements KeyListener {
 						return super.dispatchKeyEvent(event);
 					}
 				} else if (editNumber.hasFocus()) {
+					String editNumberText = editNumber.getText().toString();
 					if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
 						TTS.speak("Deleted "
-								+ editNumber
-										.getText()
-										.toString()
-										.substring(
-												editNumber.getText().toString()
-														.length() - 1,
-												editNumber.getText().toString()
-														.length()));
+								+ editNumberText.substring(
+										editNumberText.length() - 1,
+										editNumberText.length()));
 						deletedFlagNumber = 1;
-						if (editNumber.getText().toString().length() != 0) {
+						if (editNumberText.length() != 0) {
 							// check if keyboard is connected and accessibility
 							// services are disabled
 							if (!Utils
 									.isAccessibilityEnabled(getApplicationContext())
 									&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-								if (editNumber
-										.getText()
-										.toString()
-										.substring(
-												editNumber.getText().toString()
-														.length() - 1,
-												editNumber.getText().toString()
-														.length())
-										.matches("-?\\d+(\\.\\d+)?")) {
+								if (editNumberText.substring(
+										editNumberText.length() - 1,
+										editNumberText.length()).matches(
+										"-?\\d+(\\.\\d+)?")) {
 									TTS.speak("Deleted "
-											+ editNumber
-													.getText()
-													.toString()
-													.substring(
-															editNumber
-																	.getText()
-																	.toString()
-																	.length() - 1,
-															editNumber
-																	.getText()
-																	.toString()
-																	.length())
+											+ editNumberText.substring(
+													editNumberText.length() - 1,
+													editNumberText.length())
 											+ ". "
-											+ TTS.readNumber(editNumber
-													.getText()
-													.toString()
+											+ TTS.readNumber(editNumberText
 													.substring(
 															0,
-															editNumber
-																	.getText()
-																	.toString()
+															editNumberText
 																	.length() - 1)));
 								} else {
 									TTS.speak("Deleted "
-											+ editNumber
-													.getText()
-													.toString()
-													.substring(
-															editNumber
-																	.getText()
-																	.toString()
-																	.length() - 1,
-															editNumber
-																	.getText()
-																	.toString()
-																	.length())
+											+ editNumberText.substring(
+													editNumberText.length() - 1,
+													editNumberText.length())
 											+ ". "
-											+ editNumber
-													.getText()
-													.toString()
+											+ editNumberText
 													.substring(
 															0,
-															editNumber
-																	.getText()
-																	.toString()
+															editNumberText
 																	.length() - 1));
 								}
 							}
-							editNumber.setText(editNumber
-									.getText()
-									.toString()
-									.substring(
-											0,
-											editNumber.getText().toString()
-													.length() - 1));
-							editNumber.setContentDescription(editNumber
-									.getText().toString()
+							editNumber.setText(editNumberText.substring(0,
+									editNumberText.length() - 1));
+							editNumber.setContentDescription(editNumberText
 									.replaceAll(".(?=[0-9])", "$0 "));
-							editNumber.setSelection(editNumber.getText()
-									.toString().length(), editNumber.getText()
-									.toString().length());
+							editNumber.setSelection(editNumberText.length(),
+									editNumberText.length());
 							return false;
 						} else {
 							// check if keyboard is connected and accessibility
@@ -899,85 +818,45 @@ public class SaveContact extends Activity implements KeyListener {
 						return super.dispatchKeyEvent(event);
 					}
 				} else if (editEmail.hasFocus()) {
+					String editEmailText = editEmail.getText().toString();
 					if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
 						TTS.speak("Deleted "
-								+ editEmail
-										.getText()
-										.toString()
-										.substring(
-												editEmail.getText().toString()
-														.length() - 1,
-												editEmail.getText().toString()
-														.length()));
+								+ editEmailText.substring(
+										editEmailText.length() - 1,
+										editEmailText.length()));
 						deletedFlagEmail = 1;
-						if (editEmail.getText().toString().length() != 0) {
+						if (editEmailText.length() != 0) {
 							// check if keyboard is connected and accessibility
 							// services are disabled
 							if (!Utils
 									.isAccessibilityEnabled(getApplicationContext())
 									&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-								if (editEmail
-										.getText()
-										.toString()
-										.substring(
-												editEmail.getText().toString()
-														.length() - 1,
-												editEmail.getText().toString()
-														.length())
-										.matches("-?\\d+(\\.\\d+)?")) {
+								if (editEmailText.substring(
+										editEmailText.length() - 1,
+										editEmailText.length()).matches(
+										"-?\\d+(\\.\\d+)?")) {
 									TTS.speak("Deleted "
-											+ editEmail
-													.getText()
-													.toString()
-													.substring(
-															editEmail.getText()
-																	.toString()
-																	.length() - 1,
-															editEmail.getText()
-																	.toString()
-																	.length())
+											+ editEmailText.substring(
+													editEmailText.length() - 1,
+													editEmailText.length())
 											+ ". "
-											+ TTS.readNumber(editEmail
-													.getText()
-													.toString()
-													.substring(
-															0,
-															editEmail.getText()
-																	.toString()
-																	.length() - 1)));
+											+ TTS.readNumber(editEmailText
+													.substring(0, editEmailText
+															.length() - 1)));
 								} else {
 									TTS.speak("Deleted "
-											+ editEmail
-													.getText()
-													.toString()
-													.substring(
-															editEmail.getText()
-																	.toString()
-																	.length() - 1,
-															editEmail.getText()
-																	.toString()
-																	.length())
+											+ editEmailText.substring(
+													editEmailText.length() - 1,
+													editEmailText.length())
 											+ ". "
-											+ editEmail
-													.getText()
-													.toString()
-													.substring(
-															0,
-															editEmail.getText()
-																	.toString()
-																	.length() - 1));
+											+ editEmailText.substring(0,
+													editEmailText.length() - 1));
 								}
 							}
-							editEmail.setText(editEmail
-									.getText()
-									.toString()
-									.substring(
-											0,
-											editEmail.getText().toString()
-													.length() - 1));
-							editEmail.setSelection(editEmail.getText()
-									.toString().length(), editEmail.getText()
-									.toString().length());
+							editEmail.setText(editEmailText.substring(0,
+									editEmailText.length() - 1));
+							editEmail.setSelection(editEmailText.length(),
+									editEmailText.length());
 							return false;
 						} else {
 							// check if keyboard is connected and accessibility
@@ -996,4 +875,5 @@ public class SaveContact extends Activity implements KeyListener {
 		}
 		return super.dispatchKeyEvent(event);
 	}
+
 }

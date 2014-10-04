@@ -198,9 +198,9 @@ public class ContactUpdate extends Activity implements KeyListener {
 		while (cursor.moveToNext()) {
 			String phoneNumber = cursor.getString(index);
 			if (phoneNumber.equals(contactNumber)) {
+				// number is primary
 				if (!(cursor.getString(cursor.getColumnIndex(Phone.IS_PRIMARY))
 						.equals("0"))) {
-					// number is primary
 					cursor.close();
 					return true;
 				}
@@ -231,7 +231,7 @@ public class ContactUpdate extends Activity implements KeyListener {
 		while (cursor.moveToNext()) {
 			String mail = cursor
 					.getString(cursor
-							.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS)); 
+							.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
 			Log.e(mail,
 					cursor.getString(cursor
 							.getColumnIndex(ContactsContract.CommonDataKinds.Email.IS_PRIMARY)));
@@ -249,10 +249,6 @@ public class ContactUpdate extends Activity implements KeyListener {
 		cursor.close();
 		return false;
 	}
-
-	/**
-	 * For Version 2 /** Function to delete number/email
-	 **/
 
 	/**
 	 * Sets a number as the primary number for the contact.
@@ -512,25 +508,25 @@ public class ContactUpdate extends Activity implements KeyListener {
 		setContentView(R.layout.contactupdate);
 		super.onCreate(savedInstanceState);
 
-		/** get UI elements **/
+		// get UI elements
 		editField = (EditText) findViewById(R.id.editField);
 		txtType = (TextView) findViewById(R.id.txtType);
 		btnSave = (Button) findViewById(R.id.btnUpdate);
 		btnSetPrimary = (Button) findViewById(R.id.btnSetPrimary);
 		spinnerType = (Spinner) findViewById(R.id.spinnerType);
 
-		/** Find easyaccess-specific Back and Home buttons **/
+		// Find easyaccess-specific Back and Home buttons
 		Button btnNavigationBack = (Button) findViewById(R.id.btnNavigationBack);
 		Button btnNavigationHome = (Button) findViewById(R.id.btnNavigationHome);
 
-		/** If Back navigation button is pressed, go back to previous activity **/
+		// If Back navigation button is pressed, go back to previous activity
 		btnNavigationBack.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				finish();
 			}
 		});
 
-		/** If Home navigation button is pressed, go back to previous activity **/
+		// If Home navigation button is pressed, go back to previous activity
 		btnNavigationHome.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				finish();
@@ -551,7 +547,7 @@ public class ContactUpdate extends Activity implements KeyListener {
 			}
 		};
 
-		/** Attach onFocusChange listener to back and home buttons **/
+		// Attach onFocusChange listener to back and home buttons
 		btnNavigationBack.setOnFocusChangeListener(focusChangeListener);
 		btnNavigationHome.setOnFocusChangeListener(focusChangeListener);
 
@@ -657,31 +653,37 @@ public class ContactUpdate extends Activity implements KeyListener {
 				this.numType = getIntent().getExtras().getString("numtype");
 				txtType.setVisibility(View.VISIBLE);
 				spinnerType.setVisibility(View.VISIBLE);
+				// mobile
 				if (numType
-						.equals((getResources().getStringArray(R.array.type))[0])) // mobile
+						.equals((getResources().getStringArray(R.array.type))[0]))
 					spinnerType.setSelection(0);
+				// home
 				else if (numType.equals((getResources()
-						.getStringArray(R.array.type))[1])) // home
+						.getStringArray(R.array.type))[1]))
 					spinnerType.setSelection(1);
+				// work
 				else if (numType.equals((getResources()
-						.getStringArray(R.array.type))[2])) // work
+						.getStringArray(R.array.type))[2]))
 					spinnerType.setSelection(2);
+				// work mobile
 				else if (numType.equals((getResources()
-						.getStringArray(R.array.type))[3])) // work mobile
+						.getStringArray(R.array.type))[3]))
 					spinnerType.setSelection(3);
+				// home fax
 				else if (numType.equals((getResources()
-						.getStringArray(R.array.type))[4])) // home fax
+						.getStringArray(R.array.type))[4]))
 					spinnerType.setSelection(4);
+				// pager
 				else if (numType.equals((getResources()
-						.getStringArray(R.array.type))[5])) // pager
+						.getStringArray(R.array.type))[5]))
 					spinnerType.setSelection(5);
+				// other
 				else
-					spinnerType.setSelection(6); // other
+					spinnerType.setSelection(6);
 				if (isPrimaryNumber(this.id, this.number)) {
 					btnSetPrimary.setVisibility(View.GONE);
 				} else {
-					// if not primary, display set primary button, on click of
-					// Set Primary,
+					// if not primary, display set primary button Set Primary
 					// set delete button's visibility to GONE
 					btnSetPrimary.setVisibility(View.VISIBLE);
 
@@ -708,8 +710,8 @@ public class ContactUpdate extends Activity implements KeyListener {
 					btnSetPrimary.setVisibility(View.GONE);
 				} else {
 					// if not primary, display set primary button, on click of
-					// Set Primary, set
-					// delete button's visibility to GONE
+					// Set Primary
+					// set delete button's visibility to GONE
 					btnSetPrimary.setVisibility(View.VISIBLE);
 
 					attachKeyListener(btnSetPrimary, 2);
@@ -926,23 +928,18 @@ public class ContactUpdate extends Activity implements KeyListener {
 	 */
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
-		if (event.getAction() == KeyEvent.ACTION_DOWN) { // &&
-															// !(editField.getText().toString().trim().equals("")))
-															// {
+		if (event.getAction() == KeyEvent.ACTION_DOWN) {
 			if (!editField.hasFocus()) {
-				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {// go to the
-																	// previous
-																	// screen
+				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+					// go to the previous screen
 					// check if keyboard is connected and accessibility services
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 						TTS.speak("Back");
 					finish();
-				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {// go to
-																		// the
-																		// home
-																		// screen
+				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {
+					// go to the home screen
 					// check if keyboard is connected and accessibility services
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
@@ -959,77 +956,41 @@ public class ContactUpdate extends Activity implements KeyListener {
 			} else {
 				if (editField.hasFocus()) {
 					deletedFlag = 1;
-					if (editField.getText().toString().length() != 0) {
+					String editFieldText = editField.getText().toString();
+
+					if (editFieldText.length() != 0) {
 						// check if keyboard is connected and accessibility
 						// services are disabled
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-							if (editField
-									.getText()
-									.toString()
-									.substring(
-											editField.getText().toString()
-													.length() - 1,
-											editField.getText().toString()
-													.length())
-									.matches("-?\\d+(\\.\\d+)?")) {
+							if (editFieldText.substring(
+									editFieldText.length() - 1,
+									editFieldText.length()).matches(
+									"-?\\d+(\\.\\d+)?")) {
 								TTS.speak("Deleted "
-										+ editField
-												.getText()
-												.toString()
-												.substring(
-														editField.getText()
-																.toString()
-																.length() - 1,
-														editField.getText()
-																.toString()
-																.length())
+										+ editFieldText.substring(
+												editFieldText.length() - 1,
+												editFieldText.length())
 										+ ". "
-										+ TTS.readNumber(editField
-												.getText()
-												.toString()
-												.substring(
-														0,
-														editField.getText()
-																.toString()
-																.length() - 1)));
+										+ TTS.readNumber(editFieldText.substring(
+												0, editFieldText.length() - 1)));
 							} else {
 								TTS.speak("Deleted "
-										+ editField
-												.getText()
-												.toString()
-												.substring(
-														editField.getText()
-																.toString()
-																.length() - 1,
-														editField.getText()
-																.toString()
-																.length())
+										+ editFieldText.substring(
+												editFieldText.length() - 1,
+												editFieldText.length())
 										+ ". "
-										+ editField
-												.getText()
-												.toString()
-												.substring(
-														0,
-														editField.getText()
-																.toString()
-																.length() - 1));
+										+ editFieldText.substring(0,
+												editFieldText.length() - 1));
 							}
 						}
-						editField
-								.setText(editField
-										.getText()
-										.toString()
-										.substring(
-												0,
-												editField.getText().toString()
-														.length() - 1));
-						editField.setContentDescription(editField.getText()
-								.toString().replaceAll(".(?=[0-9])", "$0 "));
-						editField.setSelection(editField.getText().toString()
-								.length(), editField.getText().toString()
-								.length());
+						editField.setText(editFieldText.substring(0,
+								editFieldText.length() - 1));
+						editField.setContentDescription(editFieldText
+								.replaceAll(".(?=[0-9])", "$0 "));
+						editField.setSelection(editFieldText.length(),
+								editFieldText.length());
 						return false;
 					} else {
 						// check if keyboard is connected and accessibility

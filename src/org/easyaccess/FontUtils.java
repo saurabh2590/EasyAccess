@@ -48,7 +48,7 @@ public final class FontUtils {
 		}
 	}
 
-	/* cache for loaded Roboto typefaces */
+	/** cache for loaded Roboto typefaces **/
 	private static Map<FontType, Typeface> typefaceCache = new EnumMap<FontType, Typeface>(
 			FontType.class);
 
@@ -57,12 +57,10 @@ public final class FontUtils {
 	 */
 	private static Typeface getRobotoTypeface(Context context, FontType fontType) {
 		String fontPath = fontType.getPath();
-
 		if (!typefaceCache.containsKey(fontType)) {
 			typefaceCache.put(fontType,
 					Typeface.createFromAsset(context.getAssets(), fontPath));
 		}
-
 		return typefaceCache.get(fontType);
 	}
 
@@ -73,12 +71,10 @@ public final class FontUtils {
 	private static Typeface getRobotoTypeface(Context context,
 			Typeface originalTypeface) {
 		FontType robotoFontType = null;
-
 		if (originalTypeface == null) {
 			robotoFontType = FontType.NORMAL;
 		} else {
 			int style = originalTypeface.getStyle();
-
 			switch (style) {
 			case Typeface.BOLD:
 				robotoFontType = FontType.BOLD;
@@ -97,7 +93,6 @@ public final class FontUtils {
 				break;
 			}
 		}
-
 		return (robotoFontType == null) ? originalTypeface : getRobotoTypeface(
 				context, robotoFontType);
 	}
