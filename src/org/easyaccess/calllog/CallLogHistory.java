@@ -163,13 +163,13 @@ public class CallLogHistory extends EasyAccessActivity {
 						String status = "";
 						switch (tempBundle.getInt("status")) {
 						case CallLog.Calls.INCOMING_TYPE:
-							status = "Received";
+							status = getString(R.string.received);
 							break;
 						case CallLog.Calls.MISSED_TYPE:
-							status = "Missed";
+							status = getString(R.string.missed);
 							break;
 						case CallLog.Calls.OUTGOING_TYPE:
-							status = "Dialled";
+							status = getString(R.string.dialed);
 							break;
 						}
 						strRecords.add(tempBundle.getString("date")

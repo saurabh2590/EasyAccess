@@ -687,7 +687,7 @@ public class SaveContact extends Activity implements KeyListener {
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-						TTS.speak("Back");
+						TTS.speak(getString(R.string.btnNavigationBack));
 					finish();
 				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {
 					// go to the home screen
@@ -695,7 +695,7 @@ public class SaveContact extends Activity implements KeyListener {
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-						TTS.speak("Home");
+						TTS.speak(getString(R.string.btnNavigationHome));
 					finish();
 					Intent intent = new Intent(getApplicationContext(),
 							SwipingUtils.class);
@@ -719,7 +719,8 @@ public class SaveContact extends Activity implements KeyListener {
 										editNameText.length() - 1,
 										editNameText.length()).matches(
 										"-?\\d+(\\.\\d+)?")) {
-									TTS.speak("Deleted "
+									TTS.speak(getString(R.string.deleted)
+											+ " "
 											+ editNameText.substring(
 													editNameText.length() - 1,
 													editNameText.length())
@@ -728,7 +729,8 @@ public class SaveContact extends Activity implements KeyListener {
 													.substring(0, editNameText
 															.length() - 1)));
 								} else {
-									TTS.speak("Deleted "
+									TTS.speak(getString(R.string.deleted)
+											+ " "
 											+ editNameText.substring(
 													editNameText.length() - 1,
 													editNameText.length())
@@ -751,7 +753,7 @@ public class SaveContact extends Activity implements KeyListener {
 							if (!Utils
 									.isAccessibilityEnabled(getApplicationContext())
 									&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-								TTS.speak("Back");
+								TTS.speak(getString(R.string.btnNavigationBack));
 							finish();
 						}
 					} else {
@@ -760,7 +762,8 @@ public class SaveContact extends Activity implements KeyListener {
 				} else if (editNumber.hasFocus()) {
 					String editNumberText = editNumber.getText().toString();
 					if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
-						TTS.speak("Deleted "
+						TTS.speak(getString(R.string.deleted)
+								+ " "
 								+ editNumberText.substring(
 										editNumberText.length() - 1,
 										editNumberText.length()));
@@ -775,7 +778,8 @@ public class SaveContact extends Activity implements KeyListener {
 										editNumberText.length() - 1,
 										editNumberText.length()).matches(
 										"-?\\d+(\\.\\d+)?")) {
-									TTS.speak("Deleted "
+									TTS.speak(getString(R.string.deleted)
+											+ " "
 											+ editNumberText.substring(
 													editNumberText.length() - 1,
 													editNumberText.length())
@@ -786,7 +790,8 @@ public class SaveContact extends Activity implements KeyListener {
 															editNumberText
 																	.length() - 1)));
 								} else {
-									TTS.speak("Deleted "
+									TTS.speak(getString(R.string.deleted)
+											+ " "
 											+ editNumberText.substring(
 													editNumberText.length() - 1,
 													editNumberText.length())
@@ -811,7 +816,7 @@ public class SaveContact extends Activity implements KeyListener {
 							if (!Utils
 									.isAccessibilityEnabled(getApplicationContext())
 									&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-								TTS.speak("Back");
+								TTS.speak(getString(R.string.btnNavigationBack));
 							finish();
 						}
 					} else {
@@ -820,7 +825,8 @@ public class SaveContact extends Activity implements KeyListener {
 				} else if (editEmail.hasFocus()) {
 					String editEmailText = editEmail.getText().toString();
 					if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
-						TTS.speak("Deleted "
+						TTS.speak(getString(R.string.deleted)
+								+ " "
 								+ editEmailText.substring(
 										editEmailText.length() - 1,
 										editEmailText.length()));
@@ -835,7 +841,8 @@ public class SaveContact extends Activity implements KeyListener {
 										editEmailText.length() - 1,
 										editEmailText.length()).matches(
 										"-?\\d+(\\.\\d+)?")) {
-									TTS.speak("Deleted "
+									TTS.speak(getString(R.string.deleted)
+											+ " "
 											+ editEmailText.substring(
 													editEmailText.length() - 1,
 													editEmailText.length())
@@ -844,7 +851,8 @@ public class SaveContact extends Activity implements KeyListener {
 													.substring(0, editEmailText
 															.length() - 1)));
 								} else {
-									TTS.speak("Deleted "
+									TTS.speak(getString(R.string.deleted)
+											+ " "
 											+ editEmailText.substring(
 													editEmailText.length() - 1,
 													editEmailText.length())
@@ -864,7 +872,7 @@ public class SaveContact extends Activity implements KeyListener {
 							if (!Utils
 									.isAccessibilityEnabled(getApplicationContext())
 									&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-								TTS.speak("Back");
+								TTS.speak(getString(R.string.btnNavigationBack));
 							finish();
 						}
 					} else {

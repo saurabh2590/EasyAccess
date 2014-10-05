@@ -94,7 +94,7 @@ public class ContactsOtherOptions extends EasyAccessActivity {
 					case KeyEvent.KEYCODE_ENTER:
 						switch (buttonFlag) {
 						case 1:
-							confirmDelete("Are you sure you want to delete the contact?");
+							confirmDelete(getString(R.string.deleteSingleContacConfirm));
 							break;
 						case 2:
 							copyToSDcard();

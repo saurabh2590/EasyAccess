@@ -194,7 +194,7 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 			// disabled
 			if (!Utils.isAccessibilityEnabled(getApplicationContext())
 					&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-				TTS.speak("Back");
+				TTS.speak(getString(R.string.btnNavigationBack));
 			turnOffScreenCurtain();
 			finish();
 		} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {
@@ -203,7 +203,7 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 			// disabled
 			if (!Utils.isAccessibilityEnabled(getApplicationContext())
 					&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-				TTS.speak("Home");
+				TTS.speak(getString(R.string.btnNavigationHome));
 			turnOffScreenCurtain();
 			finish();
 			Intent intent = new Intent(getApplicationContext(),

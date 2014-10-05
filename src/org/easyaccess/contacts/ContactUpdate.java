@@ -936,7 +936,7 @@ public class ContactUpdate extends Activity implements KeyListener {
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-						TTS.speak("Back");
+						TTS.speak(getString(R.string.btnNavigationBack));
 					finish();
 				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {
 					// go to the home screen
@@ -944,7 +944,7 @@ public class ContactUpdate extends Activity implements KeyListener {
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-						TTS.speak("Home");
+						TTS.speak(getString(R.string.btnNavigationHome));
 					finish();
 					Intent intent = new Intent(getApplicationContext(),
 							SwipingUtils.class);
@@ -968,7 +968,8 @@ public class ContactUpdate extends Activity implements KeyListener {
 									editFieldText.length() - 1,
 									editFieldText.length()).matches(
 									"-?\\d+(\\.\\d+)?")) {
-								TTS.speak("Deleted "
+								TTS.speak(getString(R.string.deleted)
+										+ " "
 										+ editFieldText.substring(
 												editFieldText.length() - 1,
 												editFieldText.length())
@@ -976,7 +977,8 @@ public class ContactUpdate extends Activity implements KeyListener {
 										+ TTS.readNumber(editFieldText.substring(
 												0, editFieldText.length() - 1)));
 							} else {
-								TTS.speak("Deleted "
+								TTS.speak(getString(R.string.deleted)
+										+ " "
 										+ editFieldText.substring(
 												editFieldText.length() - 1,
 												editFieldText.length())
@@ -998,7 +1000,7 @@ public class ContactUpdate extends Activity implements KeyListener {
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-							TTS.speak("Back");
+							TTS.speak(getString(R.string.btnNavigationBack));
 						finish();
 					}
 				}

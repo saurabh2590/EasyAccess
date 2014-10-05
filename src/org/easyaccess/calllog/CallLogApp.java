@@ -362,15 +362,14 @@ public class CallLogApp extends EasyAccessActivity {
 							Toast.LENGTH_SHORT).show();
 				} else {
 					if (bundle.getInt("type") == TYPE_TIME) {
-						strRecords.add("Total duration of incoming calls: "
+						strRecords.add(getString(R.string.tot_dur_incoming)
 								+ bundle.getLong("intime") + " seconds");
-						strRecords.add("Total duration of outgoing calls: "
+						strRecords.add(getString(R.string.tot_dur_outgoing)
 								+ bundle.getLong("outtime") + " seconds");
 						CallLogApp.this.records.clear();
 					} else {
-						for (int i = 0; i < bundle.size() - 1; i++) { // - 1 for
-																		// excluding
-																		// type
+						for (int i = 0; i < bundle.size() - 1; i++) {
+							// - 1 for excluding type
 							Bundle tempBundle = bundle.getBundle(Integer
 									.toString(i));
 							// name ,number, date, label, id

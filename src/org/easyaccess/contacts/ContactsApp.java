@@ -308,7 +308,7 @@ public class ContactsApp extends Activity implements KeyListener {
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-						TTS.speak("Back");
+						TTS.speak(getString(R.string.btnNavigationBack));
 					finish();
 				} else if (event.getKeyCode() == KeyEvent.KEYCODE_F1) {
 					// go to the home screen
@@ -316,7 +316,7 @@ public class ContactsApp extends Activity implements KeyListener {
 					// are disabled
 					if (!Utils.isAccessibilityEnabled(getApplicationContext())
 							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-						TTS.speak("Home");
+						TTS.speak(getString(R.string.btnNavigationHome));
 					finish();
 					Intent intent = new Intent(getApplicationContext(),
 							SwipingUtils.class);
@@ -340,7 +340,8 @@ public class ContactsApp extends Activity implements KeyListener {
 									inputContactsText.length() - 1,
 									inputContactsText.length()).matches(
 									"-?\\d+(\\.\\d+)?")) {
-								TTS.speak("Deleted "
+								TTS.speak(getString(R.string.deleted)
+										+ " "
 										+ inputContactsText.substring(
 												inputContactsText.length() - 1,
 												inputContactsText.length())
@@ -349,7 +350,8 @@ public class ContactsApp extends Activity implements KeyListener {
 												.substring(0, inputContactsText
 														.length() - 1)));
 							} else {
-								TTS.speak("Deleted "
+								TTS.speak(getString(R.string.deleted)
+										+ " "
 										+ inputContactsText.substring(
 												inputContactsText.length() - 1,
 												inputContactsText.length())
@@ -371,7 +373,7 @@ public class ContactsApp extends Activity implements KeyListener {
 						if (!Utils
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-							TTS.speak("Back");
+							TTS.speak(getString(R.string.btnNavigationBack));
 						finish();
 					}
 				} else {
@@ -393,24 +395,24 @@ public class ContactsApp extends Activity implements KeyListener {
 		setContentView(R.layout.contacts);
 		super.onCreate(savedInstanceState);
 
-		/** get the UI elements **/
+		// get the UI elements
 		contactsListView = (ListView) findViewById(R.id.lstContacts);
 		inputContacts = (EditText) findViewById(R.id.inputContactsSearch);
 		btnCall = (Button) findViewById(R.id.btnCall);
 		btnSave = (Button) findViewById(R.id.btnSave);
 
-		/** Find easyaccess-specific Back and Home buttons **/
+		// Find easyaccess-specific Back and Home buttons
 		Button btnNavigationBack = (Button) findViewById(R.id.btnNavigationBack);
 		Button btnNavigationHome = (Button) findViewById(R.id.btnNavigationHome);
 
-		/** If Back navigation button is pressed, go back to previous activity **/
+		// If Back navigation button is pressed, go back to previous activity
 		btnNavigationBack.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				finish();
 			}
 		});
 
-		/** If Home navigation button is pressed, go back to previous activity **/
+		// If Home navigation button is pressed, go back to previous activity
 		btnNavigationHome.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				finish();
@@ -431,7 +433,7 @@ public class ContactsApp extends Activity implements KeyListener {
 			}
 		};
 
-		/** Attach onFocusChange listener to back and home buttons **/
+		// Attach onFocusChange listener to back and home buttons
 		btnNavigationBack.setOnFocusChangeListener(focusChangeListener);
 		btnNavigationHome.setOnFocusChangeListener(focusChangeListener);
 

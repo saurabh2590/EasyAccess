@@ -394,10 +394,10 @@ public class ContactsDetailsMenu extends EasyAccessActivity {
 
 				// Button to send SMS
 				final Button btnSms = new Button(getApplicationContext());
-				btnSms.setText("Send Message to " + numType
+				btnSms.setText(getString(R.string.send_msg_to) + numType
 						+ Html.fromHtml("<br/>" + num));
-				btnSms.setContentDescription("Send Message to " + numType + " "
-						+ num.replaceAll(".(?=[0-9])", "$0 "));
+				btnSms.setContentDescription(getString(R.string.send_msg_to)
+						+ numType + " " + num.replaceAll(".(?=[0-9])", "$0 "));
 				btnSms.setTextColor(getResources().getColor(
 						R.drawable.card_textcolor));
 				btnSms.setTypeface(Typeface.DEFAULT_BOLD);
@@ -497,8 +497,10 @@ public class ContactsDetailsMenu extends EasyAccessActivity {
 				final Button btnEmail = new Button(getApplicationContext());
 				final Button btnEditEmail = new Button(getApplicationContext());
 
-				btnEmail.setText("Email " + Html.fromHtml("<br/>" + email));
-				btnEmail.setContentDescription("Email " + email);
+				btnEmail.setText(getString(R.string.email) + " "
+						+ Html.fromHtml("<br/>" + email));
+				btnEmail.setContentDescription(getString(R.string.email) + " "
+						+ email);
 				btnEmail.setTextColor(getResources().getColor(
 						R.drawable.card_textcolor));
 				btnEmail.setTypeface(Typeface.DEFAULT_BOLD);
@@ -508,8 +510,10 @@ public class ContactsDetailsMenu extends EasyAccessActivity {
 								.getDisplayMetrics().density);
 				btnEmail.setGravity(Gravity.CENTER);
 				btnEmail.setFocusable(true);
-				btnEditEmail.setText("Edit " + Html.fromHtml("<br/>" + email));
-				btnEditEmail.setContentDescription("Edit " + email);
+				btnEditEmail.setText(getString(R.string.edit)
+						+ Html.fromHtml("<br/>" + email));
+				btnEditEmail.setContentDescription(getString(R.string.edit)
+						+ email);
 				btnEditEmail.setTextColor(getResources().getColor(
 						R.drawable.card_textcolor));
 				btnEditEmail.setTypeface(Typeface.DEFAULT_BOLD);
@@ -550,8 +554,9 @@ public class ContactsDetailsMenu extends EasyAccessActivity {
 			// more options
 			final Button btnMoreOptions = new Button(getApplicationContext());
 
-			btnMoreOptions.setText("More Options");
-			btnMoreOptions.setContentDescription("More Options");
+			btnMoreOptions.setText(getString(R.string.more_options));
+			btnMoreOptions
+					.setContentDescription(getString(R.string.more_options));
 			btnMoreOptions.setTextColor(getResources().getColor(
 					R.drawable.card_textcolor));
 			btnMoreOptions.setTypeface(Typeface.DEFAULT_BOLD);

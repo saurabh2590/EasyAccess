@@ -25,7 +25,7 @@
     <string name="composeTextMessage">Compose Text Message</string>
  	<string name="textMessageRecipient">Text Message Recipient</string>
  	<string name="textSize">19</string>
- 	
+ 	<string name="deleteSingleContacConfirm">Are you sure you want to delete the contact?</string>
     <!-- PhoneDialer.java -->
     <string name="sim_absent">SIM card is absent. Cannot make call.</string>
     <string name="network_locked">Network is locked. Cannot make call.</string>
@@ -110,8 +110,12 @@
     <string name="txtCallsDialledEntry2">Caspar Isemer</string>
     <string name="txtCallsDialledEntry3">Zainab Chinikamwala</string>
     <string name="txtCallsDialledEntry4">Homiyar Mobedji</string>
-    <string name="emptylog">The selected call log is empty</string>  
-    
+    <string name="emptylog">The selected call log is empty</string>
+    <string name="tot_dur_incoming">Total duration of incoming calls: </string>  
+    <string name="tot_dur_outgoing">Total duration of outgoing calls: </string>
+    <string name="received">Received</string>
+    <string name="missed">Missed</string>
+    <string name="dialed">Dialed</string>
     <!-- CallLogOptions.java -->
     <string name="btnCall">Call</string>
     <string name="btnSendSMS">Send SMS</string>
@@ -138,7 +142,7 @@
     <string name="call">call</string>
     <string name="sendmessage">send message</string>
     <string name="mail">email</string>   
-    
+    <string name="send_msg_to">Send message to </string>
     <!-- ContactsOtherOptions.java -->
     <string name="otheroptions">More Options</string>
     <string name="btnDelete">Delete</string>
@@ -159,7 +163,8 @@
     <string name="copyallcontactsfailure">Could not export all contacts</string>
     <string name="mediareadonly">Cannot write to SD card</string>
     <string name="mediaunmounted">SD card is not mounted</string>
-    
+    <string name="edit">Edit </string>
+    <string name="more_options">More Options</string>
     <!-- SaveContact.java -->
     <string name="contactsaved">Contact saved</string>
     <string name="contactnotsaved">Unable to save contact</string>
