@@ -27,6 +27,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.easyaccess.settings.SettingsMenu;
+import org.easyaccess.simplemenus.CameraAppsMenu;
+import org.easyaccess.simplemenus.SocialNetworksMenu;
 
 
 public class Homescreen3Activity extends AbstractHomescreenActivity implements KeyListener {
@@ -45,8 +47,8 @@ public class Homescreen3Activity extends AbstractHomescreenActivity implements K
 		// Launch respective easyaccess app, depending on which button is
 		// pressed
 		attachListenerToOpenExternalApp((Button) v.findViewById(R.id.btnFileBrowser), "com.rhmsoft.fm");
-		//attachListenerToOpenActivity((Button) v.findViewById(R.id.btnCameraApps), CameraAppsMenu.class);
-		//attachListenerToOpenActivity((Button) v.findViewById(R.id.btnSocialNetworks), SocialNetworksMenu.class);
+		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnCameraApps), CameraAppsMenu.class);
+		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnSocialNetworks), SocialNetworksMenu.class);
 		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnSettings), SettingsMenu.class);
 
         /** Find UI elements **/
@@ -92,10 +94,10 @@ public class Homescreen3Activity extends AbstractHomescreenActivity implements K
                 launchOrDownloadFromFragment("com.rhmsoft.fm");
                 break;
             case R.id.btnCameraApps:
-                //startNewActivity(CameraAppsMenu.class);
+                startNewActivity(CameraAppsMenu.class);
                 break;
             case R.id.btnSocialNetworks:
-                //startNewActivity(SocialNetworksMenu.class);
+                startNewActivity(SocialNetworksMenu.class);
                 break;
             case R.id.btnSettings:
                 startNewActivity(SettingsMenu.class);

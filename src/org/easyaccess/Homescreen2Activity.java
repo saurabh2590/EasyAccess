@@ -23,6 +23,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import org.easyaccess.alarms.AlarmCalendarMenu;
+import org.easyaccess.simplemenus.BooksNewspapersMenu;
+import org.easyaccess.simplemenus.MapsMenu;
+import org.easyaccess.simplemenus.MusicVideoMenu;
+
 public class Homescreen2Activity extends AbstractHomescreenActivity implements
 		KeyListener {
 	/**
@@ -40,11 +45,11 @@ public class Homescreen2Activity extends AbstractHomescreenActivity implements
 		// Launch respective easyaccess app, depending on which button is
 		// pressed
 		attachListenerToOpenExternalApp((Button) v.findViewById(R.id.btnInternet), "com.android.chrome");
-		//attachListenerToOpenActivity((Button) v.findViewById(R.id.btnAlarmCalendar), AlarmCalendarMenu.class);
+		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnAlarmCalendar), AlarmCalendarMenu.class);
 		attachListenerToOpenExternalApp((Button) v.findViewById(R.id.btnRadio), "tunein.player");
-		//attachListenerToOpenActivity((Button) v.findViewById(R.id.btnMusicVideo), MusicVideoMenu.class);
-		//attachListenerToOpenActivity((Button) v.findViewById(R.id.btnBooksNewspapers), BooksNewspapersMenu.class);
-		//attachListenerToOpenActivity((Button) v.findViewById(R.id.btnMaps), MapsMenu.class);
+		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnMusicVideo), MusicVideoMenu.class);
+		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnBooksNewspapers), BooksNewspapersMenu.class);
+		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnMaps), MapsMenu.class);
 
 		/** Put most everything before here **/
 		return v;
@@ -57,19 +62,19 @@ public class Homescreen2Activity extends AbstractHomescreenActivity implements
                 launchOrDownloadFromFragment("com.android.chrome");
                 break;
             case R.id.btnAlarmCalendar:
-                //startNewActivity(AlarmCalendarMenu.class);
+                startNewActivity(AlarmCalendarMenu.class);
                 break;
             case R.id.btnRadio:
                 launchOrDownloadFromFragment("tunein.player");
                 break;
             case R.id.btnMusicVideo:
-                //startNewActivity(MusicVideoMenu.class);
+                startNewActivity(MusicVideoMenu.class);
                 break;
             case R.id.btnBooksNewspapers:
-                //startNewActivity(BooksNewspapersMenu.class);
+                startNewActivity(BooksNewspapersMenu.class);
                 break;
             case R.id.btnMaps:
-                //startNewActivity(MapsMenu.class);
+                startNewActivity(MapsMenu.class);
                 break;
         }
     }

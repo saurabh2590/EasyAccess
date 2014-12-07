@@ -316,6 +316,18 @@
             android:contentDescription="@string/status"
             android:label="@string/status" >
         </activity>
+
+        <activity android:name="org.easyaccess.alarms.AlarmCalendarMenu"></activity>
+        <activity android:name="org.easyaccess.alarms.AlarmApp"></activity>
+        <activity android:name="org.easyaccess.alarms.AlarmChangeApp"></activity>
+        <activity android:name="org.easyaccess.alarms.AlarmSetApp"></activity>
+        <activity android:name="org.easyaccess.alarms.AlarmSnoozeApp"></activity>
+        <activity android:name="org.easyaccess.simplemenus.CameraAppsMenu"></activity>
+        <activity android:name="org.easyaccess.simplemenus.BooksNewspapersMenu"></activity>
+        <activity android:name="org.easyaccess.simplemenus.MapsMenu"></activity>
+        <activity android:name="org.easyaccess.simplemenus.MusicVideoMenu"></activity>
+        <activity android:name="org.easyaccess.simplemenus.SocialNetworksMenu"></activity>
+
     </application>
 
 </manifest>

@@ -73,15 +73,31 @@
     <string name="btnMoreAccessibleApps">More\nAccessible\nApps</string>
     <string name="btnAllApps">All Apps</string>
 
-    
+
     <!-- AlarmMenu.java -->
+    <string name="btnAlarm">Alarm</string>
+    <string name="btnCalendar">Calendar</string>
+
+    <!-- AlarmApp.java -->
     <string name="btnSetNewAlarm">Set New Alarm</string>
-	<string name="txtAlarmsEntry1">1st alarm at XX:XX on Month XX, 20xx</string>
-	<string name="txtAlarmsEntry2">2nd alarm at XX:XX on Month XX, 20xx</string> 
-	<string name="txtAlarmsEntry3">3rd alarm at XX:XX on Month XX, 20xx</string> 
-	<string name="txtAlarmsEntry4">4th alarm at XX:XX on Month XX, 20xx</string> 
-	<string name="txtAlarmsEntry5">5th alarm at XX:XX on Month XX, 20xx</string>     
-    
+    <string name="txtAlarmsEntry1">1st alarm at XX:XX</string>
+    <string name="txtAlarmsEntry2">2nd alarm at XX:XX</string>
+    <string name="txtAlarmsEntry3">3rd alarm at XX:XX</string>
+    <string name="txtAlarmsEntry4">4th alarm at XX:XX</string>
+    <string name="txtAlarmsEntry5">5th alarm at XX:XX</string>
+
+    <!-- AlarmChangeApp.java -->
+    <string name="btnAlarmChange">Change Alarm</string>
+    <string name="btnAlarmDisable">Disable Alarm</string>
+    <string name="btnAlarmDelete">Delete Alarm</string>
+
+    <!-- AlarmSetApp.java -->
+    <string name="btnAlarmSet">Set Alarm</string>
+    <string name="txtAlarmTimeUserInput"></string>
+
+    <!-- AlarmSnoozeApp.java -->
+    <string name="btnAlarmTurnOff">Turn Off Alarm</string>
+
     <!-- BooksNewspapersMenu.java -->
     <string name="btnDarwinReader">DARWIN Reader</string>
     <string name="btnIdealGroupReader">IDEAL Group Reader</string>
