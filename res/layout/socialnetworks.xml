@@ -61,9 +61,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnFacebookFriendCaster"
-					android:text="@string/btnFacebookFriendCaster"
-					android:contentDescription="@string/btnFacebookFriendCaster"
+					android:id="@+id/btnFacebookApp"
+					android:text="@string/btnFacebook"
+					android:contentDescription="@string/btnFacebook"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 

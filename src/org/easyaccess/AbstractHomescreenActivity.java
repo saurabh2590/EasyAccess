@@ -164,14 +164,18 @@ public abstract class AbstractHomescreenActivity extends EasyAccessFragment impl
 	public void onResume() {
 		super.onResume();
 		// get the root layout
-		LinearLayout layout = (LinearLayout) this.view
-				.findViewById(R.id.homescreen1);
-		Utils.applyFontColorChanges(this.view.getContext(), layout);
-		Utils.applyFontSizeChanges(this.view.getContext(), layout);
-		Utils.applyFontTypeChanges(this.view.getContext(), layout);
+        applyFontChanges((LinearLayout) this.view.findViewById(R.id.homescreen1));
+        applyFontChanges((LinearLayout) this.view.findViewById(R.id.homescreen2));
+        applyFontChanges((LinearLayout) this.view.findViewById(R.id.homescreen3));
 	}
 
-	@Override
+    void applyFontChanges(LinearLayout layout) {
+        Utils.applyFontColorChanges(this.view.getContext(), layout);
+        Utils.applyFontSizeChanges(this.view.getContext(), layout);
+        Utils.applyFontTypeChanges(this.view.getContext(), layout);
+    }
+
+    @Override
 	public boolean onKeyUp(View view, Editable arg1, int keyCode,
 			KeyEvent keyEvent) {
 		int shift = 0;

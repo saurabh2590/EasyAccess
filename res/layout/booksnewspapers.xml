@@ -162,9 +162,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnGoogleCurrents"
-					android:text="@string/btnGoogleCurrents"
-					android:contentDescription="@string/btnGoogleCurrents"
+					android:id="@+id/btnGoogleNewsstand"
+					android:text="@string/btnGoogleNewsstand"
+					android:contentDescription="@string/btnGoogleNewsstand"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 

@@ -103,7 +103,7 @@
     <string name="btnIdealGroupReader">IDEAL Group Reader</string>
     <string name="btnBookshareGoRead">Bookshare Go Read</string>
     <string name="btnGooglePlayBooks">Google Play Books</string>
-    <string name="btnGoogleCurrents">Google Currents</string>    
+    <string name="btnGoogleNewsstand">Google Play Newsstand</string>
     
  	<!-- CameraMenu.java -->
     <string name="btnPhoneCamera">Camera</string>
@@ -318,7 +318,7 @@
     
  	<!-- SocialNetworksMenu.java -->
     <string name="btnWhatsApp">WhatsApp</string>
-    <string name="btnFacebookFriendCaster">Facebook Friendcaster</string>
+    <string name="btnFacebook">Facebook</string>
     <string name="btnFacebookMessenger">Facebook Messenger</string>
     <string name="btnGooglePlus">Google+</string>
     <string name="btnSkype">Skype</string>

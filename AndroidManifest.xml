@@ -284,7 +284,7 @@
             android:configChanges="orientation|keyboardHidden|keyboard"
             android:contentDescription="@string/contacts"
             android:label="@string/contacts"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateAlwaysVisible" >
         </activity>
         <activity
             android:name="org.easyaccess.settings.SettingsMenu"

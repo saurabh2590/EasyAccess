@@ -27,6 +27,7 @@ package org.easyaccess.simplemenus;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -43,7 +44,7 @@ public class CameraAppsMenu extends EasyAccessActivity {
 		super.onCreate(savedInstanceState);	
 		
 		/** Launch respective app, depending on which button is pressed **/
-		setButtonClickIntent(R.id.btnPhoneCamera, "android.media.action.IMAGE_CAPTURE");
+		setButtonClickIntent(R.id.btnPhoneCamera, MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
 		setButtonClickUri(R.id.btnGoogleGoggles, "com.google.android.apps.unveil");
 		setButtonClickUri(R.id.btnOCRScanner, "com.smartmobilesoftware.mobileocrfree");
 		setButtonClickUri(R.id.btnColorIdentifier, "com.loomatix.colorgrab");

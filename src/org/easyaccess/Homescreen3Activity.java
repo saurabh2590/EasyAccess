@@ -78,7 +78,9 @@ public class Homescreen3Activity extends AbstractHomescreenActivity implements K
 	}
 
     void showAllApps() {
-        Toast.makeText(getActivity(), "We do not know how to open the regular Android menu with all installed apps yet, unfortunately!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(), "We do not know how to open the regular Android menu with all installed apps yet, unfortunately!", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
     }
 
     void showMoreAccessibleApps() {

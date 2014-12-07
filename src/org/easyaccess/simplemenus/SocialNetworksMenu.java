@@ -40,7 +40,7 @@ public class SocialNetworksMenu extends EasyAccessActivity {
 		
 		/** Launch respective app, depending on which button is pressed **/
 		setButtonClickUri(R.id.btnWhatsApp, "com.whatsapp");
-		setButtonClickUri(R.id.btnFacebookFriendCaster, "uk.co.senab.blueNotifyFree");
+		setButtonClickUri(R.id.btnFacebookApp, "com.facebook.katana");
 		setButtonClickUri(R.id.btnFacebookMessenger, "com.facebook.orca");
 		setButtonClickUri(R.id.btnGooglePlus, "com.google.android.apps.plus");
 		setButtonClickUri(R.id.btnSkype, "com.skype.raider");

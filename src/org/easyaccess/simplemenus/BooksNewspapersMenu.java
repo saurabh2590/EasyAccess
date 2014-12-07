@@ -43,7 +43,7 @@ public class BooksNewspapersMenu extends EasyAccessActivity {
 		setButtonClickUri(R.id.btnIdealGroupReader, "org.easyaccess.epubreader");
 		setButtonClickUri(R.id.btnBookshareGoRead, "org.benetech.android");
 		setButtonClickUri(R.id.btnGooglePlayBooks, "com.google.android.apps.books");
-		setButtonClickUri(R.id.btnGoogleCurrents, "com.google.android.apps.currents");
+		setButtonClickUri(R.id.btnGoogleNewsstand, "com.google.android.apps.magazines");
 		
 		/** Put most everything before here **/
 	}
