@@ -167,7 +167,7 @@
                 android:text="@string/txtEmpty" />
 
             <Button
-                android:id="@+id/btnSettings"
+                android:id="@+id/btnEmail"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -177,7 +177,7 @@
                 android:gravity="center"
                 android:nextFocusLeft="@+id/btnStatus"
                 android:nextFocusUp="@+id/btnContacts"
-                android:text="@string/btnSettings"
+                android:text="@string/btnEmail"
                 android:textColor="@drawable/card_textcolor"
                 android:textSize="@dimen/card_textsize_regular"
                 android:textStyle="bold" />

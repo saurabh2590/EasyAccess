@@ -48,22 +48,23 @@
 	<string name="call_from">Call from </string>
 	<string name="error">Error</string>
 	<string name="roaming_activated">Please note that roaming is activated.</string>
+
     <!-- Homescreen1.java -->
-    <string name="btnPhoneDialer">Phone\nDialer</string>    
+    <string name="btnPhoneDialer">Phone\nDialer</string>
     <string name="btnCallLog">Call\nLog</string>
     <string name="btnTextMessages">Text\nMessages</string>
     <string name="btnContacts">Contacts</string>
     <string name="btnStatus">Status</string>
     <string name="btnEmail">Email</string>
-    
+
     <!-- Homescreen2.java -->
     <string name="btnInternet">Internet</string>
-    <string name="btnAlarm">Alarm</string>
+    <string name="btnAlarmCalendar">Alarm +\nCalendar</string>
     <string name="btnRadio">Radio</string>
     <string name="btnMusicVideo">Music +\nVideo</string>
     <string name="btnBooksNewspapers">Books + News\npapers</string>
     <string name="btnMaps">Maps</string>
-    
+
     <!-- Homescreen3.java -->
     <string name="btnFileBrowser">File\nBrowser</string>
     <string name="btnCameraApps">Camera\nApps</string>
@@ -71,6 +72,7 @@
     <string name="btnSettings">Settings</string>
     <string name="btnMoreAccessibleApps">More\nAccessible\nApps</string>
     <string name="btnAllApps">All Apps</string>
+
     
     <!-- AlarmMenu.java -->
     <string name="btnSetNewAlarm">Set New Alarm</string>

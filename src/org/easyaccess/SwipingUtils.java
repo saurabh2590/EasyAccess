@@ -105,7 +105,9 @@ public class SwipingUtils extends FragmentActivity {
 	private List<Fragment> getFragments() {
 		List<Fragment> fList = new ArrayList<Fragment>();
 
-		fList.add(new HomescreenActivity());
+		fList.add(new Homescreen1Activity());
+        fList.add(new Homescreen2Activity());
+        fList.add(new Homescreen3Activity());
 		return fList;
 	}
 
