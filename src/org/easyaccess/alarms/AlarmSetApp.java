@@ -25,21 +25,17 @@
 
 package org.easyaccess.alarms;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import org.easyaccess.EasyAccessActivity;
 import org.easyaccess.R;
-
-import java.util.Calendar;
 
 
 public class AlarmSetApp extends EasyAccessActivity {
@@ -66,82 +62,63 @@ public class AlarmSetApp extends EasyAccessActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.alarm_set);
 		super.onCreate(savedInstanceState);
-		
-		/** Find UI elements **/
-		txtAlarmTimeUserInput = (TextView) findViewById(R.id.txtAlarmTimeUserInput);
-		Button btnKeypadBackspace = (Button) findViewById(R.id.btnKeypadBackspace);
-		Button btnAlarmSet = (Button) findViewById(R.id.btnAlarmSet);
-	    
-		/** If "X" is pressed on keypad, append "X" to the set time **/
-		appendAlarmTimeUserInput(R.id.btnKeypad1, 100, "1");
-		appendAlarmTimeUserInput(R.id.btnKeypad2, 150, "2");
-		appendAlarmTimeUserInput(R.id.btnKeypad3, 200, "3");
-		appendAlarmTimeUserInput(R.id.btnKeypad4, 250, "4");
-		appendAlarmTimeUserInput(R.id.btnKeypad5, 300, "5");
-		appendAlarmTimeUserInput(R.id.btnKeypad6, 350, "6");
-		appendAlarmTimeUserInput(R.id.btnKeypad7, 400, "7");
-		appendAlarmTimeUserInput(R.id.btnKeypad8, 450, "8");
-		appendAlarmTimeUserInput(R.id.btnKeypad9, 500, "9");
-		appendAlarmTimeUserInput(R.id.btnKeypad0, 550, "0");
-		
-		/** If backspace is pressed on keypad, trim the right-most digit off the set time **/
-		btnKeypadBackspace.setOnClickListener(new View.OnClickListener() {
-	        public void onClick(View v) {
-	        	if(strAlarmTimeUserInput != null && !strAlarmTimeUserInput.isEmpty()) {
-	            	strAlarmTimeUserInput = strAlarmTimeUserInput.substring(0, strAlarmTimeUserInput.length() - 1);
-	            	txtAlarmTimeUserInput.setText(strAlarmTimeUserInput);
-	        	}
-	        }
-	    });
-		
-		/** If set alarm button is pressed, set the alarm **/
-		btnAlarmSet.setOnClickListener(new View.OnClickListener() {
-	        public void onClick(View v) {
-                if(strAlarmTimeUserInput != null && !strAlarmTimeUserInput.isEmpty()) {
-                	// Parse user input
-                    int hourOfDay = Integer.parseInt(strAlarmTimeUserInput.substring(0, 2));
-                    int minute = Integer.parseInt(strAlarmTimeUserInput.substring(2, 4));
-                    setAlarm(hourOfDay, minute);
-                    
-                    // Unload this alarm set activity
-    				AlarmSetApp.this.finish();
-                }
-	        }
-	    });
-				
-		/** Put most everything before here **/
+
+        final String alarmNumber = getIntent().getExtras().getString("alarmNumber");
+
+        initializeDialPad();
+        initializeSetAlarmButton(alarmNumber);
+
 	}
 
-    private void setAlarm(int hourOfDay, int minute) {
+    private void initializeDialPad() {
+        /** Find UI elements **/
+        txtAlarmTimeUserInput = (TextView) findViewById(R.id.txtAlarmTimeUserInput);
+        Button btnKeypadBackspace = (Button) findViewById(R.id.btnKeypadBackspace);
 
-        Calendar calNow = Calendar.getInstance();
-        Calendar calSet = (Calendar) calNow.clone();
+        /** If "X" is pressed on keypad, append "X" to the set time **/
+        appendAlarmTimeUserInput(R.id.btnKeypad1, 100, "1");
+        appendAlarmTimeUserInput(R.id.btnKeypad2, 150, "2");
+        appendAlarmTimeUserInput(R.id.btnKeypad3, 200, "3");
+        appendAlarmTimeUserInput(R.id.btnKeypad4, 250, "4");
+        appendAlarmTimeUserInput(R.id.btnKeypad5, 300, "5");
+        appendAlarmTimeUserInput(R.id.btnKeypad6, 350, "6");
+        appendAlarmTimeUserInput(R.id.btnKeypad7, 400, "7");
+        appendAlarmTimeUserInput(R.id.btnKeypad8, 450, "8");
+        appendAlarmTimeUserInput(R.id.btnKeypad9, 500, "9");
+        appendAlarmTimeUserInput(R.id.btnKeypad0, 550, "0");
 
-        calSet.set(Calendar.HOUR_OF_DAY, hourOfDay);
-        calSet.set(Calendar.MINUTE, minute);
-        calSet.set(Calendar.SECOND, 0);
-        calSet.set(Calendar.MILLISECOND, 0);
-
-        if (calSet.compareTo(calNow) <= 0) {
-            // Today Set time passed, count to tomorrow
-            calSet.add(Calendar.DATE, 1);
-        }
-
-        setAlarmManager(calSet);
+        /** If backspace is pressed on keypad, trim the right-most digit off the set time **/
+        btnKeypadBackspace.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(strAlarmTimeUserInput != null && !strAlarmTimeUserInput.isEmpty()) {
+                    strAlarmTimeUserInput = strAlarmTimeUserInput.substring(0, strAlarmTimeUserInput.length() - 1);
+                    txtAlarmTimeUserInput.setText(strAlarmTimeUserInput);
+                }
+            }
+        });
     }
 
+    private void initializeSetAlarmButton(final String alarmNumber) {
+        /** If set alarm button is pressed, set the alarm **/
+        Button btnAlarmSet = (Button) findViewById(R.id.btnAlarmSet);
+        btnAlarmSet.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(strAlarmTimeUserInput != null && !strAlarmTimeUserInput.isEmpty()) {
+                    // Parse user input
+                    int hourOfDay = Integer.parseInt(strAlarmTimeUserInput.substring(0, 2));
+                    int minute = Integer.parseInt(strAlarmTimeUserInput.substring(2, 4));
+                    AlarmHelper.setAlarm(AlarmSetApp.this, hourOfDay, minute);
 
-    private void setAlarmManager(Calendar targetCal) {
+                    SharedPreferences preferences = getSharedPreferences("org.easyaccess.alarms", Context.MODE_PRIVATE);
+                    Editor editor = preferences.edit();
+                    editor.putString("alarm"+alarmNumber, String.format("%02d%02d",hourOfDay,minute) + "e");
+                    editor.apply();
 
-        Log.d("alarm", "Alarm is set " + targetCal.getTime() + "\n" + "***\n");
-
-        Intent intent = new Intent(AlarmSetApp.this, AlarmSnoozeApp.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(AlarmSetApp.this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
+                    // Unload this alarm set activity
+                    AlarmSetApp.this.finish();
+                }
+            }
+        });
     }
-
 
 }

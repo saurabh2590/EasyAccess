@@ -25,9 +25,10 @@
 
 package org.easyaccess.alarms;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.easyaccess.EasyAccessActivity;
@@ -40,54 +41,40 @@ public class AlarmApp extends EasyAccessActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.alarm);
 		super.onCreate(savedInstanceState);
-		
-		/** Find UI elements **/
-		Button btnSetNewAlarm = (Button) findViewById(R.id.btnSetNewAlarm);
-		TextView txtAlarmsEntry1 = (TextView) findViewById(R.id.txtAlarmsEntry1);
-		TextView txtAlarmsEntry2 = (TextView) findViewById(R.id.txtAlarmsEntry2);
-		TextView txtAlarmsEntry3 = (TextView) findViewById(R.id.txtAlarmsEntry3);
-		TextView txtAlarmsEntry4 = (TextView) findViewById(R.id.txtAlarmsEntry4);
-		TextView txtAlarmsEntry5 = (TextView) findViewById(R.id.txtAlarmsEntry5);
-	    
-		/** If Set New Alarm button is pressed on keypad, launch the custom justdroid alarm clock **/
-	    setButtonClickActivity(R.id.btnSetNewAlarm, AlarmApp.this, AlarmSetApp.class);
-		
-		/** If 1st Alarm text is pressed launch the change/disable/delete view for the alarm **/
-		txtAlarmsEntry1.setOnClickListener(new View.OnClickListener() {
-	        public void onClick(View v) {
-	        	setTextviewClickActivity(R.id.txtAlarmsEntry1, AlarmApp.this, AlarmChangeApp.class);
-	        }
-	    });	
-		
-		/** If 2nd Alarm text is pressed launch the change/disable/delete view for the alarm **/
-		txtAlarmsEntry2.setOnClickListener(new View.OnClickListener() {
-	        public void onClick(View v) {
-	        	setTextviewClickActivity(R.id.txtAlarmsEntry2, AlarmApp.this, AlarmChangeApp.class);
-	        }
-	    });	
-		
-		/** If 3rd Alarm text is pressed launch the change/disable/delete view for the alarm **/
-		txtAlarmsEntry3.setOnClickListener(new View.OnClickListener() {
-	        public void onClick(View v) {
-	        	setTextviewClickActivity(R.id.txtAlarmsEntry3, AlarmApp.this, AlarmChangeApp.class);
-	        }
-	    });	
-		
-		/** If 4th Alarm text is pressed launch the change/disable/delete view for the alarm **/
-		txtAlarmsEntry4.setOnClickListener(new View.OnClickListener() {
-	        public void onClick(View v) {
-	        	setTextviewClickActivity(R.id.txtAlarmsEntry4, AlarmApp.this, AlarmChangeApp.class);
-	        }
-	    });	
-		
-		/** If 5th Alarm text is pressed launch the change/disable/delete view for the alarm **/
-		txtAlarmsEntry5.setOnClickListener(new View.OnClickListener() {
-	        public void onClick(View v) {
-	        	setTextviewClickActivity(R.id.txtAlarmsEntry5, AlarmApp.this, AlarmChangeApp.class);
-	        }
-	    });			
-		
-		/** Put most everything before here **/
 	}
-	
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initializeAlarm(R.id.txtAlarmsEntry1, "1");
+        initializeAlarm(R.id.txtAlarmsEntry2, "2");
+        initializeAlarm(R.id.txtAlarmsEntry3, "3");
+        initializeAlarm(R.id.txtAlarmsEntry4, "4");
+        initializeAlarm(R.id.txtAlarmsEntry5, "5");
+    }
+
+    /** Launch the respective Java class, depending on which textview is pressed **/
+    private void initializeAlarm(int textviewInt, final String alarmNumber) {
+        TextView textview = (TextView) findViewById(textviewInt);
+        initializeOnClickAction(alarmNumber, textview);
+
+        String alarmTime = getSharedPreferences("org.easyaccess.alarms", Context.MODE_PRIVATE).getString("alarm"+alarmNumber, "0000d");
+        int hourOfDay = Integer.parseInt(alarmTime.substring(0, 2));
+        int minute = Integer.parseInt(alarmTime.substring(2, 4));
+        String enabled = alarmTime.substring(4, 5);
+        String state = "disabled";
+        if("e".equalsIgnoreCase(enabled)) state = "enabled";
+        textview.setText(String.format("Alarm at %02d:%02d (%s)", hourOfDay, minute, state));
+    }
+
+    private void initializeOnClickAction(final String alarmNumber, TextView textview) {
+        textview.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(AlarmApp.this, AlarmChangeApp.class);
+                intent.putExtra("alarmNumber", alarmNumber);
+                startActivity(intent);
+            }
+        });
+    }
+
 }

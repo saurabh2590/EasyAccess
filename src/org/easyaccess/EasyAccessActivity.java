@@ -77,17 +77,6 @@ public class EasyAccessActivity extends Activity implements KeyListener {
         });
     }
 
-    /** Launch the respective Java class, depending on which textview is pressed **/
-    protected void setTextviewClickActivity(int textviewInt, final Context ctx, final Class<?> cls) {
-        TextView textview = (TextView) findViewById(textviewInt);
-        textview.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(ctx, cls);
-                startActivity(intent);
-            }
-        });
-    }
-
     /** Launch the respective Android intent, depending on which button is pressed **/
     protected void setButtonClickIntent(int buttonInt, final String intentTarget) {
         Button button = (Button) findViewById(buttonInt);

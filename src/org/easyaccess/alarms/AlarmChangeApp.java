@@ -25,7 +25,13 @@
 
 package org.easyaccess.alarms;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import org.easyaccess.EasyAccessActivity;
 import org.easyaccess.R;
@@ -37,13 +43,60 @@ public class AlarmChangeApp extends EasyAccessActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.alarm_change);
 		super.onCreate(savedInstanceState);
-		
-		/** Launch respective alarm modification option, depending on which button is pressed **/
-		setButtonClickActivity(R.id.btnAlarmChange, AlarmChangeApp.this, AlarmSetApp.class);
-		setButtonClickActivity(R.id.btnAlarmDisable, AlarmChangeApp.this, AlarmSetApp.class);
-		setButtonClickActivity(R.id.btnAlarmDelete, AlarmChangeApp.this, AlarmSetApp.class);
-		
-		/** Put most everything before here **/
-	}	
-	
+
+        final String alarmNumber = getIntent().getExtras().getString("alarmNumber");
+        final String alarmTime = getSharedPreferences("org.easyaccess.alarms", Context.MODE_PRIVATE).getString("alarm" + alarmNumber, "0000d");
+
+        initializeChangeButton(alarmNumber);
+        initializeToggleButton(alarmNumber, alarmTime);
+	}
+
+    private void initializeChangeButton(final String alarmNumber) {
+        Button changeButton = (Button) findViewById(R.id.btnAlarmChange);
+        changeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(AlarmChangeApp.this, AlarmSetApp.class);
+                intent.putExtra("alarmNumber",alarmNumber);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void initializeToggleButton(final String alarmNumber, String alarmTime) {
+        Button toggleButton = (Button) findViewById(R.id.btnAlarmDisable);
+        setToggleButtonText(alarmTime, toggleButton);
+        toggleButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                toggleAlarm("alarm"+alarmNumber);
+            }
+        });
+    }
+
+    private void setToggleButtonText(String alarmTime, Button toggleButton) {
+        if(isEnabled(alarmTime)) {
+            toggleButton.setText("Disable");
+        } else {
+            toggleButton.setText("Enable");
+        }
+    }
+
+    private void toggleAlarm(String alarm) {
+        SharedPreferences preferences = getSharedPreferences("org.easyaccess.alarms", Context.MODE_PRIVATE);
+        String alarmTime = preferences.getString(alarm, "0000d");
+        if(isEnabled(alarmTime)) {
+            alarmTime = alarmTime.replace('e','d');
+        } else {
+            alarmTime = alarmTime.replace('d','e');
+        }
+        setToggleButtonText(alarmTime,(Button) findViewById(R.id.btnAlarmDisable));
+        Editor editor = preferences.edit();
+        editor.putString(alarm,alarmTime);
+        editor.apply();
+    }
+
+    private boolean isEnabled(String alarmTime) {
+        return alarmTime.substring(4,5).equalsIgnoreCase("e");
+    }
+
 }
