@@ -52,7 +52,8 @@ public class CallingScreen extends Activity {
 	/** Declare UI elements and variables **/
 	private String callerDetails;
 	private TextView recipientTextView;
-	private Button answerButton;
+	private Button btnAnswerCall;
+	private Button btnRejectCall;
 	private BroadcastReceiver bReceiver;
 	private GestureDetector gestureDetector;
 
@@ -67,51 +68,52 @@ public class CallingScreen extends Activity {
 		setContentView(R.layout.activity_calling);
 
 		recipientTextView = (TextView) findViewById(R.id.recipientTextView);
-		answerButton = (Button) findViewById(R.id.answerButton);
+		btnAnswerCall = (Button) findViewById(R.id.btnAnswerCall);
+		btnRejectCall = (Button) findViewById(R.id.btnRejectCall);
 
-		gestureDetector = new GestureDetector(getApplicationContext(),
-				new GestureListener());
+		gestureDetector = new GestureDetector(getApplicationContext(), new GestureListener());
 
 		if (getIntent().getExtras() != null) {
-			if (Utils.callingDetails != null
-					&& Utils.callingDetails.get("name") != null) {
-				// Retrieve the name of the recipient and the type of the number
-				// from the Bundle
+			
+			if (Utils.callingDetails != null && Utils.callingDetails.get("name") != null) {
+				// Retrieve the name of the recipient and the type of the number from the Bundle
 				String name = Utils.callingDetails.get("name");
 				String typeOfNumber = Utils.callingDetails.get("type");
+				
 				if (getIntent().getExtras().getInt("type", -1) == Utils.OUTGOING) {
 					// outgoing call
 					callerDetails = getString(R.string.calling) + name + ": " + typeOfNumber;
-					answerButton.setVisibility(View.GONE);
+					btnAnswerCall.setVisibility(View.GONE);
 				} else {
 					// incoming call
 					callerDetails = getString(R.string.call_from) + name + ": " + typeOfNumber;
-					answerButton.setVisibility(View.VISIBLE);
+					btnAnswerCall.setVisibility(View.VISIBLE);
 				}
+				
 			} else if (Utils.callingDetails != null) {
-				// Retrieve the name of the recipient and the type of the number
-				// from the Bundle
+				
+				// Retrieve the name of the recipient and the type of the number from the Bundle
 				if (getIntent().getExtras().getInt("type", -1) == Utils.OUTGOING) {
 					// outgoing call
-					callerDetails = getString(R.string.calling)
-							+ Utils.callingDetails.get("number");
-					answerButton.setVisibility(View.GONE);
+					callerDetails = getString(R.string.calling)	+ Utils.callingDetails.get("number");
+					btnAnswerCall.setVisibility(View.GONE);
 				} else {
 					// incoming call
-					callerDetails = getString(R.string.call_from)
-							+ Utils.callingDetails.get("number");
-					answerButton.setVisibility(View.VISIBLE);
+					callerDetails = getString(R.string.call_from) + Utils.callingDetails.get("number");
+					btnAnswerCall.setVisibility(View.VISIBLE);
 				}
 			}
+			
 			if (Utils.callingDetails != null) {
 				displayCall(callerDetails, Utils.callingDetails.get("number"));
 			}
+			
 		} else {
 			recipientTextView.setText(getString(R.string.error)+"!");
 			recipientTextView.setContentDescription(getString(R.string.error));
 		}
 
-		answerButton.setOnClickListener(new OnClickListener() {
+		btnAnswerCall.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
