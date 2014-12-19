@@ -308,6 +308,7 @@
     </string-array>
     
     <!--  SettingsVolume.java -->
+    <string name="txtVolumeSelection">Make your volume selection below</string>
     <string name="softest">Softest</string>
     <string name="softer">Softer</string>
     <string name="soft">Soft</string>
