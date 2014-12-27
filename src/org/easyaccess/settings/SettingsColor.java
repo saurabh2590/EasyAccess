@@ -381,8 +381,8 @@ public class SettingsColor extends EasyAccessActivity {
 		spinnerFg = (Spinner) findViewById(R.id.fcolors);
 		spinnerBg = (Spinner) findViewById(R.id.bcolors);
 		txtPreview = (TextView) findViewById(R.id.txtPreview);
-		txtForeground = (TextView) findViewById(R.id.txtForeground);
-		txtBackground = (TextView) findViewById(R.id.txtBackground);
+		txtForeground = (TextView) findViewById(R.id.txtSettingsColorHeaderForeground);
+		txtBackground = (TextView) findViewById(R.id.txtSettingsColorHeaderBackground);
 		btnReset = (Button) findViewById(R.id.btnApplyColors);
 
 		adapter = new SpinnerAdapter(getApplicationContext(), Utils.colorNames);

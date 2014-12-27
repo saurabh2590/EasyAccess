@@ -523,6 +523,7 @@ public class SettingsFont extends EasyAccessActivity {
 		btnIncrease = (Button) findViewById(R.id.btnIncrease);
 		btnDecrease = (Button) findViewById(R.id.btnDecrease);
 		btnReset = (Button) findViewById(R.id.btnApplyFont);
+        txtFontSize = (TextView) findViewById(R.id.txtSettingsFontHeaderSize);
 		txtNumber = (TextView) findViewById(R.id.txtNumber);
 		spinnerFontType = (Spinner) findViewById(R.id.fontType);
 		adapter = new SpinnerAdapter(getApplicationContext(), Utils.fontType);
