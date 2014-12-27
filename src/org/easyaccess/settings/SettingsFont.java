@@ -519,7 +519,6 @@ public class SettingsFont extends EasyAccessActivity {
 
 		// find UI elements
 		txtPreview = (TextView) findViewById(R.id.txtPreview);
-		txtFontSize = (TextView) findViewById(R.id.txtFontSize);
 		txtFontType = (TextView) findViewById(R.id.txtFontType);
 		btnIncrease = (Button) findViewById(R.id.btnIncrease);
 		btnDecrease = (Button) findViewById(R.id.btnDecrease);

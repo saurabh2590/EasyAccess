@@ -17,107 +17,173 @@
             android:layout_height="wrap_content"
             android:background="@color/homescreen_background"
             android:orientation="vertical" >
+            
+		<TableLayout
+		    android:gravity="center_vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_centerVertical="true"
+		    android:layout_weight="0"
+		    android:stretchColumns="0,2" 
+		    android:weightSum="3"
+		    android:paddingLeft="12px" 
+			android:paddingRight="12px"
+			android:paddingTop="12px" 
+			android:paddingBottom="12px" > 
+			
+		    <TextView
+				android:id="@+id/txtSettingsFontHeaderSize"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="12px"
+				android:contentDescription="@string/txtSettingsFontHeaderSize"
+				android:focusable="true"
+				android:text="@string/txtSettingsFontHeaderSize"
+				android:textColor="@color/card_textcolor_regular"
+				android:textSize="@dimen/card_textsize_listitems"
+				android:textStyle="bold" />   
+		
+			<TableRow
+			    android:layout_weight="1" 
+			    android:gravity="center_vertical" >
+			   
+				<Button  
+					android:id="@+id/btnIncrease"
+					android:text="@string/plus"
+					android:contentDescription="@string/plus"
+					android:layout_weight="1"
+				    android:layout_width="0dip" 
+				    android:layout_height="@dimen/keypad_height" 
+				    android:background="@drawable/card"
+				    android:textColor="@drawable/card_textcolor" 
+				    android:textStyle="bold"
+				    android:textSize="@dimen/card_textsize_regular"
+				    android:gravity="center"
+					android:focusable="true"
+				/>	
+				
+				<TextView  
+					android:id="@+id/txtEmpty1"
+					android:text="@string/txtEmpty"
+				    android:layout_width="12px" 
+				    android:layout_height="1px"
+				    android:background="@color/homescreen_background"		    
+				    android:focusable="false"
+				/>		
+				
+				<Button  
+					android:id="@+id/btnDecrease"
+					android:text="@string/minus"
+					android:contentDescription="@string/minus"
+					android:layout_weight="1"
+				    android:layout_width="0dip" 
+				    android:layout_height="@dimen/keypad_height" 
+				    android:background="@drawable/card"
+				    android:textColor="@drawable/card_textcolor" 
+				    android:textStyle="bold"
+				    android:textSize="@dimen/card_textsize_regular"
+				    android:gravity="center"
+					android:focusable="true"
+				/>			
+				
+			</TableRow>  
+		</TableLayout>             
+            
 
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:gravity="center_vertical" >
-
+                android:gravity="center_vertical" 
+                android:paddingLeft="12px" 
+				android:paddingRight="12px"
+				android:paddingTop="12px" 
+				android:paddingBottom="12px">		   
+			
+		    <TextView
+				android:id="@+id/txtSettingsFontHeaderType"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="12px"
+				android:contentDescription="@string/txtSettingsFontHeaderType"
+				android:focusable="true"
+				android:text="@string/txtSettingsFontHeaderType"
+				android:textColor="@color/card_textcolor_regular"
+				android:textSize="@dimen/card_textsize_listitems"
+				android:textStyle="bold" />
+		    
                 <TableRow
                     android:layout_weight="1"
+                    android:gravity="center_vertical" 
+                    android:paddingBottom="12px">
+
+                    <Spinner
+                        android:id="@+id/fontType"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/fontStyle"
+                        android:entries="@array/fontTypes"
+                        android:prompt="@string/fontStyle" 
+                        android:textSize="@dimen/card_textsize_regular" 
+                        android:background="@drawable/card"
+                        android:textStyle="bold"/>
+                </TableRow>		    
+				
+		    <TextView
+				android:id="@+id/txtSettingsFontHeaderPreview"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingTop="12px" 
+				android:layout_marginBottom="12px"
+				android:contentDescription="@string/txtSettingsFontHeaderPreview"
+				android:focusable="true"
+				android:text="@string/txtSettingsFontHeaderPreview"
+				android:textColor="@color/card_textcolor_regular"
+				android:textSize="@dimen/card_textsize_listitems"
+				android:textStyle="bold" /> 		    		
+                
+
+                <TableRow
+                    android:layout_weight="0"
                     android:gravity="center_vertical" >
 
                     <TextView
                         android:id="@+id/txtPreview"
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
-                        android:layout_span="3"
-                        android:layout_weight="1"
-                        android:background="@drawable/card"
+                        android:layout_weight="0"
+                        android:background="@color/homescreen_background"
                         android:contentDescription="@string/txtPreview"
                         android:focusable="false"
                         android:gravity="center"
                         android:text="@string/txtPreview"
                         android:textColor="@drawable/card_textcolor"
                         android:textSize="@dimen/card_textsize_regular" />
-                </TableRow>
+               </TableRow>
 
-                <TableRow
-                    android:layout_weight="1"
+               <TableRow
+                    android:layout_weight="0"
                     android:gravity="center_vertical" >
-
-                    <TextView
-                        android:id="@+id/txtFontSize"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/homescreen_background"
-                        android:contentDescription="@string/fontSize"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:nextFocusDown="@+id/btnIncrease"
-                        android:text="@string/fontSize"
-                        android:textColor="@color/card_textcolor_regular"
-                        android:textSize="@dimen/card_textsize_regular" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_weight="1"
-                    android:gravity="center_vertical" >
-
-                    <Button
-                        android:id="@+id/btnIncrease"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/plus"
-                        android:focusable="true"
-                        android:nextFocusDown="@+id/txtNumber"
-                        android:nextFocusUp="@id/txtFontSize"
-                        android:padding="20dp"
-                        android:text="@string/plus" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_weight="1"
-                    android:gravity="center_vertical" >
-
+                    
                     <TextView
                         android:id="@+id/txtNumber"
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:focusable="true"
                         android:gravity="center"
-                        android:maxLength="2"
-                        android:nextFocusDown="@+id/btnDecrease"
-                        android:nextFocusUp="@id/btnIncrease" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_weight="1"
-                    android:gravity="center_vertical" >
-
-                    <Button
-                        android:id="@+id/btnDecrease"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/minusDescription"
-                        android:nextFocusDown="@+id/txtFontType"
-                        android:nextFocusUp="@id/txtNumber"
-                        android:padding="20dp"
-                        android:text="@string/minus" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_weight="1"
-                    android:gravity="center_vertical" >
+                        android:maxLength="2" />
+				</TableRow>    
+				
+               <TableRow
+                    android:layout_weight="0"
+                    android:gravity="center_vertical" >               
 
                     <TextView
                         android:id="@+id/txtFontType"
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:background="@color/homescreen_background"
                         android:contentDescription="@string/fontType"
                         android:focusable="true"
@@ -133,40 +199,10 @@
                     android:layout_weight="0"
                     android:gravity="center_vertical" >
 
-                    <Spinner
-                        android:id="@+id/fontType"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_span="5"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/fontStyle"
-                        android:entries="@array/fontTypes"
-                        android:nextFocusDown="@+id/btnApplyFont"
-                        android:nextFocusUp="@+id/txtFontType"
-                        android:prompt="@string/fontStyle" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_weight="0"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:id="@+id/txtEmpty5"
-                        android:layout_width="match_parent"
-                        android:layout_height="12dp"
-                        android:background="@color/homescreen_background"
-                        android:focusable="false"
-                        android:text="@string/txtEmpty" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_weight="0"
-                    android:gravity="center_vertical" >
-
                     <TextView
                         android:id="@+id/txtEmpty6"
                         android:layout_width="1px"
-                        android:layout_height="12dp"
+                        android:layout_height="12px"
                         android:background="@color/homescreen_background"
                         android:focusable="false"
                         android:text="@string/txtEmpty" />
@@ -182,23 +218,14 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="right"
                         android:layout_weight="1"
-                        android:nextFocusDown="@+id/btnNavigationBack"
-                        android:nextFocusUp="@+id/fontType"
-                        android:padding="20dp"
                         android:text="@string/resetFont"
-                        android:textSize="@dimen/card_textsize_regular" />
+                        android:textSize="@dimen/card_textsize_regular" 
+                        android:background="@drawable/card"
+                        android:textStyle="bold" />
                 </TableRow>
             </TableLayout>
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:background="@color/navigation_bar_background"
-        android:orientation="vertical" >
-    </LinearLayout>
 
     <TableLayout
         android:layout_width="fill_parent"
@@ -227,7 +254,7 @@
 
             <TextView
                 android:id="@+id/txtEmpty9"
-                android:layout_width="12dp"
+                android:layout_width="12px"
                 android:layout_height="match_parent"
                 android:background="@color/navigation_bar_background" />
 

@@ -277,6 +277,9 @@
         <item name="red">Red</item>
         <item name="yellow">Yellow</item>
     </string-array>
+    <string name="txtSettingsColorHeaderForeground">Change Foreground Color</string>
+    <string name="txtSettingsColorHeaderBackground">Change Background Color</string>
+    <string name="txtSettingsColorHeaderPreview">Preview Color Changes</string>
     
      <!--  SettingsFont.java -->
     <string name="size">size</string>
@@ -284,8 +287,8 @@
     <string name="fonttype">fonttype</string>
     <string name="fontSize">Text Size</string>
     <string name="fontType">Text Type</string>
-    <string name="plus">+</string>
-    <string name="minus">-</string>
+    <string name="plus">Text\nLarger</string>
+    <string name="minus">Text\nSmaller</string>
     <string name="minusDescription">minus</string>
     <string name="fontStyle">Text Type</string>
     <string name="maxLimit">36</string>
@@ -306,6 +309,9 @@
         <item name="serif">Serif</item>
         <item name="monospace">Monospace</item>
     </string-array>
+    <string name="txtSettingsFontHeaderSize">Change Font Size</string>
+    <string name="txtSettingsFontHeaderType">Change Font Type</string>
+    <string name="txtSettingsFontHeaderPreview">Preview Font Changes</string>
     
     <!--  SettingsVolume.java -->
     <string name="txtVolumeSelection">Make your volume selection below</string>
@@ -356,11 +362,6 @@
     <string name="reachedBeginning">Reached beginning of list</string>
     <string name="reachedEnd">Reached end of list</string>
     <string name="tabTextMsgsWriteTalkBackFriendly">Write new message</string>
-    <string name="txtTextMsgsEntry1">Unread\nEva Krueger, August 5</string>
-    <string name="txtTextMsgsEntry2">Read\nCaspar Isemer, August 4</string>
-    <string name="txtTextMsgsEntry3">Read\nZainab Chinikamwala, July 29</string>
-    <string name="txtTextMsgsEntry4">Unread\nHomiyar Mobedji, July 27</string>
-    <string name="txtTextMsgsEntry5">Read\nEva Krueger, July 24</string> 
     <string name="setAsDefault">Use Easy Access instead of Messaging as your SMS app?</string>
     
     <!-- TextMessagesComposerApp.java -->
