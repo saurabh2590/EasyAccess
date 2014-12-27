@@ -83,11 +83,11 @@ public class CallingScreen extends Activity {
 				if (getIntent().getExtras().getInt("type", -1) == Utils.OUTGOING) {
 					// outgoing call
 					callerDetails = getString(R.string.calling) + name + ": " + typeOfNumber;
-					btnAnswerCall.setVisibility(View.GONE);
+                    hideAnswerAndRejectButtons();
 				} else {
 					// incoming call
 					callerDetails = getString(R.string.call_from) + name + ": " + typeOfNumber;
-					btnAnswerCall.setVisibility(View.VISIBLE);
+                    showAnswerAndRejectButtons();
 				}
 				
 			} else if (Utils.callingDetails != null) {
@@ -96,11 +96,11 @@ public class CallingScreen extends Activity {
 				if (getIntent().getExtras().getInt("type", -1) == Utils.OUTGOING) {
 					// outgoing call
 					callerDetails = getString(R.string.calling)	+ Utils.callingDetails.get("number");
-					btnAnswerCall.setVisibility(View.GONE);
+					hideAnswerAndRejectButtons();
 				} else {
 					// incoming call
 					callerDetails = getString(R.string.call_from) + Utils.callingDetails.get("number");
-					btnAnswerCall.setVisibility(View.VISIBLE);
+					showAnswerAndRejectButtons();
 				}
 			}
 			
@@ -125,6 +125,19 @@ public class CallingScreen extends Activity {
 						"android.permission.CALL_PRIVILEGED");
 			}
 		});
+
+        btnRejectCall.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                // answer call
+                Intent buttonDown = new Intent(Intent.ACTION_MEDIA_BUTTON);
+                buttonDown.putExtra(Intent.EXTRA_KEY_EVENT, new KeyEvent(
+                        KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HEADSETHOOK));
+                getApplicationContext().sendOrderedBroadcast(buttonDown,
+                        "android.permission.CALL_PRIVILEGED");
+            }
+        });
 
 		this.bReceiver = new BroadcastReceiver() {
 			@Override
@@ -154,7 +167,17 @@ public class CallingScreen extends Activity {
 
 	}
 
-	/**
+    private void showAnswerAndRejectButtons() {
+        btnAnswerCall.setVisibility(View.VISIBLE);
+        btnRejectCall.setVisibility(View.VISIBLE);
+    }
+
+    private void hideAnswerAndRejectButtons() {
+        btnAnswerCall.setVisibility(View.GONE);
+        btnRejectCall.setVisibility(View.GONE);
+    }
+
+    /**
 	 * Announces the text, that is the name and type of the contact or the
 	 * number being passed as a parameter.
 	 * 
