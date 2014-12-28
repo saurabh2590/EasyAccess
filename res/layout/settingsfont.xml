@@ -129,37 +129,7 @@
                         android:textStyle="bold"/>
                 </TableRow>		    
 				
-		    <TextView
-				android:id="@+id/txtSettingsFontHeaderPreview"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingTop="12px" 
-				android:layout_marginBottom="12px"
-				android:contentDescription="@string/txtSettingsFontHeaderPreview"
-				android:focusable="true"
-				android:text="@string/txtSettingsFontHeaderPreview"
-				android:textColor="@color/card_textcolor_regular"
-				android:textSize="@dimen/card_textsize_listitems"
-				android:textStyle="bold" /> 		    		
-                
 
-                <TableRow
-                    android:layout_weight="0"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:id="@+id/txtPreview"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0"
-                        android:background="@color/homescreen_background"
-                        android:contentDescription="@string/txtPreview"
-                        android:focusable="false"
-                        android:gravity="center"
-                        android:text="@string/txtPreview"
-                        android:textColor="@drawable/card_textcolor"
-                        android:textSize="@dimen/card_textsize_regular" />
-               </TableRow>
 
                <TableRow
                     android:layout_weight="0"
@@ -168,45 +138,13 @@
                     <TextView
                         android:id="@+id/txtNumber"
                         android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="0px"
+                        android:visibility="gone"
                         android:layout_weight="0"
                         android:focusable="true"
                         android:gravity="center"
                         android:maxLength="2" />
-				</TableRow>    
-				
-               <TableRow
-                    android:layout_weight="0"
-                    android:gravity="center_vertical" >               
-
-                    <TextView
-                        android:id="@+id/txtFontType"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0"
-                        android:background="@color/homescreen_background"
-                        android:contentDescription="@string/fontType"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:nextFocusDown="@+id/fontType"
-                        android:nextFocusUp="@+id/btnDecrease"
-                        android:text="@string/fontType"
-                        android:textColor="@color/card_textcolor_regular"
-                        android:textSize="@dimen/card_textsize_regular" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_weight="0"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:id="@+id/txtEmpty6"
-                        android:layout_width="1px"
-                        android:layout_height="12px"
-                        android:background="@color/homescreen_background"
-                        android:focusable="false"
-                        android:text="@string/txtEmpty" />
-                </TableRow>
+				</TableRow>
 
                 <TableRow
                     android:layout_weight="1"

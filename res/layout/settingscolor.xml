@@ -109,37 +109,6 @@
                         android:focusable="false"
                         android:text="@string/txtEmpty" />
                 </TableRow>
-                
-		    <TextView
-				android:id="@+id/txtSettingsColorHeaderPreview"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingTop="12px" 
-				android:layout_marginBottom="12px"
-				android:contentDescription="@string/txtSettingsColorHeaderPreview"
-				android:focusable="true"
-				android:text="@string/txtSettingsColorHeaderPreview"
-				android:textColor="@color/card_textcolor_regular"
-				android:textSize="@dimen/card_textsize_listitems"
-				android:textStyle="bold" />                 
-                
-                <TableRow
-                    android:layout_weight="1"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:id="@+id/txtPreview"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/homescreen_background"
-                        android:contentDescription="@string/txtPreview"
-                        android:focusable="false"
-                        android:gravity="center"
-                        android:text="@string/txtPreview"
-                        android:textColor="@drawable/card_textcolor"
-                        android:textSize="@dimen/card_textsize_regular" />
-                </TableRow>                
 
                 <TableRow
                     android:layout_weight="1"

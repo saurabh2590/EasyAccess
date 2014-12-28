@@ -42,8 +42,8 @@
     <string name="roaming_on">Please note that roaming is activated on your phone</string>
     <string name="call_ended">Call Ended</string>
     <string name="call_rejected">Call Rejected</string>
-    <string name="btnAnswerCall">Answer Call from </string>
-    <string name="btnRejectCall">Reject Call from </string>
+    <string name="btnAnswerCall">Answer Call</string>
+    <string name="btnRejectCall">Reject Call</string>
     <string name="deleted">Deleted</string>
 	<string name="current_call_on_hold">Putting the current call on hold and calling </string>
 	<string name="calling">Calling </string>
