@@ -21,48 +21,26 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:gravity="center_vertical" >
+                android:gravity="center_vertical"
+                android:paddingLeft="12px" 
+				android:paddingRight="12px"
+				android:paddingTop="12px" 
+				android:paddingBottom="12px" >
+				
+		    <TextView
+				android:id="@+id/txtSettingsColorHeaderForeground"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="12px"
+				android:contentDescription="@string/txtSettingsColorHeaderForeground"
+				android:focusable="true"
+				android:text="@string/txtSettingsColorHeaderForeground"
+				android:textColor="@color/card_textcolor_regular"
+				android:textSize="@dimen/card_textsize_listitems"
+				android:textStyle="bold" />                
 
                 <TableRow
                     android:layout_weight="1"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:id="@+id/txtPreview"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/card"
-                        android:contentDescription="@string/txtPreview"
-                        android:focusable="false"
-                        android:gravity="center"
-                        android:text="@string/txtPreview"
-                        android:textColor="@drawable/card_textcolor"
-                        android:textSize="@dimen/card_textsize_regular" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_weight="1"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:id="@+id/txtForeground"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/homescreen_background"
-                        android:contentDescription="@string/foreground"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:nextFocusDown="@+id/fcolors"
-                        android:nextFocusUp="@+id/txtPreview"
-                        android:text="@string/foreground"
-                        android:textColor="@color/card_textcolor_regular"
-                        android:textSize="@dimen/card_textsize_regular" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_weight="0"
                     android:gravity="center_vertical" >
 
                     <Spinner
@@ -72,30 +50,23 @@
                         android:layout_weight="1"
                         android:contentDescription="@string/foreground"
                         android:entries="@array/colors"
-                        android:nextFocusDown="@+id/txtBackground"
-                        android:nextFocusUp="@+id/txtForeground"
-                        android:prompt="@string/foreground" />
+                        android:prompt="@string/foreground" 
+                        android:background="@drawable/card"
+                        android:textStyle="bold" />
                 </TableRow>
-
-                <TableRow
-                    android:layout_weight="1"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:id="@+id/txtBackground"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/homescreen_background"
-                        android:contentDescription="@string/background"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:nextFocusDown="@+id/bcolors"
-                        android:nextFocusUp="@+id/fcolors"
-                        android:text="@string/background"
-                        android:textColor="@color/card_textcolor_regular"
-                        android:textSize="@dimen/card_textsize_regular" />
-                </TableRow>
+                
+		    <TextView
+				android:id="@+id/txtSettingsColorHeaderBackground"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingTop="24px" 
+				android:layout_marginBottom="12px"
+				android:contentDescription="@string/txtSettingsColorHeaderBackground"
+				android:focusable="true"
+				android:text="@string/txtSettingsColorHeaderBackground"
+				android:textColor="@color/card_textcolor_regular"
+				android:textSize="@dimen/card_textsize_listitems"
+				android:textStyle="bold" />                 
 
                 <TableRow
                     android:layout_weight="0"
@@ -104,14 +75,14 @@
                     <TextView
                         android:id="@+id/txtEmpty4"
                         android:layout_width="1px"
-                        android:layout_height="12dp"
+                        android:layout_height="12px"
                         android:background="@color/homescreen_background"
                         android:focusable="false"
                         android:text="@string/txtEmpty" />
                 </TableRow>
 
                 <TableRow
-                    android:layout_weight="0"
+                    android:layout_weight="1"
                     android:gravity="center_vertical" >
 
                     <Spinner
@@ -121,26 +92,9 @@
                         android:layout_weight="1"
                         android:contentDescription="@string/background"
                         android:entries="@array/colors"
-                        android:nextFocusDown="@+id/btnApplyColors"
-                        android:nextFocusUp="@+id/txtBackground"
-                        android:paddingBottom="12dp"
-                        android:paddingLeft="12dp"
-                        android:paddingRight="12dp"
-                        android:paddingTop="12dp"
-                        android:prompt="@string/background" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_weight="0"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:id="@+id/txtEmpty5"
-                        android:layout_width="1px"
-                        android:layout_height="12dp"
-                        android:background="@color/homescreen_background"
-                        android:focusable="false"
-                        android:text="@string/txtEmpty" />
+                        android:prompt="@string/background" 
+                        android:background="@drawable/card"
+                        android:textStyle="bold" />
                 </TableRow>
 
                 <TableRow
@@ -150,7 +104,7 @@
                     <TextView
                         android:id="@+id/txtEmpty6"
                         android:layout_width="1px"
-                        android:layout_height="12dp"
+                        android:layout_height="12px"
                         android:background="@color/homescreen_background"
                         android:focusable="false"
                         android:text="@string/txtEmpty" />
@@ -167,13 +121,11 @@
                         android:layout_weight="1"
                         android:focusable="true"
                         android:gravity="center"
-                        android:nextFocusDown="@+id/btnNavigationBack"
-                        android:nextFocusUp="@+id/bcolors"
-                        android:padding="20dp"
                         android:text="@string/resetColors"
                         android:textColor="@drawable/card_textcolor"
                         android:textSize="@dimen/card_textsize_regular"
-                        android:textStyle="bold" />
+                        android:textStyle="bold" 
+                        android:background="@drawable/card" />
                 </TableRow>
             </TableLayout>
         </LinearLayout>
@@ -206,7 +158,7 @@
 
             <TextView
                 android:id="@+id/txtEmpty7"
-                android:layout_width="12dp"
+                android:layout_width="12px"
                 android:layout_height="match_parent"
                 android:background="@color/navigation_bar_background" />
 

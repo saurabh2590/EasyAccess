@@ -1,9 +1,8 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/settings"
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/homescreen_background"
-    android:orientation="vertical" >     
+    android:layout_height="fill_parent" 
+    android:background="@color/homescreen_background" > 
 
  	<LinearLayout 
 	    android:orientation="vertical"
@@ -27,9 +26,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnSettingsScreenCurtain"
-					android:text="@string/btnSettingsScreenCurtain"
-					android:contentDescription="@string/btnSettingsScreenCurtain"
+					android:id="@+id/btnPhoneCamera"
+					android:text="@string/btnPhoneCamera"
+					android:contentDescription="@string/btnPhoneCamera"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -39,7 +38,7 @@
 				    android:textSize="@dimen/card_textsize_regular"
 				    android:gravity="center"
 					android:focusable="true"
-				/>
+				/>	
 			</TableRow> 
 			
 			<TableRow
@@ -62,9 +61,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnSettingsColor"
-					android:text="@string/btnSettingsColor"
-					android:contentDescription="@string/btnSettingsColor"
+					android:id="@+id/btnGoogleGoggles"
+					android:text="@string/btnGoogleGoggles"
+					android:contentDescription="@string/btnGoogleGoggles"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -97,9 +96,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnSettingsFont"
-					android:text="@string/btnSettingsFont"
-					android:contentDescription="@string/btnSettingsFont"
+					android:id="@+id/btnOCRScanner"
+					android:text="@string/btnOCRScanner"
+					android:contentDescription="@string/btnOCRScanner"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -131,9 +130,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnSettingsVolume"
-					android:text="@string/btnSettingsVolume"
-					android:contentDescription="@string/btnSettingsVolume"
+					android:id="@+id/btnColorIdentifier"
+					android:text="@string/btnColorIdentifier"
+					android:contentDescription="@string/btnColorIdentifier"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -165,9 +164,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnSettingsAndroid"
-					android:text="@string/btnSettingsAndroid"
-					android:contentDescription="@string/btnSettingsAndroid"
+					android:id="@+id/btnMoneyIdentifier"
+					android:text="@string/btnMoneyIdentifier"
+					android:contentDescription="@string/btnMoneyIdentifier"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -199,9 +198,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnAbout"
-					android:text="@string/btnAbout"
-					android:contentDescription="@string/btnAbout"
+					android:id="@+id/btnLightDetector"
+					android:text="@string/btnLightDetector"
+					android:contentDescription="@string/btnLightDetector"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -278,4 +277,7 @@
 			</TableRow>
 		</TableLayout>	
 	</LinearLayout>
-</LinearLayout>
+	    
+
+		
+</LinearLayout>		

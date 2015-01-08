@@ -1,0 +1,187 @@
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/homescreen3"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="@color/homescreen_background" > 
+    
+<TableLayout
+    android:gravity="center_vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_centerVertical="true"
+    android:layout_weight="1"
+    android:stretchColumns="0,2" 
+    android:weightSum="3"
+    android:paddingLeft="12px" 
+	android:paddingRight="12px"
+	android:paddingTop="12px" 
+	android:paddingBottom="12px" > 
+
+	<TableRow
+	    android:layout_weight="1" 
+	    android:gravity="center_vertical" >
+	   
+		<Button  
+			android:id="@+id/btnFileBrowser"
+			android:text="@string/btnFileBrowser"
+			android:contentDescription="@string/btnFileBrowser"
+			android:layout_weight="1"
+		    android:layout_width="0dip" 
+		    android:layout_height="match_parent" 
+		    android:background="@drawable/card"
+		    android:textColor="@drawable/card_textcolor" 
+		    android:textStyle="bold"
+		    android:textSize="@dimen/card_textsize_regular"
+		    android:gravity="center"
+			android:focusable="true"
+		/>	
+		
+		<TextView  
+			android:id="@+id/txtEmpty1"
+			android:text="@string/txtEmpty"
+		    android:layout_width="12px" 
+		    android:layout_height="1px"
+		    android:background="@color/homescreen_background"		    
+		    android:focusable="false"
+		/>		
+		
+		<Button  
+			android:id="@+id/btnCameraApps"
+			android:text="@string/btnCameraApps"
+			android:contentDescription="@string/btnCameraApps"
+			android:layout_weight="1"
+		    android:layout_width="0dip" 
+		    android:layout_height="match_parent" 
+			android:background="@drawable/card"
+		    android:textColor="@drawable/card_textcolor" 		    
+		    android:textStyle="bold"
+		    android:textSize="@dimen/card_textsize_regular"
+		    android:gravity="center"
+			android:focusable="true"
+		/>
+	</TableRow>  
+	
+	<TableRow
+	    android:layout_weight="0" 
+	    android:gravity="center_vertical" >
+
+		<TextView  
+			android:id="@+id/txtEmpty2"
+		    android:text="@string/txtEmpty"			
+		    android:layout_width="1px" 
+		    android:layout_height="12px"
+		    android:layout_span="2"
+		    android:background="@color/homescreen_background"
+		    android:focusable="false"
+		/>			
+	
+	</TableRow>
+
+	<TableRow
+	    android:layout_weight="1" 
+	    android:gravity="center_vertical" >
+		
+		<Button  
+			android:id="@+id/btnSocialNetworks"
+			android:text="@string/btnSocialNetworks"
+			android:contentDescription="@string/btnSocialNetworks"			
+			android:layout_weight="1"
+		    android:layout_width="0dip" 
+		    android:layout_height="match_parent" 
+		    android:background="@drawable/card" 
+		    android:textColor="@drawable/card_textcolor"  
+		    android:textStyle="bold"
+		    android:textSize="@dimen/card_textsize_regular"
+		    android:gravity="center"
+			android:focusable="true"
+		/>
+		
+		<TextView  
+			android:id="@+id/txtEmpty3"
+		    android:text="@string/txtEmpty"			
+		    android:layout_width="12px" 
+		    android:layout_height="1px"
+		    android:background="@color/homescreen_background"
+		    android:focusable="false"
+		/>			
+		
+		<Button  
+			android:id="@+id/btnSettings"
+			android:text="@string/btnSettings"
+			android:contentDescription="@string/btnSettings"			
+			android:layout_weight="1"
+		    android:layout_width="0dip" 
+		    android:layout_height="match_parent" 
+		    android:background="@drawable/card" 
+		    android:textColor="@drawable/card_textcolor" 
+		    android:textStyle="bold"
+		    android:textSize="@dimen/card_textsize_regular"
+		    android:gravity="center"
+			android:focusable="true"
+		/>	
+	</TableRow> 
+
+	<TableRow
+	    android:layout_weight="0" 
+	    android:gravity="center_vertical" >
+
+		<TextView  
+			android:id="@+id/txtEmpty4"
+		    android:text="@string/txtEmpty"			
+		    android:layout_width="1px" 
+		    android:layout_height="12px"
+		    android:layout_span="2"
+		    android:background="@color/homescreen_background"
+		    android:focusable="false"
+		/>			
+	
+	</TableRow> 	
+	
+	<TableRow
+	    android:layout_weight="1" 
+	    android:gravity="center_vertical" >
+		
+		<Button  
+			android:id="@+id/btnMoreAccessibleApps"
+			android:text="@string/btnMoreAccessibleApps"
+			android:contentDescription="@string/btnMoreAccessibleApps"			
+			android:layout_weight="1"
+		    android:layout_width="0dip" 
+		    android:layout_height="match_parent" 
+		    android:background="@drawable/card" 
+		    android:textColor="@drawable/card_textcolor"
+		    android:textStyle="bold"
+		    android:textSize="@dimen/card_textsize_regular"
+		    android:gravity="center"
+			android:focusable="true"		
+		/>
+		
+		<TextView  
+			android:id="@+id/txtEmpty5"
+		    android:text="@string/txtEmpty"			
+		    android:layout_width="12px" 
+		    android:layout_height="1px"
+		    android:background="@color/homescreen_background"
+		    android:focusable="false"
+		/>			
+		
+		<Button  
+			android:id="@+id/btnAllApps"
+			android:text="@string/btnAllApps"
+			android:contentDescription="@string/btnAllApps"			
+			android:layout_weight="1"
+		    android:layout_width="0dip" 
+		    android:layout_height="match_parent" 
+		    android:background="@drawable/card" 
+		    android:textColor="@drawable/card_textcolor" 
+		    android:textStyle="bold"
+		    android:textSize="@dimen/card_textsize_regular"
+		    android:gravity="center"
+			android:focusable="true"		
+		/>	
+	</TableRow>   
+    
+</TableLayout>
+		
+</LinearLayout>		

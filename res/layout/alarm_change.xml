@@ -1,12 +1,8 @@
-  
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/calling"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/homescreen_background"
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    tools:context=".CallingScreen" >     
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="@color/homescreen_background" > 
 
  	<LinearLayout 
 	    android:orientation="vertical"
@@ -26,42 +22,13 @@
 			android:paddingBottom="12px" > 				
 			
 			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >	 
-			    
-			    <TextView
-			        android:id="@+id/recipientTextView"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:gravity="center"
-			        android:textColor="@color/card_background_pressed"
-			        android:textSize="20sp"
-			        android:textStyle="bold" />				    
-			    
-			</TableRow>  
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty0"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="1px" 
-				    android:layout_height="12px"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				/>			
-			</TableRow>				
-	        
-			<TableRow
 			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >		    
+			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnAnswerCall"
-					android:text="@string/btnAnswerCall"
-					android:contentDescription="@string/btnAnswerCall"
+					android:id="@+id/btnAlarmChange"
+					android:text="@string/btnAlarmChange"
+					android:contentDescription="@string/btnAlarmChange"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -71,7 +38,6 @@
 				    android:textSize="@dimen/card_textsize_regular"
 				    android:gravity="center"
 					android:focusable="true"
-					android:visibility="visible"
 				/>			
 			</TableRow> 
 			
@@ -94,9 +60,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnRejectCall"
-					android:text="@string/btnRejectCall"
-					android:contentDescription="@string/btnRejectCall"
+					android:id="@+id/btnAlarmDisable"
+					android:text="@string/btnAlarmDisable"
+					android:contentDescription="@string/btnAlarmDisable"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -107,8 +73,8 @@
 				    android:gravity="center"
 					android:focusable="true"
 				/>	
-			</TableRow> 
-						
+			</TableRow>
+
 		</TableLayout> 	    
 	</LinearLayout>
   
@@ -174,4 +140,7 @@
 			</TableRow>
 		</TableLayout>	
 	</LinearLayout>
-</LinearLayout>
+	    
+
+		
+</LinearLayout>		

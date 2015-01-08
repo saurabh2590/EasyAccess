@@ -41,6 +41,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.PREVENT_POWER_KEY" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <supports-screens
         android:largeScreens="true"
@@ -284,7 +285,7 @@
             android:configChanges="orientation|keyboardHidden|keyboard"
             android:contentDescription="@string/contacts"
             android:label="@string/contacts"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateAlwaysVisible" >
         </activity>
         <activity
             android:name="org.easyaccess.settings.SettingsMenu"
@@ -316,6 +317,18 @@
             android:contentDescription="@string/status"
             android:label="@string/status" >
         </activity>
+
+        <activity android:name="org.easyaccess.alarms.AlarmCalendarMenu"></activity>
+        <activity android:name="org.easyaccess.alarms.AlarmApp"></activity>
+        <activity android:name="org.easyaccess.alarms.AlarmChangeApp"></activity>
+        <activity android:name="org.easyaccess.alarms.AlarmSetApp"></activity>
+        <activity android:name="org.easyaccess.alarms.AlarmSnoozeApp"></activity>
+        <activity android:name="org.easyaccess.simplemenus.CameraAppsMenu"></activity>
+        <activity android:name="org.easyaccess.simplemenus.BooksNewspapersMenu"></activity>
+        <activity android:name="org.easyaccess.simplemenus.MapsMenu"></activity>
+        <activity android:name="org.easyaccess.simplemenus.MusicVideoMenu"></activity>
+        <activity android:name="org.easyaccess.simplemenus.SocialNetworksMenu"></activity>
+
     </application>
 
 </manifest>

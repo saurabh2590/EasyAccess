@@ -117,7 +117,7 @@ public class Utils {
 			for (int index = 0; index < ((ViewGroup) view).getChildCount(); index++)
 				iterateToApplyColor(((ViewGroup) view).getChildAt(index),
 						bgColor, fgColor);
-		} else {
+		} else if(view != null) {
 			if (view.getClass() == Button.class
 					&& view.getId() != R.id.btnNavigationBack
 					&& view.getId() != R.id.btnNavigationHome) {
@@ -169,7 +169,7 @@ public class Utils {
 			for (int index = 0; index < ((ViewGroup) view).getChildCount(); index++)
 				iterateToApplyFontSize(((ViewGroup) view).getChildAt(index),
 						fontSize);
-		} else {
+		} else if(view != null) {
 			if (view.getClass() == Button.class
 					&& view.getId() != R.id.btnNavigationBack
 					&& view.getId() != R.id.btnNavigationHome) {
@@ -200,7 +200,7 @@ public class Utils {
 			for (int index = 0; index < ((ViewGroup) view).getChildCount(); index++)
 				iterateToApplyFontType(((ViewGroup) view).getChildAt(index),
 						fontType);
-		} else {
+		} else if(view != null) {
 			if (view.getClass() == Button.class
 					&& view.getId() != R.id.btnNavigationBack
 					&& view.getId() != R.id.btnNavigationHome) {

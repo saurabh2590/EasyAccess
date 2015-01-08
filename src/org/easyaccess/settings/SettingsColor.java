@@ -53,7 +53,7 @@ public class SettingsColor extends EasyAccessActivity {
 	/** Declare variables and UI elements **/
 	private Spinner spinnerFg, spinnerBg;
 	private SpinnerAdapter adapter;
-	private TextView txtForeground, txtBackground, txtPreview;
+	private TextView txtForeground, txtBackground;
 	private Button btnReset;
 	private Editor editor;
 	private SharedPreferences preferences;
@@ -84,7 +84,6 @@ public class SettingsColor extends EasyAccessActivity {
 					getResources().getString(R.string.color), 0);
 			editor = preferences.edit();
 			editor.putInt("fgcolor", resId);
-			txtPreview.setTextColor(getResources().getColor(resId));
 			if (editor.commit()) {
 				// check if keyboard is connected and accessibility services are
 				// disabled
@@ -126,7 +125,6 @@ public class SettingsColor extends EasyAccessActivity {
 					getResources().getString(R.string.color), 0);
 			editor = preferences.edit();
 			editor.putInt("bgcolor", resId);
-			txtPreview.setBackgroundColor(getResources().getColor(resId));
 			if (editor.commit()) {
 				// check if keyboard is connected and accessibility services are
 				// disabled
@@ -380,9 +378,8 @@ public class SettingsColor extends EasyAccessActivity {
 		// Find UI elements
 		spinnerFg = (Spinner) findViewById(R.id.fcolors);
 		spinnerBg = (Spinner) findViewById(R.id.bcolors);
-		txtPreview = (TextView) findViewById(R.id.txtPreview);
-		txtForeground = (TextView) findViewById(R.id.txtForeground);
-		txtBackground = (TextView) findViewById(R.id.txtBackground);
+		txtForeground = (TextView) findViewById(R.id.txtSettingsColorHeaderForeground);
+		txtBackground = (TextView) findViewById(R.id.txtSettingsColorHeaderBackground);
 		btnReset = (Button) findViewById(R.id.btnApplyColors);
 
 		adapter = new SpinnerAdapter(getApplicationContext(), Utils.colorNames);

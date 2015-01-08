@@ -1,9 +1,8 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/settings"
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/homescreen_background"
-    android:orientation="vertical" >     
+    android:layout_height="fill_parent" 
+    android:background="@color/homescreen_background" > 
 
  	<LinearLayout 
 	    android:orientation="vertical"
@@ -20,16 +19,16 @@
 		    android:paddingLeft="12px" 
 			android:paddingRight="12px"
 			android:paddingTop="12px" 
-			android:paddingBottom="12px" > 
-		
+			android:paddingBottom="12px" > 				
+			
 			<TableRow
 			    android:layout_weight="1" 
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnSettingsScreenCurtain"
-					android:text="@string/btnSettingsScreenCurtain"
-					android:contentDescription="@string/btnSettingsScreenCurtain"
+					android:id="@+id/btnGoogleMaps"
+					android:text="@string/btnGoogleMaps"
+					android:contentDescription="@string/btnGoogleMaps"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -39,7 +38,7 @@
 				    android:textSize="@dimen/card_textsize_regular"
 				    android:gravity="center"
 					android:focusable="true"
-				/>
+				/>			
 			</TableRow> 
 			
 			<TableRow
@@ -54,17 +53,16 @@
 				    android:background="@color/homescreen_background"
 				    android:focusable="false"
 				/>			
-			
-			</TableRow>
+			</TableRow>			
 			
 			<TableRow
 			    android:layout_weight="1" 
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnSettingsColor"
-					android:text="@string/btnSettingsColor"
-					android:contentDescription="@string/btnSettingsColor"
+					android:id="@+id/btnPlaceSaver"
+					android:text="@string/btnPlaceSaver"
+					android:contentDescription="@string/btnPlaceSaver"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -75,7 +73,7 @@
 				    android:gravity="center"
 					android:focusable="true"
 				/>	
-			</TableRow> 
+			</TableRow> 			
 			
 			<TableRow
 			    android:layout_weight="0" 
@@ -89,75 +87,6 @@
 				    android:background="@color/homescreen_background"
 				    android:focusable="false"
 				/>			
-			
-			</TableRow>		
-			
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >
-			   
-				<Button  
-					android:id="@+id/btnSettingsFont"
-					android:text="@string/btnSettingsFont"
-					android:contentDescription="@string/btnSettingsFont"
-					android:layout_weight="1"
-				    android:layout_width="fill_parent" 
-				    android:layout_height="match_parent" 
-				    android:background="@drawable/card"
-				    android:textColor="@drawable/card_textcolor" 
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_regular"
-				    android:gravity="center"
-					android:focusable="true"
-				/>	
-			</TableRow> 
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty3"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="1px" 
-				    android:layout_height="12px"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				/>			
-			</TableRow>					
-			
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >
-			   
-				<Button  
-					android:id="@+id/btnSettingsVolume"
-					android:text="@string/btnSettingsVolume"
-					android:contentDescription="@string/btnSettingsVolume"
-					android:layout_weight="1"
-				    android:layout_width="fill_parent" 
-				    android:layout_height="match_parent" 
-				    android:background="@drawable/card"
-				    android:textColor="@drawable/card_textcolor" 
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_regular"
-				    android:gravity="center"
-					android:focusable="true"
-				/>	
-			</TableRow> 
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty4"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="1px" 
-				    android:layout_height="12px"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				/>			
 			</TableRow>			
 			
 			<TableRow
@@ -165,9 +94,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnSettingsAndroid"
-					android:text="@string/btnSettingsAndroid"
-					android:contentDescription="@string/btnSettingsAndroid"
+					android:id="@+id/btnTalkingCompass"
+					android:text="@string/btnTalkingCompass"
+					android:contentDescription="@string/btnTalkingCompass"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -179,40 +108,7 @@
 					android:focusable="true"
 				/>	
 			</TableRow> 
-				
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty5"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="1px" 
-				    android:layout_height="12px"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				/>			
-			</TableRow>			
-			
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >
-			   
-				<Button  
-					android:id="@+id/btnAbout"
-					android:text="@string/btnAbout"
-					android:contentDescription="@string/btnAbout"
-					android:layout_weight="1"
-				    android:layout_width="fill_parent" 
-				    android:layout_height="match_parent" 
-				    android:background="@drawable/card"
-				    android:textColor="@drawable/card_textcolor" 
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_regular"
-				    android:gravity="center"
-					android:focusable="true"
-				/>	
-			</TableRow> 						
+						
 		</TableLayout> 	    
 	</LinearLayout>
   
@@ -278,4 +174,7 @@
 			</TableRow>
 		</TableLayout>	
 	</LinearLayout>
-</LinearLayout>
+	    
+
+		
+</LinearLayout>		

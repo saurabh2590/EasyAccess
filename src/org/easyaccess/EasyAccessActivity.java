@@ -20,9 +20,11 @@ package org.easyaccess;
 import org.easyaccess.settings.ScreenCurtainFunctions;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.Editable;
@@ -34,6 +36,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EasyAccessActivity extends Activity implements KeyListener {
 
@@ -62,6 +65,65 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 			}
 		});
 	}
+
+    /** Launch the respective Java class, depending on which button is pressed **/
+    protected void setButtonClickActivity(int buttonInt, final Context ctx, final Class<?> cls) {
+        Button button = (Button) findViewById(buttonInt);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ctx, cls);
+                startActivity(intent);
+            }
+        });
+    }
+
+    /** Launch the respective Android intent, depending on which button is pressed **/
+    protected void setButtonClickIntent(int buttonInt, final String intentTarget) {
+        Button button = (Button) findViewById(buttonInt);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(intentTarget);
+                startActivity(intent);
+            }
+        });
+    }
+
+    /** Launch the respective Android app, depending on which button is pressed **/
+    protected void setButtonClickUri(int buttonInt, final String uriTarget) {
+        Button button = (Button) findViewById(buttonInt);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                launchOrDownloadFromActivity(uriTarget);
+            }
+        });
+    }
+
+    /** Launch installed Android app or download from Google Play Store if missing **/
+    void launchOrDownloadFromActivity(String uriTarget) {
+        Intent intent = getPackageManager().getLaunchIntentForPackage(uriTarget);
+        if (intent != null)
+        {
+            // Start installed app
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        else
+        {
+            // If app is not installed, bring user to the Play Store
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setData(Uri.parse("market://details?id=" + uriTarget));
+
+            // Error handling in case Play Store cannot be launched
+            try {
+                startActivity(intent);
+            } catch(ActivityNotFoundException e) {
+                Context context = getApplicationContext();
+                CharSequence text = "Unable to launch the Google Play Store!";
+                Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
 	/**
 	 * Turns off the screen curtain functionality if it is on.

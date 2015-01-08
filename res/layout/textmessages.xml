@@ -6,79 +6,88 @@
     android:background="@color/homescreen_background"
     android:orientation="vertical" >
 
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:background="@color/homescreen_background" >
-
-        <TableRow>
-
-            <Button
-                android:id="@+id/tabTextMsgsInbox"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/keypad_height"
-                android:layout_weight="1"
-                android:background="@drawable/card"
-                android:contentDescription="@string/tabTextMsgsInbox"
-                android:focusable="true"
-                android:gravity="center"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="@string/tabTextMsgsInbox"
-                android:textColor="@drawable/card_textcolor"
-                android:textSize="@dimen/card_textsize_tabs"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtEmpty3"
-                android:layout_width="12dp"
-                android:layout_height="1px"
-                android:background="@color/homescreen_background"
-                android:focusable="false"
-                android:text="@string/txtEmpty" />
-
-            <Button
-                android:id="@+id/tabTextMsgsSent"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/keypad_height"
-                android:layout_weight="1"
-                android:background="@drawable/card"
-                android:contentDescription="@string/tabTextMsgsSent"
-                android:focusable="true"
-                android:gravity="center"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="@string/tabTextMsgsSent"
-                android:textColor="@drawable/card_textcolor"
-                android:textSize="@dimen/card_textsize_tabs"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtEmpty4"
-                android:layout_width="12dp"
-                android:layout_height="1px"
-                android:background="@color/homescreen_background"
-                android:focusable="false"
-                android:text="@string/txtEmpty" />
-
-            <Button
-                android:id="@+id/tabTextMsgsWrite"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/keypad_height"
-                android:layout_weight="1"
-                android:background="@drawable/card"
-                android:contentDescription="@string/tabTextMsgsWriteTalkBackFriendly"
-                android:focusable="true"
-                android:gravity="center"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="@string/tabTextMsgsWrite"
-                android:textColor="@drawable/card_textcolor"
-                android:textSize="@dimen/card_textsize_tabs"
-                android:textStyle="bold" />
-        </TableRow>
-    </TableLayout>
+		<TableLayout
+		    android:gravity="center_vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_centerVertical="true"
+		    android:layout_weight="0"
+		    android:stretchColumns="0,2,4" 
+		    android:weightSum="5"
+		    android:paddingLeft="12px" 
+			android:paddingRight="12px"
+			android:paddingTop="12px" 
+			android:paddingBottom="12px" > 
+		
+			<TableRow
+			    android:layout_weight="1" 
+			    android:gravity="center_vertical" >
+			   
+				<Button  
+					android:id="@+id/tabTextMsgsInbox"
+					android:text="@string/tabTextMsgsInbox"
+					android:contentDescription="@string/tabTextMsgsInbox"
+					android:layout_weight="1"
+				    android:layout_width="0dip" 
+				    android:layout_height="@dimen/keypad_height" 
+				    android:background="@drawable/card"
+				    android:textColor="@drawable/card_textcolor" 
+				    android:textStyle="bold"
+				    android:textSize="@dimen/card_textsize_tabs"
+				    android:gravity="center"
+					android:focusable="true"
+				/>	
+				
+				<TextView  
+					android:id="@+id/txtEmpty1"
+					android:text="@string/txtEmpty"
+				    android:layout_width="12px" 
+				    android:layout_height="1px"
+				    android:background="@color/homescreen_background"		    
+				    android:focusable="false"
+				/>		
+				
+				<Button  
+					android:id="@+id/tabTextMsgsSent"
+					android:text="@string/tabTextMsgsSent"
+					android:contentDescription="@string/tabTextMsgsSent"
+					android:layout_weight="1"
+				    android:layout_width="0dip" 
+				    android:layout_height="@dimen/keypad_height" 
+				    android:background="@drawable/card"
+				    android:textColor="@drawable/card_textcolor" 
+				    android:textStyle="bold"
+				    android:textSize="@dimen/card_textsize_tabs"
+				    android:gravity="center"
+					android:focusable="true"
+				/>
+				
+				<TextView  
+					android:id="@+id/txtEmpty2"
+					android:text="@string/txtEmpty"
+				    android:layout_width="12px" 
+				    android:layout_height="1px"
+				    android:background="@color/homescreen_background"		    
+				    android:focusable="false"
+				/>		
+				
+				<Button  
+					android:id="@+id/tabTextMsgsWrite"
+					android:text="@string/tabTextMsgsWrite"
+					android:contentDescription="@string/tabTextMsgsWriteTalkBackFriendly"
+					android:layout_weight="1"
+				    android:layout_width="0dip" 
+				    android:layout_height="@dimen/keypad_height" 
+				    android:background="@drawable/card"
+				    android:textColor="@drawable/card_textcolor" 
+				    android:textStyle="bold"
+				    android:textSize="@dimen/card_textsize_tabs"
+				    android:gravity="center"
+					android:focusable="true"
+				/>				
+				
+			</TableRow>  
+		</TableLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

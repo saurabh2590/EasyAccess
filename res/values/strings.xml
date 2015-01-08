@@ -26,10 +26,11 @@
  	<string name="textMessageRecipient">Text Message Recipient</string>
  	<string name="textSize">19</string>
  	<string name="deleteSingleContacConfirm">Are you sure you want to delete the contact?</string>
+ 	
     <!-- PhoneDialer.java -->
     <string name="sim_absent">SIM card is absent. Cannot make call.</string>
     <string name="network_locked">Network is locked. Cannot make call.</string>
-    <string name="pin_required">Pin is required to make call.</string>
+    <string name="pin_required">PIN is required to make call.</string>
     <string name="puk_required">PUK is required to make the call.</string>
     <string name="sim_ready">Sim is ready</string>
     <string name="emergency_calls_only">Unable to make call. Only emergency calls can be made. The number you dialled is not an emergency number.</string>
@@ -41,29 +42,31 @@
     <string name="roaming_on">Please note that roaming is activated on your phone</string>
     <string name="call_ended">Call Ended</string>
     <string name="call_rejected">Call Rejected</string>
-    <string name="answer">Answer Call</string>
+    <string name="btnAnswerCall">Answer Call</string>
+    <string name="btnRejectCall">Reject Call</string>
     <string name="deleted">Deleted</string>
 	<string name="current_call_on_hold">Putting the current call on hold and calling </string>
 	<string name="calling">Calling </string>
 	<string name="call_from">Call from </string>
 	<string name="error">Error</string>
 	<string name="roaming_activated">Please note that roaming is activated.</string>
+
     <!-- Homescreen1.java -->
-    <string name="btnPhoneDialer">Phone\nDialer</string>    
+    <string name="btnPhoneDialer">Phone\nDialer</string>
     <string name="btnCallLog">Call\nLog</string>
     <string name="btnTextMessages">Text\nMessages</string>
     <string name="btnContacts">Contacts</string>
     <string name="btnStatus">Status</string>
     <string name="btnEmail">Email</string>
-    
+
     <!-- Homescreen2.java -->
     <string name="btnInternet">Internet</string>
-    <string name="btnAlarm">Alarm</string>
+    <string name="btnAlarmCalendar">Alarm +\nCalendar</string>
     <string name="btnRadio">Radio</string>
     <string name="btnMusicVideo">Music +\nVideo</string>
     <string name="btnBooksNewspapers">Books + News\npapers</string>
     <string name="btnMaps">Maps</string>
-    
+
     <!-- Homescreen3.java -->
     <string name="btnFileBrowser">File\nBrowser</string>
     <string name="btnCameraApps">Camera\nApps</string>
@@ -71,21 +74,37 @@
     <string name="btnSettings">Settings</string>
     <string name="btnMoreAccessibleApps">More\nAccessible\nApps</string>
     <string name="btnAllApps">All Apps</string>
-    
+
     <!-- AlarmMenu.java -->
+    <string name="btnAlarm">Alarm</string>
+    <string name="btnCalendar">Calendar</string>
+
+    <!-- AlarmApp.java -->
     <string name="btnSetNewAlarm">Set New Alarm</string>
-	<string name="txtAlarmsEntry1">1st alarm at XX:XX on Month XX, 20xx</string>
-	<string name="txtAlarmsEntry2">2nd alarm at XX:XX on Month XX, 20xx</string> 
-	<string name="txtAlarmsEntry3">3rd alarm at XX:XX on Month XX, 20xx</string> 
-	<string name="txtAlarmsEntry4">4th alarm at XX:XX on Month XX, 20xx</string> 
-	<string name="txtAlarmsEntry5">5th alarm at XX:XX on Month XX, 20xx</string>     
-    
+    <string name="txtAlarmsEntry1">1st alarm at XX:XX</string>
+    <string name="txtAlarmsEntry2">2nd alarm at XX:XX</string>
+    <string name="txtAlarmsEntry3">3rd alarm at XX:XX</string>
+    <string name="txtAlarmsEntry4">4th alarm at XX:XX</string>
+    <string name="txtAlarmsEntry5">5th alarm at XX:XX</string>
+
+    <!-- AlarmChangeApp.java -->
+    <string name="btnAlarmChange">Change Alarm</string>
+    <string name="btnAlarmDisable">Disable Alarm</string>
+    <string name="btnAlarmDelete">Delete Alarm</string>
+
+    <!-- AlarmSetApp.java -->
+    <string name="btnAlarmSet">Set Alarm</string>
+    <string name="txtAlarmTimeUserInput"></string>
+
+    <!-- AlarmSnoozeApp.java -->
+    <string name="btnAlarmTurnOff">Turn Off Alarm</string>
+
     <!-- BooksNewspapersMenu.java -->
     <string name="btnDarwinReader">DARWIN Reader</string>
     <string name="btnIdealGroupReader">IDEAL Group Reader</string>
     <string name="btnBookshareGoRead">Bookshare Go Read</string>
     <string name="btnGooglePlayBooks">Google Play Books</string>
-    <string name="btnGoogleCurrents">Google Currents</string>    
+    <string name="btnGoogleNewsstand">Google Play Newsstand</string>
     
  	<!-- CameraMenu.java -->
     <string name="btnPhoneCamera">Camera</string>
@@ -106,16 +125,13 @@
     <string name="tabCallsMissedTalkBackFriendly">Missed Calls</string>
     <string name="tabCallsAllTalkBackFriendly">All Calls</string>
     <string name="tabCallsTimeTalkBackFriendly">Total Duration</string>  
-    <string name="txtCallsDialledEntry1">Eva Krueger</string>
-    <string name="txtCallsDialledEntry2">Caspar Isemer</string>
-    <string name="txtCallsDialledEntry3">Zainab Chinikamwala</string>
-    <string name="txtCallsDialledEntry4">Homiyar Mobedji</string>
     <string name="emptylog">The selected call log is empty</string>
     <string name="tot_dur_incoming">Total duration of incoming calls: </string>  
     <string name="tot_dur_outgoing">Total duration of outgoing calls: </string>
     <string name="received">Received</string>
     <string name="missed">Missed</string>
     <string name="dialed">Dialed</string>
+    
     <!-- CallLogOptions.java -->
     <string name="btnCall">Call</string>
     <string name="btnSendSMS">Send SMS</string>
@@ -143,6 +159,7 @@
     <string name="sendmessage">send message</string>
     <string name="mail">email</string>   
     <string name="send_msg_to">Send message to </string>
+    
     <!-- ContactsOtherOptions.java -->
     <string name="otheroptions">More Options</string>
     <string name="btnDelete">Delete</string>
@@ -165,6 +182,7 @@
     <string name="mediaunmounted">SD card is not mounted</string>
     <string name="edit">Edit </string>
     <string name="more_options">More Options</string>
+    
     <!-- SaveContact.java -->
     <string name="contactsaved">Contact saved</string>
     <string name="contactnotsaved">Unable to save contact</string>
@@ -259,6 +277,9 @@
         <item name="red">Red</item>
         <item name="yellow">Yellow</item>
     </string-array>
+    <string name="txtSettingsColorHeaderForeground">Change Foreground Color</string>
+    <string name="txtSettingsColorHeaderBackground">Change Background Color</string>
+    <string name="txtSettingsColorHeaderPreview">Preview Color Changes</string>
     
      <!--  SettingsFont.java -->
     <string name="size">size</string>
@@ -266,8 +287,8 @@
     <string name="fonttype">fonttype</string>
     <string name="fontSize">Text Size</string>
     <string name="fontType">Text Type</string>
-    <string name="plus">+</string>
-    <string name="minus">-</string>
+    <string name="plus">Text\nLarger</string>
+    <string name="minus">Text\nSmaller</string>
     <string name="minusDescription">minus</string>
     <string name="fontStyle">Text Type</string>
     <string name="maxLimit">36</string>
@@ -288,19 +309,23 @@
         <item name="serif">Serif</item>
         <item name="monospace">Monospace</item>
     </string-array>
+    <string name="txtSettingsFontHeaderSize">Change Font Size</string>
+    <string name="txtSettingsFontHeaderType">Change Font Type</string>
+    <string name="txtSettingsFontHeaderPreview">Preview Font Changes</string>
     
     <!--  SettingsVolume.java -->
+    <string name="txtVolumeSelection">Make your volume selection below</string>
     <string name="softest">Softest</string>
     <string name="softer">Softer</string>
     <string name="soft">Soft</string>
     <string name="normal">Normal</string>
     <string name="loud">Loud</string>
     <string name="louder">Louder</string>
-     <string name="loudest">Loudest</string>
+    <string name="loudest">Loudest</string>
     
  	<!-- SocialNetworksMenu.java -->
     <string name="btnWhatsApp">WhatsApp</string>
-    <string name="btnFacebookFriendCaster">Facebook Friendcaster</string>
+    <string name="btnFacebook">Facebook</string>
     <string name="btnFacebookMessenger">Facebook Messenger</string>
     <string name="btnGooglePlus">Google+</string>
     <string name="btnSkype">Skype</string>
@@ -320,10 +345,10 @@
     <string name="txtStatusWifiStatusOn">Wi-Fi is ON</string>
     <string name="txtStatusWifiStatusOff">Wi-Fi is OFF</string>
     <string name="txtStatusBluetooth">Bluetooth is enabled</string>
-    <string name="txtStatusBrightness">Brightness is set to automatic</string>
-    <string name="txtStatusBrightnessLow">Brightness is set to low</string>
-    <string name="txtStatusBrightnessMedium">Brightness is set to medium</string>
-    <string name="txtStatusBrightnessBright">Brightness is set to bright</string>
+    <string name="txtStatusBrightness">Brightness set to automatic</string>
+    <string name="txtStatusBrightnessLow">Brightness set to low</string>
+    <string name="txtStatusBrightnessMedium">Brightness set to medium</string>
+    <string name="txtStatusBrightnessBright">Brightness set to bright</string>
     
  	<!-- TextMessagesApp.java -->
     <string name="tabTextMsgsInbox">Inbox</string>
@@ -337,11 +362,6 @@
     <string name="reachedBeginning">Reached beginning of list</string>
     <string name="reachedEnd">Reached end of list</string>
     <string name="tabTextMsgsWriteTalkBackFriendly">Write new message</string>
-    <string name="txtTextMsgsEntry1">Unread\nEva Krueger, August 5</string>
-    <string name="txtTextMsgsEntry2">Read\nCaspar Isemer, August 4</string>
-    <string name="txtTextMsgsEntry3">Read\nZainab Chinikamwala, July 29</string>
-    <string name="txtTextMsgsEntry4">Unread\nHomiyar Mobedji, July 27</string>
-    <string name="txtTextMsgsEntry5">Read\nEva Krueger, July 24</string> 
     <string name="setAsDefault">Use Easy Access instead of Messaging as your SMS app?</string>
     
     <!-- TextMessagesComposerApp.java -->

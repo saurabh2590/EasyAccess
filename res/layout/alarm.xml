@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@color/homescreen_background" >
+
+		<ScrollView 
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:fillViewport="true" >
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/homescreen_background"
+                android:orientation="vertical"
+                android:padding="12dp" >
+			   				
+				<TextView  
+					android:id="@+id/txtAlarmsEntry1"
+					android:text="@string/txtAlarmsEntry1"
+					android:contentDescription="@string/txtAlarmsEntry1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+				    android:background="@color/homescreen_background"	
+				    android:textColor="@color/card_textcolor_regular"
+				    android:textSize="@dimen/card_textsize_regular"    
+				    android:focusable="true"
+				    android:ellipsize="none"
+				    android:scrollHorizontally="false"
+				/>
+				
+				<View
+				    android:layout_width="fill_parent"
+				    android:layout_height="1dp"
+				    android:layout_marginTop="6dp"
+				    android:layout_marginBottom="6dp"
+				    android:background="@android:color/darker_gray"/>
+					
+				<TextView  
+					android:id="@+id/txtAlarmsEntry2"
+					android:text="@string/txtAlarmsEntry2"
+					android:contentDescription="@string/txtAlarmsEntry2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+				    android:background="@color/homescreen_background"	
+				    android:textColor="@color/card_textcolor_regular"
+				    android:textSize="@dimen/card_textsize_regular"    
+				    android:focusable="true"
+				    android:ellipsize="none"
+				    android:scrollHorizontally="false"
+				/>
+				
+				<View
+				    android:layout_width="fill_parent"
+				    android:layout_height="1dp"
+				    android:layout_marginTop="6dp"
+				    android:layout_marginBottom="6dp"
+				    android:background="@android:color/darker_gray"/>
+					
+				<TextView  
+					android:id="@+id/txtAlarmsEntry3"
+					android:text="@string/txtAlarmsEntry3"
+					android:contentDescription="@string/txtAlarmsEntry3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+				    android:background="@color/homescreen_background"	
+				    android:textColor="@color/card_textcolor_regular"
+				    android:textSize="@dimen/card_textsize_regular"    
+				    android:focusable="true"
+				    android:ellipsize="none"
+				    android:scrollHorizontally="false"
+				/>	
+				
+				<View
+				    android:layout_width="fill_parent"
+				    android:layout_height="1dp"
+				    android:layout_marginTop="6dp"
+				    android:layout_marginBottom="6dp"
+				    android:background="@android:color/darker_gray"/>
+					
+				<TextView  
+					android:id="@+id/txtAlarmsEntry4"
+					android:text="@string/txtAlarmsEntry4"
+					android:contentDescription="@string/txtAlarmsEntry4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+				    android:background="@color/homescreen_background"	
+				    android:textColor="@color/card_textcolor_regular"
+				    android:textSize="@dimen/card_textsize_regular"    
+				    android:focusable="true"
+				    android:ellipsize="none"
+				    android:scrollHorizontally="false"
+				/>		
+				
+				<View
+				    android:layout_width="fill_parent"
+				    android:layout_height="1dp"
+				    android:layout_marginTop="6dp"
+				    android:layout_marginBottom="6dp"
+				    android:background="@android:color/darker_gray"/>
+					
+				<TextView  
+					android:id="@+id/txtAlarmsEntry5"
+					android:text="@string/txtAlarmsEntry5"
+					android:contentDescription="@string/txtAlarmsEntry5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+				    android:background="@color/homescreen_background"	
+				    android:textColor="@color/card_textcolor_regular"
+				    android:textSize="@dimen/card_textsize_regular"    
+				    android:focusable="true"
+				    android:ellipsize="none"
+				    android:scrollHorizontally="false"
+				/>	
+							
+			</LinearLayout>
+		</ScrollView>    
+
+    
+	<LinearLayout 
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" 
+	    android:background="@color/navigation_bar_background" 
+	    android:layout_weight="0">
+	
+		<TableLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_centerVertical="true"
+		    android:gravity="center_vertical"
+		    android:stretchColumns="0,2"
+		    android:weightSum="3" 
+		    android:paddingTop="1px" 
+		    android:paddingBottom="12px" >
+		
+			<TableRow
+			    android:layout_weight="1" 
+			    android:gravity="center_vertical" >
+			   
+				<Button  
+					android:id="@+id/btnNavigationBack"
+					android:text="@string/btnNavigationBack"
+					android:contentDescription="@string/btnNavigationBack"
+					android:layout_weight="1"
+				    android:layout_width="0dip" 
+				    android:layout_height="@dimen/navigation_bar_height" 
+					android:background="@color/navigation_bar_background"
+				    android:textColor="@color/navigation_bar_textcolor" 
+				    android:textStyle="bold"
+				    android:textSize="@dimen/card_textsize_navigation"
+				    android:gravity="center"
+					android:focusable="true"
+				/>	
+				
+				<TextView  
+					android:id="@+id/txtEmpty5"
+					android:text="@string/txtEmpty"
+				    android:layout_width="12px" 
+				    android:layout_height="1px"
+				    android:background="@color/navigation_bar_background"		    
+				    android:focusable="false"
+				/>		
+				
+				<Button  
+					android:id="@+id/btnNavigationHome"
+					android:text="@string/btnNavigationHome"
+					android:contentDescription="@string/btnNavigationHome"
+					android:layout_weight="1"
+				    android:layout_width="0dip" 
+				    android:layout_height="@dimen/navigation_bar_height" 
+					android:background="@color/navigation_bar_background"
+				    android:textColor="@color/navigation_bar_textcolor" 		    
+				    android:textStyle="bold"
+				    android:textSize="@dimen/card_textsize_navigation"
+				    android:gravity="center"
+					android:focusable="true"
+				/>
+			</TableRow>
+		</TableLayout>	
+	</LinearLayout>
+
+</LinearLayout>		

@@ -244,7 +244,7 @@ public class CallStateService extends Service implements OnInitListener,
 					}
 				} else if (newState == TelephonyManager.CALL_STATE_IDLE) {
 					// ringing to idle: missed call
-					if (Utils.ringtone.isPlaying()) {
+					if (Utils.ringtone != null && Utils.ringtone.isPlaying()) {
 						Utils.ringtone.stop();
 					}
 					Utils.ringing = 0;

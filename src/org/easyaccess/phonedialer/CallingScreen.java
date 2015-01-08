@@ -52,7 +52,8 @@ public class CallingScreen extends Activity {
 	/** Declare UI elements and variables **/
 	private String callerDetails;
 	private TextView recipientTextView;
-	private Button answerButton;
+	private Button btnAnswerCall;
+	private Button btnRejectCall;
 	private BroadcastReceiver bReceiver;
 	private GestureDetector gestureDetector;
 
@@ -67,51 +68,52 @@ public class CallingScreen extends Activity {
 		setContentView(R.layout.activity_calling);
 
 		recipientTextView = (TextView) findViewById(R.id.recipientTextView);
-		answerButton = (Button) findViewById(R.id.answerButton);
+		btnAnswerCall = (Button) findViewById(R.id.btnAnswerCall);
+		btnRejectCall = (Button) findViewById(R.id.btnRejectCall);
 
-		gestureDetector = new GestureDetector(getApplicationContext(),
-				new GestureListener());
+		gestureDetector = new GestureDetector(getApplicationContext(), new GestureListener());
 
 		if (getIntent().getExtras() != null) {
-			if (Utils.callingDetails != null
-					&& Utils.callingDetails.get("name") != null) {
-				// Retrieve the name of the recipient and the type of the number
-				// from the Bundle
+			
+			if (Utils.callingDetails != null && Utils.callingDetails.get("name") != null) {
+				// Retrieve the name of the recipient and the type of the number from the Bundle
 				String name = Utils.callingDetails.get("name");
 				String typeOfNumber = Utils.callingDetails.get("type");
+				
 				if (getIntent().getExtras().getInt("type", -1) == Utils.OUTGOING) {
 					// outgoing call
 					callerDetails = getString(R.string.calling) + name + ": " + typeOfNumber;
-					answerButton.setVisibility(View.GONE);
+                    hideAnswerAndRejectButtons();
 				} else {
 					// incoming call
 					callerDetails = getString(R.string.call_from) + name + ": " + typeOfNumber;
-					answerButton.setVisibility(View.VISIBLE);
+                    showAnswerAndRejectButtons();
 				}
+				
 			} else if (Utils.callingDetails != null) {
-				// Retrieve the name of the recipient and the type of the number
-				// from the Bundle
+				
+				// Retrieve the name of the recipient and the type of the number from the Bundle
 				if (getIntent().getExtras().getInt("type", -1) == Utils.OUTGOING) {
 					// outgoing call
-					callerDetails = getString(R.string.calling)
-							+ Utils.callingDetails.get("number");
-					answerButton.setVisibility(View.GONE);
+					callerDetails = getString(R.string.calling)	+ Utils.callingDetails.get("number");
+					hideAnswerAndRejectButtons();
 				} else {
 					// incoming call
-					callerDetails = getString(R.string.call_from)
-							+ Utils.callingDetails.get("number");
-					answerButton.setVisibility(View.VISIBLE);
+					callerDetails = getString(R.string.call_from) + Utils.callingDetails.get("number");
+					showAnswerAndRejectButtons();
 				}
 			}
+			
 			if (Utils.callingDetails != null) {
 				displayCall(callerDetails, Utils.callingDetails.get("number"));
 			}
+			
 		} else {
 			recipientTextView.setText(getString(R.string.error)+"!");
 			recipientTextView.setContentDescription(getString(R.string.error));
 		}
 
-		answerButton.setOnClickListener(new OnClickListener() {
+		btnAnswerCall.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
@@ -123,6 +125,19 @@ public class CallingScreen extends Activity {
 						"android.permission.CALL_PRIVILEGED");
 			}
 		});
+
+        btnRejectCall.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                // answer call
+                Intent buttonDown = new Intent(Intent.ACTION_MEDIA_BUTTON);
+                buttonDown.putExtra(Intent.EXTRA_KEY_EVENT, new KeyEvent(
+                        KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HEADSETHOOK));
+                getApplicationContext().sendOrderedBroadcast(buttonDown,
+                        "android.permission.CALL_PRIVILEGED");
+            }
+        });
 
 		this.bReceiver = new BroadcastReceiver() {
 			@Override
@@ -152,7 +167,17 @@ public class CallingScreen extends Activity {
 
 	}
 
-	/**
+    private void showAnswerAndRejectButtons() {
+        btnAnswerCall.setVisibility(View.VISIBLE);
+        btnRejectCall.setVisibility(View.VISIBLE);
+    }
+
+    private void hideAnswerAndRejectButtons() {
+        btnAnswerCall.setVisibility(View.GONE);
+        btnRejectCall.setVisibility(View.GONE);
+    }
+
+    /**
 	 * Announces the text, that is the name and type of the contact or the
 	 * number being passed as a parameter.
 	 * 

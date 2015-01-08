@@ -52,7 +52,6 @@ public class SettingsFont extends EasyAccessActivity {
 	/** Declare variables and UI elements **/
 	private Spinner spinnerFontType;
 	private SpinnerAdapter adapter;
-	private TextView txtPreview, txtFontSize, txtFontType;
 	private Button btnIncrease, btnDecrease, btnReset;
 	private TextView txtNumber;
 	private SharedPreferences preferences;
@@ -167,17 +166,6 @@ public class SettingsFont extends EasyAccessActivity {
 					// save in SharedPreferences
 					preferences = getSharedPreferences(getResources()
 							.getString(R.string.fonttype), 0);
-					if (typeface
-							.equals(getResources().getString(R.string.none))) {
-						txtPreview.setTypeface(Typeface.create("default",
-								Typeface.NORMAL));
-					} else if (typeface.equals(getResources().getString(
-							R.string.serif))) {
-						txtPreview.setTypeface(Typeface.SERIF);
-					} else if (typeface.equals(getResources().getString(
-							R.string.monospace))) {
-						txtPreview.setTypeface(Typeface.MONOSPACE);
-					}
 					editor = preferences.edit();
 					editor.putInt("typeface", position);
 					if (editor.commit()) {
@@ -244,17 +232,6 @@ public class SettingsFont extends EasyAccessActivity {
 							// save in SharedPreferences
 							preferences = getSharedPreferences(getResources()
 									.getString(R.string.fonttype), 0);
-							if (typeface.equals(getResources().getString(
-									R.string.none))) {
-								txtPreview.setTypeface(Typeface.create(
-										"default", Typeface.NORMAL));
-							} else if (typeface.equals(getResources()
-									.getString(R.string.serif))) {
-								txtPreview.setTypeface(Typeface.SERIF);
-							} else if (typeface.equals(getResources()
-									.getString(R.string.monospace))) {
-								txtPreview.setTypeface(Typeface.MONOSPACE);
-							}
 							editor = preferences.edit();
 							editor.putInt("typeface", currentSelection);
 							if (editor.commit()) {
@@ -335,8 +312,6 @@ public class SettingsFont extends EasyAccessActivity {
 				R.string.lowerLimit))) {
 			txtNumber.setText(Integer.toString(number - 1));
 			txtNumber.setContentDescription(Integer.toString(number - 1));
-			txtPreview.setTextSize(Float
-					.valueOf(txtNumber.getText().toString()));
 			// save in SharedPreferences
 			preferences = getSharedPreferences(
 					getResources().getString(R.string.size), 0);
@@ -398,8 +373,6 @@ public class SettingsFont extends EasyAccessActivity {
 				R.string.maxLimit))) {
 			txtNumber.setText(Integer.toString(number + 1));
 			txtNumber.setContentDescription(Integer.toString(number + 1));
-			txtPreview.setTextSize(Float
-					.valueOf(txtNumber.getText().toString()));
 			// save in SharedPreferences
 			preferences = getSharedPreferences(
 					getResources().getString(R.string.size), 0);
@@ -518,9 +491,6 @@ public class SettingsFont extends EasyAccessActivity {
 		super.onCreate(savedInstanceState);
 
 		// find UI elements
-		txtPreview = (TextView) findViewById(R.id.txtPreview);
-		txtFontSize = (TextView) findViewById(R.id.txtFontSize);
-		txtFontType = (TextView) findViewById(R.id.txtFontType);
 		btnIncrease = (Button) findViewById(R.id.btnIncrease);
 		btnDecrease = (Button) findViewById(R.id.btnDecrease);
 		btnReset = (Button) findViewById(R.id.btnApplyFont);
@@ -530,9 +500,7 @@ public class SettingsFont extends EasyAccessActivity {
 		spinnerFontType.setAdapter(adapter);
 
 		// Attach onFocusChanged listener to both the TextViews
-		attachListenerToTextView(txtFontSize);
 		attachListenerToTextView(txtNumber);
-		attachListenerToTextView(txtFontType);
 
 		// Attach onFocusChanged listener to all the buttons
 		attachListener(btnIncrease);

@@ -16,16 +16,11 @@
  */
 package org.easyaccess;
 
-import org.easyaccess.calllog.CallLogApp;
-import org.easyaccess.contacts.ContactsApp;
-import org.easyaccess.phonedialer.PhoneDialerApp;
-import org.easyaccess.settings.SettingsMenu;
-import org.easyaccess.status.StatusApp;
-import org.easyaccess.textmessages.TextMessagesApp;
-
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.Editable;
@@ -38,15 +33,23 @@ import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
-public class HomescreenActivity extends EasyAccessFragment implements
+import org.easyaccess.calllog.CallLogApp;
+import org.easyaccess.contacts.ContactsApp;
+import org.easyaccess.phonedialer.PhoneDialerApp;
+import org.easyaccess.settings.SettingsMenu;
+import org.easyaccess.status.StatusApp;
+import org.easyaccess.textmessages.TextMessagesApp;
+
+public abstract class AbstractHomescreenActivity extends EasyAccessFragment implements
 		KeyListener {
 	/**
 	 * The HomeScreenActivity displays the options available in the app.
 	 */
 
 	/** Declare variables and UI elements **/
-	private View view;
+	View view;
 
 	void startNewActivity(@SuppressWarnings("rawtypes") Class className) {
 		Intent intent = new Intent(getActivity().getApplicationContext(),
@@ -66,8 +69,8 @@ public class HomescreenActivity extends EasyAccessFragment implements
 	 * @param className
 	 *            The class of the activity to be launched.
 	 */
-	void attachListener(final Button button,
-			@SuppressWarnings("rawtypes") final Class className) {
+	void attachListenerToOpenActivity(final Button button,
+                                      @SuppressWarnings("rawtypes") final Class className) {
 
 		button.setOnClickListener(new OnClickListener() {
 
@@ -86,8 +89,58 @@ public class HomescreenActivity extends EasyAccessFragment implements
 			}
 		});
 
-		button.setKeyListener(HomescreenActivity.this);
+		button.setKeyListener(AbstractHomescreenActivity.this);
 	}
+
+    void attachListenerToOpenExternalApp(final Button button,
+                        @SuppressWarnings("rawtypes") final String uriTarget) {
+
+        button.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                launchOrDownloadFromFragment(uriTarget);
+            }
+        });
+
+        button.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus)
+                    giveFeedback(button.getText().toString());
+            }
+        });
+
+        button.setKeyListener(AbstractHomescreenActivity.this);
+    }
+
+    /** Launch installed Android app or download from Google Play Store if missing **/
+    void launchOrDownloadFromFragment(String uriTarget) {
+        Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage(uriTarget);
+        if (intent != null)
+        {
+            // Start installed app
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        else
+        {
+            // If app is not installed, bring user to the Play Store
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setData(Uri.parse("market://details?id=" + uriTarget));
+
+            // Error handling in case Play Store cannot be launched
+            try {
+                startActivity(intent);
+            } catch(ActivityNotFoundException e) {
+                Context context = getActivity().getApplicationContext();
+                CharSequence text = "Unable to launch the Google Play Store!";
+                Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
 	/**
 	 * Announces the text passed as a parameter, and causes the device to
@@ -107,43 +160,22 @@ public class HomescreenActivity extends EasyAccessFragment implements
 		}
 	}
 
-	/** Create the Main activity showing home screen #1 **/
-	@Override
-	public View onCreateView(final LayoutInflater inflater,
-			final ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.homescreen1, container, false);
-		this.view = v;
-
-		// Launch respective easyaccess app, depending on which button is
-		// pressed
-		attachListener((Button) v.findViewById(R.id.btnPhoneDialer),
-				PhoneDialerApp.class);
-		attachListener((Button) v.findViewById(R.id.btnCallLog),
-				CallLogApp.class);
-		attachListener((Button) v.findViewById(R.id.btnTextMessages),
-				TextMessagesApp.class);
-		attachListener((Button) v.findViewById(R.id.btnContacts),
-				ContactsApp.class);
-		attachListener((Button) v.findViewById(R.id.btnStatus), StatusApp.class);
-		attachListener((Button) v.findViewById(R.id.btnSettings),
-				SettingsMenu.class);
-
-		/** Put most everything before here **/
-		return v;
-	}
-
 	@Override
 	public void onResume() {
 		super.onResume();
 		// get the root layout
-		LinearLayout layout = (LinearLayout) this.view
-				.findViewById(R.id.homescreen1);
-		Utils.applyFontColorChanges(this.view.getContext(), layout);
-		Utils.applyFontSizeChanges(this.view.getContext(), layout);
-		Utils.applyFontTypeChanges(this.view.getContext(), layout);
+        applyFontChanges((LinearLayout) this.view.findViewById(R.id.homescreen1));
+        applyFontChanges((LinearLayout) this.view.findViewById(R.id.homescreen2));
+        applyFontChanges((LinearLayout) this.view.findViewById(R.id.homescreen3));
 	}
 
-	@Override
+    void applyFontChanges(LinearLayout layout) {
+        Utils.applyFontColorChanges(this.view.getContext(), layout);
+        Utils.applyFontSizeChanges(this.view.getContext(), layout);
+        Utils.applyFontTypeChanges(this.view.getContext(), layout);
+    }
+
+    @Override
 	public boolean onKeyUp(View view, Editable arg1, int keyCode,
 			KeyEvent keyEvent) {
 		int shift = 0;
@@ -202,32 +234,15 @@ public class HomescreenActivity extends EasyAccessFragment implements
 			break;
 		case KeyEvent.KEYCODE_DPAD_CENTER:
 		case KeyEvent.KEYCODE_ENTER:
-			switch (view.getId()) {
-			case R.id.btnPhoneDialer:
-				startNewActivity(PhoneDialerApp.class);
-				break;
-			case R.id.btnCallLog:
-				startNewActivity(CallLogApp.class);
-				break;
-			case R.id.btnTextMessages:
-				startNewActivity(TextMessagesApp.class);
-				break;
-			case R.id.btnContacts:
-				startNewActivity(ContactsApp.class);
-				break;
-			case R.id.btnStatus:
-				startNewActivity(StatusApp.class);
-				break;
-			case R.id.btnSettings:
-				startNewActivity(SettingsMenu.class);
-				break;
-			}
-			break;
+            startSelectedActivity(view);
+            break;
 		}
 		return false;
 	}
 
-	@Override
+    abstract void startSelectedActivity(View view);
+
+    @Override
 	public boolean onKeyOther(View view, Editable text, KeyEvent event) {
 		return false;
 	}
