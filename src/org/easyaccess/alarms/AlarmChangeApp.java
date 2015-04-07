@@ -32,9 +32,11 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import org.easyaccess.EasyAccessActivity;
 import org.easyaccess.R;
+import org.easyaccess.Utils;
 
 public class AlarmChangeApp extends EasyAccessActivity {
 
@@ -99,4 +101,17 @@ public class AlarmChangeApp extends EasyAccessActivity {
         return alarmTime.substring(4,5).equalsIgnoreCase("e");
     }
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		// get the root layout
+		LinearLayout layout = (LinearLayout) findViewById(R.id.alarmChangeMenu);
+		// Apply the selected font color, font size and font type to the
+		// activity
+
+		Utils.applyFontColorChanges(getApplicationContext(), layout);
+		Utils.applyFontSizeChanges(getApplicationContext(), layout);
+		Utils.applyFontTypeChanges(getApplicationContext(), layout);
+	}
+    
 }

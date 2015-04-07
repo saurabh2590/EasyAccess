@@ -27,7 +27,9 @@ import org.easyaccess.Utils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources.NotFoundException;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -48,8 +50,7 @@ import android.widget.Toast;
 import com.android.internal.telephony.ITelephony;
 
 /**
- * The PhoneDialer option in easyaccess allows the user to make and receive
- * calls.
+ * The PhoneDialer option in easyaccess allows the user to make and receive calls.
  */
 
 public class PhoneDialerApp extends EasyAccessActivity {
@@ -66,64 +67,50 @@ public class PhoneDialerApp extends EasyAccessActivity {
 	private TextView txtDialNumber;
 
 	/**
-	 * Retrieves the voicemail number associated with the digit pressed by the
-	 * user. The number is displayed in the TextView.
+	 * Retrieves the voicemail number associated with the digit pressed by the user. The number is displayed in the TextView.
 	 */
 
 	void callVoiceMail() {
 		Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		vibrator.vibrate(800);
-		telManager = (TelephonyManager) getApplicationContext()
-				.getSystemService(Context.TELEPHONY_SERVICE);
+		telManager = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
 		if (telManager.getVoiceMailNumber() != null) {
 			txtDialNumber.setText(telManager.getVoiceMailNumber());
-			txtDialNumber.setContentDescription(telManager.getVoiceMailNumber()
-					.replaceAll(".(?=[0-9])", "$0 "));
+			txtDialNumber.setContentDescription(telManager.getVoiceMailNumber().replaceAll(".(?=[0-9])", "$0 "));
 			strDialNumber = txtDialNumber.getText().toString();
 		}
 	}
 
 	/**
-	 * Displays the digit pressed by the user in the TextView. The device
-	 * vibrates every time the user presses a digit.
+	 * Displays the digit pressed by the user in the TextView. The device vibrates every time the user presses a digit.
 	 * 
-	 * @param buttonInt
-	 *            This is the id of the button that was pressed.
-	 * @param vibrateLength
-	 *            This is the number of milliseconds for which the device should
-	 *            vibrate.
-	 * @param strDialDigit
-	 *            This is the digit that should be displayed in the TextView.
+	 * @param buttonInt This is the id of the button that was pressed.
+	 * @param vibrateLength This is the number of milliseconds for which the device should vibrate.
+	 * @param strDialDigit This is the digit that should be displayed in the TextView.
 	 */
 
-	void appendDialNumber(int buttonInt, final int vibrateLength,
-			final String strDialDigit) {
+	void appendDialNumber(int buttonInt, final int vibrateLength, final String strDialDigit) {
 		Button button = (Button) findViewById(buttonInt);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				// check if keyboard is connected or accessibility services are
 				// enabled
-				if (Utils.isAccessibilityEnabled(getApplicationContext())
-						|| getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
+				if (Utils.isAccessibilityEnabled(getApplicationContext()) || getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
 					TTS.speak(strDialDigit);
 				}
 				Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 				vibrator.vibrate(vibrateLength);
 				strDialNumber = strDialNumber + strDialDigit;
 				txtDialNumber.setText(strDialNumber);
-				txtDialNumber.setContentDescription(strDialNumber.replaceAll(
-						".(?=[0-9])", "$0 "));
+				txtDialNumber.setContentDescription(strDialNumber.replaceAll(".(?=[0-9])", "$0 "));
 			}
 		});
 	}
 
 	/**
-	 * Attaches OnFocusChangeListener to all the buttons and the TextView. The
-	 * text on the view passed as the parameter is read aloud.
+	 * Attaches OnFocusChangeListener to all the buttons and the TextView. The text on the view passed as the parameter is read aloud.
 	 * 
-	 * @param viewInt
-	 *            This is the id of the view with which the
-	 *            onFocusChangeListener is to be associated.
+	 * @param viewInt This is the id of the view with which the onFocusChangeListener is to be associated.
 	 */
 
 	void attachOnFocusChangeListener(int viewInt) {
@@ -137,11 +124,9 @@ public class PhoneDialerApp extends EasyAccessActivity {
 				public void onFocusChange(View view, boolean hasFocus) {
 					if (hasFocus) {
 						if (!(((TextView) view).getText().toString().equals(""))) {
-							TTS.speak(TTS.readNumber(((TextView) view)
-									.getText().toString()));
+							TTS.speak(TTS.readNumber(((TextView) view).getText().toString()));
 						} else {
-							TTS.speak(((TextView) view).getContentDescription()
-									.toString());
+							TTS.speak(((TextView) view).getContentDescription().toString());
 						}
 					}
 				}
@@ -177,25 +162,19 @@ public class PhoneDialerApp extends EasyAccessActivity {
 	}
 
 	/**
-	 * Checks the SIM card and network state, and makes the call, that is,
-	 * passes the number to the default dialer app. A TTS feedback is given to
-	 * the user informing him/her about the status of the operation.
+	 * Checks the SIM card and network state, and makes the call, that is, passes the number to the default dialer app. A TTS feedback is given to the user
+	 * informing him/her about the status of the operation.
 	 */
 
 	void makeCall() {
 		// check SIM card availability if network is available
-		if (callManager.getSimState().equals(
-				getApplicationContext().getResources().getString(
-						R.string.sim_ready))) {
+		if (callManager.getSimState().equals(getApplicationContext().getResources().getString(R.string.sim_ready))) {
 			callManager.setNumber(txtDialNumber.getText().toString());
 
 			// check Network availability
-			if (callManager.getServiceState().equals(
-					getApplicationContext().getResources().getString(
-							R.string.state_in_service))) {
+			if (callManager.getServiceState().equals(getApplicationContext().getResources().getString(R.string.state_in_service))) {
 				// get details of the number
-				callingDetails = contactManager.getNameFromNumber(txtDialNumber
-						.getText().toString());
+				callingDetails = contactManager.getNameFromNumber(txtDialNumber.getText().toString());
 
 				// Check if there is any existing call
 				if (Utils.off_hook == 1) {
@@ -205,60 +184,44 @@ public class PhoneDialerApp extends EasyAccessActivity {
 				// pass the details to the Calling Activity make call
 				announceCall(callingDetails, 0);
 				Utils.callingDetails = callingDetails;
-				Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"
-						+ txtDialNumber.getText()));
+				Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + txtDialNumber.getText()));
 				startActivity(intent);
-				if (getIntent().getExtras() != null
-						&& getIntent().getExtras().getString("call") != null) {
+				if (getIntent().getExtras() != null && getIntent().getExtras().getString("call") != null) {
 					finish();
 				}
 			} else {
 				// Inform user through TTS about the network status
 				// check if keyboard is connected but accessibility services are
 				// disabled
-				if (!Utils.isAccessibilityEnabled(getApplicationContext())
-						&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+				if (!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 					TTS.speak(callManager.getServiceState());
-				Toast.makeText(getApplicationContext(),
-						callManager.getServiceState(), Toast.LENGTH_SHORT)
-						.show();
+				Toast.makeText(getApplicationContext(), callManager.getServiceState(), Toast.LENGTH_SHORT).show();
 			}
 		} else {
 			// Inform user through TTS about the SIM/network status
-			if (callManager.getSimState().equals(
-					getApplicationContext().getResources().getString(
-							R.string.service_unknown_reason))) {
-				Toast.makeText(getApplicationContext(),
-						callManager.getSimState(), Toast.LENGTH_SHORT).show();
+			if (callManager.getSimState().equals(getApplicationContext().getResources().getString(R.string.service_unknown_reason))) {
+				Toast.makeText(getApplicationContext(), callManager.getSimState(), Toast.LENGTH_SHORT).show();
 				TTS.stop();
 				// check if keyboard is connected but accessibility services are
 				// disabled
-				if (!Utils.isAccessibilityEnabled(getApplicationContext())
-						&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+				if (!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 					TTS.speak(callManager.getSimState());
 			} else {
-				Toast.makeText(getApplicationContext(),
-						callManager.getSimState(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), callManager.getSimState(), Toast.LENGTH_SHORT).show();
 				TTS.stop();
 				// check if keyboard is connected but accessibility services are
 				// disabled
-				if (!Utils.isAccessibilityEnabled(getApplicationContext())
-						&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+				if (!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 					TTS.speak(callManager.getSimState());
 			}
 		}
 	}
 
 	/**
-	 * Announces the name of the contact or the number being called if
-	 * accessibility services are enabled, or a keyboard is connected to the
-	 * phone.
+	 * Announces the name of the contact or the number being called if accessibility services are enabled, or a keyboard is connected to the phone.
 	 * 
-	 * @param details
-	 *            This is a HashMap that consists of the name and type of the
-	 *            contact if it is stored in the phone.
-	 * @param activeCall
-	 *            If this value is 1, it indicates that there is an active call.
+	 * @param details This is a HashMap that consists of the name and type of the contact if it is stored in the phone.
+	 * @param activeCall If this value is 1, it indicates that there is an active call.
 	 */
 
 	void announceCall(HashMap<String, String> details, int activeCall) {
@@ -266,54 +229,31 @@ public class PhoneDialerApp extends EasyAccessActivity {
 			if (details.get("name") != null) {
 				// check if keyboard is connected but accessibility services are
 				// disabled
-				if (!Utils.isAccessibilityEnabled(getApplicationContext())
-						&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-					TTS.speak(getString(R.string.current_call_on_hold)
-							+ details.get("name") + " " + details.get("type"));
-				Toast.makeText(
-						getApplicationContext(),
-						getString(R.string.current_call_on_hold)
-								+ details.get("name") + " "
-								+ details.get("type"), Toast.LENGTH_SHORT)
-						.show();
+				if (!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+					TTS.speak(getString(R.string.current_call_on_hold) + details.get("name") + " " + details.get("type"));
+				Toast.makeText(getApplicationContext(), getString(R.string.current_call_on_hold) + details.get("name") + " " + details.get("type"),
+						Toast.LENGTH_SHORT).show();
 			} else {
 				// check if keyboard is connected but accessibility services are
 				// disabled
-				if (!Utils.isAccessibilityEnabled(getApplicationContext())
-						&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-					TTS.speak(getString(R.string.current_call_on_hold)
-							+ TTS.readNumber(txtDialNumber.getText().toString()));
-				Toast.makeText(
-						getApplicationContext(),
-						getString(R.string.current_call_on_hold)
-								+ txtDialNumber.getText(), Toast.LENGTH_SHORT)
-						.show();
+				if (!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+					TTS.speak(getString(R.string.current_call_on_hold) + TTS.readNumber(txtDialNumber.getText().toString()));
+				Toast.makeText(getApplicationContext(), getString(R.string.current_call_on_hold) + txtDialNumber.getText(), Toast.LENGTH_SHORT).show();
 			}
 		} else {
 			if (details.get("name") != null) {
 				// check if keyboard is connected or accessibility services are
 				// disabled
-				if (Utils.isAccessibilityEnabled(getApplicationContext())
-						|| getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-					TTS.speak(getString(R.string.calling) + details.get("name")
-							+ " " + details.get("type"));
-				Toast.makeText(
-						getApplicationContext(),
-						getString(R.string.calling) + details.get("name") + " "
-								+ details.get("type"), Toast.LENGTH_SHORT)
+				if (Utils.isAccessibilityEnabled(getApplicationContext()) || getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+					TTS.speak(getString(R.string.calling) + details.get("name") + " " + details.get("type"));
+				Toast.makeText(getApplicationContext(), getString(R.string.calling) + details.get("name") + " " + details.get("type"), Toast.LENGTH_SHORT)
 						.show();
 			} else {
-				Toast.makeText(
-						getApplicationContext(),
-						getString(R.string.calling)
-								+ txtDialNumber.getText().toString(),
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), getString(R.string.calling) + txtDialNumber.getText().toString(), Toast.LENGTH_SHORT).show();
 				// check if keyboard is connected or accessibility services are
 				// disabled
-				if (Utils.isAccessibilityEnabled(getApplicationContext())
-						|| getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-					TTS.speak(getString(R.string.calling)
-							+ TTS.readNumber(txtDialNumber.getText().toString()));
+				if (Utils.isAccessibilityEnabled(getApplicationContext()) || getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+					TTS.speak(getString(R.string.calling) + TTS.readNumber(txtDialNumber.getText().toString()));
 			}
 		}
 	}
@@ -331,6 +271,7 @@ public class PhoneDialerApp extends EasyAccessActivity {
 
 		/** Find UI elements **/
 		txtDialNumber = (TextView) findViewById(R.id.txtDialNumber);
+		
 		Button btnKeypadBackspace = (Button) findViewById(R.id.btnKeypadBackspace);
 		Button btnCallHangup = (Button) findViewById(R.id.btnCallHangup);
 		btnKeypad1 = (Button) findViewById(R.id.btnKeypad1);
@@ -340,8 +281,7 @@ public class PhoneDialerApp extends EasyAccessActivity {
 
 		// if we came here from the calling screen, the user wants to type a
 		// digit
-		if (getIntent().getExtras() != null
-				&& getIntent().getExtras().getInt("flag", 0) == 1) {
+		if (getIntent().getExtras() != null && getIntent().getExtras().getInt("flag", 0) == 1) {
 			// do not display the call button
 			btnCall.setVisibility(View.GONE);
 		} else {
@@ -353,8 +293,7 @@ public class PhoneDialerApp extends EasyAccessActivity {
 		contactManager = new ContactManager(getApplicationContext());
 		cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		networkInfo = cm.getActiveNetworkInfo();
-		Intent intent = new Intent(getApplicationContext(),
-				CallStateService.class);
+		Intent intent = new Intent(getApplicationContext(), CallStateService.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		getApplicationContext().startService(intent);
 
@@ -363,22 +302,20 @@ public class PhoneDialerApp extends EasyAccessActivity {
 			if (networkInfo.isRoaming()) {
 				// check if keyboard is connected but accessibility services are
 				// disabled
-				if (!Utils.isAccessibilityEnabled(getApplicationContext())
-						&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+				if (!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 					TTS.speak(getString(R.string.roaming_activated));
-				Toast.makeText(getApplicationContext(),
-						getString(R.string.roaming_activated),
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), getString(R.string.roaming_activated), Toast.LENGTH_SHORT).show();
 			}
 		}
 
 		// if we came here from the Contacts app, make a call
-		if (getIntent().getExtras() != null
-				&& getIntent().getExtras().getString("call") != null) {
+		if (getIntent().getExtras() != null && getIntent().getExtras().getString("call") != null) {
 			txtDialNumber.setText(getIntent().getExtras().getString("call"));
-			txtDialNumber.setContentDescription(getIntent().getExtras()
-					.getString("call").replaceAll(".(?=[0-9])", "$0 "));
+			txtDialNumber.setContentDescription(getIntent().getExtras().getString("call").replaceAll(".(?=[0-9])", "$0 "));
 			makeCall();
+		} else if (getIntent().getData() != null) {
+			txtDialNumber.setText(getIntent().getData().toString().replace("tel:", "").trim());
+			txtDialNumber.setContentDescription(getIntent().getData().toString().replace("tel:", "").trim());
 		}
 
 		// If "X" is pressed on keypad, append "X" to the dialed number
@@ -420,21 +357,14 @@ public class PhoneDialerApp extends EasyAccessActivity {
 					vibrator.vibrate(800);
 					// check if keyboard is connected or accessibility services
 					// are enabled
-					if (Utils.isAccessibilityEnabled(getApplicationContext())
-							|| getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
+					if (Utils.isAccessibilityEnabled(getApplicationContext()) || getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
 						// announce the deleted digit and the remaining number
-						TTS.speak(getResources().getString(R.string.deleted)
-								+ " "
-								+ strDialNumber.charAt(strDialNumber.length() - 1)
-								+ ", "
-								+ TTS.readNumber(strDialNumber.substring(0,
-										strDialNumber.length() - 1)));
+						TTS.speak(getResources().getString(R.string.deleted) + " " + strDialNumber.charAt(strDialNumber.length() - 1) + ", "
+								+ TTS.readNumber(strDialNumber.substring(0, strDialNumber.length() - 1)));
 					}
-					strDialNumber = strDialNumber.substring(0,
-							strDialNumber.length() - 1);
+					strDialNumber = strDialNumber.substring(0, strDialNumber.length() - 1);
 					txtDialNumber.setText(strDialNumber);
-					txtDialNumber.setContentDescription(strDialNumber
-							.replaceAll(".(?=[0-9])", "$0 "));
+					txtDialNumber.setContentDescription(strDialNumber.replaceAll(".(?=[0-9])", "$0 "));
 				}
 			}
 		});
@@ -501,8 +431,7 @@ public class PhoneDialerApp extends EasyAccessActivity {
 		super.onResume();
 		// check if keyboard is connected and accessibility services are
 		// disabled
-		if (!Utils.isAccessibilityEnabled(getApplicationContext())
-				&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
+		if (!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
 			TTS.speak(getResources().getString(R.string.phoneDialer));
 		}
 		// get the root layout
@@ -510,6 +439,10 @@ public class PhoneDialerApp extends EasyAccessActivity {
 		Utils.applyFontColorChanges(getApplicationContext(), layout);
 		Utils.applyFontSizeChanges(getApplicationContext(), layout);
 		Utils.applyFontTypeChanges(getApplicationContext(), layout);
+		
+		Utils.applyFontColorChanges(getApplicationContext(), txtDialNumber);
+		Utils.applyFontSizeChanges(getApplicationContext(), txtDialNumber);
+		Utils.applyFontTypeChanges(getApplicationContext(), txtDialNumber);
 	}
 
 	/*
@@ -521,8 +454,7 @@ public class PhoneDialerApp extends EasyAccessActivity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// long press of power button will end the call
 		if (KeyEvent.KEYCODE_POWER == event.getKeyCode()) {
-			TelephonyManager telephony = (TelephonyManager) getApplicationContext()
-					.getSystemService(Context.TELEPHONY_SERVICE);
+			TelephonyManager telephony = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
 			try {
 				Class<?> c = Class.forName(telephony.getClass().getName());
 				Method m = c.getDeclaredMethod("getITelephony");
@@ -540,19 +472,15 @@ public class PhoneDialerApp extends EasyAccessActivity {
 	/**
 	 * Announces the name of the contact or the number being called.
 	 * 
-	 * @param details
-	 *            This is a HashMap that consists of the name and type of the
-	 *            contact if it is stored in the phone.
-	 * @param activeCall
-	 *            If this value is 1, it indicates that there is an active call.
+	 * @param details This is a HashMap that consists of the name and type of the contact if it is stored in the phone.
+	 * @param activeCall If this value is 1, it indicates that there is an active call.
 	 */
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		if (KeyEvent.KEYCODE_VOLUME_UP == event.getKeyCode()) {
 			if (Utils.ringing == 0 && Utils.off_hook == 1) {
 				// activate loudspeaker
-				Utils.audioManager = (AudioManager) getApplicationContext()
-						.getSystemService(Context.AUDIO_SERVICE);
+				Utils.audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
 				Utils.audioManager.setSpeakerphoneOn(true);
 				return true;
 			}

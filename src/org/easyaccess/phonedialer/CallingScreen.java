@@ -74,42 +74,43 @@ public class CallingScreen extends Activity {
 		gestureDetector = new GestureDetector(getApplicationContext(), new GestureListener());
 
 		if (getIntent().getExtras() != null) {
-			
+
 			if (Utils.callingDetails != null && Utils.callingDetails.get("name") != null) {
 				// Retrieve the name of the recipient and the type of the number from the Bundle
 				String name = Utils.callingDetails.get("name");
 				String typeOfNumber = Utils.callingDetails.get("type");
-				
+
 				if (getIntent().getExtras().getInt("type", -1) == Utils.OUTGOING) {
 					// outgoing call
 					callerDetails = getString(R.string.calling) + name + ": " + typeOfNumber;
-                    hideAnswerAndRejectButtons();
+					hideAnswerButton();
 				} else {
 					// incoming call
 					callerDetails = getString(R.string.call_from) + name + ": " + typeOfNumber;
-                    showAnswerAndRejectButtons();
+					showAnswerAndRejectButtons();
 				}
-				
+
 			} else if (Utils.callingDetails != null) {
-				
+
 				// Retrieve the name of the recipient and the type of the number from the Bundle
 				if (getIntent().getExtras().getInt("type", -1) == Utils.OUTGOING) {
 					// outgoing call
-					callerDetails = getString(R.string.calling)	+ Utils.callingDetails.get("number");
-					hideAnswerAndRejectButtons();
+					callerDetails = getString(R.string.calling) + Utils.callingDetails.get("number");
+					hideAnswerButton();
 				} else {
 					// incoming call
 					callerDetails = getString(R.string.call_from) + Utils.callingDetails.get("number");
 					showAnswerAndRejectButtons();
 				}
 			}
-			
+
 			if (Utils.callingDetails != null) {
 				displayCall(callerDetails, Utils.callingDetails.get("number"));
 			}
-			
+
 		} else {
-			recipientTextView.setText(getString(R.string.error)+"!");
+			recipientTextView.setVisibility(View.VISIBLE);
+			recipientTextView.setText(getString(R.string.error) + "!");
 			recipientTextView.setContentDescription(getString(R.string.error));
 		}
 
@@ -117,27 +118,17 @@ public class CallingScreen extends Activity {
 
 			@Override
 			public void onClick(View view) {
-				// answer call
-				Intent buttonUp = new Intent(Intent.ACTION_MEDIA_BUTTON);
-				buttonUp.putExtra(Intent.EXTRA_KEY_EVENT, new KeyEvent(
-						KeyEvent.ACTION_UP, KeyEvent.KEYCODE_HEADSETHOOK));
-				getApplicationContext().sendOrderedBroadcast(buttonUp,
-						"android.permission.CALL_PRIVILEGED");
+				answerCall();
 			}
 		});
 
-        btnRejectCall.setOnClickListener(new OnClickListener() {
+		btnRejectCall.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                // answer call
-                Intent buttonDown = new Intent(Intent.ACTION_MEDIA_BUTTON);
-                buttonDown.putExtra(Intent.EXTRA_KEY_EVENT, new KeyEvent(
-                        KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HEADSETHOOK));
-                getApplicationContext().sendOrderedBroadcast(buttonDown,
-                        "android.permission.CALL_PRIVILEGED");
-            }
-        });
+			@Override
+			public void onClick(View view) {
+				rejectCall();
+			}
+		});
 
 		this.bReceiver = new BroadcastReceiver() {
 			@Override
@@ -145,12 +136,9 @@ public class CallingScreen extends Activity {
 				if (intent.getAction().equals(Utils.CALL_ENDED)) {
 					// check if keyboard is connected but accessibility services
 					// are disabled
-					if (!Utils.isAccessibilityEnabled(getApplicationContext())
-							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+					if (!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 						TTS.speak(intent.getExtras().getString("message"));
-					Toast.makeText(getApplicationContext(),
-							intent.getExtras().getString("message"),
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), intent.getExtras().getString("message"), Toast.LENGTH_SHORT).show();
 					// check if there is any active call (no. of calls); if so,
 					// activate the current call,
 					if (Utils.off_hook == 1 || Utils.ringing == 1) {
@@ -167,23 +155,51 @@ public class CallingScreen extends Activity {
 
 	}
 
-    private void showAnswerAndRejectButtons() {
-        btnAnswerCall.setVisibility(View.VISIBLE);
-        btnRejectCall.setVisibility(View.VISIBLE);
-    }
+	private void answerCall() {
+		try {
+			TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+			Class clazz = Class.forName(telephonyManager.getClass().getName());
+			Method method = clazz.getDeclaredMethod("getITelephony");
+			method.setAccessible(true);
+			ITelephony telephonyService = (ITelephony) method.invoke(telephonyManager);
+			telephonyService.answerRingingCall();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    private void hideAnswerAndRejectButtons() {
-        btnAnswerCall.setVisibility(View.GONE);
-        btnRejectCall.setVisibility(View.GONE);
-    }
+	private void rejectCall() {
+		try {
+			TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+			Class clazz = Class.forName(telephonyManager.getClass().getName());
+			Method method = clazz.getDeclaredMethod("getITelephony");
+			method.setAccessible(true);
+			ITelephony telephonyService = (ITelephony) method.invoke(telephonyManager);
+			telephonyService.endCall();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    /**
-	 * Announces the text, that is the name and type of the contact or the
-	 * number being passed as a parameter.
+	private void showAnswerAndRejectButtons() {
+		btnAnswerCall.setVisibility(View.VISIBLE);
+		btnRejectCall.setVisibility(View.VISIBLE);
+	}
+
+	private void hideAnswerAndRejectButtons() {
+		btnAnswerCall.setVisibility(View.GONE);
+		btnRejectCall.setVisibility(View.GONE);
+	}
+
+	private void hideAnswerButton() {
+		btnAnswerCall.setVisibility(View.GONE);
+		btnRejectCall.setVisibility(View.VISIBLE);
+	}
+
+	/**
+	 * Announces the text, that is the name and type of the contact or the number being passed as a parameter.
 	 * 
-	 * @param details
-	 *            Consists of the name and type of the contact or the number if
-	 *            the number is not stored in the phone.
+	 * @param details Consists of the name and type of the contact or the number if the number is not stored in the phone.
 	 */
 
 	public static void announceCaller(String details) {
@@ -199,8 +215,7 @@ public class CallingScreen extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// long press of power button will end the call
 		if (KeyEvent.KEYCODE_POWER == event.getKeyCode()) {
-			TelephonyManager telephony = (TelephonyManager) getApplicationContext()
-					.getSystemService(Context.TELEPHONY_SERVICE);
+			TelephonyManager telephony = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
 			try {
 				Class<?> c = Class.forName(telephony.getClass().getName());
 				Method m = c.getDeclaredMethod("getITelephony");
@@ -232,8 +247,7 @@ public class CallingScreen extends Activity {
 				return true;
 			} else if (Utils.ringing == 0 && Utils.off_hook == 1) {
 				// activate loudspeaker
-				Utils.audioManager = (AudioManager) getApplicationContext()
-						.getSystemService(Context.AUDIO_SERVICE);
+				Utils.audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
 				if (Utils.audioManager.isSpeakerphoneOn() == false) {
 					Utils.audioManager.setSpeakerphoneOn(true);
 				} else {
@@ -264,8 +278,7 @@ public class CallingScreen extends Activity {
 	 * Stops the ringtone if it is playing.
 	 */
 	public static void muteRingtone() {
-		if (Utils.ringtone.isPlaying()) {
-			// mute
+		if (Utils.ringtone != null && Utils.ringtone.isPlaying()) {
 			Utils.ringtone.stop();
 		}
 	}
@@ -273,16 +286,21 @@ public class CallingScreen extends Activity {
 	/**
 	 * Displays the details of the call.
 	 * 
-	 * @param details
-	 *            Consists of the call details.
-	 * @param number
-	 *            Stores the number associated with the call.
+	 * @param details Consists of the call details.
+	 * @param number Stores the number associated with the call.
 	 */
 
 	public void displayCall(String details, String number) {
 		recipientTextView.setText(details);
-		recipientTextView.setContentDescription(details.replaceAll(
-				".(?=[0-9])", "$0 "));
+		recipientTextView.setContentDescription(details.replaceAll(".(?=[0-9])", "$0 "));
+
+		if (Utils.callingDetails.get("name") != null) {
+			btnAnswerCall.setText(getString(R.string.btnAnswerCall) + " " + Utils.callingDetails.get("name"));
+			btnRejectCall.setText(getString(R.string.btnRejectCall) + " " + Utils.callingDetails.get("name"));
+		} else {
+			btnAnswerCall.setText(getString(R.string.btnAnswerCall) + " " + number);
+			btnRejectCall.setText(getString(R.string.btnRejectCall) + " " + number);
+		}
 
 		// store outgoing call details
 		if (!Utils.numbers.contains(number)) {
@@ -299,8 +317,7 @@ public class CallingScreen extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		LocalBroadcastManager.getInstance(this).registerReceiver(
-				(this.bReceiver), new IntentFilter(Utils.CALL_ENDED));
+		LocalBroadcastManager.getInstance(this).registerReceiver((this.bReceiver), new IntentFilter(Utils.CALL_ENDED));
 	}
 
 	/*
@@ -316,15 +333,12 @@ public class CallingScreen extends Activity {
 	/**
 	 * Class to detect gestures on the Calling Screen.
 	 */
-	private class GestureListener extends
-			GestureDetector.SimpleOnGestureListener {
+	private class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * android.view.GestureDetector.SimpleOnGestureListener#onDown(android
-		 * .view.MotionEvent)
+		 * @see android.view.GestureDetector.SimpleOnGestureListener#onDown(android .view.MotionEvent)
 		 */
 		@Override
 		public boolean onDown(MotionEvent e) {
@@ -335,9 +349,7 @@ public class CallingScreen extends Activity {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * android.view.GestureDetector.SimpleOnGestureListener#onDoubleTap(
-		 * android.view.MotionEvent)
+		 * @see android.view.GestureDetector.SimpleOnGestureListener#onDoubleTap( android.view.MotionEvent)
 		 */
 		@Override
 		public boolean onDoubleTap(MotionEvent e) {
@@ -352,9 +364,7 @@ public class CallingScreen extends Activity {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * android.view.GestureDetector.SimpleOnGestureListener#onLongPress(
-		 * android.view.MotionEvent)
+		 * @see android.view.GestureDetector.SimpleOnGestureListener#onLongPress( android.view.MotionEvent)
 		 */
 		@Override
 		public void onLongPress(MotionEvent e) {

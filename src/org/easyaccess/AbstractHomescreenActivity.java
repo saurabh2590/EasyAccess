@@ -21,26 +21,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.Editable;
 import android.text.method.KeyListener;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import org.easyaccess.calllog.CallLogApp;
-import org.easyaccess.contacts.ContactsApp;
-import org.easyaccess.phonedialer.PhoneDialerApp;
-import org.easyaccess.settings.SettingsMenu;
-import org.easyaccess.status.StatusApp;
-import org.easyaccess.textmessages.TextMessagesApp;
 
 public abstract class AbstractHomescreenActivity extends EasyAccessFragment implements
 		KeyListener {
@@ -117,7 +107,7 @@ public abstract class AbstractHomescreenActivity extends EasyAccessFragment impl
 
     /** Launch installed Android app or download from Google Play Store if missing **/
     void launchOrDownloadFromFragment(String uriTarget) {
-        Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage(uriTarget);
+    	Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage(uriTarget);
         if (intent != null)
         {
             // Start installed app

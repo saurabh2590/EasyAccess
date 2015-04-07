@@ -16,6 +16,10 @@
  */
 package org.easyaccess;
 
+import org.easyaccess.settings.SettingsMenu;
+import org.easyaccess.simplemenus.CameraAppsMenu;
+import org.easyaccess.simplemenus.SocialNetworksMenu;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,11 +28,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
-
-import org.easyaccess.settings.SettingsMenu;
-import org.easyaccess.simplemenus.CameraAppsMenu;
-import org.easyaccess.simplemenus.SocialNetworksMenu;
 
 
 public class Homescreen3Activity extends AbstractHomescreenActivity implements KeyListener {
@@ -53,7 +52,6 @@ public class Homescreen3Activity extends AbstractHomescreenActivity implements K
 
         /** Find UI elements **/
         Button btnMoreAccessibleApps = (Button) v.findViewById(R.id.btnMoreAccessibleApps);
-        Button btnAllApps = (Button) v.findViewById(R.id.btnAllApps);
 
         /** If More Accessible Apps button is pressed, open browser with accessible apps page of Eyes-Free project **/
         btnMoreAccessibleApps.setOnClickListener(new View.OnClickListener() {
@@ -64,24 +62,11 @@ public class Homescreen3Activity extends AbstractHomescreenActivity implements K
             }
         });
 
-        /** If All Apps button is pressed, open regular All Apps menu **/
-        btnAllApps.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Open the regular Android menu that lists all the apps installed on the device
-                // Currently cannot identify the right code that would do that
-                showAllApps();
-            }
-        });
-
+        attachListenerToOpenActivity((Button) v.findViewById(R.id.btnAllApps), AllAppsActivity.class);
+        
 		/** Put most everything before here **/
 		return v;
 	}
-
-    void showAllApps() {
-        //Toast.makeText(getActivity(), "We do not know how to open the regular Android menu with all installed apps yet, unfortunately!", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-    }
 
     void showMoreAccessibleApps() {
         Uri websiteUri = Uri.parse("http://eyes-free.googlecode.com/svn/trunk/documentation/android_access/apps.html");
@@ -106,9 +91,6 @@ public class Homescreen3Activity extends AbstractHomescreenActivity implements K
                 break;
             case R.id.btnMoreAccessibleApps:
                 showMoreAccessibleApps();
-                break;
-            case R.id.btnAllApps:
-                showAllApps();
                 break;
         }
     }

@@ -59,7 +59,7 @@ public class CallStateService extends Service implements OnInitListener,
 	private HashMap<String, String> callingDetails;
 	private BroadcastReceiver bReceiver;
 	public int callState;
-
+	Intent myIntent = null;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -77,26 +77,39 @@ public class CallStateService extends Service implements OnInitListener,
 		broadcaster = LocalBroadcastManager.getInstance(this);
 
 		tts = new TextToSpeech(this, this);
-
+		
+		
 		this.bReceiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
 				if (intent.getAction().equals(Utils.INCOMING_CALL)) {
 
-					cxt = context;
-					String number = intent.getStringExtra("message");
-					callingDetails = new ContactManager(getBaseContext())
-							.getNameFromNumber(number);
-					// play ringtone
-					// get custom ringtone
-					playRingtone(number);
-					// announce number
-					// Display Calling Activity in order to receive key events
-					Utils.callingDetails = callingDetails;
-					intent = new Intent(getBaseContext(), CallingScreen.class);
-					intent.putExtra("type", Utils.INCOMING);
-					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					startActivity(intent);
+					/**
+					 * Extentia : 
+					 * As per the security guidelines third party apps can't receive/answer call programmatically 
+					 * unless its a system app. So user must need to use default app to receive/answer call. 
+					 * Hiding below piece of code to display default app to answer call.
+					 * * */
+//					cxt = context;
+//					String number = intent.getStringExtra("message");
+//					callingDetails = new ContactManager(getBaseContext())
+//							.getNameFromNumber(number);
+//					// play ringtone
+//					// get custom ringtone
+//					playRingtone(number);
+//					// announce number
+//					// Display Calling Activity in order to receive key events
+//					Utils.callingDetails = callingDetails;
+//					myIntent = new Intent(getBaseContext(), CallingScreen.class);
+//					myIntent.putExtra("type", Utils.INCOMING);
+//					myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//					
+//					new Handler().postDelayed(new Runnable() {
+//						@Override
+//						public void run() {
+//							startActivity(myIntent);
+//						}
+//					}, 2000);
 
 				} else if (Intent.ACTION_NEW_OUTGOING_CALL.equals(intent
 						.getAction())) {
@@ -131,6 +144,12 @@ public class CallStateService extends Service implements OnInitListener,
 				mSettingsContentObserver);
 	}
 
+	private Runnable updateTimeTask = new Runnable() {
+		   public void run() {
+		       // do what you need to do here after the delay
+		   }
+		};
+	
 	/**
 	 * Defines the class for receiving event on Media Button
 	 */
@@ -200,11 +219,19 @@ public class CallStateService extends Service implements OnInitListener,
 					Utils.off_hook = 1;
 					Utils.ringing = 0;
 
-					Intent intent = new Intent(getBaseContext(),
+					final Intent intent = new Intent(getBaseContext(),
 							CallingScreen.class);
 					intent.putExtra("type", Utils.OUTGOING);
 					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					startActivity(intent);
+						
+					new Handler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							startActivity(intent);
+						}
+					}, 2000);
+
+					
 				} else if (newState == TelephonyManager.CALL_STATE_RINGING) {
 					// idle to ringing: new incoming call
 					Utils.ringing = 1;
