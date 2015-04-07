@@ -74,6 +74,7 @@
     <string name="btnSettings">Settings</string>
     <string name="btnMoreAccessibleApps">More\nAccessible\nApps</string>
     <string name="btnAllApps">All Apps</string>
+    <string name="msgLoading">Loading All Apps..."</string>
 
     <!-- AlarmMenu.java -->
     <string name="btnAlarm">Alarm</string>
@@ -105,6 +106,7 @@
     <string name="btnBookshareGoRead">Bookshare Go Read</string>
     <string name="btnGooglePlayBooks">Google Play Books</string>
     <string name="btnGoogleNewsstand">Google Play Newsstand</string>
+    <string name="btnGoogleDocs">Google Docs</string>
     
  	<!-- CameraMenu.java -->
     <string name="btnPhoneCamera">Camera</string>
@@ -349,6 +351,9 @@
     <string name="txtStatusBrightnessLow">Brightness set to low</string>
     <string name="txtStatusBrightnessMedium">Brightness set to medium</string>
     <string name="txtStatusBrightnessBright">Brightness set to bright</string>
+    
+    <string name="txtStatusWifi">WiFi</string>
+    <string name="txtStatusMobileData">Mobile data</string>
     
  	<!-- TextMessagesApp.java -->
     <string name="tabTextMsgsInbox">Inbox</string>

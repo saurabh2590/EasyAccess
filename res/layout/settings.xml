@@ -253,7 +253,6 @@
 				/>	
 				
 				<TextView  
-					android:id="@+id/txtEmpty5"
 					android:text="@string/txtEmpty"
 				    android:layout_width="12px" 
 				    android:layout_height="1px"

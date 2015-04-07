@@ -1,5 +1,6 @@
  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:id="@+id/cameraAppsMenu"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
     android:background="@color/homescreen_background" > 
@@ -252,7 +253,6 @@
 				/>	
 				
 				<TextView  
-					android:id="@+id/txtEmpty5"
 					android:text="@string/txtEmpty"
 				    android:layout_width="12px" 
 				    android:layout_height="1px"

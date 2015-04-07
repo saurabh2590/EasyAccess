@@ -277,7 +277,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtEmpty6"
                 android:layout_width="12dp"
                 android:layout_height="match_parent"
                 android:background="@color/navigation_bar_background" />
