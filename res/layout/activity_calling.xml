@@ -1,4 +1,3 @@
-  
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/calling"
@@ -6,172 +5,165 @@
     android:layout_height="fill_parent"
     android:background="@color/homescreen_background"
     android:orientation="vertical"
-    tools:context=".CallingScreen" >     
+    tools:context=".CallingScreen" >
 
- 	<LinearLayout 
-	    android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content" 
-	    android:background="@color/homescreen_background" 
-	    android:layout_weight="1"> 
-	    
-	    <TableLayout
-		    android:gravity="center_vertical"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:layout_centerVertical="true"
-		    android:paddingLeft="12px" 
-			android:paddingRight="12px"
-			android:paddingTop="12px" 
-			android:paddingBottom="12px" > 				
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >	 
-			    
-			    <TextView
-			        android:id="@+id/recipientTextView"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:gravity="center"
-			        android:textColor="@color/card_background_pressed"
-			        android:textSize="20sp"
-			        android:textStyle="bold" />				    
-			    
-			</TableRow>  
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty0"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="1px" 
-				    android:layout_height="12px"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				/>			
-			</TableRow>				
-	        
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >		    
-			   
-				<Button  
-					android:id="@+id/btnAnswerCall"
-					android:text="@string/btnAnswerCall"
-					android:contentDescription="@string/btnAnswerCall"
-					android:layout_weight="1"
-				    android:layout_width="fill_parent" 
-				    android:layout_height="match_parent" 
-				    android:background="@drawable/card"
-				    android:textColor="@drawable/card_textcolor" 
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_regular"
-				    android:gravity="center"
-					android:focusable="true"
-					android:visibility="visible"
-				/>			
-			</TableRow> 
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty1"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="1px" 
-				    android:layout_height="12px"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				/>			
-			</TableRow>			
-			
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >
-			   
-				<Button  
-					android:id="@+id/btnRejectCall"
-					android:text="@string/btnRejectCall"
-					android:contentDescription="@string/btnRejectCall"
-					android:layout_weight="1"
-				    android:layout_width="fill_parent" 
-				    android:layout_height="match_parent" 
-				    android:background="@drawable/card"
-				    android:textColor="@drawable/card_textcolor" 
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_regular"
-				    android:gravity="center"
-					android:focusable="true"
-				/>	
-			</TableRow> 
-						
-		</TableLayout> 	    
-	</LinearLayout>
-  
-	<LinearLayout 
-	    android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content" 
-	    android:background="@color/navigation_bar_background" 
-	    android:layout_weight="0">
-	
-		<TableLayout
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:layout_centerVertical="true"
-		    android:gravity="center_vertical"
-		    android:stretchColumns="0,2"
-		    android:weightSum="3" 
-		    android:paddingTop="1px" 
-		    android:paddingBottom="12px" >
-		
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical" >
-			   
-				<Button  
-					android:id="@+id/btnNavigationBack"
-					android:text="@string/btnNavigationBack"
-					android:contentDescription="@string/btnNavigationBack"
-					android:layout_weight="1"
-				    android:layout_width="0dip" 
-				    android:layout_height="@dimen/navigation_bar_height" 
-					android:background="@color/navigation_bar_background"
-				    android:textColor="@color/navigation_bar_textcolor" 
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_navigation"
-				    android:gravity="center"
-					android:focusable="true"
-				/>	
-				
-				<TextView  
-					android:id="@+id/txtEmpty5"
-					android:text="@string/txtEmpty"
-				    android:layout_width="12px" 
-				    android:layout_height="1px"
-				    android:background="@color/navigation_bar_background"		    
-				    android:focusable="false"
-				/>		
-				
-				<Button  
-					android:id="@+id/btnNavigationHome"
-					android:text="@string/btnNavigationHome"
-					android:contentDescription="@string/btnNavigationHome"
-					android:layout_weight="1"
-				    android:layout_width="0dip" 
-				    android:layout_height="@dimen/navigation_bar_height" 
-					android:background="@color/navigation_bar_background"
-				    android:textColor="@color/navigation_bar_textcolor" 		    
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_navigation"
-				    android:gravity="center"
-					android:focusable="true"
-				/>
-			</TableRow>
-		</TableLayout>	
-	</LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/homescreen_background"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingBottom="12px"
+            android:paddingLeft="12px"
+            android:paddingRight="12px"
+            android:paddingTop="12px" >
+
+            <TableRow
+                android:layout_weight="0"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/recipientTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/card_background_pressed"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="0"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/txtEmpty0"
+                    android:layout_width="1px"
+                    android:layout_height="12px"
+                    android:background="@color/homescreen_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnAnswerCall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    android:contentDescription="@string/btnAnswerCall"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnAnswerCall"
+                    android:textColor="@drawable/card_textcolor"
+                    android:textSize="@dimen/card_textsize_regular"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="0"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/txtEmpty1"
+                    android:layout_width="1px"
+                    android:layout_height="12px"
+                    android:background="@color/homescreen_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnRejectCall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    android:contentDescription="@string/btnRejectCall"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnRejectCall"
+                    android:textColor="@drawable/card_textcolor"
+                    android:textSize="@dimen/card_textsize_regular"
+                    android:textStyle="bold" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/navigation_bar_background"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingBottom="12px"
+            android:paddingTop="1px"
+            android:stretchColumns="0,2"
+            android:weightSum="3" >
+
+            <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnNavigationBack"
+                    android:layout_width="0dip"
+                    android:layout_height="@dimen/navigation_bar_height"
+                    android:layout_weight="1"
+                    android:background="@color/navigation_bar_background"
+                    android:contentDescription="@string/btnNavigationBack"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnNavigationBack"
+                    android:textColor="@color/navigation_bar_textcolor"
+                    android:textSize="@dimen/card_textsize_navigation"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtEmpty5"
+                    android:layout_width="12px"
+                    android:layout_height="1px"
+                    android:background="@color/navigation_bar_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+
+                <Button
+                    android:id="@+id/btnNavigationHome"
+                    android:layout_width="0dip"
+                    android:layout_height="@dimen/navigation_bar_height"
+                    android:layout_weight="1"
+                    android:background="@color/navigation_bar_background"
+                    android:contentDescription="@string/btnNavigationHome"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnNavigationHome"
+                    android:textColor="@color/navigation_bar_textcolor"
+                    android:textSize="@dimen/card_textsize_navigation"
+                    android:textStyle="bold" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
 </LinearLayout>

@@ -38,7 +38,6 @@ public class SplashActivity extends Activity implements OnInitListener {
 	// Declare constants and variables
 	private static String TAG = SplashActivity.class.getName();
 	private static long SLEEP_TIME = 3600;
-
 	private TextToSpeech tts;
 
 	@Override
@@ -46,17 +45,14 @@ public class SplashActivity extends Activity implements OnInitListener {
 		super.onCreate(savedInstanceState);
 
 		// Start call state changed service
-		Intent bootIntent = new Intent(getApplicationContext(),
-				CallStateService.class);
+		Intent bootIntent = new Intent(getApplicationContext(), CallStateService.class);
 		bootIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startService(bootIntent);
 
 		// Display splash screen without title and notification bar
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.splash);
-
 		// check for TTS
 		Intent checkIntent = new Intent();
 		checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
@@ -92,8 +88,7 @@ public class SplashActivity extends Activity implements OnInitListener {
 			} else {
 				// install the TTS data
 				Intent installIntent = new Intent();
-				installIntent
-						.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+				installIntent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
 				startActivity(installIntent);
 			}
 		}
@@ -102,9 +97,9 @@ public class SplashActivity extends Activity implements OnInitListener {
 	@Override
 	public void onInit(int status) {
 		if (status == TextToSpeech.ERROR) {
-			Toast.makeText(getApplicationContext(),
-					this.getResources().getString(R.string.ttsError),
-					Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.ttsError), Toast.LENGTH_LONG).show();
+		}else{
+			TTS.speak(getString(R.string.txteasyaccessActivated));
 		}
 	}
 
@@ -116,8 +111,7 @@ public class SplashActivity extends Activity implements OnInitListener {
 				// Sleeping
 				Thread.sleep(SLEEP_TIME);
 				// Start main activity
-				Intent intent = new Intent(SplashActivity.this,
-						SwipingUtils.class);
+				Intent intent = new Intent(SplashActivity.this, SwipingUtils.class);
 				SplashActivity.this.startActivity(intent);
 				SplashActivity.this.finish();
 			} catch (Exception e) {

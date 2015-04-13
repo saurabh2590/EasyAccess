@@ -16,6 +16,9 @@
  */
 package org.easyaccess.status;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,6 +48,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -60,8 +64,11 @@ import android.text.Html;
 import android.text.format.Time;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.google.android.gm.contentprovider.GmailContract;
 
@@ -76,15 +83,16 @@ public class StatusApp extends EasyAccessActivity {
 
 	/** Declare variables and UI elements **/
 	private Handler handler;
-	private View viewBeforeDataConnection, viewBeforeAlarm, viewBeforeLocation,
+	private View viewBeforeAlarm, viewBeforeLocation,
 			viewBeforeBluetooth, viewBeforeSignal, viewBeforeUnreadEmails,
 			viewBeforeMissedCalls, viewBeforeUnreadTextMessages,
 			viewBeforeBrightness;
 	private TextView txtStatusBattery, txtStatusSignal,
-			txtStatusDataConnection, txtStatusMissedCalls,
+			txtStatusMissedCalls,
 			txtStatusUnreadTextMessages, txtStatusUnreadEmails,
 			txtStatusNextAlarm, txtStatusTimeDate, txtStatusLocation,
 			txtStatusBluetooth, txtStatusBrightness;
+	private ToggleButton toggleButtonWifi, toggleButtonMobileData;
 	private LocationManager locManager;
 	private BroadcastReceiver mReceiver;
 	int currentSignalStrength;
@@ -148,7 +156,6 @@ public class StatusApp extends EasyAccessActivity {
 		// Find UI elements
 		txtStatusBattery = (TextView) findViewById(R.id.txtStatusBattery);
 		txtStatusSignal = (TextView) findViewById(R.id.txtStatusSignal);
-		txtStatusDataConnection = (TextView) findViewById(R.id.txtStatusDataConnection);
 		txtStatusMissedCalls = (TextView) findViewById(R.id.txtStatusMissedCalls);
 		txtStatusUnreadTextMessages = (TextView) findViewById(R.id.txtStatusUnreadTextMessages);
 		txtStatusUnreadEmails = (TextView) findViewById(R.id.txtStatusUnreadEmails);
@@ -157,7 +164,6 @@ public class StatusApp extends EasyAccessActivity {
 		txtStatusLocation = (TextView) findViewById(R.id.txtStatusLocation);
 		txtStatusBluetooth = (TextView) findViewById(R.id.txtStatusBluetooth);
 		txtStatusBrightness = (TextView) findViewById(R.id.txtStatusBrightness);
-		viewBeforeDataConnection = findViewById(R.id.viewBeforeDataConnection);
 		viewBeforeAlarm = findViewById(R.id.viewBeforeAlarm);
 		viewBeforeLocation = findViewById(R.id.viewBeforeLocation);
 		viewBeforeBluetooth = findViewById(R.id.viewBeforeBluetooth);
@@ -166,7 +172,10 @@ public class StatusApp extends EasyAccessActivity {
 		viewBeforeMissedCalls = findViewById(R.id.viewBeforeMissedCalls);
 		viewBeforeSignal = findViewById(R.id.viewBeforeSignal);
 		viewBeforeBrightness = findViewById(R.id.viewBeforeBrightness);
-
+		
+		toggleButtonWifi = (ToggleButton) findViewById(R.id.toggleButtonWifi);
+		toggleButtonMobileData = (ToggleButton) findViewById(R.id.toggleButtonMobileData);
+		
 		listenToChangeInSignalStrength();
 		listenToChangeInGpsStatus();
 		listenToChangeInBluetoothStatus();
@@ -311,7 +320,7 @@ public class StatusApp extends EasyAccessActivity {
 
 		displaySignalStrength(msg);
 
-		displayDataConnectionStatus(msg);
+		manageDataConnection();
 
 		displayUnreadTextMessages(msg);
 
@@ -388,34 +397,64 @@ public class StatusApp extends EasyAccessActivity {
 		}
 	}
 
-	/**
-	 * Displays the data connection status if the device is connected to a
-	 * network using 2G, 3G or Wifi. If the device is not connected to any
-	 * network, this status is not displayed.
-	 * 
-	 * @param msg
-	 *            The data connection details are retrieved from the data in
-	 *            msg.
-	 **/
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void manageDataConnection() {
+		final WifiManager wifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
+		toggleButtonWifi.setChecked(wifiManager.isWifiEnabled());
+		toggleButtonWifi.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				wifiManager.setWifiEnabled(isChecked);
+			}
+		});
 
-	public void displayDataConnectionStatus(Message msg) {
-		if (msg.getData().getString("dataConnection").equals("null")) {
-			txtStatusDataConnection.setVisibility(View.GONE);
-			viewBeforeDataConnection.setVisibility(View.GONE);
+		boolean mobileDataEnabled = false;
+		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		try {
+			Class cmClass = Class.forName(connectivityManager.getClass().getName());
+			Method method = cmClass.getDeclaredMethod("getMobileDataEnabled");
+			method.setAccessible(true);
+			mobileDataEnabled = (Boolean) method.invoke(connectivityManager);
+		} catch (Exception exception) {
+			// Some problem accessible private API
+			// TODO do whatever error handling you want here
+		}
+		toggleButtonMobileData.setChecked(mobileDataEnabled);
+
+		if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
+			toggleButtonMobileData.setEnabled(true);
+			toggleButtonMobileData.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					try {
+						setMobileDataEnabled(isChecked);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 		} else {
-			txtStatusDataConnection.setVisibility(View.VISIBLE);
-			viewBeforeDataConnection.setVisibility(View.VISIBLE);
-			txtStatusDataConnection.setText(msg.getData().getString(
-					"dataConnection")
-					+ " " + getString(R.string.txtStatusDataConnection));
-			txtStatusDataConnection.setContentDescription(msg.getData()
-					.getString("dataConnection")
-					+ " "
-					+ getString(R.string.txtStatusDataConnection));
-			attachListener(txtStatusDataConnection);
+			toggleButtonMobileData.setEnabled(false);
+			// There is an security restriction on Android Lollipop to enable MobileData Programmatically, so disabling mobile data switch.
+			// http://stackoverflow.com/questions/29340150/android-l-5-x-turn-on-off-mobile-data-programmatically
+			// stackoverflow.com/questions/26539445/the-setmobiledataenabled-method-is-no-longer-callable-as-of-android-l-and-later
 		}
 	}
-
+	
+	private void setMobileDataEnabled(boolean enabled) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+	    final ConnectivityManager conman = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+	    final Class conmanClass = Class.forName(conman.getClass().getName());
+	    final Field connectivityManagerField = conmanClass.getDeclaredField("mService");
+	    connectivityManagerField.setAccessible(true);
+	    final Object connectivityManager = connectivityManagerField.get(conman);
+	    final Class connectivityManagerClass =  Class.forName(connectivityManager.getClass().getName());
+	    final Method setMobileDataEnabledMethod = connectivityManagerClass.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
+	    setMobileDataEnabledMethod.setAccessible(true);
+	    setMobileDataEnabledMethod.invoke(connectivityManager, enabled);
+	}
+	
+	
 	/**
 	 * Displays the number of unread text messages. If the number of unread text
 	 * messages is 0, this status is not displayed.
@@ -550,7 +589,7 @@ public class StatusApp extends EasyAccessActivity {
 	public void displayBrightness(Message msg) {
 		txtStatusBrightness.setVisibility(View.VISIBLE);
 		viewBeforeBrightness.setVisibility(View.VISIBLE);
-		if (msg.getData().getString("brightness").equals(Utils.AUTOMATIC)) {
+		if (msg.getData().getString("brightness").equals(Utils.AUTOMATIC+"")) {
 			txtStatusBrightness
 					.setText(getString(R.string.txtStatusBrightness));
 			txtStatusBrightness

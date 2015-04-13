@@ -172,7 +172,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/card"
-                android:contentDescription="@string/btnSettings"
+                android:contentDescription="@string/btnEmail"
                 android:focusable="true"
                 android:gravity="center"
                 android:nextFocusLeft="@+id/btnStatus"

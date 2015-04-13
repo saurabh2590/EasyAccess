@@ -45,12 +45,10 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 	protected boolean curtainSet = false;
 
 	/**
-	 * Attaches onFocusChangeListener to the button passed as a parameter. When
-	 * the button receives focus, giveFeedback method is called, that reads
-	 * aloud the string passed to it as a parameter.
+	 * Attaches onFocusChangeListener to the button passed as a parameter. When the button receives focus, giveFeedback method is called, that reads aloud the
+	 * string passed to it as a parameter.
 	 * 
-	 * @param button
-	 *            is an instance of Button.
+	 * @param button is an instance of Button.
 	 */
 	protected void attachListener(Button button) {
 		final String text = button.getText().toString();
@@ -66,64 +64,61 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 		});
 	}
 
-    /** Launch the respective Java class, depending on which button is pressed **/
-    protected void setButtonClickActivity(int buttonInt, final Context ctx, final Class<?> cls) {
-        Button button = (Button) findViewById(buttonInt);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(ctx, cls);
-                startActivity(intent);
-            }
-        });
-    }
+	/** Launch the respective Java class, depending on which button is pressed **/
+	protected void setButtonClickActivity(int buttonInt, final Context ctx, final Class<?> cls) {
+		Button button = (Button) findViewById(buttonInt);
+		button.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(ctx, cls);
+				startActivity(intent);
+			}
+		});
+	}
 
-    /** Launch the respective Android intent, depending on which button is pressed **/
-    protected void setButtonClickIntent(int buttonInt, final String intentTarget) {
-        Button button = (Button) findViewById(buttonInt);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(intentTarget);
-                startActivity(intent);
-            }
-        });
-    }
+	/** Launch the respective Android intent, depending on which button is pressed **/
+	protected void setButtonClickIntent(int buttonInt, final String intentTarget) {
+		Button button = (Button) findViewById(buttonInt);
+		button.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(intentTarget);
+				startActivity(intent);
+			}
+		});
+	}
 
-    /** Launch the respective Android app, depending on which button is pressed **/
-    protected void setButtonClickUri(int buttonInt, final String uriTarget) {
-        Button button = (Button) findViewById(buttonInt);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                launchOrDownloadFromActivity(uriTarget);
-            }
-        });
-    }
+	/** Launch the respective Android app, depending on which button is pressed **/
+	protected void setButtonClickUri(int buttonInt, final String uriTarget) {
+		Button button = (Button) findViewById(buttonInt);
+		button.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				launchOrDownloadFromActivity(uriTarget);
+			}
+		});
+	}
 
-    /** Launch installed Android app or download from Google Play Store if missing **/
-    void launchOrDownloadFromActivity(String uriTarget) {
-        Intent intent = getPackageManager().getLaunchIntentForPackage(uriTarget);
-        if (intent != null)
-        {
-            // Start installed app
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
-        else
-        {
-            // If app is not installed, bring user to the Play Store
-            intent = new Intent(Intent.ACTION_VIEW);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setData(Uri.parse("market://details?id=" + uriTarget));
+	/** Launch installed Android app or download from Google Play Store if missing **/
+	void launchOrDownloadFromActivity(String uriTarget) {
+		Intent intent = getPackageManager().getLaunchIntentForPackage(uriTarget);
+		if (intent != null) {
+			// Start installed app
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+		} else {
+			// If app is not installed, bring user to the Play Store
+			intent = new Intent(Intent.ACTION_VIEW);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.setData(Uri.parse("market://details?id=" + uriTarget));
 
-            // Error handling in case Play Store cannot be launched
-            try {
-                startActivity(intent);
-            } catch(ActivityNotFoundException e) {
-                Context context = getApplicationContext();
-                CharSequence text = "Unable to launch the Google Play Store!";
-                Toast.makeText(context, text, Toast.LENGTH_LONG).show();
-            }
-        }
-    }
+			// Error handling in case Play Store cannot be launched
+			try {
+				startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				Context context = getApplicationContext();
+				CharSequence text = "Unable to launch the Google Play Store!";
+				Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+			}
+		}
+	}
 
 	/**
 	 * Turns off the screen curtain functionality if it is on.
@@ -139,12 +134,10 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 	}
 
 	/**
-	 * Attachs onFocusChangeListener to the spinner passed as a parameter. When
-	 * the spinner receives focus, giveFeedback method is called, that reads
-	 * aloud the string passed to it as a parameter.
+	 * Attachs onFocusChangeListener to the spinner passed as a parameter. When the spinner receives focus, giveFeedback method is called, that reads aloud the
+	 * string passed to it as a parameter.
 	 * 
-	 * @param spinner
-	 *            is an instance of Spinner.
+	 * @param spinner is an instance of Spinner.
 	 */
 	protected void attachListenerToSpinner(Spinner spinner) {
 		final String text = spinner.getContentDescription().toString();
@@ -159,11 +152,9 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 	}
 
 	/**
-	 * Announces the text passed as a parameter, and causes the device to
-	 * vibrate for 300 milliseconds.
+	 * Announces the text passed as a parameter, and causes the device to vibrate for 300 milliseconds.
 	 * 
-	 * @param text
-	 *            The text that is to be read aloud.
+	 * @param text The text that is to be read aloud.
 	 */
 	public void giveFeedback(String text) {
 		// vibrate
@@ -201,8 +192,7 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 			public void onClick(View v) {
 				turnOffScreenCurtain();
 				finish();
-				Intent intent = new Intent(getApplicationContext(),
-						SwipingUtils.class);
+				Intent intent = new Intent(getApplicationContext(), SwipingUtils.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
 				startActivity(intent);
@@ -234,8 +224,7 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 	}
 
 	@Override
-	public boolean onKeyDown(View view, Editable arg1, int keyCode,
-			KeyEvent keyEvent) {
+	public boolean onKeyDown(View view, Editable arg1, int keyCode, KeyEvent keyEvent) {
 		return false;
 	}
 
@@ -245,8 +234,7 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 	}
 
 	/**
-	 * Back and Home button functionalities for all the activities that extend
-	 * easyaccessActivity
+	 * Back and Home button functionalities for all the activities that extend easyaccessActivity
 	 **/
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
@@ -254,8 +242,7 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 			// go to the previous screen
 			// check if keyboard is connected and accessibility services are
 			// disabled
-			if (!Utils.isAccessibilityEnabled(getApplicationContext())
-					&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+			if (!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 				TTS.speak(getString(R.string.btnNavigationBack));
 			turnOffScreenCurtain();
 			finish();
@@ -263,13 +250,11 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 			// go to the home screen
 			// check if keyboard is connected and accessibility services are
 			// disabled
-			if (!Utils.isAccessibilityEnabled(getApplicationContext())
-					&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+			if (!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 				TTS.speak(getString(R.string.btnNavigationHome));
 			turnOffScreenCurtain();
 			finish();
-			Intent intent = new Intent(getApplicationContext(),
-					SwipingUtils.class);
+			Intent intent = new Intent(getApplicationContext(), SwipingUtils.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
 			startActivity(intent);
@@ -283,8 +268,7 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 	}
 
 	@Override
-	public boolean onKeyUp(View view, Editable arg1, int keyCode,
-			KeyEvent keyEvent) {
+	public boolean onKeyUp(View view, Editable arg1, int keyCode, KeyEvent keyEvent) {
 		return false;
 	}
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/card"
+    android:id="@+id/linearLayoutAllAppsRow"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/imageViewAppIcon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/textViewAppName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textColor="@drawable/card_textcolor"
+        android:textSize="@dimen/card_textsize_listitems" />
+
+</LinearLayout>

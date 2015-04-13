@@ -21,7 +21,7 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 
 package org.easyaccess.alarms;
 
@@ -33,6 +33,7 @@ import android.widget.TextView;
 
 import org.easyaccess.EasyAccessActivity;
 import org.easyaccess.R;
+import org.easyaccess.Utils;
 
 public class AlarmApp extends EasyAccessActivity {
 
@@ -43,38 +44,43 @@ public class AlarmApp extends EasyAccessActivity {
 		super.onCreate(savedInstanceState);
 	}
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initializeAlarm(R.id.txtAlarmsEntry1, "1");
-        initializeAlarm(R.id.txtAlarmsEntry2, "2");
-        initializeAlarm(R.id.txtAlarmsEntry3, "3");
-        initializeAlarm(R.id.txtAlarmsEntry4, "4");
-        initializeAlarm(R.id.txtAlarmsEntry5, "5");
-    }
+	@Override
+	protected void onResume() {
+		super.onResume();
+		initializeAlarm(R.id.txtAlarmsEntry1, "1");
+		initializeAlarm(R.id.txtAlarmsEntry2, "2");
+		initializeAlarm(R.id.txtAlarmsEntry3, "3");
+		initializeAlarm(R.id.txtAlarmsEntry4, "4");
+		initializeAlarm(R.id.txtAlarmsEntry5, "5");
+	}
 
-    /** Launch the respective Java class, depending on which textview is pressed **/
-    private void initializeAlarm(int textviewInt, final String alarmNumber) {
-        TextView textview = (TextView) findViewById(textviewInt);
-        initializeOnClickAction(alarmNumber, textview);
+	/** Launch the respective Java class, depending on which textview is pressed **/
+	private void initializeAlarm(int textviewInt, final String alarmNumber) {
+		TextView textview = (TextView) findViewById(textviewInt);
+		initializeOnClickAction(alarmNumber, textview);
 
-        String alarmTime = getSharedPreferences("org.easyaccess.alarms", Context.MODE_PRIVATE).getString("alarm"+alarmNumber, "0000d");
-        int hourOfDay = Integer.parseInt(alarmTime.substring(0, 2));
-        int minute = Integer.parseInt(alarmTime.substring(2, 4));
-        String enabled = alarmTime.substring(4, 5);
-        String state = "disabled";
-        if("e".equalsIgnoreCase(enabled)) state = "enabled";
-        textview.setText(String.format("Alarm at %02d:%02d (%s)", hourOfDay, minute, state));
-    }
+		String alarmTime = getSharedPreferences("org.easyaccess.alarms", Context.MODE_PRIVATE).getString("alarm" + alarmNumber, "0000d");
+		int hourOfDay = Integer.parseInt(alarmTime.substring(0, 2));
+		int minute = Integer.parseInt(alarmTime.substring(2, 4));
+		String enabled = alarmTime.substring(4, 5);
+		String state = "disabled";
+		if ("e".equalsIgnoreCase(enabled))
+			state = "enabled";
+		textview.setText(String.format("Alarm at %02d:%02d (%s)", hourOfDay, minute, state));
 
-    private void initializeOnClickAction(final String alarmNumber, TextView textview) {
-        textview.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(AlarmApp.this, AlarmChangeApp.class);
-                intent.putExtra("alarmNumber", alarmNumber);
-                startActivity(intent);
-            }
-        });
-    }
+		Utils.applyFontColorChanges(getApplicationContext(), textview);
+		Utils.applyFontSizeChanges(getApplicationContext(), textview);
+		Utils.applyFontTypeChanges(getApplicationContext(), textview);
+	}
+
+	private void initializeOnClickAction(final String alarmNumber, TextView textview) {
+		textview.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(AlarmApp.this, AlarmChangeApp.class);
+				intent.putExtra("alarmNumber", alarmNumber);
+				startActivity(intent);
+			}
+		});
+	}
 
 }

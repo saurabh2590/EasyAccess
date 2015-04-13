@@ -26,9 +26,11 @@
 package org.easyaccess.simplemenus;
 
 import android.os.Bundle;
+import android.widget.LinearLayout;
 
 import org.easyaccess.EasyAccessActivity;
 import org.easyaccess.R;
+import org.easyaccess.Utils;
 
 public class BooksNewspapersMenu extends EasyAccessActivity {
 	
@@ -44,8 +46,22 @@ public class BooksNewspapersMenu extends EasyAccessActivity {
 		setButtonClickUri(R.id.btnBookshareGoRead, "org.benetech.android");
 		setButtonClickUri(R.id.btnGooglePlayBooks, "com.google.android.apps.books");
 		setButtonClickUri(R.id.btnGoogleNewsstand, "com.google.android.apps.magazines");
-		
+		setButtonClickUri(R.id.btnGoogleDocs, "com.google.android.apps.docs.editors.docs");
 		/** Put most everything before here **/
 	}
+	
+	@Override
+	protected void onResume() {
+		LinearLayout layout = (LinearLayout) findViewById(R.id.booksNewsPaperMenu);
+		// Apply the selected font color, font size and font type to the
+		// activity
+
+		Utils.applyFontColorChanges(getApplicationContext(), layout);
+		Utils.applyFontSizeChanges(getApplicationContext(), layout);
+		Utils.applyFontTypeChanges(getApplicationContext(), layout);
+		
+		super.onResume();
+	}
+	
 	
 }

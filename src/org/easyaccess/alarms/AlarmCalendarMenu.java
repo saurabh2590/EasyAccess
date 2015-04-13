@@ -25,10 +25,12 @@
 
 package org.easyaccess.alarms;
 
-import android.os.Bundle;
-
 import org.easyaccess.EasyAccessActivity;
 import org.easyaccess.R;
+import org.easyaccess.Utils;
+
+import android.os.Bundle;
+import android.widget.LinearLayout;
 
 public class AlarmCalendarMenu extends EasyAccessActivity {
 
@@ -41,8 +43,21 @@ public class AlarmCalendarMenu extends EasyAccessActivity {
 		/** Launch respective app, depending on which button is pressed **/
 		setButtonClickActivity(R.id.btnAlarm, AlarmCalendarMenu.this, AlarmApp.class);
 		setButtonClickUri(R.id.btnCalendar, "com.google.android.calendar");
-		
 		/** Put most everything before here **/
 	}	
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		// get the root layout
+		LinearLayout layout = (LinearLayout) findViewById(R.id.alarmCalendarMenu);
+		// Apply the selected font color, font size and font type to the
+		// activity
+
+		Utils.applyFontColorChanges(getApplicationContext(), layout);
+		Utils.applyFontSizeChanges(getApplicationContext(), layout);
+		Utils.applyFontTypeChanges(getApplicationContext(), layout);
+	}
+	
 	
 }
