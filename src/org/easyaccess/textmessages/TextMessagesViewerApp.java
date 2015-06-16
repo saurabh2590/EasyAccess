@@ -37,6 +37,7 @@ import org.easyaccess.phonedialer.PhoneDialerApp;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -48,6 +49,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.PhoneLookup;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -69,7 +72,7 @@ import android.widget.Toast;
 
 public class TextMessagesViewerApp extends EasyAccessActivity {
 
-	private Button btnReply, btnCall, btnDeleteThread;
+	private Button btnReply, btnCall, btnDeleteThread, btnAddToContact;
 	private final static int INBOX = 1;
 	private final static int SENT = 2;
 	private Cursor cursor;
@@ -586,6 +589,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 		btnReply = (Button) findViewById(R.id.btnTextMsgsReply);
 		btnCall = (Button) findViewById(R.id.btnTextMsgsCall);
 		btnDeleteThread = (Button) findViewById(R.id.btnTextMsgsDeleteThread);
+		btnAddToContact = (Button) findViewById(R.id.btnAddToContact);
 		// get all contacts and pass to the list adapter
 		progressBar = (ProgressBar) findViewById(R.id.progressBarMessages);
 		progressBar.setVisibility(View.VISIBLE);
@@ -598,6 +602,26 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 		this.address = getIntent().getExtras().getString("address");
 		this.records = new HashMap<String, ArrayList<String>>();
 		this.dateArrayList = new ArrayList<String>();
+
+		// Checking phone number exist or not
+		if (contactExists(getApplicationContext(), address)) {
+			btnAddToContact.setVisibility(View.GONE);
+		} else {
+			btnAddToContact.setVisibility(View.VISIBLE);
+		}
+		btnAddToContact.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+
+				Intent intent = new Intent(
+						ContactsContract.Intents.SHOW_OR_CREATE_CONTACT, Uri
+								.parse("tel:" + address));
+				intent.putExtra(ContactsContract.Intents.EXTRA_FORCE_CREATE,
+						true);
+				startActivity(intent);
+			}
+		});
 
 		attachKeyListener(btnReply, 1);
 
@@ -640,6 +664,25 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 				}
 			}
 		};
+	}
+
+	public boolean contactExists(Context context, String number) {
+		// / number is the phone number
+		Uri lookupUri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
+				Uri.encode(number));
+		String[] mPhoneNumberProjection = { PhoneLookup._ID,
+				PhoneLookup.NUMBER, PhoneLookup.DISPLAY_NAME };
+		Cursor cur = context.getContentResolver().query(lookupUri,
+				mPhoneNumberProjection, null, null, null);
+		try {
+			if (cur.moveToFirst()) {
+				return true;
+			}
+		} finally {
+			if (cur != null)
+				cur.close();
+		}
+		return false;
 	}
 
 	@Override
