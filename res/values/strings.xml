@@ -387,6 +387,7 @@
     <string name="btnTextMsgsReply">Reply</string>
     <string name="btnTextMsgsCall">Call</string>
     <string name="btnTextMsgsDeleteThread">Delete All</string>
+    <string name="btnstrAddToContact">Add To Contact</string>
     <string name="btnTextMsgsDelete">Delete</string>
     <string name="btnProceed">Proceed</string>
     <string name="deleteThreadSuccess">Thread has been deleted successfully</string>
