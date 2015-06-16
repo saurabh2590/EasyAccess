@@ -114,7 +114,8 @@
     <string name="btnOCRScanner">OCR Scanner</string>
     <string name="btnColorIdentifier">Color Identifier</string>
     <string name="btnMoneyIdentifier">Money Identifier</string>
-    <string name="btnLightDetector">Light Detector</string>  
+    <string name="btnLightDetector">Light Detector</string> 
+    <string name="btnTapTapSee">TapTapSee</string> 
     
  	<!-- CallLogApp.java -->
     <string name="tabCallsDialled">\nOut</string>
