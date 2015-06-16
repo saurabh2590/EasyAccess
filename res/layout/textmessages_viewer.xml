@@ -78,7 +78,24 @@
                 android:textSize="@dimen/card_textsize_tabs"
                 android:textStyle="bold" />
         </TableRow>
-    </TableLayout>
+
+           </TableLayout>
+
+    <Button
+        android:id="@+id/btnAddToContact"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keypad_height"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/card"
+        android:contentDescription="@string/btnstrAddToContact"
+        android:focusable="true"
+        android:gravity="center"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:text="@string/btnstrAddToContact"
+        android:textColor="@drawable/card_textcolor"
+        android:textSize="@dimen/card_textsize_tabs"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="fill_parent"
