@@ -150,6 +150,70 @@
                     android:text="@string/txtEmpty" />
             </TableRow>
 
+             <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnTwitter"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    android:contentDescription="@string/btnSkype"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnTwitter"
+                    android:textColor="@drawable/card_textcolor"
+                    android:textSize="@dimen/card_textsize_regular"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="0"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/txtEmpty5"
+                    android:layout_width="1px"
+                    android:layout_height="12px"
+                    android:background="@color/homescreen_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+            </TableRow>
+            
+            <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnLinkedIn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    android:contentDescription="@string/btnLinkedIn"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnLinkedIn"
+                    android:textColor="@drawable/card_textcolor"
+                    android:textSize="@dimen/card_textsize_regular"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="0"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/txtEmpty6"
+                    android:layout_width="1px"
+                    android:layout_height="12px"
+                    android:background="@color/homescreen_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+            </TableRow>
+            
             <TableRow
                 android:layout_weight="1"
                 android:gravity="center_vertical" >
@@ -174,7 +238,7 @@
                 android:gravity="center_vertical" >
 
                 <TextView
-                    android:id="@+id/txtEmpty5"
+                    android:id="@+id/txtEmpty7"
                     android:layout_width="1px"
                     android:layout_height="12px"
                     android:background="@color/homescreen_background"
