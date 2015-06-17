@@ -52,6 +52,8 @@ import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.PhoneLookup;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -449,7 +451,12 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
 			// create TextViews
-			final TextView txtMessage = new TextView(getApplicationContext());
+			//final TextView txtMessage = new TextView(getApplicationContext());
+			final TextView txtMessage = new TextView(this);
+			txtMessage.setAutoLinkMask(Linkify.ALL);
+			// android:autoLink=""
+			//txtMessage.setMovementMethod(LinkMovementMethod.getInstance());
+			
 			// create Button
 			final Button btnDelete = new Button(getApplicationContext());
 			btnDelete.setText(getString(R.string.btnDelete));
@@ -462,7 +469,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 				text = records.get(me.getKey()).get(0) + Html.fromHtml("<br/>");
 			text += records.get(me.getKey()).get(1);
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-					"d MMMM yyyy' 'HH:MM:ss");
+					"d MMMM yyyy', 'HH:MM:ss");
 			Date dateTemp = new Date(Long.valueOf(me.getKey().toString()));
 			String date = simpleDateFormat.format(dateTemp);
 			markMessageRead(me.getKey().toString());
