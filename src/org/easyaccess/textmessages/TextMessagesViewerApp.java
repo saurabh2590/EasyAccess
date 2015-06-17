@@ -662,6 +662,18 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 		btnDeselectAll = (Button) findViewById(R.id.btnDeselectAll);
 		btnDeleteSelected = (Button) findViewById(R.id.btnDeleteSelected);
 
+		btnDeselectAll.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				for (int i = 0; i < checkBoxsMaltipleDelete.size(); i++) {
+					if (checkBoxsMaltipleDelete.get(i).isChecked()) {
+						checkBoxsMaltipleDelete.get(i).setChecked(false);
+					}
+				}
+
+			}
+		});
 		btnDeleteSelected.setOnClickListener(new OnClickListener() {
 			boolean result;
 
