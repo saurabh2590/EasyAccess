@@ -196,12 +196,20 @@ public class ContactsApp extends Activity implements KeyListener {
 		idArrayList = new ArrayList<String>();
 		if (!(inputContacts.getText().toString().matches("-?\\d+(\\.\\d+)?"))) {
 			for (int i = 0; i < name.size(); i++) {
-				if (name.get(i)
-						.toString()
+				
+				String[] splited_name = name.get(i).toString().split("\\s+");
+				
+				if (splited_name[0]
 						.toLowerCase()
 						.startsWith(
 								inputContacts.getText().toString()
-										.toLowerCase())) {
+										.toLowerCase())
+										
+						||splited_name[splited_name.length-1]
+								.toLowerCase()
+								.startsWith(
+										inputContacts.getText().toString()
+												.toLowerCase()) ) {
 					nameArrayList.add(name.get(i));
 					numberArrayList.add(number.get(i));
 					idArrayList.add(contactIdArrayList.get(i));
@@ -364,8 +372,8 @@ public class ContactsApp extends Activity implements KeyListener {
 								inputContactsText.length() - 1));
 						inputContacts.setContentDescription(inputContactsText
 								.replaceAll(".(?=[0-9])", "$0 "));
-						inputContacts.setSelection(inputContactsText.length(),
-								inputContactsText.length());
+						inputContacts.setSelection(inputContactsText.length()-1,
+								inputContactsText.length()-1);
 						return false;
 					} else {
 						// check if keyboard is connected and accessibility
