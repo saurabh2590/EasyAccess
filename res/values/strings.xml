@@ -383,6 +383,9 @@
     <string name="smsNotDelivered">SMS could not be delivered</string>
     
  	<!-- TextMessagesViewerApp.java -->
+ 	
+ 	<string name="btnDeleteSelected">Delete Selected</string>
+ 	<string name="btnDeselectAll">Deselect All</string>
  	<string name="conversation">Conversation</string>
     <string name="btnTextMsgsReply">Reply</string>
     <string name="btnTextMsgsCall">Call</string>
