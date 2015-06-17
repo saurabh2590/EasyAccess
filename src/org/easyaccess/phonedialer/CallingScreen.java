@@ -88,14 +88,9 @@ public class CallingScreen extends Activity {
 		gestureDetector = new GestureDetector(getApplicationContext(), new GestureListener());
 
 
-		// df = new SimpleDateFormat("HH:mm:ss");
-		   // df.setTimeZone(tz);
 		
 		 mHandler = new Handler() {
 			    public void handleMessage(Message msg) {
-			    	
-			    	//tv_dailer_called_timer.setText(formatIntoHHMMSS(elapsedTime)); //this is the textview
-			    
 			    	tv_dailer_called_timer.setText(""+time);
 			    }
 			};
@@ -195,26 +190,12 @@ public class CallingScreen extends Activity {
 public boolean mIsTimerActive = true;
 	
 class UpdateTimeTask extends TimerTask {
-		 
-		// private TimerTask timer;
-		//Timer timer;
-	
-	
+		
 	public void deactivateTimer() {
         mIsTimerActive = false;
     }
 		public void run() {
-			System.out.println("In run method" + time +" ee "+ elapsedTime);
 			 elapsedTime += 1;
-				//time = df.format(new Date(elapsedTime*1000));
-//				time = String.format("%d:%d:%d ", 
-//						TimeUnit.MILLISECONDS.toHours(elapsedTime*1000),
-//					    TimeUnit.MILLISECONDS.toMinutes(elapsedTime*1000),
-//					    TimeUnit.MILLISECONDS.toSeconds(elapsedTime*1000) - 
-//					    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(elapsedTime*1000))
-//					);
-				
-				
 				time = String.format("%02d:%02d:%02d ",TimeUnit.MILLISECONDS.toHours(elapsedTime*1000), 
 						 TimeUnit.MILLISECONDS.toMinutes(elapsedTime*1000) - 
 						 TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(elapsedTime*1000)), 
@@ -224,39 +205,12 @@ class UpdateTimeTask extends TimerTask {
 				 
 			}
 			
-//			   timer.scheduleAtFixedRate(new TimerTask() {
-//			        public void run() {
-//			            elapsedTime += 1; //increase every sec
-//			            mHandler.obtainMessage(1).sendToTarget();
-//			        }
-//			    }, 0, 1000);
-			
-//			 String workingTime = "Your effort is "
-//                     + format.format(Double.valueOf(hr)) + ":"
-//                     + format.format(Double.valueOf(min)) + ":"
-//                     + format.format(Double.valueOf(sec))
-//                     + " till now for the day";
-//             if (!mIsTimerActive) {
-//                 cancel(); // will cancel this timer instance
-//             }
-//             sec++;
-//             if (sec > 59) {
-//                 sec = 0;
-//                 min = min + 1;
-//             }
-//             if (min > 59) {
-//                 min = 0;
-//                 hr = hr + 1;
-//             }
-         
 			
 		   }
 		   		  
 		}
 	
 static void startTask() {
-	
-	System.out.println("start timer task");
     timer = new Timer();
     CallingScreen obj = new CallingScreen();
     myTimer =  obj.new UpdateTimeTask();
@@ -265,8 +219,6 @@ static void startTask() {
  }
 	
 static void stopTask() {
-	
-	System.out.println("stop timer task");
    if(myTimer!=null){
 	   timer.cancel();
 	   timer = null;
