@@ -107,6 +107,8 @@
     <string name="btnGooglePlayBooks">Google Play Books</string>
     <string name="btnGoogleNewsstand">Google Play Newsstand</string>
     <string name="btnGoogleDocs">Google Docs</string>
+     <string name="btnDDReaderPlus">DD Reader Plus</string>
+   
     
  	<!-- CameraMenu.java -->
     <string name="btnPhoneCamera">Camera</string>
@@ -331,6 +333,8 @@
     <string name="btnFacebook">Facebook</string>
     <string name="btnFacebookMessenger">Facebook Messenger</string>
     <string name="btnGooglePlus">Google+</string>
+    <string name="btnTwitter">Twitter</string>
+    <string name="btnLinkedIn">Linked IN</string>
     <string name="btnSkype">Skype</string>
     <string name="btnViber">Viber</string>      
     
