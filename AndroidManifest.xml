@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
@@ -66,12 +67,14 @@
             android:screenOrientation="nosensor" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+<category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.HOME" />
+               
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+       <!--   <category android:name="android.intent.category.HOME" /> -->
+        
         <activity
             android:name="org.easyaccess.phonedialer.CallingScreen"
             android:label="@string/title_activity_calling" >
@@ -81,7 +84,7 @@
             android:configChanges="orientation|keyboardHidden|keyboard"
             android:contentDescription="@string/appNameTalkBackFriendly"
             android:label="" >
- >
+ 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -328,7 +331,9 @@
         <activity android:name="org.easyaccess.simplemenus.MapsMenu"></activity>
         <activity android:name="org.easyaccess.simplemenus.MusicVideoMenu"></activity>
         <activity android:name="org.easyaccess.simplemenus.SocialNetworksMenu"></activity>
+        <activity android:name="org.easyaccess.AllAppsActivity"></activity>
 
-    </application>
+     
+     </application>
 
 </manifest>
