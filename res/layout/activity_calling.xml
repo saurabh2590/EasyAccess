@@ -72,6 +72,29 @@
                     android:visibility="visible" />
             </TableRow>
 
+            
+              <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/tv_dailer_called_timer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    android:contentDescription="@string/btnAnswerCall"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="Timer "
+                   android:visibility="gone"
+                    android:textColor="@drawable/card_textcolor"
+                    android:textSize="@dimen/card_textsize_regular"
+                    android:textStyle="bold"
+                     />
+            </TableRow>
+            
+            
             <TableRow
                 android:layout_weight="0"
                 android:gravity="center_vertical" >
@@ -85,6 +108,11 @@
                     android:text="@string/txtEmpty" />
             </TableRow>
 
+            
+            
+          
+            
+            
             <TableRow
                 android:layout_weight="1"
                 android:gravity="center_vertical" >

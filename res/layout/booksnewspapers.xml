@@ -212,6 +212,39 @@
                     android:focusable="false"
                     android:text="@string/txtEmpty" />
             </TableRow>
+            
+             <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnDDReaderPlus"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    android:contentDescription="@string/btnGoogleNewsstand"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnDDReaderPlus"
+                    android:textColor="@drawable/card_textcolor"
+                    android:textSize="@dimen/card_textsize_regular"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="0"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/txtEmpty6"
+                    android:layout_width="1px"
+                    android:layout_height="12px"
+                    android:background="@color/homescreen_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+            </TableRow>
+            
         </TableLayout>
     </LinearLayout>
 
