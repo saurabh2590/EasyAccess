@@ -687,12 +687,16 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 				}
 				// reload activity
 				if (result) {
-					TTS.speak(getString(R.string.deleteMessageSuccess));
+					if (!Utils.isAccessibilityEnabled(getApplicationContext())
+							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+						TTS.speak(getString(R.string.deleteMessageSuccess));
 					Toast.makeText(getApplicationContext(),
 							getString(R.string.deleteMessageSuccess),
 							Toast.LENGTH_SHORT).show();
 				} else {
-					TTS.speak(getString(R.string.deleteMessageFailure));
+					if (!Utils.isAccessibilityEnabled(getApplicationContext())
+							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+						TTS.speak(getString(R.string.deleteMessageFailure));
 					Toast.makeText(getApplicationContext(),
 							getString(R.string.deleteMessageFailure),
 							Toast.LENGTH_SHORT).show();
