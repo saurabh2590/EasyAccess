@@ -212,6 +212,7 @@ public class CallStateService extends Service implements OnInitListener,
 
 		@Override
 		public void onCallStateChanged(int newState, String incomingNumber) {
+			System.out.println("new state "+newState);
 			switch (callState) {
 			case TelephonyManager.CALL_STATE_IDLE:
 				if (newState == TelephonyManager.CALL_STATE_OFFHOOK) {
@@ -219,6 +220,8 @@ public class CallStateService extends Service implements OnInitListener,
 					Utils.off_hook = 1;
 					Utils.ringing = 0;
 
+					CallingScreen.startTask();
+					
 					final Intent intent = new Intent(getBaseContext(),
 							CallingScreen.class);
 					intent.putExtra("type", Utils.OUTGOING);
@@ -235,6 +238,8 @@ public class CallStateService extends Service implements OnInitListener,
 				} else if (newState == TelephonyManager.CALL_STATE_RINGING) {
 					// idle to ringing: new incoming call
 					Utils.ringing = 1;
+					
+					
 					new CallManager(getApplicationContext())
 							.setNumber(incomingNumber);
 					sendResult(incomingNumber, Utils.INCOMING_CALL);
@@ -245,6 +250,8 @@ public class CallStateService extends Service implements OnInitListener,
 				if (newState == TelephonyManager.CALL_STATE_IDLE) {
 					// off hook to idle: call disconnected/ended, close Calling
 					// screen
+					
+					CallingScreen.stopTask();
 					Utils.off_hook = 0;
 					Utils.ringing = 0;
 					sendResult(getResources().getString(R.string.call_ended),
@@ -264,12 +271,19 @@ public class CallStateService extends Service implements OnInitListener,
 			case TelephonyManager.CALL_STATE_RINGING:
 				if (newState == TelephonyManager.CALL_STATE_OFFHOOK) {
 					// ringing to off hook: call answered/received
+					
+					//call received start timer
+					CallingScreen.startTask();
+					
+					System.out.println(" After Ringing its Off Hock");
 					Utils.off_hook = 1;
 					Utils.ringing = 0;
 					if (Utils.ringtone != null && Utils.ringtone.isPlaying()) {
 						Utils.ringtone.stop();
 					}
 				} else if (newState == TelephonyManager.CALL_STATE_IDLE) {
+					
+					System.out.println(" After Ringing its IDLE");
 					// ringing to idle: missed call
 					if (Utils.ringtone != null && Utils.ringtone.isPlaying()) {
 						Utils.ringtone.stop();
