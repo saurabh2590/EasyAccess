@@ -434,8 +434,8 @@ public class TextMessagesComposerRecipientApp extends Activity implements
 								editRecipientText.length() - 1));
 						editRecipient.setContentDescription(editRecipientText
 								.replaceAll(".(?=[0-9])", "$0 "));
-						editRecipient.setSelection(editRecipientText.length(),
-								editRecipientText.length());
+						editRecipient.setSelection(editRecipientText.length()-1,
+								editRecipientText.length()-1);
 						return false;
 					} else {
 						// check if keyboard is connected and accessibility
