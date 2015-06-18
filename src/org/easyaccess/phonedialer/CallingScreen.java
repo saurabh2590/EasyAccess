@@ -62,15 +62,15 @@ public class CallingScreen extends Activity {
 	private TextView recipientTextView;
 	private Button btnAnswerCall;
 	private Button btnRejectCall;
-	 public static String time = "";
+	public static String time = "";
 	private TextView tv_dailer_called_timer;
 	private BroadcastReceiver bReceiver;
 	private GestureDetector gestureDetector;
 	public static Timer timer ;
-	 public static Handler mHandler;
-	 public static int elapsedTime=0;
-	 public  SimpleDateFormat df =new SimpleDateFormat("HH:mm:ss",Locale.getDefault());
-	 public static UpdateTimeTask myTimer;
+	public static Handler mHandler;
+	public static int elapsedTime=0;
+	public  SimpleDateFormat df =new SimpleDateFormat("HH:mm:ss",Locale.getDefault());
+	public static UpdateTimeTask myTimer;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -86,12 +86,19 @@ public class CallingScreen extends Activity {
 		btnRejectCall = (Button) findViewById(R.id.btnRejectCall);
 		tv_dailer_called_timer =(TextView)findViewById(R.id.tv_dailer_called_timer);
 		gestureDetector = new GestureDetector(getApplicationContext(), new GestureListener());
+<<<<<<< Updated upstream
 
 
 		
 		 mHandler = new Handler() {
 			    public void handleMessage(Message msg) {
 			    	tv_dailer_called_timer.setText(""+time);
+=======
+		
+		 mHandler = new Handler() {
+			    public void handleMessage(Message msg) {
+			       	tv_dailer_called_timer.setText(""+time);
+>>>>>>> Stashed changes
 			    }
 			};
 			
@@ -163,7 +170,6 @@ public class CallingScreen extends Activity {
 					
 					//call end stop timer
 					if(myTimer!=null){
-						myTimer.deactivateTimer();
 						myTimer = null;
 					}
 					
@@ -187,6 +193,7 @@ public class CallingScreen extends Activity {
 
 	}
 
+<<<<<<< Updated upstream
 public boolean mIsTimerActive = true;
 	
 class UpdateTimeTask extends TimerTask {
@@ -208,8 +215,33 @@ class UpdateTimeTask extends TimerTask {
 			
 		   }
 		   		  
-		}
+=======
 	
+	class UpdateTimeTask extends TimerTask {
+
+		public void run() {
+			elapsedTime += 1;
+			time = String.format(
+					"%02d:%02d:%02d ",
+					TimeUnit.MILLISECONDS.toHours(elapsedTime * 1000),
+					TimeUnit.MILLISECONDS.toMinutes(elapsedTime * 1000)
+							- TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS
+									.toHours(elapsedTime * 1000)),
+					TimeUnit.MILLISECONDS.toSeconds(elapsedTime * 1000)
+							- TimeUnit.MILLISECONDS
+									.toSeconds(TimeUnit.MILLISECONDS
+											.toMinutes(elapsedTime * 1000)));
+			if (mHandler != null) {
+				mHandler.obtainMessage(1).sendToTarget();
+
+			}
+
+>>>>>>> Stashed changes
+		}
+
+	}
+	
+<<<<<<< Updated upstream
 static void startTask() {
     timer = new Timer();
     CallingScreen obj = new CallingScreen();
@@ -220,6 +252,18 @@ static void startTask() {
 	
 static void stopTask() {
    if(myTimer!=null){
+=======
+	static void startTask() {
+		timer = new Timer();
+		CallingScreen obj = new CallingScreen();
+		myTimer = obj.new UpdateTimeTask();
+		timer.scheduleAtFixedRate(myTimer, 1000, 1000);
+
+	}
+	
+static void stopTask() {
+	   if(myTimer!=null){
+>>>>>>> Stashed changes
 	   timer.cancel();
 	   timer = null;
 	   myTimer= null;
