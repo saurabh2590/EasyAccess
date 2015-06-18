@@ -199,24 +199,40 @@ public class ContactsApp extends Activity implements KeyListener {
 				
 				String[] splited_name = name.get(i).toString().split("\\s+");
 				
-				if (splited_name[0]
-						.toLowerCase()
-						.startsWith(
-								inputContacts.getText().toString()
-										.toLowerCase())
-										
-						||splited_name[splited_name.length-1]
-								.toLowerCase()
-								.startsWith(
-										inputContacts.getText().toString()
-												.toLowerCase()) ) {
-					nameArrayList.add(name.get(i));
-					numberArrayList.add(number.get(i));
-					idArrayList.add(contactIdArrayList.get(i));
-					contactsAdapter = new ContactsAdapter(
-							getApplicationContext(), nameArrayList);
-					found = 1;
+//				if (splited_name[0]
+//						.toLowerCase()
+//						.startsWith(
+//								inputContacts.getText().toString()
+//										.toLowerCase())
+//										
+//						||splited_name[splited_name.length-1]
+//								.toLowerCase()
+//								.startsWith(
+//										inputContacts.getText().toString()
+//												.toLowerCase()) ) {
+//					nameArrayList.add(name.get(i));
+//					numberArrayList.add(number.get(i));
+//					idArrayList.add(contactIdArrayList.get(i));
+//					contactsAdapter = new ContactsAdapter(
+//							getApplicationContext(), nameArrayList);
+//					found = 1;
+//				}
+				
+				for(int j=0;j<splited_name.length;j++){
+					if (splited_name[j]
+							.toLowerCase()
+							.startsWith(
+									inputContacts.getText().toString()
+											.toLowerCase())){
+						nameArrayList.add(name.get(i));
+						numberArrayList.add(number.get(i));
+						idArrayList.add(contactIdArrayList.get(i));
+						contactsAdapter = new ContactsAdapter(
+								getApplicationContext(), nameArrayList);
+						found = 1;
+					}
 				}
+				
 			}
 		} else {
 			// user entered a number
