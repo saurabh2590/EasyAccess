@@ -53,10 +53,14 @@ public class MusicVideoMenu extends EasyAccessActivity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(
-						MediaStore.INTENT_ACTION_MUSIC_PLAYER);
-				startActivity(intent);
-
+				try {
+					Intent intent = new Intent(
+							MediaStore.INTENT_ACTION_MUSIC_PLAYER);
+					startActivity(intent);
+				} catch (Exception e) {
+					setButtonClickUri(R.id.btnMP3Player,
+							"in.co.accessiblenews.gestureplayer");
+				}
 			}
 		});
 		setButtonClickUri(R.id.btnYouTube, "com.google.android.youtube");
