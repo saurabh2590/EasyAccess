@@ -89,7 +89,7 @@
                     android:text="Timer "
                    android:visibility="gone"
                     android:textColor="@drawable/card_textcolor"
-                    android:textSize="@dimen/card_textsize_regular"
+                    android:textSize="@dimen/card_textsize_phonedialer"
                     android:textStyle="bold"
                      />
             </TableRow>
