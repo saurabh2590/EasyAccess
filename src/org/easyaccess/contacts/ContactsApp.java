@@ -198,26 +198,7 @@ public class ContactsApp extends Activity implements KeyListener {
 			for (int i = 0; i < name.size(); i++) {
 				
 				String[] splited_name = name.get(i).toString().split("\\s+");
-				
-//				if (splited_name[0]
-//						.toLowerCase()
-//						.startsWith(
-//								inputContacts.getText().toString()
-//										.toLowerCase())
-//										
-//						||splited_name[splited_name.length-1]
-//								.toLowerCase()
-//								.startsWith(
-//										inputContacts.getText().toString()
-//												.toLowerCase()) ) {
-//					nameArrayList.add(name.get(i));
-//					numberArrayList.add(number.get(i));
-//					idArrayList.add(contactIdArrayList.get(i));
-//					contactsAdapter = new ContactsAdapter(
-//							getApplicationContext(), nameArrayList);
-//					found = 1;
-//				}
-				
+
 				for(int j=0;j<splited_name.length;j++){
 					if (splited_name[j]
 							.toLowerCase()
@@ -351,19 +332,37 @@ public class ContactsApp extends Activity implements KeyListener {
 					return super.dispatchKeyEvent(event);
 			} else {
 				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+					
+					System.out.println("Deleeeeeeetteeeeee");
 					deletedFlag = 1;
 					String inputContactsText = inputContacts.getText()
 							.toString();
 					if (inputContactsText.length() != 0) {
 						// check if keyboard is connected and accessibility
 						// services are disabled
-						if (!Utils
-								.isAccessibilityEnabled(getApplicationContext())
-								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
+//						if (Utils
+//								.isAccessibilityEnabled(getApplicationContext())
+//								) {
+							
+							if (!Utils
+									.isAccessibilityEnabled(getApplicationContext())
+									&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
+					
 							if (inputContactsText.substring(
 									inputContactsText.length() - 1,
 									inputContactsText.length()).matches(
 									"-?\\d+(\\.\\d+)?")) {
+								
+								System.out.println(" speecking "+getString(R.string.deleted)
+										+ " "
+										+ inputContactsText.substring(
+												inputContactsText.length() - 1,
+												inputContactsText.length())
+										+ ". "
+										+ TTS.readNumber(inputContactsText
+												.substring(0, inputContactsText
+														.length() - 1)));
+								
 								TTS.speak(getString(R.string.deleted)
 										+ " "
 										+ inputContactsText.substring(
@@ -374,6 +373,16 @@ public class ContactsApp extends Activity implements KeyListener {
 												.substring(0, inputContactsText
 														.length() - 1)));
 							} else {
+								
+								System.out.println(" speecking "+getString(R.string.deleted)
+										+ " "
+										+ inputContactsText.substring(
+												inputContactsText.length() - 1,
+												inputContactsText.length())
+										+ ". "
+										+ inputContactsText.substring(0,
+												inputContactsText.length() - 1));
+								
 								TTS.speak(getString(R.string.deleted)
 										+ " "
 										+ inputContactsText.substring(

@@ -313,6 +313,7 @@ public class Utils {
 	 */
 	public static boolean isAccessibilityEnabled(Context context) {
 		AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+		//return true;
 		return am.isEnabled();
 	}
 

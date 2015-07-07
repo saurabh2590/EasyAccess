@@ -373,6 +373,7 @@ public class TextMessagesComposerRecipientApp extends Activity implements
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {
+			System.out.println("is focused "+editRecipient.hasFocus());
 			if (!editRecipient.hasFocus()) {
 				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
 					// go to the previous screen
@@ -399,6 +400,8 @@ public class TextMessagesComposerRecipientApp extends Activity implements
 					return super.dispatchKeyEvent(event);
 			} else {
 				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+					
+					System.out.println("is focused in here");
 					deletedFlag = 1;
 					String editRecipientText = editRecipient.getText()
 							.toString();
@@ -444,6 +447,7 @@ public class TextMessagesComposerRecipientApp extends Activity implements
 								.isAccessibilityEnabled(getApplicationContext())
 								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 							TTS.speak(getString(R.string.btnNavigationBack));
+						System.out.println("is focused Navigating back from here");
 						finish();
 					}
 				} else {

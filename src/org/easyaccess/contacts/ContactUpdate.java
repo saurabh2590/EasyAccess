@@ -49,6 +49,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
@@ -77,6 +78,7 @@ public class ContactUpdate extends Activity implements KeyListener {
 	private final int NUMBER = 2;
 	private final int EMAIL = 3;
 
+	private InputMethodManager inputKeyboard;
 	/**
 	 * Attaches onKey listener to the Button passed as a parameter to the
 	 * method. If enter key on the keyboard or center key on the keypad is
@@ -508,8 +510,12 @@ public class ContactUpdate extends Activity implements KeyListener {
 		setContentView(R.layout.contactupdate);
 		super.onCreate(savedInstanceState);
 
+		inputKeyboard = (InputMethodManager) getApplicationContext()
+	            .getSystemService(Context.INPUT_METHOD_SERVICE);
+
 		// get UI elements
 		editField = (EditText) findViewById(R.id.editField);
+	//	editField.setFocusable(false);
 		txtType = (TextView) findViewById(R.id.txtType);
 		btnSave = (Button) findViewById(R.id.btnUpdate);
 		btnSetPrimary = (Button) findViewById(R.id.btnSetPrimary);
@@ -929,7 +935,11 @@ public class ContactUpdate extends Activity implements KeyListener {
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {
-			if (!editField.hasFocus()) {
+			//if (!editField.hasFocus()) {
+			
+			System.out.println("is focused "+editField.hasFocus());
+				if (!inputKeyboard.isAcceptingText()) {
+				
 				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
 					// go to the previous screen
 					// check if keyboard is connected and accessibility services
@@ -958,50 +968,55 @@ public class ContactUpdate extends Activity implements KeyListener {
 					deletedFlag = 1;
 					String editFieldText = editField.getText().toString();
 
-					if (editFieldText.length() != 0) {
-						// check if keyboard is connected and accessibility
-						// services are disabled
-						if (!Utils
-								.isAccessibilityEnabled(getApplicationContext())
-								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
-							if (editFieldText.substring(
-									editFieldText.length() - 1,
-									editFieldText.length()).matches(
-									"-?\\d+(\\.\\d+)?")) {
-								TTS.speak(getString(R.string.deleted)
-										+ " "
-										+ editFieldText.substring(
-												editFieldText.length() - 1,
-												editFieldText.length())
-										+ ". "
-										+ TTS.readNumber(editFieldText.substring(
-												0, editFieldText.length() - 1)));
-							} else {
-								TTS.speak(getString(R.string.deleted)
-										+ " "
-										+ editFieldText.substring(
-												editFieldText.length() - 1,
-												editFieldText.length())
-										+ ". "
-										+ editFieldText.substring(0,
-												editFieldText.length() - 1));
+					if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+						if (editFieldText.length() != 0) {
+							// check if keyboard is connected and accessibility
+							// services are disabled
+							if (!Utils
+									.isAccessibilityEnabled(getApplicationContext())
+									&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
+								if (editFieldText.substring(
+										editFieldText.length() - 1,
+										editFieldText.length()).matches(
+										"-?\\d+(\\.\\d+)?")) {
+									TTS.speak(getString(R.string.deleted)
+											+ " "
+											+ editFieldText.substring(
+													editFieldText.length() - 1,
+													editFieldText.length())
+											+ ". "
+											+ TTS.readNumber(editFieldText.substring(
+													0, editFieldText.length() - 1)));
+								} else {
+									TTS.speak(getString(R.string.deleted)
+											+ " "
+											+ editFieldText.substring(
+													editFieldText.length() - 1,
+													editFieldText.length())
+											+ ". "
+											+ editFieldText.substring(0,
+													editFieldText.length() - 1));
+								}
 							}
+							editField.setText(editFieldText.substring(0,
+									editFieldText.length() - 1));
+							editField.setContentDescription(editFieldText
+									.replaceAll(".(?=[0-9])", "$0 "));
+							editField.setSelection(editFieldText.length()-1);
+							
+							return false;
+						} else {
+							// check if keyboard is connected and accessibility
+							// services are disabled
+							if (!Utils
+									.isAccessibilityEnabled(getApplicationContext())
+									&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+								TTS.speak(getString(R.string.btnNavigationBack));
+							finish();
 						}
-						editField.setText(editFieldText.substring(0,
-								editFieldText.length() - 1));
-						editField.setContentDescription(editFieldText
-								.replaceAll(".(?=[0-9])", "$0 "));
-						editField.setSelection(editFieldText.length(),
-								editFieldText.length());
-						return false;
-					} else {
-						// check if keyboard is connected and accessibility
-						// services are disabled
-						if (!Utils
-								.isAccessibilityEnabled(getApplicationContext())
-								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
-							TTS.speak(getString(R.string.btnNavigationBack));
-						finish();
+					}
+					else {
+						return super.dispatchKeyEvent(event);
 					}
 				}
 			}
