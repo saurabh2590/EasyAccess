@@ -224,7 +224,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/card"
-                    android:contentDescription="@string/btnLightDetector"
+                    android:contentDescription="@string/btnTapTapSeeRead"
                     android:focusable="true"
                     android:gravity="center"
                     android:text="@string/btnTapTapSee"
