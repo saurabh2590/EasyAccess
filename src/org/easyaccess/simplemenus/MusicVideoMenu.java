@@ -21,11 +21,16 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License. 
-*/
+ */
 
 package org.easyaccess.simplemenus;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import org.easyaccess.EasyAccessActivity;
@@ -39,15 +44,30 @@ public class MusicVideoMenu extends EasyAccessActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.musicvideo);
 		super.onCreate(savedInstanceState);
-		
+
 		/** Launch respective app, depending on which button is pressed **/
-		setButtonClickUri(R.id.btnMP3Player, "in.co.accessiblenews.gestureplayer");
+		// setButtonClickUri(R.id.btnMP3Player,
+		// "in.co.accessiblenews.gestureplayer");
+		Button btnMP3Player = (Button) findViewById(R.id.btnMP3Player);
+		btnMP3Player.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				try {
+					Intent intent = new Intent(
+							MediaStore.INTENT_ACTION_MUSIC_PLAYER);
+					startActivity(intent);
+				} catch (Exception e) {
+					setButtonClickUri(R.id.btnMP3Player,
+							"in.co.accessiblenews.gestureplayer");
+				}
+			}
+		});
 		setButtonClickUri(R.id.btnYouTube, "com.google.android.youtube");
-		
+
 		/** Put most everything before here **/
-	}	
-	
-	
+	}
+
 	@Override
 	protected void onResume() {
 		LinearLayout layout = (LinearLayout) findViewById(R.id.musicVideoMenu);
@@ -57,8 +77,8 @@ public class MusicVideoMenu extends EasyAccessActivity {
 		Utils.applyFontColorChanges(getApplicationContext(), layout);
 		Utils.applyFontSizeChanges(getApplicationContext(), layout);
 		Utils.applyFontTypeChanges(getApplicationContext(), layout);
-		
+
 		super.onResume();
 	}
-	
+
 }

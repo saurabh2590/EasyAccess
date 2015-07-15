@@ -16,6 +16,7 @@
  */
 package org.easyaccess.status;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -50,6 +51,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -64,13 +66,14 @@ import android.text.Html;
 import android.text.format.Time;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import com.google.android.gm.contentprovider.GmailContract;
+import com.google.android.gms.internal.dd;
 
 /**
  * The Status feature in easyaccess lists the status of the device's battery,
@@ -92,13 +95,16 @@ public class StatusApp extends EasyAccessActivity {
 			txtStatusUnreadTextMessages, txtStatusUnreadEmails,
 			txtStatusNextAlarm, txtStatusTimeDate, txtStatusLocation,
 			txtStatusBluetooth, txtStatusBrightness;
-	private ToggleButton toggleButtonWifi, toggleButtonMobileData;
+	private TextView tv_Wifi, tvMobileData;
 	private LocationManager locManager;
 	private BroadcastReceiver mReceiver;
 	int currentSignalStrength;
 	long oldTime;
 	int dbm;
 
+//	private LinearLayout wi_fi_layout;
+//	
+//	private LinearLayout mobile_data_layout;
 	/**
 	 * Attaches onFocusChange listener to the TextView passed as a parameter to
 	 * the method, to track the change in focus of the TextView. If the TextView
@@ -173,9 +179,11 @@ public class StatusApp extends EasyAccessActivity {
 		viewBeforeSignal = findViewById(R.id.viewBeforeSignal);
 		viewBeforeBrightness = findViewById(R.id.viewBeforeBrightness);
 		
-		toggleButtonWifi = (ToggleButton) findViewById(R.id.toggleButtonWifi);
-		toggleButtonMobileData = (ToggleButton) findViewById(R.id.toggleButtonMobileData);
+		tv_Wifi = (TextView) findViewById(R.id.tv_Wifi);
+		tvMobileData = (TextView) findViewById(R.id.tvMobileData);
 		
+		//wi_fi_layout = (LinearLayout)findViewById(R.id.wi_fi_layout);
+		//mobile_data_layout = (LinearLayout)findViewById(R.id.mobile_data_layout);
 		listenToChangeInSignalStrength();
 		listenToChangeInGpsStatus();
 		listenToChangeInBluetoothStatus();
@@ -400,13 +408,14 @@ public class StatusApp extends EasyAccessActivity {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void manageDataConnection() {
 		final WifiManager wifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
-		toggleButtonWifi.setChecked(wifiManager.isWifiEnabled());
-		toggleButtonWifi.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				wifiManager.setWifiEnabled(isChecked);
-			}
-		});
+		//toggleButtonWifi.setChecked(wifiManager.isWifiEnabled());
+		
+		if(wifiManager.isWifiEnabled())
+			tv_Wifi.setText("WiFi is ON");
+		else
+			tv_Wifi.setText("WiFi is OFF");
+
+		
 
 		boolean mobileDataEnabled = false;
 		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -419,40 +428,43 @@ public class StatusApp extends EasyAccessActivity {
 			// Some problem accessible private API
 			// TODO do whatever error handling you want here
 		}
-		toggleButtonMobileData.setChecked(mobileDataEnabled);
+		//toggleButtonMobileData.setChecked(mobileDataEnabled);
 
 		if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
-			toggleButtonMobileData.setEnabled(true);
-			toggleButtonMobileData.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-				@Override
-				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-					try {
-						setMobileDataEnabled(isChecked);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
+			
+			if(mobileDataEnabled)
+				tvMobileData.setText("Mobile Data is ON");
+			else
+				tvMobileData.setText("Mobile Data is OFF");
+			
 		} else {
-			toggleButtonMobileData.setEnabled(false);
+			
+		//	toggleButtonMobileData.setEnabled(false);
 			// There is an security restriction on Android Lollipop to enable MobileData Programmatically, so disabling mobile data switch.
 			// http://stackoverflow.com/questions/29340150/android-l-5-x-turn-on-off-mobile-data-programmatically
 			// stackoverflow.com/questions/26539445/the-setmobiledataenabled-method-is-no-longer-callable-as-of-android-l-and-later
-		}
+		
+			//toggleButtonWifi.setChecked(isMobileDataEnabledFromLollipop(this));
+			if(isMobileDataEnabledFromLollipop(this))
+				tvMobileData.setText("Mobile Data is ON");
+			else
+				tvMobileData.setText("Mobile Data is OFF");
+				}
+		
+
+
+		
 	}
 	
-	private void setMobileDataEnabled(boolean enabled) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-	    final ConnectivityManager conman = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-	    final Class conmanClass = Class.forName(conman.getClass().getName());
-	    final Field connectivityManagerField = conmanClass.getDeclaredField("mService");
-	    connectivityManagerField.setAccessible(true);
-	    final Object connectivityManager = connectivityManagerField.get(conman);
-	    final Class connectivityManagerClass =  Class.forName(connectivityManager.getClass().getName());
-	    final Method setMobileDataEnabledMethod = connectivityManagerClass.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
-	    setMobileDataEnabledMethod.setAccessible(true);
-	    setMobileDataEnabledMethod.invoke(connectivityManager, enabled);
+	private static boolean isMobileDataEnabledFromLollipop(Context context) {
+	    boolean state = false;
+	    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+	        state = Settings.Global.getInt(context.getContentResolver(), "mobile_data", 0) == 1;
+	    }
+	    return state;
 	}
+
+	
 	
 	
 	/**

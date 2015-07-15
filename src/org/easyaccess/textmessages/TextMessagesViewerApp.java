@@ -37,6 +37,7 @@ import org.easyaccess.phonedialer.PhoneDialerApp;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -48,7 +49,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.PhoneLookup;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -57,8 +62,12 @@ import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,7 +78,8 @@ import android.widget.Toast;
 
 public class TextMessagesViewerApp extends EasyAccessActivity {
 
-	private Button btnReply, btnCall, btnDeleteThread;
+	private Button btnReply, btnCall, btnDeleteThread, btnAddToContact,
+			btnDeselectAll, btnDeleteSelected;
 	private final static int INBOX = 1;
 	private final static int SENT = 2;
 	private Cursor cursor;
@@ -79,6 +89,9 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 	private ArrayList<String> dateArrayList;
 	private String address;
 	private ProgressBar progressBar;
+	private TableRow row1, row2;
+	private ArrayList<CheckBox> checkBoxsMaltipleDelete;
+	private ArrayList<String> MaltipleDeleteTimeStemp;
 
 	/**
 	 * Launches the PhoneDialerApp activity and passes the number to be called.
@@ -435,10 +448,15 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 			this.dateArrayList.add(me.getKey().toString());
 			progressBar.setVisibility(View.GONE);
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
 			// create TextViews
-			final TextView txtMessage = new TextView(getApplicationContext());
+			//final TextView txtMessage = new TextView(getApplicationContext());
+			final TextView txtMessage = new TextView(this);
+			txtMessage.setAutoLinkMask(Linkify.ALL);
+			// android:autoLink=""
+			//txtMessage.setMovementMethod(LinkMovementMethod.getInstance());
+			
 			// create Button
 			final Button btnDelete = new Button(getApplicationContext());
 			btnDelete.setText(getString(R.string.btnDelete));
@@ -451,7 +469,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 				text = records.get(me.getKey()).get(0) + Html.fromHtml("<br/>");
 			text += records.get(me.getKey()).get(1);
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-					"d MMMM yyyy' 'HH:MM:ss");
+					"d MMMM yyyy', 'HH:MM:ss");
 			Date dateTemp = new Date(Long.valueOf(me.getKey().toString()));
 			String date = simpleDateFormat.format(dateTemp);
 			markMessageRead(me.getKey().toString());
@@ -464,7 +482,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 						+ date;
 				txtMessage.setGravity(Gravity.RIGHT);
 			}
-			txtMessage.setWidth(params.width / 3);
+			// txtMessage.setWidth(params.width / 3);
 			txtMessage.setText(text);
 			txtMessage.setContentDescription(text);
 
@@ -564,15 +582,74 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 
 				@Override
 				public void onClick(View view) {
+					// String temp = me.getKey().toString();
 					confirmDelete(getString(R.string.deleteSingleConfirm), 0,
 							me.getKey().toString());
 				}
 			});
+			// Horizontal layout to keep checkbox and textview
+			LinearLayout llHoriContainer = new LinearLayout(
+					getApplicationContext());
+			LinearLayout.LayoutParams llparams = new LinearLayout.LayoutParams(
+					LinearLayout.LayoutParams.MATCH_PARENT,
+					LinearLayout.LayoutParams.WRAP_CONTENT);
+			llHoriContainer.setOrientation(LinearLayout.HORIZONTAL);
+			llHoriContainer.setLayoutParams(llparams);
+
+			// checkbox
+			CheckBox chkMultipleDelete = new CheckBox(getApplicationContext());
+			checkBoxsMaltipleDelete.add(chkMultipleDelete);
+			MaltipleDeleteTimeStemp.add(me.getKey().toString());
+			LinearLayout.LayoutParams paramsChkbox = new LinearLayout.LayoutParams(
+					LinearLayout.LayoutParams.WRAP_CONTENT,
+					LinearLayout.LayoutParams.WRAP_CONTENT);
+			paramsChkbox.setMargins(5, 30, 5, 5);
+			// paramsChkbox.height = 50;
+			// paramsChkbox.weight = 50;
+			chkMultipleDelete.setSelected(false);
+			chkMultipleDelete.setLayoutParams(paramsChkbox);
+			/*
+			 * chkMultipleDelete.setOnClickListener(new OnClickListener() {
+			 * 
+			 * @Override public void onClick(View v) {
+			 * row1.setVisibility(View.GONE); row2.setVisibility(View.VISIBLE);
+			 * } });
+			 */
+			chkMultipleDelete
+					.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+						@Override
+						public void onCheckedChanged(CompoundButton buttonView,
+								boolean isChecked) {
+							if (isChecked) {
+								row1.setVisibility(View.GONE);
+								row2.setVisibility(View.VISIBLE);
+							} else {
+								if (isAllUnchecked()) {
+									row1.setVisibility(View.VISIBLE);
+									row2.setVisibility(View.GONE);
+								}
+							}
+						}
+					});
+			// adding textview and chkbox in horizonatl layout
+			llHoriContainer.addView(chkMultipleDelete);
+			llHoriContainer.addView(txtMessage);
 
 			LinearLayout layout = (LinearLayout) findViewById(R.id.textLinearLayout);
-			layout.addView(txtMessage);
+			// layout.addView(txtMessage);
+			layout.addView(llHoriContainer);
 			layout.addView(btnDelete);
 		}
+	}
+
+	public boolean isAllUnchecked() {
+		for (int i = 0; i < checkBoxsMaltipleDelete.size(); i++) {
+			if (checkBoxsMaltipleDelete.get(i).isChecked()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/** Create the Text Messages Viewer activity **/
@@ -586,6 +663,62 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 		btnReply = (Button) findViewById(R.id.btnTextMsgsReply);
 		btnCall = (Button) findViewById(R.id.btnTextMsgsCall);
 		btnDeleteThread = (Button) findViewById(R.id.btnTextMsgsDeleteThread);
+		btnAddToContact = (Button) findViewById(R.id.btnAddToContact);
+		row1 = (TableRow) findViewById(R.id.row1);
+		row2 = (TableRow) findViewById(R.id.row2);
+		btnDeselectAll = (Button) findViewById(R.id.btnDeselectAll);
+		btnDeleteSelected = (Button) findViewById(R.id.btnDeleteSelected);
+
+		btnDeselectAll.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				for (int i = 0; i < checkBoxsMaltipleDelete.size(); i++) {
+					if (checkBoxsMaltipleDelete.get(i).isChecked()) {
+						checkBoxsMaltipleDelete.get(i).setChecked(false);
+					}
+				}
+
+			}
+		});
+		btnDeleteSelected.setOnClickListener(new OnClickListener() {
+			boolean result;
+
+			@Override
+			public void onClick(View v) {
+				for (int i = 0; i < checkBoxsMaltipleDelete.size(); i++) {
+					if (checkBoxsMaltipleDelete.get(i).isChecked()) {
+						result = deleteMessage(MaltipleDeleteTimeStemp.get(i));
+
+					}
+				}
+				// reload activity
+				if (result) {
+					if (!Utils.isAccessibilityEnabled(getApplicationContext())
+							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+						TTS.speak(getString(R.string.deleteMessageSuccess));
+					Toast.makeText(getApplicationContext(),
+							getString(R.string.deleteMessageSuccess),
+							Toast.LENGTH_SHORT).show();
+				} else {
+					if (!Utils.isAccessibilityEnabled(getApplicationContext())
+							&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
+						TTS.speak(getString(R.string.deleteMessageFailure));
+					Toast.makeText(getApplicationContext(),
+							getString(R.string.deleteMessageFailure),
+							Toast.LENGTH_SHORT).show();
+				}
+				finish();
+				Intent intent = new Intent(getApplicationContext(),
+						TextMessagesViewerApp.class);
+				intent.putExtra("address", TextMessagesViewerApp.this.address);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+						| Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
+			}
+		});
+		checkBoxsMaltipleDelete = new ArrayList<CheckBox>();
+		MaltipleDeleteTimeStemp = new ArrayList<String>();
 		// get all contacts and pass to the list adapter
 		progressBar = (ProgressBar) findViewById(R.id.progressBarMessages);
 		progressBar.setVisibility(View.VISIBLE);
@@ -598,6 +731,26 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 		this.address = getIntent().getExtras().getString("address");
 		this.records = new HashMap<String, ArrayList<String>>();
 		this.dateArrayList = new ArrayList<String>();
+
+		// Checking phone number exist or not
+		if (contactExists(getApplicationContext(), address)) {
+			btnAddToContact.setVisibility(View.GONE);
+		} else {
+			btnAddToContact.setVisibility(View.VISIBLE);
+		}
+		btnAddToContact.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+
+				Intent intent = new Intent(
+						ContactsContract.Intents.SHOW_OR_CREATE_CONTACT, Uri
+								.parse("tel:" + address));
+				intent.putExtra(ContactsContract.Intents.EXTRA_FORCE_CREATE,
+						true);
+				startActivity(intent);
+			}
+		});
 
 		attachKeyListener(btnReply, 1);
 
@@ -640,6 +793,25 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 				}
 			}
 		};
+	}
+
+	public boolean contactExists(Context context, String number) {
+		// / number is the phone number
+		Uri lookupUri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
+				Uri.encode(number));
+		String[] mPhoneNumberProjection = { PhoneLookup._ID,
+				PhoneLookup.NUMBER, PhoneLookup.DISPLAY_NAME };
+		Cursor cur = context.getContentResolver().query(lookupUri,
+				mPhoneNumberProjection, null, null, null);
+		try {
+			if (cur.moveToFirst()) {
+				return true;
+			}
+		} finally {
+			if (cur != null)
+				cur.close();
+		}
+		return false;
 	}
 
 	@Override

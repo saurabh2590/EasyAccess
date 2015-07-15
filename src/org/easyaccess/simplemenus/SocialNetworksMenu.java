@@ -45,6 +45,8 @@ public class SocialNetworksMenu extends EasyAccessActivity {
 		setButtonClickUri(R.id.btnFacebookApp, "com.facebook.katana");
 		setButtonClickUri(R.id.btnFacebookMessenger, "com.facebook.orca");
 		setButtonClickUri(R.id.btnGooglePlus, "com.google.android.apps.plus");
+		setButtonClickUri(R.id.btnTwitter, "com.twitter.android");
+		setButtonClickUri(R.id.btnLinkedIn, "com.linkedin.android");
 		setButtonClickUri(R.id.btnSkype, "com.skype.raider");
 		setButtonClickUri(R.id.btnViber, "com.viber.voip");
 		

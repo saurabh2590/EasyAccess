@@ -103,6 +103,7 @@ public class PhoneDialerApp extends EasyAccessActivity {
 				strDialNumber = strDialNumber + strDialDigit;
 				txtDialNumber.setText(strDialNumber);
 				txtDialNumber.setContentDescription(strDialNumber.replaceAll(".(?=[0-9])", "$0 "));
+			
 			}
 		});
 	}

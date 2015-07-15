@@ -16,10 +16,13 @@
  */
 package org.easyaccess;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.KeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 
@@ -34,7 +37,6 @@ public class Homescreen2Activity extends AbstractHomescreenActivity implements
 	 * The HomeScreenActivity displays the options available in the app.
 	 */
 
-
 	/** Create the Main activity showing home screen #2 **/
 	@Override
 	public View onCreateView(final LayoutInflater inflater,
@@ -44,39 +46,78 @@ public class Homescreen2Activity extends AbstractHomescreenActivity implements
 
 		// Launch respective easyaccess app, depending on which button is
 		// pressed
-		attachListenerToOpenExternalApp((Button) v.findViewById(R.id.btnInternet), "com.android.chrome");
-		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnAlarmCalendar), AlarmCalendarMenu.class);
-		attachListenerToOpenExternalApp((Button) v.findViewById(R.id.btnRadio), "tunein.player");
-		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnMusicVideo), MusicVideoMenu.class);
-		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnBooksNewspapers), BooksNewspapersMenu.class);
-		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnMaps), MapsMenu.class);
+		// attachListenerToOpenExternalApp((Button)
+		// v.findViewById(R.id.btnInternet), "com.android.chrome");
+		Button btnInternet = (Button) v.findViewById(R.id.btnInternet);
+		btnInternet.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				try {
+
+					Intent intent = new Intent(Intent.ACTION_VIEW);
+					intent.setData(Uri.parse("http://www.google.com"));
+					startActivity(intent);
+
+				} catch (Exception e) {
+					launchOrDownloadFromFragment("com.android.chrome");
+				}
+			}
+		});
+		attachListenerToOpenActivity(
+				(Button) v.findViewById(R.id.btnAlarmCalendar),
+				AlarmCalendarMenu.class);
+		attachListenerToOpenExternalApp((Button) v.findViewById(R.id.btnRadio),
+				"tunein.player");
+
+		attachListenerToOpenActivity(
+				(Button) v.findViewById(R.id.btnMusicVideo),
+				MusicVideoMenu.class);
+
+		/*
+		 * Button btnMusicVideo = (Button) v.findViewById(R.id.btnMusicVideo);
+		 * btnMusicVideo.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { try { Intent intent = new
+		 * Intent(); //intent.setType("audio/video");
+		 * intent.setType("video/mp4");
+		 * intent.setAction(Intent.ACTION_GET_CONTENT);
+		 * startActivity(Intent.createChooser(intent, "Open Audio (mp3) file"));
+		 * } catch (Exception e) {
+		 * 
+		 * } } });
+		 */attachListenerToOpenActivity(
+				(Button) v.findViewById(R.id.btnBooksNewspapers),
+				BooksNewspapersMenu.class);
+		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnMaps),
+				MapsMenu.class);
 
 		/** Put most everything before here **/
 		return v;
 	}
 
 	@Override
-    void startSelectedActivity(View view) {
-        switch (view.getId()) {
-            case R.id.btnInternet:
-                launchOrDownloadFromFragment("com.android.chrome");
-                break;
-            case R.id.btnAlarmCalendar:
-                startNewActivity(AlarmCalendarMenu.class);
-                break;
-            case R.id.btnRadio:
-                launchOrDownloadFromFragment("tunein.player");
-                break;
-            case R.id.btnMusicVideo:
-                startNewActivity(MusicVideoMenu.class);
-                break;
-            case R.id.btnBooksNewspapers:
-                startNewActivity(BooksNewspapersMenu.class);
-                break;
-            case R.id.btnMaps:
-                startNewActivity(MapsMenu.class);
-                break;
-        }
-    }
+	void startSelectedActivity(View view) {
+		switch (view.getId()) {
+		case R.id.btnInternet:
+			launchOrDownloadFromFragment("com.android.chrome");
+			break;
+		case R.id.btnAlarmCalendar:
+			startNewActivity(AlarmCalendarMenu.class);
+			break;
+		case R.id.btnRadio:
+			launchOrDownloadFromFragment("tunein.player");
+			break;
+		case R.id.btnMusicVideo:
+			startNewActivity(MusicVideoMenu.class);
+			break;
+		case R.id.btnBooksNewspapers:
+			startNewActivity(BooksNewspapersMenu.class);
+			break;
+		case R.id.btnMaps:
+			startNewActivity(MapsMenu.class);
+			break;
+		}
+	}
 
 }

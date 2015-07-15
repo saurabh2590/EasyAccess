@@ -46,19 +46,28 @@ public class CameraAppsMenu extends EasyAccessActivity {
 		super.onCreate(savedInstanceState);
 
 		/** Launch respective app, depending on which button is pressed **/
-		setButtonClickIntent(R.id.btnPhoneCamera, MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
-		setButtonClickUri(R.id.btnGoogleGoggles, "com.google.android.apps.unveil");
-		setButtonClickUri(R.id.btnOCRScanner, "com.smartmobilesoftware.mobileocrfree");
+		setButtonClickIntent(R.id.btnPhoneCamera,
+				MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+		setButtonClickUri(R.id.btnGoogleGoggles,
+				"com.google.android.apps.unveil");
+		setButtonClickUri(R.id.btnOCRScanner,
+				"com.smartmobilesoftware.mobileocrfree");
 		setButtonClickUri(R.id.btnColorIdentifier, "com.loomatix.colorgrab");
-		setButtonClickUri(R.id.btnMoneyIdentifier, "com.ndu.mobile.darwinwallet");
+		setButtonClickUri(R.id.btnMoneyIdentifier,
+				"com.ndu.mobile.darwinwallet");
+		setButtonClickUri(R.id.btnTapTapSee, "com.msearcher.taptapsee.android");
 
 		/** Find UI elements **/
 		Button btnLightDetector = (Button) findViewById(R.id.btnLightDetector);
 
-		/** If Light Detector button is pressed on keypad, launch TBD if installed; otherwise, offer download from Play store **/
+		/**
+		 * If Light Detector button is pressed on keypad, launch TBD if
+		 * installed; otherwise, offer download from Play store
+		 **/
 		btnLightDetector.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				// Notify user that we do not know a good light detection app yet
+				// Notify user that we do not know a good light detection app
+				// yet
 				// In future: Open some light detection app once available
 				Context context = getApplicationContext();
 				CharSequence text = "We did not find a good light detection app yet, unfortunately!";

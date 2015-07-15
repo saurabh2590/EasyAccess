@@ -96,9 +96,11 @@ public class SettingsMenu extends EasyAccessActivity {
 
 	/** Launches the regular Android Settings. **/
 	void startSettingsAndroid() {
-		Intent intent = new Intent(Settings.ACTION_SETTINGS);
-		intent.addCategory(Intent.CATEGORY_LAUNCHER);
+		
+		Intent intent = new Intent(android.provider.Settings.ACTION_SETTINGS);
+		//intent.addCategory(Intent.CATEGORY_LAUNCHER);
 		startActivity(intent);
+		//startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
 	}
 
 	/** Launches the About easyaccess activity. **/
