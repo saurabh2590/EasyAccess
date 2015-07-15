@@ -146,7 +146,11 @@ public class CallingScreen extends Activity {
 
 			@Override
 			public void onClick(View view) {
-				rejectCall();
+				//rejectCall();
+				
+				//telephonyService.setMute(true);
+			
+				mute();
 			}
 		});
 		
@@ -261,6 +265,25 @@ static void stopTask() {
 		}
 	}
 
+	
+	private void mute (){
+		
+//		try {
+//			TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//			Class clazz = Class.forName(telephonyManager.getClass().getName());
+//			Method method = clazz.getDeclaredMethod("getITelephony");
+//			method.setAccessible(true);
+//			ITelephony telephonyService = (ITelephony) method.invoke(telephonyManager);
+//			//telephonyService.endCall();
+//			telephonyService.setMute(true);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		Intent buttonUp = new Intent(Intent.ACTION_MEDIA_BUTTON);
+		buttonUp.putExtra(Intent.EXTRA_KEY_EVENT,new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_HEADSETHOOK));
+		getBaseContext().sendOrderedBroadcast(buttonUp,"android.permission.CALL_PRIVILEGED");
+		
+	}
 	private void showAnswerAndRejectButtons() {
 		btnAnswerCall.setVisibility(View.VISIBLE);
 		btnRejectCall.setVisibility(View.VISIBLE);
