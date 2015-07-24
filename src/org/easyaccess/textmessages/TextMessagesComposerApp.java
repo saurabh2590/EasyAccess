@@ -149,8 +149,12 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 						}
 						editMessage.setText(editMessageText.substring(0,
 								editMessageText.length() - 1));
-						editMessage.setSelection(editMessageText.length(),
-								editMessageText.length());
+						
+						editMessage.setSelection(editMessageText.length()-1);
+//						editMessage.setSelection(editMessageText.length()-1,
+//								editMessageText.length());
+//						
+						
 						return false;
 					} else {
 						// check if keyboard is connected and accessibility

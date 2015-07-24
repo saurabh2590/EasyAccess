@@ -16,16 +16,25 @@
  */
 package org.easyaccess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.easyaccess.calllog.CallLogApp;
 import org.easyaccess.contacts.ContactsApp;
 import org.easyaccess.phonedialer.PhoneDialerApp;
 import org.easyaccess.status.StatusApp;
 import org.easyaccess.textmessages.TextMessagesApp;
 
+import android.content.Intent;
+import android.content.pm.LabeledIntent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.KeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 
@@ -34,7 +43,6 @@ public class Homescreen1Activity extends AbstractHomescreenActivity implements
 	/**
 	 * The HomeScreenActivity displays the options available in the app.
 	 */
-
 
 	/** Create the Main activity showing home screen #1 **/
 	@Override
@@ -45,39 +53,102 @@ public class Homescreen1Activity extends AbstractHomescreenActivity implements
 
 		// Launch respective easyaccess app, depending on which button is
 		// pressed
-		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnPhoneDialer), PhoneDialerApp.class);
-		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnCallLog), CallLogApp.class);
-		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnTextMessages), TextMessagesApp.class);
-		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnContacts), ContactsApp.class);
-		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnStatus), StatusApp.class);
-		attachListenerToOpenExternalApp((Button) v.findViewById(R.id.btnEmail), "com.google.android.gm");
+		attachListenerToOpenActivity(
+				(Button) v.findViewById(R.id.btnPhoneDialer),
+				PhoneDialerApp.class);
+		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnCallLog),
+				CallLogApp.class);
+		attachListenerToOpenActivity(
+				(Button) v.findViewById(R.id.btnTextMessages),
+				TextMessagesApp.class);
+		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnContacts),
+				ContactsApp.class);
+		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnStatus),
+				StatusApp.class);
+		// attachListenerToOpenExternalApp((Button)
+		// v.findViewById(R.id.btnEmail), "com.google.android.gm");
+		Button btnEmail = (Button) v.findViewById(R.id.btnEmail);
+		btnEmail.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				try {
+
+					/*
+					 * Intent intent = new Intent(Intent.ACTION_SENDTO, Uri
+					 * .parse("mailto:")); startActivity(intent);
+					 */
+					Intent emailIntent = new Intent(Intent.ACTION_VIEW, Uri
+							.parse("mailto:"));
+					PackageManager pm = getActivity().getPackageManager();
+
+					List<ResolveInfo> resInfo = pm.queryIntentActivities(
+							emailIntent, 0);
+					if (resInfo.size() > 0) {
+						ResolveInfo ri = resInfo.get(0);
+						// First create an intent with only the package name of
+						// the first registered email app
+						// and build a picked based on it
+						Intent intentChooser = pm
+								.getLaunchIntentForPackage(ri.activityInfo.packageName);
+						Intent openInChooser = Intent.createChooser(
+								intentChooser, "");
+
+						// Then create a list of LabeledIntent for the rest of
+						// the registered email apps
+						List<LabeledIntent> intentList = new ArrayList<LabeledIntent>();
+						for (int i = 1; i < resInfo.size(); i++) {
+							// Extract the label and repackage it in a
+							// LabeledIntent
+							ri = resInfo.get(i);
+							String packageName = ri.activityInfo.packageName;
+							Intent intent = pm
+									.getLaunchIntentForPackage(packageName);
+							intentList.add(new LabeledIntent(intent,
+									packageName, ri.loadLabel(pm), ri.icon));
+						}
+
+						LabeledIntent[] extraIntents = intentList
+								.toArray(new LabeledIntent[intentList.size()]);
+						// Add the rest of the email apps to the picker
+						// selection
+						openInChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS,
+								extraIntents);
+						startActivity(openInChooser);
+					}
+				} catch (Exception e) {
+					launchOrDownloadFromFragment("com.google.android.gm");
+				}
+			}
+		});
 
 		/** Put most everything before here **/
 		return v;
 	}
 
 	@Override
-    void startSelectedActivity(View view) {
-        switch (view.getId()) {
-            case R.id.btnPhoneDialer:
-                startNewActivity(PhoneDialerApp.class);
-                break;
-            case R.id.btnCallLog:
-                startNewActivity(CallLogApp.class);
-                break;
-            case R.id.btnTextMessages:
-                startNewActivity(TextMessagesApp.class);
-                break;
-            case R.id.btnContacts:
-                startNewActivity(ContactsApp.class);
-                break;
-            case R.id.btnStatus:
-                startNewActivity(StatusApp.class);
-                break;
-            case R.id.btnEmail:
-                launchOrDownloadFromFragment("com.google.android.gm");
-                break;
-        }
-    }
+	void startSelectedActivity(View view) {
+		switch (view.getId()) {
+		case R.id.btnPhoneDialer:
+			startNewActivity(PhoneDialerApp.class);
+			break;
+		case R.id.btnCallLog:
+			startNewActivity(CallLogApp.class);
+			break;
+		case R.id.btnTextMessages:
+			startNewActivity(TextMessagesApp.class);
+			break;
+		case R.id.btnContacts:
+			startNewActivity(ContactsApp.class);
+			break;
+		case R.id.btnStatus:
+			startNewActivity(StatusApp.class);
+			break;
+		case R.id.btnEmail:
+			launchOrDownloadFromFragment("com.google.android.gm");
+			break;
+		}
+	}
+
 
 }

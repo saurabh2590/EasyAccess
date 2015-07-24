@@ -107,6 +107,8 @@
     <string name="btnGooglePlayBooks">Google Play Books</string>
     <string name="btnGoogleNewsstand">Google Play Newsstand</string>
     <string name="btnGoogleDocs">Google Docs</string>
+     <string name="btnDDReaderPlus">DD Reader Plus</string>
+   
     
  	<!-- CameraMenu.java -->
     <string name="btnPhoneCamera">Camera</string>
@@ -114,7 +116,9 @@
     <string name="btnOCRScanner">OCR Scanner</string>
     <string name="btnColorIdentifier">Color Identifier</string>
     <string name="btnMoneyIdentifier">Money Identifier</string>
-    <string name="btnLightDetector">Light Detector</string>  
+    <string name="btnLightDetector">Light Detector</string> 
+    <string name="btnTapTapSeeRead">Tap Tap see</string>
+    <string name="btnTapTapSee">TapTapSee</string> 
     
  	<!-- CallLogApp.java -->
     <string name="tabCallsDialled">\nOut</string>
@@ -330,6 +334,9 @@
     <string name="btnFacebook">Facebook</string>
     <string name="btnFacebookMessenger">Facebook Messenger</string>
     <string name="btnGooglePlus">Google+</string>
+    <string name="btnTwitter">Twitter</string>
+    <string name="btnLinkedIn">LinkedIn</string>
+    <string name="btnLinkedInRead">Linked In</string>
     <string name="btnSkype">Skype</string>
     <string name="btnViber">Viber</string>      
     
@@ -338,6 +345,7 @@
     <string name="txtStatusBattery">Battery level at</string>
     <string name="txtStatusSignal">Cell signal at</string>
     <string name="txtStatusDataConnection">data enabled</string>
+    <string name="txtWiFiStatusDataConnection">Wi fi enabled</string>
     <string name="txtStatusMissedCalls">missed calls</string>
     <string name="txtStatusUnreadTextMessages">unread text messages</string>
     <string name="txtStatusUnreadEmails">unread eMails</string>
@@ -382,10 +390,14 @@
     <string name="smsNotDelivered">SMS could not be delivered</string>
     
  	<!-- TextMessagesViewerApp.java -->
+ 	
+ 	<string name="btnDeleteSelected">Delete Selected</string>
+ 	<string name="btnDeselectAll">Deselect All</string>
  	<string name="conversation">Conversation</string>
     <string name="btnTextMsgsReply">Reply</string>
     <string name="btnTextMsgsCall">Call</string>
     <string name="btnTextMsgsDeleteThread">Delete All</string>
+    <string name="btnstrAddToContact">Add To Contact</string>
     <string name="btnTextMsgsDelete">Delete</string>
     <string name="btnProceed">Proceed</string>
     <string name="deleteThreadSuccess">Thread has been deleted successfully</string>
@@ -409,7 +421,7 @@
     <string name="txtAboutHeaderFactFinding">Focus group research</string>
     <string name="txtAboutFactFinding">We thank the following people in particular for their amazing openness and utmost patience during our focus group research in India:</string>
     <string name="txtAboutFocusGroup">
-        \nZainab Chinikamwala
+        \nZainab Chinikamwala, project co-ordinator
         \nKetan Khotari, Sight Savers
         \nDipendra Manocha, President, DAISY Forum of India
         \nDr. Homiyar Mobedji, CEO, Technical Training Institute of the Poona Blind Men\'s Association

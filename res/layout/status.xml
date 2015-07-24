@@ -72,6 +72,7 @@
                     android:paddingTop="6dp" />
 
                 <LinearLayout
+                    android:id="@+id/wi_fi_layout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -79,7 +80,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <TextView
+                   <!--  <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/txtStatusDataConnection"
@@ -88,13 +89,32 @@
                         android:scrollHorizontally="false"
                         android:text="@string/txtStatusWifi"
                         android:textColor="@drawable/card_textcolor"
-                        android:textSize="@dimen/card_textsize_regular" />
+                        android:textSize="@dimen/card_textsize_regular" 
+                          android:contentDescription="@string/txtWiFiStatusDataConnection"
+                        />  -->
+                       
+                        
+                        <TextView 
+                            android:id="@+id/tv_Wifi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txtStatusWifi"
+                            android:textColor="@drawable/card_textcolor"
+                            android:textSize="@dimen/card_textsize_regular" 
+                          
+                            />
 
-                    <ToggleButton
+                    <!-- <ToggleButton
                         android:id="@+id/toggleButtonWifi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dip" />
+                        
+                        android:clickable="false"
+                        android:text="@string/txtStatusWifi"
+                        android:textOn="Wi-Fi ON"
+    					android:textOff="Wi-Fi OFF"
+                        android:textColor="#000000"
+                        android:layout_marginLeft="10dip" /> -->
                 </LinearLayout>
 
                 <View
@@ -106,6 +126,7 @@
                     android:paddingTop="6dp" />
 
                 <LinearLayout
+                    android:id="@+id/mobile_data_layout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -113,7 +134,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <TextView
+                   <!--  <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/txtStatusDataConnection"
@@ -123,12 +144,23 @@
                         android:text="@string/txtStatusMobileData"
                         android:textColor="@drawable/card_textcolor"
                         android:textSize="@dimen/card_textsize_regular" />
-
-                    <ToggleButton
+ -->
+                    <!-- <ToggleButton
                         android:id="@+id/toggleButtonMobileData"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dip" />
+                        // android:contentDescription="@string/txtStatusDataConnection"
+                         -->
+                        
+                         <TextView 
+                            android:id="@+id/tvMobileData"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txtStatusMobileData"
+                            android:textColor="@drawable/card_textcolor"
+                            android:textSize="@dimen/card_textsize_regular" 
+                            />
                 </LinearLayout>
 
                 <View

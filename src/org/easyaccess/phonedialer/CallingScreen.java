@@ -17,6 +17,12 @@
 package org.easyaccess.phonedialer;
 
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import org.easyaccess.R;
 import org.easyaccess.TTS;
@@ -30,6 +36,8 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
 import android.view.GestureDetector;
@@ -54,9 +62,15 @@ public class CallingScreen extends Activity {
 	private TextView recipientTextView;
 	private Button btnAnswerCall;
 	private Button btnRejectCall;
+	public static String time = "";
+	private TextView tv_dailer_called_timer;
 	private BroadcastReceiver bReceiver;
 	private GestureDetector gestureDetector;
-
+	public static Timer timer ;
+	public static Handler mHandler;
+	public static int elapsedTime=0;
+	public  SimpleDateFormat df =new SimpleDateFormat("HH:mm:ss",Locale.getDefault());
+	public static UpdateTimeTask myTimer;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -70,9 +84,15 @@ public class CallingScreen extends Activity {
 		recipientTextView = (TextView) findViewById(R.id.recipientTextView);
 		btnAnswerCall = (Button) findViewById(R.id.btnAnswerCall);
 		btnRejectCall = (Button) findViewById(R.id.btnRejectCall);
-
+		tv_dailer_called_timer =(TextView)findViewById(R.id.tv_dailer_called_timer);
 		gestureDetector = new GestureDetector(getApplicationContext(), new GestureListener());
 
+		 mHandler = new Handler() {
+			    public void handleMessage(Message msg) {
+			       	tv_dailer_called_timer.setText(""+time);
+			    }
+			};
+			
 		if (getIntent().getExtras() != null) {
 
 			if (Utils.callingDetails != null && Utils.callingDetails.get("name") != null) {
@@ -126,16 +146,29 @@ public class CallingScreen extends Activity {
 
 			@Override
 			public void onClick(View view) {
-				rejectCall();
+				//rejectCall();
+				
+				//telephonyService.setMute(true);
+			
+				mute();
 			}
 		});
-
+		
+		
+			
 		this.bReceiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
 				if (intent.getAction().equals(Utils.CALL_ENDED)) {
 					// check if keyboard is connected but accessibility services
 					// are disabled
+					
+					//call end stop timer
+					if(myTimer!=null){
+						myTimer = null;
+					}
+					
+					
 					if (!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 						TTS.speak(intent.getExtras().getString("message"));
 					Toast.makeText(getApplicationContext(), intent.getExtras().getString("message"), Toast.LENGTH_SHORT).show();
@@ -155,6 +188,55 @@ public class CallingScreen extends Activity {
 
 	}
 
+
+	class UpdateTimeTask extends TimerTask {
+
+		public void run() {
+			elapsedTime += 1;
+			time = String.format(
+					"%02d:%02d:%02d ",
+					TimeUnit.MILLISECONDS.toHours(elapsedTime * 1000),
+					TimeUnit.MILLISECONDS.toMinutes(elapsedTime * 1000)
+							- TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS
+									.toHours(elapsedTime * 1000)),
+					TimeUnit.MILLISECONDS.toSeconds(elapsedTime * 1000)
+							- TimeUnit.MILLISECONDS
+									.toSeconds(TimeUnit.MILLISECONDS
+											.toMinutes(elapsedTime * 1000)));
+			if (mHandler != null) {
+				mHandler.obtainMessage(1).sendToTarget();
+
+			}
+
+
+		}
+
+	}
+	
+
+static void startTask() {
+    timer = new Timer();
+    CallingScreen obj = new CallingScreen();
+    myTimer =  obj.new UpdateTimeTask();
+    timer.scheduleAtFixedRate(myTimer, 1000, 1000);
+    
+ }
+	
+
+	
+static void stopTask() {
+	   if(myTimer!=null){
+
+	   timer.cancel();
+	   timer = null;
+	   myTimer= null;
+	   elapsedTime = 0;
+   }
+		   
+ }
+	
+
+
 	private void answerCall() {
 		try {
 			TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
@@ -168,6 +250,8 @@ public class CallingScreen extends Activity {
 		}
 	}
 
+	
+	
 	private void rejectCall() {
 		try {
 			TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
@@ -181,6 +265,25 @@ public class CallingScreen extends Activity {
 		}
 	}
 
+	
+	private void mute (){
+		
+//		try {
+//			TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//			Class clazz = Class.forName(telephonyManager.getClass().getName());
+//			Method method = clazz.getDeclaredMethod("getITelephony");
+//			method.setAccessible(true);
+//			ITelephony telephonyService = (ITelephony) method.invoke(telephonyManager);
+//			//telephonyService.endCall();
+//			telephonyService.setMute(true);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		Intent buttonUp = new Intent(Intent.ACTION_MEDIA_BUTTON);
+		buttonUp.putExtra(Intent.EXTRA_KEY_EVENT,new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_HEADSETHOOK));
+		getBaseContext().sendOrderedBroadcast(buttonUp,"android.permission.CALL_PRIVILEGED");
+		
+	}
 	private void showAnswerAndRejectButtons() {
 		btnAnswerCall.setVisibility(View.VISIBLE);
 		btnRejectCall.setVisibility(View.VISIBLE);
@@ -192,6 +295,7 @@ public class CallingScreen extends Activity {
 	}
 
 	private void hideAnswerButton() {
+		tv_dailer_called_timer.setVisibility(View.VISIBLE);
 		btnAnswerCall.setVisibility(View.GONE);
 		btnRejectCall.setVisibility(View.VISIBLE);
 	}

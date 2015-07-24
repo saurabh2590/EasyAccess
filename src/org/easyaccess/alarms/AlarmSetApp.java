@@ -106,7 +106,23 @@ public class AlarmSetApp extends EasyAccessActivity {
 			public void onClick(View v) {
 				if (strAlarmTimeUserInput != null && !strAlarmTimeUserInput.isEmpty()) {
 					// Parse user input
+					if(strAlarmTimeUserInput.length()<4)
+					{
+						
+						
+						do{
+							if(strAlarmTimeUserInput.length()==1){
+								strAlarmTimeUserInput ="0"+strAlarmTimeUserInput;
+							}
+							else
+								strAlarmTimeUserInput = strAlarmTimeUserInput +"0";
+						}while(strAlarmTimeUserInput.length()<5);
+						System.out.println("lenghttt "+strAlarmTimeUserInput.length());
+					}
+					System.out.println("lenghttt down"+strAlarmTimeUserInput.length());
 					int hourOfDay = Integer.parseInt(strAlarmTimeUserInput.substring(0, 2));
+					
+					
 					int minute = Integer.parseInt(strAlarmTimeUserInput.substring(2, 4));
 					AlarmHelper.setAlarm(AlarmSetApp.this, hourOfDay, minute);
 

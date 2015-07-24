@@ -47,6 +47,8 @@ public class BooksNewspapersMenu extends EasyAccessActivity {
 		setButtonClickUri(R.id.btnGooglePlayBooks, "com.google.android.apps.books");
 		setButtonClickUri(R.id.btnGoogleNewsstand, "com.google.android.apps.magazines");
 		setButtonClickUri(R.id.btnGoogleDocs, "com.google.android.apps.docs.editors.docs");
+		setButtonClickUri(R.id.btnDDReaderPlus, "org.daisylatino.ddreader");
+		
 		/** Put most everything before here **/
 	}
 	

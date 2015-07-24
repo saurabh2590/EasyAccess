@@ -89,7 +89,13 @@ public abstract class AbstractHomescreenActivity extends EasyAccessFragment impl
 
             @Override
             public void onClick(View view) {
-                launchOrDownloadFromFragment(uriTarget);
+               // launchOrDownloadFromFragment(uriTarget);
+           
+            	Intent intent = new Intent(Intent.ACTION_VIEW);
+            	Uri data = Uri.parse("mailto:?subject=" + "sub" + "&body=" + "bod");
+            	intent.setData(data);
+            	startActivity(intent);
+            
             }
         });
 
@@ -132,6 +138,37 @@ public abstract class AbstractHomescreenActivity extends EasyAccessFragment impl
         }
     }
 
+    
+    /** Launch installed Android app or download from Google Play Store if missing **/
+    void launchOrDownloadFromFragmentByIntentAction(String uriTarget) {
+    	//Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage(uriTarget);
+       
+    	//Intent intent = getActivity()
+    	Intent intent = new Intent(uriTarget);
+    	if (intent != null)
+        {
+            // Start installed app
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        else
+        {
+            // If app is not installed, bring user to the Play Store
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setData(Uri.parse("market://details?id=" + uriTarget));
+
+            // Error handling in case Play Store cannot be launched
+            try {
+                startActivity(intent);
+            } catch(ActivityNotFoundException e) {
+                Context context = getActivity().getApplicationContext();
+                CharSequence text = "Unable to launch the Google Play Store!";
+                Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+    
 	/**
 	 * Announces the text passed as a parameter, and causes the device to
 	 * vibrate for 300 milliseconds.

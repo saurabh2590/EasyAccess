@@ -196,19 +196,24 @@ public class ContactsApp extends Activity implements KeyListener {
 		idArrayList = new ArrayList<String>();
 		if (!(inputContacts.getText().toString().matches("-?\\d+(\\.\\d+)?"))) {
 			for (int i = 0; i < name.size(); i++) {
-				if (name.get(i)
-						.toString()
-						.toLowerCase()
-						.startsWith(
-								inputContacts.getText().toString()
-										.toLowerCase())) {
-					nameArrayList.add(name.get(i));
-					numberArrayList.add(number.get(i));
-					idArrayList.add(contactIdArrayList.get(i));
-					contactsAdapter = new ContactsAdapter(
-							getApplicationContext(), nameArrayList);
-					found = 1;
+				
+				String[] splited_name = name.get(i).toString().split("\\s+");
+
+				for(int j=0;j<splited_name.length;j++){
+					if (splited_name[j]
+							.toLowerCase()
+							.startsWith(
+									inputContacts.getText().toString()
+											.toLowerCase())){
+						nameArrayList.add(name.get(i));
+						numberArrayList.add(number.get(i));
+						idArrayList.add(contactIdArrayList.get(i));
+						contactsAdapter = new ContactsAdapter(
+								getApplicationContext(), nameArrayList);
+						found = 1;
+					}
 				}
+				
 			}
 		} else {
 			// user entered a number
@@ -327,19 +332,37 @@ public class ContactsApp extends Activity implements KeyListener {
 					return super.dispatchKeyEvent(event);
 			} else {
 				if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+					
+					System.out.println("Deleeeeeeetteeeeee");
 					deletedFlag = 1;
 					String inputContactsText = inputContacts.getText()
 							.toString();
 					if (inputContactsText.length() != 0) {
 						// check if keyboard is connected and accessibility
 						// services are disabled
-						if (!Utils
-								.isAccessibilityEnabled(getApplicationContext())
-								&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
+//						if (Utils
+//								.isAccessibilityEnabled(getApplicationContext())
+//								) {
+							
+							if (!Utils
+									.isAccessibilityEnabled(getApplicationContext())
+									&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
+					
 							if (inputContactsText.substring(
 									inputContactsText.length() - 1,
 									inputContactsText.length()).matches(
 									"-?\\d+(\\.\\d+)?")) {
+								
+								System.out.println(" speecking "+getString(R.string.deleted)
+										+ " "
+										+ inputContactsText.substring(
+												inputContactsText.length() - 1,
+												inputContactsText.length())
+										+ ". "
+										+ TTS.readNumber(inputContactsText
+												.substring(0, inputContactsText
+														.length() - 1)));
+								
 								TTS.speak(getString(R.string.deleted)
 										+ " "
 										+ inputContactsText.substring(
@@ -350,6 +373,16 @@ public class ContactsApp extends Activity implements KeyListener {
 												.substring(0, inputContactsText
 														.length() - 1)));
 							} else {
+								
+								System.out.println(" speecking "+getString(R.string.deleted)
+										+ " "
+										+ inputContactsText.substring(
+												inputContactsText.length() - 1,
+												inputContactsText.length())
+										+ ". "
+										+ inputContactsText.substring(0,
+												inputContactsText.length() - 1));
+								
 								TTS.speak(getString(R.string.deleted)
 										+ " "
 										+ inputContactsText.substring(
@@ -364,8 +397,8 @@ public class ContactsApp extends Activity implements KeyListener {
 								inputContactsText.length() - 1));
 						inputContacts.setContentDescription(inputContactsText
 								.replaceAll(".(?=[0-9])", "$0 "));
-						inputContacts.setSelection(inputContactsText.length(),
-								inputContactsText.length());
+						inputContacts.setSelection(inputContactsText.length()-1,
+								inputContactsText.length()-1);
 						return false;
 					} else {
 						// check if keyboard is connected and accessibility
