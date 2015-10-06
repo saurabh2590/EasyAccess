@@ -23,7 +23,7 @@
 				<TextView  
 					android:id="@+id/txtAlarmsEntry1"
 					android:text="@string/txtAlarmsEntry1"
-					android:contentDescription="@string/txtAlarmsEntry1"
+					
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -45,7 +45,6 @@
 				<TextView  
 					android:id="@+id/txtAlarmsEntry2"
 					android:text="@string/txtAlarmsEntry2"
-					android:contentDescription="@string/txtAlarmsEntry2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -67,7 +66,6 @@
 				<TextView  
 					android:id="@+id/txtAlarmsEntry3"
 					android:text="@string/txtAlarmsEntry3"
-					android:contentDescription="@string/txtAlarmsEntry3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -89,7 +87,6 @@
 				<TextView  
 					android:id="@+id/txtAlarmsEntry4"
 					android:text="@string/txtAlarmsEntry4"
-					android:contentDescription="@string/txtAlarmsEntry4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -111,7 +108,6 @@
 				<TextView  
 					android:id="@+id/txtAlarmsEntry5"
 					android:text="@string/txtAlarmsEntry5"
-					android:contentDescription="@string/txtAlarmsEntry5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

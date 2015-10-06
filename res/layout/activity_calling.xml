@@ -123,7 +123,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/card"
-                    android:contentDescription="@string/btnRejectCall"
+                    android:contentDescription="@string/btnEndCall"
                     android:focusable="true"
                     android:gravity="center"
                     android:text="@string/btnRejectCall"

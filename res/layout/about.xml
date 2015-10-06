@@ -25,7 +25,33 @@
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
                 android:paddingTop="12dp" >
-
+ 
+                <LinearLayout 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+ 				<TextView
+                    android:id="@+id/txtAboutTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="@string/txtAboutTitle"
+                    android:focusable="true"
+                    android:text="@string/txtAboutTitle"
+                    android:textColor="@color/card_textcolor_regular"
+                    android:textSize="@dimen/card_textsize_listitems"
+                    android:textStyle="bold" />
+                
+                
+ 				<ImageButton
+ 				    android:id="@+id/btn_play_store"
+ 				    android:layout_width="wrap_content"
+ 				    android:layout_height="wrap_content"
+ 				    android:contentDescription="@string/playStoreButton"
+ 				    android:background="@drawable/play"
+ 				    />
+ 				</LinearLayout>
                 <TextView
                     android:id="@+id/txtAboutHeaderMission"
                     android:layout_width="wrap_content"
