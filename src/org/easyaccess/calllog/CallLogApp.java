@@ -29,6 +29,7 @@ import org.easyaccess.Utils;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
@@ -388,15 +389,19 @@ public class CallLogApp extends EasyAccessActivity {
 
 				if (bundle.getInt("type") == TYPE_TIME) {
 					callLogsAdapter = new CommonAdapter(
-							getApplicationContext(), strRecords, 0);
+							getApplicationContext(), strRecords, 0,1);
 				} else {
 					callLogsAdapter = new CommonAdapter(
-							getApplicationContext(), strRecords, 1);
+							getApplicationContext(), strRecords, 1,1);
 				}
 				callLogsListView.setAdapter(callLogsAdapter);
 				callLogsListView.setVisibility(View.VISIBLE);
 			}
 		};
+		 SharedPreferences mySharedPreferences = getSharedPreferences("easy_access", 0); 
+		SharedPreferences.Editor  myEditor = mySharedPreferences.edit(); 
+		myEditor.putInt("OldMissCalls", getMissedCallCount()); 
+		myEditor.commit();
 	}
 
 	@Override
@@ -414,5 +419,17 @@ public class CallLogApp extends EasyAccessActivity {
 		Utils.applyFontColorChanges(getApplicationContext(), layout);
 		Utils.applyFontSizeChanges(getApplicationContext(), layout);
 		Utils.applyFontTypeChanges(getApplicationContext(), layout);
+	}
+	
+	public int getMissedCallCount() {
+		int count;
+		String[] projection = { CallLog.Calls.TYPE };
+		
+		String where = CallLog.Calls.TYPE + "=" + CallLog.Calls.MISSED_TYPE;
+		Cursor cursor = this.getContentResolver().query(
+				CallLog.Calls.CONTENT_URI, projection, where, null, null);
+		count = cursor.getCount();
+		cursor.close();
+		return count;
 	}
 }

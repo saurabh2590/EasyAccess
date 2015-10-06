@@ -39,6 +39,7 @@ import android.telephony.SmsMessage;
 
 public class SmsReceiver extends BroadcastReceiver {
 	private HashMap<String, String> senderDetails;
+	private boolean isDefault = false;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -75,6 +76,7 @@ public class SmsReceiver extends BroadcastReceiver {
 						if (android.os.Build.VERSION.SDK_INT >= 19) {
 							if (Telephony.Sms.getDefaultSmsPackage(context)
 									.equals(context.getPackageName())) {
+								isDefault = true;
 								ContentValues values = new ContentValues();
 								values.put("address", sender);
 								values.put("date", msgs[i].getTimestampMillis());
@@ -92,10 +94,20 @@ public class SmsReceiver extends BroadcastReceiver {
 										values);
 							}
 						}
-						Intent intentObject = new Intent(context,
-								TextMessagesApp.class);
-						intentObject.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						context.startActivity(intentObject);
+						else{
+							isDefault = true;
+						}
+						
+					
+						if(isDefault){
+							Intent intentObject = new Intent(context,
+									TextMessagesApp.class);
+							intentObject.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+							intentObject.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+							
+							context.startActivity(intentObject);
+						}
+						
 					}
 				} catch (Exception e) {
 					e.printStackTrace();

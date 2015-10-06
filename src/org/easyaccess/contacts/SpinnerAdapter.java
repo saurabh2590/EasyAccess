@@ -138,14 +138,14 @@ public class SpinnerAdapter extends ArrayAdapter {
 
 		preferences = context.getSharedPreferences(context.getResources()
 				.getString(R.string.size), 0);
-		if (preferences.getFloat("size", 0) != 0) {
-			float fontSize = preferences.getFloat("size", 0);
-			textView.setTextSize(fontSize);
-		} else {
-			textView.setTextSize(Integer.valueOf(context.getResources()
-					.getString(R.string.textSize))
-					* context.getResources().getDisplayMetrics().density);
-		}
+//		if (preferences.getFloat("size", 0) != 0) {
+//			float fontSize = preferences.getFloat("size", 0);
+//			textView.setTextSize(fontSize);
+//		} else {
+//			textView.setTextSize(Integer.valueOf(context.getResources()
+//					.getString(R.string.textSize))
+//					* context.getResources().getDisplayMetrics().density);
+//		}
 
 		return rowView;
 	}

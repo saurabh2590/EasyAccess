@@ -70,6 +70,8 @@ public abstract class AbstractHomescreenActivity extends EasyAccessFragment impl
 			}
 		});
 
+		
+		
 		button.setOnFocusChangeListener(new OnFocusChangeListener() {
 
 			@Override
@@ -82,6 +84,8 @@ public abstract class AbstractHomescreenActivity extends EasyAccessFragment impl
 		button.setKeyListener(AbstractHomescreenActivity.this);
 	}
 
+	
+	
     void attachListenerToOpenExternalApp(final Button button,
                         @SuppressWarnings("rawtypes") final String uriTarget) {
 
@@ -89,13 +93,8 @@ public abstract class AbstractHomescreenActivity extends EasyAccessFragment impl
 
             @Override
             public void onClick(View view) {
-               // launchOrDownloadFromFragment(uriTarget);
+               launchOrDownloadFromFragment(uriTarget);
            
-            	Intent intent = new Intent(Intent.ACTION_VIEW);
-            	Uri data = Uri.parse("mailto:?subject=" + "sub" + "&body=" + "bod");
-            	intent.setData(data);
-            	startActivity(intent);
-            
             }
         });
 

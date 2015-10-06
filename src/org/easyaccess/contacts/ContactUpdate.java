@@ -643,6 +643,7 @@ public class ContactUpdate extends Activity implements KeyListener {
 				this.editFlag = NAME;
 				this.name = getIntent().getExtras().getString("name");
 				editField.setText(this.name);
+				
 				editField.setContentDescription(this.name.replaceAll(
 						".(?=[0-9])", "$0 "));
 				txtType.setVisibility(View.GONE);
@@ -851,6 +852,8 @@ public class ContactUpdate extends Activity implements KeyListener {
 				}
 			}
 		});
+		
+		editField.setSelection(editField.length());
 	}
 
 	/*

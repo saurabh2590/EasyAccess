@@ -53,10 +53,16 @@ public class MusicVideoMenu extends EasyAccessActivity {
 
 			@Override
 			public void onClick(View v) {
+				// Resolved warning of deprecated API use.
 				try {
-					Intent intent = new Intent(
-							MediaStore.INTENT_ACTION_MUSIC_PLAYER);
-					startActivity(intent);
+					if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+						Intent intent = Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_MUSIC);
+						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+					} else {
+						Intent intent = new Intent(MediaStore.INTENT_ACTION_MUSIC_PLAYER);
+						startActivity(intent);
+					}
 				} catch (Exception e) {
 					setButtonClickUri(R.id.btnMP3Player,
 							"in.co.accessiblenews.gestureplayer");

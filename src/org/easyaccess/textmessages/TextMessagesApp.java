@@ -31,6 +31,7 @@ import org.easyaccess.phonedialer.ContactManager;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -48,9 +49,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -80,7 +83,8 @@ public class TextMessagesApp extends EasyAccessActivity implements
 
 	private final static int INBOX = 1;
 	private final static int SENT = 2;
-	private int typeOfMessage, i, oldPosition;
+	private int typeOfMessage =0, i, oldPosition;
+	private boolean isDefault=false;
 
 	/**
 	 * Sets the type of message to inbox and calls the thread to fetch text
@@ -126,11 +130,16 @@ public class TextMessagesApp extends EasyAccessActivity implements
 	 *            The number whose messages are to be displayed.
 	 */
 	void startNewActivity(String number) {
+		finish();
 		Intent intent = new Intent(getApplicationContext(),
 				TextMessagesViewerApp.class);
 		intent.putExtra("address", number);
+		intent.putExtra("typeOfMessage", typeOfMessage);
 		startActivity(intent);
+		
+
 	}
+	
 
 	/**
 	 * Attaches onKeyListener to the Button passed as a parameter to the method.
@@ -214,6 +223,8 @@ public class TextMessagesApp extends EasyAccessActivity implements
 			break;
 		case SENT:
 			uri = "content://sms/sent";
+			
+			
 			break;
 		}
 		if (this.cursor == null) {
@@ -245,8 +256,13 @@ public class TextMessagesApp extends EasyAccessActivity implements
 						.getString(this.cursor.getColumnIndex("date"))));
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
 						"d MMMM yyyy' 'HH:MM:ss");
-				senderDetails.putString("date", Html.fromHtml("<br/>")
-						+ simpleDateFormat.format(date) + " ");
+//				senderDetails.putString("date", Html.fromHtml("<br/>")
+//						+ simpleDateFormat.format(date) + " ");
+//				
+				senderDetails.putString("date", Html.fromHtml("<br/> "+android.text.format.DateFormat.format("dd-MMMM-yyyy HH:mm:ss", date))
+						  + " ");
+
+				
 				senderDetails.putString("read",
 						cursor.getString(this.cursor.getColumnIndex("read")));
 				senderDetails.putString("subject", this.cursor
@@ -269,6 +285,16 @@ public class TextMessagesApp extends EasyAccessActivity implements
 		setContentView(R.layout.textmessages);
 		super.onCreate(savedInstanceState);
 
+		System.out.println(" Load msg on create");
+		
+Button btnNavigationBack = (Button) findViewById(R.id.btnNavigationBack);
+		
+		btnNavigationBack.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+			
+				finish();
+			}
+		});
 		/** Find UI elements **/
 		btnInbox = (Button) findViewById(R.id.tabTextMsgsInbox);
 		btnSent = (Button) findViewById(R.id.tabTextMsgsSent);
@@ -286,6 +312,10 @@ public class TextMessagesApp extends EasyAccessActivity implements
 		this.records = new ArrayList<HashMap<String, String>>();
 		this.numbers = new ArrayList<String>();
 		this.cursor = null;
+		
+		if(getIntent().hasExtra("typeOfMessage"))
+		this.typeOfMessage = getIntent().getExtras().getInt("typeOfMessage");
+		else
 		this.typeOfMessage = INBOX;
 		this.oldPosition = 0;
 
@@ -342,6 +372,8 @@ public class TextMessagesApp extends EasyAccessActivity implements
 			public void onItemClick(AdapterView<?> arg0, View view,
 					int position, long arg3) {
 				startNewActivity(TextMessagesApp.this.numbers.get(position));
+				
+			
 			}
 		});
 
@@ -397,6 +429,7 @@ public class TextMessagesApp extends EasyAccessActivity implements
 						// address, date, read, subject, body
 						if (TextMessagesApp.this.typeOfMessage != SENT) {
 							// sent messages are always read
+							
 							if (tempBundle.containsKey("read")
 									&& tempBundle.getString("read").equals("1")) {
 								record.put("read", "1");
@@ -421,13 +454,14 @@ public class TextMessagesApp extends EasyAccessActivity implements
 							// number does not correspond to a name
 							strRecords.add(tempBundle.getString("address")
 									+ " " + tempBundle.getString("date")
-									+ subject + read);
+									+ subject + read+ "*"+tempBundle.getString("address"));
+							
 						} else {
 							record.put("name", tempBundle.getString("name"));
 							strRecords.add(map.get("name") + " "
 									+ map.get("type") + " "
 									+ tempBundle.getString("date") + subject
-									+ read);
+									+ read+"*"+tempBundle.getString("address"));
 						}
 						record.put("number", tempBundle.getString("address"));
 						record.put("date", tempBundle.getString("date"));
@@ -435,16 +469,90 @@ public class TextMessagesApp extends EasyAccessActivity implements
 						record.put("subject", tempBundle.getString("subject"));
 						record.put("body", tempBundle.getString("body"));
 						TextMessagesApp.this.records.add(record);
+						
+						
 					}
 				}
-				adapter = new CommonAdapter(getApplicationContext(),
-						strRecords, 3);
+				adapter = new CommonAdapter(TextMessagesApp.this,
+						strRecords, 3,typeOfMessage);
 				messageListView.setAdapter(adapter);
 				messageListView.setVisibility(View.VISIBLE);
 			}
 		};
+		
+		
+		
+		 Button btn_delete= (Button) findViewById(R.id.btn_delete);
+		 btn_delete.setOnClickListener(new OnClickListener()
+         {
+
+             @Override
+             public void onClick(View v) {
+                 // TODO Auto-generated method stub
+            	 System.out.println("isDefault "+isDefault);
+            		if(isDefault){
+            		     if(adapter.mCheckStates.size()==0){
+                        	 
+                        	 if (!Utils.isAccessibilityEnabled(getApplicationContext())
+                     				&& getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS) {
+                     			TTS.speak(getString(R.string.textMessagesNotSelected));
+                     		}
+                         }
+                         else{
+                        	
+                        	    for(int i=0;i<adapter.mCheckStates.size();i++)
+                                {
+                                    if(adapter.mCheckStates.get(i)==true)
+                                    {
+
+                                   	 deleteThread(numbers.get(i));
+                                                     
+                                   	 
+                                    }
+
+                        	 
+                                    loadInboxMessages();
+                                    
+                                    
+                         }
+                     
+                         }
+                        
+            		}
+            		else
+            			Toast.makeText(TextMessagesApp.this,"Could not delete message", Toast.LENGTH_SHORT).show();
+            
+             }
+
+         });
+		 
+		 Button btn_select_all= (Button) findViewById(R.id.btn_select_all);
+		 btn_select_all.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				 if(adapter.mCheckStates.size()!=0){
+					 uncheckAllChildrenCascade(messageListView);
+					 messageListView.setAdapter(adapter);
+					 
+				 }
+			}
+		});
+	
 	}
 
+	
+	private void uncheckAllChildrenCascade(ViewGroup vg) {
+	    for (int i = 0; i < vg.getChildCount(); i++) {
+	        View v = vg.getChildAt(i);
+	        if (v instanceof CheckBox) {
+	            ((CheckBox) v).setChecked(false);
+	        } else if (v instanceof ViewGroup) {
+	            uncheckAllChildrenCascade((ViewGroup) v);
+	        }
+	    }
+	}
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -465,8 +573,14 @@ public class TextMessagesApp extends EasyAccessActivity implements
 		Utils.applyFontColorChanges(getApplicationContext(), layout);
 		Utils.applyFontSizeChanges(getApplicationContext(), layout);
 		Utils.applyFontTypeChanges(getApplicationContext(), layout);
+		
+//		if(typeOfMessage!=0)
+//			runThread(this.typeOfMessage);
+		
+		
 	}
 
+	
 	@TargetApi(19)
 	public void checkIfDefault() {
 		final String myPackageName = getPackageName();
@@ -474,14 +588,41 @@ public class TextMessagesApp extends EasyAccessActivity implements
 			if (!Telephony.Sms.getDefaultSmsPackage(this).equals(myPackageName)) {
 				// App is not default.
 				// Show the "not currently set as the default SMS app" dialog
+				System.out.println(" setting false");
+				isDefault = false;
 				Intent intent = new Intent(Sms.Intents.ACTION_CHANGE_DEFAULT);
 				intent.putExtra(Sms.Intents.EXTRA_PACKAGE_NAME,
 						getApplicationContext().getPackageName());
-				startActivity(intent);
+				startActivityForResult(intent,99);
 			}
+			else{
+				System.out.println(" setting true");
+				isDefault = true;
+			}
+				
 		}
+		else
+			isDefault = true;
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+	    switch (requestCode)
+	    {
+	        case 99:           
+	            if(resultCode == Activity.RESULT_OK){
+	            	// restart the activity
+	            	Intent intentObject = new Intent(TextMessagesApp.this,
+							TextMessagesApp.class);
+					intentObject.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					intentObject.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					
+					startActivity(intentObject);
+	            }
+	            
+	    }
+	}
 	/** Class to detect gestures */
 	class MyGestureDetector extends SimpleOnGestureListener {
 		@Override
@@ -565,4 +706,34 @@ public class TextMessagesApp extends EasyAccessActivity implements
 	@Override
 	public void onClick(View view) {
 	}
+	
+	
+	
+	
+	
+	
+	boolean deleteThread(String address) {
+		Uri deleteUri = Uri.parse("content://sms");
+		if (getContentResolver().delete(deleteUri, "address=?",
+				new String[] { address }) != 0) {
+			//this.dateArrayList.clear();
+			return true;
+		}
+		return false;
+	}
+
+	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		
+//		Intent intent = new Intent(getApplicationContext(),
+//				TextMessagesViewerApp.class);
+//		intent.putExtra("address", number);
+//		intent.putExtra("typeOfMessage", typeOfMessage);
+//		startActivity(intent);
+		finish();
+	}
+	
 }

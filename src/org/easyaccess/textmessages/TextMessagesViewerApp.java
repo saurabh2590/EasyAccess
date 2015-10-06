@@ -41,6 +41,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources.NotFoundException;
 import android.database.Cursor;
@@ -88,6 +89,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 	private HashMap<String, ArrayList<String>> records;
 	private ArrayList<String> dateArrayList;
 	private String address;
+	private int typeOfMessage;
 	private ProgressBar progressBar;
 	private TableRow row1, row2;
 	private ArrayList<CheckBox> checkBoxsMaltipleDelete;
@@ -115,6 +117,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 		Intent intent = new Intent(getApplicationContext(),
 				TextMessagesComposerApp.class);
 		intent.putExtra("number", TextMessagesViewerApp.this.address);
+		intent.putExtra("typeOfMessage", typeOfMessage);
 		HashMap<String, String> map = new ContactManager(
 				getApplicationContext())
 				.getNameFromNumber(TextMessagesViewerApp.this.address);
@@ -123,6 +126,10 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 			intent.putExtra("type", map.get("type"));
 		}
 		startActivity(intent);
+		
+		finish();
+		
+		
 	}
 
 	/**
@@ -214,6 +221,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 										Intent intent = new Intent(
 												getApplicationContext(),
 												TextMessagesApp.class);
+										intent.putExtra("typeOfMessage", typeOfMessage);
 										intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
 												| Intent.FLAG_ACTIVITY_NEW_TASK);
 										startActivity(intent);
@@ -252,6 +260,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 										intent.putExtra(
 												"address",
 												TextMessagesViewerApp.this.address);
+										intent.putExtra("typeOfMessage", typeOfMessage);
 										intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
 												| Intent.FLAG_ACTIVITY_NEW_TASK);
 										startActivity(intent);
@@ -387,6 +396,8 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 		} else {
 			Intent intentObject = new Intent(getApplicationContext(),
 					TextMessagesApp.class);
+			intentObject.putExtra("typeOfMessage", typeOfMessage);
+			intentObject.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			intentObject.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			getApplicationContext().startActivity(intentObject);
 			finish();
@@ -452,6 +463,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 
 			// create TextViews
 			//final TextView txtMessage = new TextView(getApplicationContext());
+			
 			final TextView txtMessage = new TextView(this);
 			txtMessage.setAutoLinkMask(Linkify.ALL);
 			// android:autoLink=""
@@ -468,14 +480,16 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 			else
 				text = records.get(me.getKey()).get(0) + Html.fromHtml("<br/>");
 			text += records.get(me.getKey()).get(1);
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-					"d MMMM yyyy', 'HH:MM:ss");
+//			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+//					"d MMMM yyyy', 'HH:MM:ss");
 			Date dateTemp = new Date(Long.valueOf(me.getKey().toString()));
-			String date = simpleDateFormat.format(dateTemp);
+			//String date = simpleDateFormat.format(dateTemp);
+			String date = (String) android.text.format.DateFormat.format("dd-MMMM-yyyy , HH:mm:ss", dateTemp);
+			
 			markMessageRead(me.getKey().toString());
 			if (records.get(me.getKey()).get(2) == Integer.toString(INBOX)) {
 				text += Html.fromHtml("<br/>")
-						+ getString(R.string.received_on) + date;
+						+ getString(R.string.received_on) + " "+date;
 				txtMessage.setGravity(Gravity.LEFT);
 			} else {
 				text += Html.fromHtml("<br/>") + getString(R.string.sent_on)
@@ -489,10 +503,12 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 			txtMessage.setTextColor(getResources().getColor(
 					R.color.card_textcolor_regular));
 
-			txtMessage.setTextSize(Integer.valueOf(getApplicationContext()
-					.getString(R.string.textSize))
-					* getApplicationContext().getResources()
-							.getDisplayMetrics().density);
+			//fdhf
+//			txtMessage.setTextSize(Integer.valueOf(getApplicationContext()
+//					.getString(R.string.textSize))
+//					* getApplicationContext().getResources()
+//							.getDisplayMetrics().density);
+			
 			SharedPreferences preferences = getApplicationContext()
 					.getSharedPreferences(
 							getApplicationContext().getString(R.string.color),
@@ -556,15 +572,12 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 				float fontSize = preferences.getFloat("size", 0);
 				txtMessage.setTextSize(fontSize);
 				btnDelete.setTextSize(fontSize);
+				
 			} else {
 				txtMessage.setTextSize(Integer.valueOf(getApplicationContext()
-						.getString(R.string.textSize))
-						* getApplicationContext().getResources()
-								.getDisplayMetrics().density);
+						.getString(R.string.textSize)));
 				btnDelete.setTextSize(Integer.valueOf(getApplicationContext()
-						.getString(R.string.textSize))
-						* getApplicationContext().getResources()
-								.getDisplayMetrics().density);
+						.getString(R.string.textSize)));
 			}
 
 			params.setMargins(0, 50, 0, 20);
@@ -596,7 +609,6 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 			llHoriContainer.setOrientation(LinearLayout.HORIZONTAL);
 			llHoriContainer.setLayoutParams(llparams);
 
-			// checkbox
 			CheckBox chkMultipleDelete = new CheckBox(getApplicationContext());
 			checkBoxsMaltipleDelete.add(chkMultipleDelete);
 			MaltipleDeleteTimeStemp.add(me.getKey().toString());
@@ -659,6 +671,20 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 		setContentView(R.layout.textmessages_viewer);
 		super.onCreate(savedInstanceState);
 
+		Button btnNavigationBack = (Button) findViewById(R.id.btnNavigationBack);
+		
+		btnNavigationBack.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				
+				Intent intent = new Intent(getApplicationContext(),
+						TextMessagesApp.class);
+				intent.putExtra("typeOfMessage", typeOfMessage);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
+				finish();
+			}
+		});
 		// Find UI elements
 		btnReply = (Button) findViewById(R.id.btnTextMsgsReply);
 		btnCall = (Button) findViewById(R.id.btnTextMsgsCall);
@@ -686,10 +712,13 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 
 			@Override
 			public void onClick(View v) {
+			
 				for (int i = 0; i < checkBoxsMaltipleDelete.size(); i++) {
 					if (checkBoxsMaltipleDelete.get(i).isChecked()) {
+						
+					
 						result = deleteMessage(MaltipleDeleteTimeStemp.get(i));
-
+						
 					}
 				}
 				// reload activity
@@ -712,6 +741,7 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 				Intent intent = new Intent(getApplicationContext(),
 						TextMessagesViewerApp.class);
 				intent.putExtra("address", TextMessagesViewerApp.this.address);
+				intent.putExtra("typeOfMessage", typeOfMessage);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
 						| Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(intent);
@@ -729,6 +759,9 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 		attachListener(btnDeleteThread);
 
 		this.address = getIntent().getExtras().getString("address");
+		this.typeOfMessage = getIntent().getExtras().getInt("typeOfMessage");
+		
+		
 		this.records = new HashMap<String, ArrayList<String>>();
 		this.dateArrayList = new ArrayList<String>();
 
@@ -836,4 +869,21 @@ public class TextMessagesViewerApp extends EasyAccessActivity {
 		Utils.applyFontSizeChanges(getApplicationContext(), layout);
 		Utils.applyFontTypeChanges(getApplicationContext(), layout);
 	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		
+		Intent intent = new Intent(getApplicationContext(),
+				TextMessagesApp.class);
+		intent.putExtra("typeOfMessage", typeOfMessage);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
+		finish();
+	}
+	
+	
+	
 }

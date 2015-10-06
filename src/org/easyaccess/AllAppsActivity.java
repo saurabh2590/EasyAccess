@@ -1,6 +1,7 @@
 package org.easyaccess;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import android.app.ListActivity;
@@ -66,7 +67,9 @@ public class AllAppsActivity extends ListActivity {
 
 		@Override
 		protected Void doInBackground(Void... params) {
-			appList = checkForLaunchIntent(packageManager.getInstalledApplications(PackageManager.GET_META_DATA));
+			 appList = checkForLaunchIntent(packageManager.getInstalledApplications(PackageManager.GET_META_DATA));
+			
+			Collections.sort(appList, new ApplicationInfo.DisplayNameComparator(packageManager));
 			listAdapter = new AllAppsAdapter(AllAppsActivity.this, R.layout.row, appList);
 
 			return null;

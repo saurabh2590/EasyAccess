@@ -177,7 +177,7 @@ public class CallLogHistory extends EasyAccessActivity {
 					}
 				}
 				callLogHistoryAdapter = new CommonAdapter(
-						getApplicationContext(), strRecords, 2);
+						getApplicationContext(), strRecords, 2,1);
 				callLogHistoryListView.setAdapter(callLogHistoryAdapter);
 			}
 		};
