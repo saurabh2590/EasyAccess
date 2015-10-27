@@ -22,10 +22,14 @@ import org.easyaccess.R;
 import org.easyaccess.TTS;
 import org.easyaccess.Utils;
 
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,6 +43,8 @@ public class AboutActivity extends EasyAccessActivity {
 	TextView txtHeader, txtMission, txtSignature, txtHeaderResearch,
 			txtFactFinding, txtFocusGroup, txtHeaderSupporters,
 			txtCertificates, txtDonors;
+	
+	ImageButton btn_play_store;
 
 	/**
 	 * Attach onFocusChangeListener to the TextView passed as parameter to the
@@ -81,7 +87,22 @@ public class AboutActivity extends EasyAccessActivity {
 		txtHeaderSupporters = (TextView) findViewById(R.id.txtAboutHeaderSupporters);
 		txtCertificates = (TextView) findViewById(R.id.txtAboutCertificates);
 		txtDonors = (TextView) findViewById(R.id.txtAboutDonors);
-
+		btn_play_store = (ImageButton)findViewById(R.id.btn_play_store);
+		btn_play_store.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				
+				final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+				try {
+				    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+				} catch (android.content.ActivityNotFoundException anfe) {
+				    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+				}
+				
+			}
+		});
 		// Attach the onFocusChangedListener to each of the TextViews
 		attachListenerToTextView(txtHeader);
 		attachListenerToTextView(txtMission);

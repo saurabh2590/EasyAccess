@@ -38,6 +38,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AlarmSetApp extends EasyAccessActivity {
 
@@ -106,35 +107,47 @@ public class AlarmSetApp extends EasyAccessActivity {
 			public void onClick(View v) {
 				if (strAlarmTimeUserInput != null && !strAlarmTimeUserInput.isEmpty()) {
 					// Parse user input
-					if(strAlarmTimeUserInput.length()<4)
-					{
+					
+					
+						if(strAlarmTimeUserInput.length()<4)
+						{
+							do{
+								if(strAlarmTimeUserInput.length()==1){
+									strAlarmTimeUserInput ="0"+strAlarmTimeUserInput;
+								}
+								else
+									strAlarmTimeUserInput = strAlarmTimeUserInput +"0";
+							}while(strAlarmTimeUserInput.length()<5);
+							System.out.println("lenghttt "+strAlarmTimeUserInput.length());
+						}
+						int hourOfDay = Integer.parseInt(strAlarmTimeUserInput.substring(0, 2));
+						int minute = Integer.parseInt(strAlarmTimeUserInput.substring(2, 4));
+						System.out.println("Alarm is    "+minute);
+						
+						if(hourOfDay >=24 || minute>=60){
+							strAlarmTimeUserInput= "";
+							txtAlarmTimeUserInput.setText("");
+							Toast.makeText(AlarmSetApp.this, "Invalid time entered.", Toast.LENGTH_SHORT).show();
+							
+						}
+						else{
+							
+							AlarmHelper.setAlarm(AlarmSetApp.this, hourOfDay, minute);
+
+							SharedPreferences preferences = getSharedPreferences("org.easyaccess.alarms", Context.MODE_PRIVATE);
+							Editor editor = preferences.edit();
+							editor.putString("alarm" + alarmNumber, String.format("%02d%02d", hourOfDay, minute) + "e");
+							editor.apply();
+
+							// Unload this alarm set activity
+							AlarmSetApp.this.finish();
+						}
 						
 						
-						do{
-							if(strAlarmTimeUserInput.length()==1){
-								strAlarmTimeUserInput ="0"+strAlarmTimeUserInput;
-							}
-							else
-								strAlarmTimeUserInput = strAlarmTimeUserInput +"0";
-						}while(strAlarmTimeUserInput.length()<5);
-						System.out.println("lenghttt "+strAlarmTimeUserInput.length());
 					}
-					System.out.println("lenghttt down"+strAlarmTimeUserInput.length());
-					int hourOfDay = Integer.parseInt(strAlarmTimeUserInput.substring(0, 2));
 					
-					
-					int minute = Integer.parseInt(strAlarmTimeUserInput.substring(2, 4));
-					AlarmHelper.setAlarm(AlarmSetApp.this, hourOfDay, minute);
-
-					SharedPreferences preferences = getSharedPreferences("org.easyaccess.alarms", Context.MODE_PRIVATE);
-					Editor editor = preferences.edit();
-					editor.putString("alarm" + alarmNumber, String.format("%02d%02d", hourOfDay, minute) + "e");
-					editor.apply();
-
-					// Unload this alarm set activity
-					AlarmSetApp.this.finish();
 				}
-			}
+			
 		});
 	}
 

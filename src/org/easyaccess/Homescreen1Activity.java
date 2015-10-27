@@ -25,6 +25,8 @@ import org.easyaccess.phonedialer.PhoneDialerApp;
 import org.easyaccess.status.StatusApp;
 import org.easyaccess.textmessages.TextMessagesApp;
 
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.LabeledIntent;
 import android.content.pm.PackageManager;
@@ -37,6 +39,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Homescreen1Activity extends AbstractHomescreenActivity implements
 		KeyListener {
@@ -58,9 +61,28 @@ public class Homescreen1Activity extends AbstractHomescreenActivity implements
 				PhoneDialerApp.class);
 		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnCallLog),
 				CallLogApp.class);
-		attachListenerToOpenActivity(
-				(Button) v.findViewById(R.id.btnTextMessages),
-				TextMessagesApp.class);
+		
+		// uncommented to allow opening of default SMS application.
+		Button btnMsg = (Button) v.findViewById(R.id.btnTextMessages);
+		btnMsg.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				/*Intent sendIntent = new Intent(Intent.ACTION_VIEW);         
+				sendIntent.setData(Uri.parse("sms:"));
+				startActivity(sendIntent);*/
+				//openInbox();
+				openTextMessageInbox();
+			}
+		});
+
+
+
+		// Commented to allow opening of default SMS application.
+//		attachListenerToOpenActivity(
+//				(Button) v.findViewById(R.id.btnTextMessages),
+//				TextMessagesApp.class);
+		
 		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnContacts),
 				ContactsApp.class);
 		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnStatus),
@@ -125,6 +147,19 @@ public class Homescreen1Activity extends AbstractHomescreenActivity implements
 		/** Put most everything before here **/
 		return v;
 	}
+	
+	private void openTextMessageInbox() {
+		try {
+			Intent intent = new Intent(Intent.ACTION_MAIN);
+			intent.addCategory(Intent.CATEGORY_DEFAULT);
+			intent.setType("vnd.android-dir/mms-sms");
+			if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+				startActivity(intent);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	void startSelectedActivity(View view) {
@@ -136,7 +171,8 @@ public class Homescreen1Activity extends AbstractHomescreenActivity implements
 			startNewActivity(CallLogApp.class);
 			break;
 		case R.id.btnTextMessages:
-			startNewActivity(TextMessagesApp.class);
+			// Commented to allow opening of default SMS application.
+			// startNewActivity(TextMessagesApp.class);
 			break;
 		case R.id.btnContacts:
 			startNewActivity(ContactsApp.class);
@@ -151,4 +187,36 @@ public class Homescreen1Activity extends AbstractHomescreenActivity implements
 	}
 
 
+	public void openInbox() {String application_name = "com.android.mms";
+	try {
+	Intent intent = new Intent("android.intent.action.MAIN");
+	intent.addCategory("android.intent.category.LAUNCHER");
+
+	intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+	List<ResolveInfo> resolveinfo_list = getActivity().getPackageManager()
+	.queryIntentActivities(intent, 0);
+
+	for (ResolveInfo info : resolveinfo_list) {
+	if (info.activityInfo.packageName
+	.equalsIgnoreCase(application_name)) {
+	launchComponent(info.activityInfo.packageName,
+	info.activityInfo.name);
+	break;
+	}
+	}
+	} catch (ActivityNotFoundException e) {
+	Toast.makeText(
+			getActivity().getApplicationContext(),
+	"There was a problem loading the application: "
+	+ application_name, Toast.LENGTH_SHORT).show();
+	}
+	}
+
+		private void launchComponent(String packageName, String name) {
+		Intent launch_intent = new Intent("android.intent.action.MAIN");
+		launch_intent.addCategory("android.intent.category.LAUNCHER");
+		launch_intent.setComponent(new ComponentName(packageName, name));
+		launch_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		this.startActivity(launch_intent);
+		}
 }

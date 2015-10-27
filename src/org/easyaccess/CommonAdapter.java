@@ -18,14 +18,24 @@ package org.easyaccess;
 
 import java.util.ArrayList;
 
+import org.easyaccess.textmessages.TextMessagesApp;
+import org.easyaccess.textmessages.TextMessagesViewerApp;
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Typeface;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
 @SuppressWarnings("rawtypes")
@@ -41,29 +51,54 @@ public class CommonAdapter extends ArrayAdapter {
 	private final Context context;
 	private ArrayList<String> values;
 	private int callLogActivity = 0;
-
+	public SparseBooleanArray mCheckStates;
+	private int typeOfMessage;
 	@SuppressWarnings("unchecked")
-	public CommonAdapter(Context context, ArrayList values, int callLog) {
+	public CommonAdapter(Context context, ArrayList values, int callLog, int typeOfMsg) {
 		super(context, R.layout.row, values);
 		this.context = context;
 		this.values = new ArrayList();
 		this.values = (values);
-		this.callLogActivity = callLog;
+		this.typeOfMessage = typeOfMsg;
+		callLogActivity =callLog;
+		mCheckStates = new SparseBooleanArray(values.size());
 	}
 
 	@Override
 	// this method generates a View for a list item
-	public View getView(int position, View view, ViewGroup parent) {
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View rowView = inflater.inflate(R.layout.row, parent, false);
-		final TextView textView = (TextView) rowView
-				.findViewById(R.id.textView1);
-		textView.setText(values.get(position));
+	public View getView(final int position, View view, ViewGroup parent) {
+		
+		 AppInfoHolder holder= null;
+		//View 
+		View rowView =view;
+		 if (rowView == null){
+			 LayoutInflater inflater = (LayoutInflater) context
+						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			 rowView = inflater.inflate(R.layout.row, parent, false);
+			 
+			 holder = new AppInfoHolder();
+			 
+			 holder.textView = (TextView) rowView
+						.findViewById(R.id.textView1);
+			 holder.cb_delete = (CheckBox)rowView
+						.findViewById(R.id.cb_delete);
+			 rowView.setTag(holder);
+		 }
+		 else{
+			 
+			 holder = (AppInfoHolder)rowView.getTag();
+		 }
+	
+		 holder.cb_delete.setTag(position);
+	
+		 holder.textView.setText(values.get(position));
+		
+		
 		if (this.callLogActivity == CALL_LOG) {
+			
 			int secondOccurrenceOfNewLineCharacter = values.get(position)
 					.indexOf("\n", values.get(position).indexOf("\n") + 1);
-			textView.setContentDescription(values.get(position).substring(0,
+			holder.textView.setContentDescription(values.get(position).substring(0,
 					values.get(position).indexOf("\n"))
 					+ "\n"
 					+ values.get(position)
@@ -74,23 +109,60 @@ public class CommonAdapter extends ArrayAdapter {
 							.substring(secondOccurrenceOfNewLineCharacter)
 							.replaceAll(".(?=[:])", "$0 "));
 		} else if (this.callLogActivity == CALL_LOG_HISTORY) {
-			textView.setContentDescription(values.get(position).replaceAll(
+			
+			holder.textView.setContentDescription(values.get(position).replaceAll(
 					".(?=[:])", "$0 "));
 		} else if (this.callLogActivity == TEXT_MESSAGES) {
-			textView.setContentDescription(values.get(position)
+			
+			holder.cb_delete.setVisibility(View.VISIBLE);
+			
+			holder.textView.setContentDescription(values.get(position)
 					.substring(0, values.get(position).indexOf("\n"))
 					.replaceAll(".(?=[0-9])", "$0 ")
 					+ values.get(position)
 							.substring(values.get(position).indexOf("\n"))
 							.replaceAll(".(?=[:])", "$0 "));
+			
+			
+			holder.textView.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					
+					
+					Intent intent = new Intent(context,
+							TextMessagesViewerApp.class);
+					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					intent.putExtra("address", values.get(position).substring(values.get(position).lastIndexOf("*")+1, values.get(position).length()));
+					intent.putExtra("typeOfMessage", typeOfMessage);
+					context.startActivity(intent);
+					//((Activity) context).finish();
+					((TextMessagesApp)context).finish();
+					
+				}
+			});
+			
+			
+			
+			
+			holder.cb_delete.setChecked(mCheckStates.get(position, false));
+			holder.cb_delete.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					  mCheckStates.put((Integer) buttonView.getTag(), isChecked);    
+					
+				}
+			});
 		} else {
+			
 			if (values.get(position).contains(":")) {
 				android.util.Log.e("here", "here");
-				textView.setContentDescription(values.get(position)
+				holder.textView.setContentDescription(values.get(position)
 						.replaceAll(".(?=[:])", "$0 ")
 						.replaceAll(".(?=[0-9])", "$0 "));
 			} else {
-				textView.setContentDescription(values.get(position).replaceAll(
+				holder.textView.setContentDescription(values.get(position).replaceAll(
 						".(?=[0-9])", "$0 "));
 			}
 		}
@@ -114,36 +186,55 @@ public class CommonAdapter extends ArrayAdapter {
 				fgColor = context.getResources().getColor(
 						R.color.card_textcolor_regular);
 			}
-			textView.setTextColor(fgColor);
-			textView.setBackgroundColor(bgColor);
+			holder.textView.setTextColor(fgColor);
+			holder.textView.setBackgroundColor(bgColor);
 		}
 		preferences = context.getSharedPreferences(context.getResources()
 				.getString(R.string.fonttype), 0);
 		if (preferences.getInt("typeface", -1) != -1) {
 			switch (preferences.getInt("typeface", -1)) {
 			case Utils.NONE:
-				textView.setTypeface(null, Typeface.NORMAL);
+				holder.textView.setTypeface(null, Typeface.NORMAL);
 				break;
 			case Utils.SERIF:
-				textView.setTypeface(Typeface.SERIF);
+				holder.textView.setTypeface(Typeface.SERIF);
 				break;
 			case Utils.MONOSPACE:
-				textView.setTypeface(Typeface.MONOSPACE);
+				holder.textView.setTypeface(Typeface.MONOSPACE);
 				break;
 			}
 		} else {
-			textView.setTypeface(null, Typeface.NORMAL);
+			holder.textView.setTypeface(null, Typeface.NORMAL);
 		}
 
 		preferences = context.getSharedPreferences(context.getResources()
 				.getString(R.string.size), 0);
 		if (preferences.getFloat("size", 0) != 0) {
 			float fontSize = preferences.getFloat("size", 0);
-			textView.setTextSize(fontSize);
+			holder.textView.setTextSize(fontSize);
 		} else {
-			textView.setTextSize(Integer.valueOf(context.getResources()
+			holder.textView.setTextSize(Integer.valueOf(context.getResources()
 					.getString(R.string.textSize)));
 		}
 		return rowView;
 	}
+	
+	
+	
+	 public boolean isChecked(int position) {
+	        return mCheckStates.get(position, false);
+	    }
+
+	    public void setChecked(int position, boolean isChecked) {
+	        mCheckStates.put(position, isChecked);
+
+	    }
+	    
+	    static class AppInfoHolder
+	    {
+	        
+	        TextView textView;
+	        CheckBox cb_delete;
+
+	    }
 }

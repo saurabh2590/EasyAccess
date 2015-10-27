@@ -16,9 +16,6 @@
  */
 package org.easyaccess.status;
 
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,6 +29,8 @@ import org.easyaccess.Log;
 import org.easyaccess.R;
 import org.easyaccess.TTS;
 import org.easyaccess.Utils;
+import org.easyaccess.calllog.CallLogApp;
+import org.easyaccess.textmessages.TextMessagesApp;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -41,6 +40,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.location.Location;
@@ -65,15 +65,12 @@ import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.text.format.Time;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gm.contentprovider.GmailContract;
-import com.google.android.gms.internal.dd;
 
 /**
  * The Status feature in easyaccess lists the status of the device's battery,
@@ -101,7 +98,12 @@ public class StatusApp extends EasyAccessActivity {
 	int currentSignalStrength;
 	long oldTime;
 	int dbm;
+	private  int totalMisscallsOld = 0;
+	final String MYPREFS = "easy_access"; 
+	SharedPreferences mySharedPreferences; 
+	SharedPreferences.Editor myEditor;
 
+	
 //	private LinearLayout wi_fi_layout;
 //	
 //	private LinearLayout mobile_data_layout;
@@ -158,7 +160,8 @@ public class StatusApp extends EasyAccessActivity {
 		currentSignalStrength = 1;
 		oldTime = System.currentTimeMillis();
 		dbm = -1024;
-
+		mySharedPreferences = getSharedPreferences(MYPREFS, 0); 
+		myEditor = mySharedPreferences.edit(); 
 		// Find UI elements
 		txtStatusBattery = (TextView) findViewById(R.id.txtStatusBattery);
 		txtStatusSignal = (TextView) findViewById(R.id.txtStatusSignal);
@@ -235,16 +238,66 @@ public class StatusApp extends EasyAccessActivity {
 	 * calls is 0, this status is not displayed.
 	 **/
 	public void displayMissedCalls() {
+		
 		if (getMissedCallCount() != 0) {
-			viewBeforeMissedCalls.setVisibility(View.VISIBLE);
-			txtStatusMissedCalls.setVisibility(View.VISIBLE);
-			txtStatusMissedCalls.setText(Integer.toString(getMissedCallCount())
-					+ " " + getString(R.string.txtStatusMissedCalls));
-			txtStatusMissedCalls.setContentDescription(Integer
-					.toString(getMissedCallCount())
-					+ " "
-					+ getString(R.string.txtStatusMissedCalls));
-			attachListener(txtStatusMissedCalls);
+			System.out.println(" getMissedCallCount >>>>>>>>>>>>>>>>= "+getMissedCallCount());
+//			txtStatusMissedCalls.setText(Integer.toString(getMissedCallCount())
+//					+ " " + getString(R.string.txtStatusMissedCalls));
+			
+			final int currentMissCalls = getMissedCallCount();
+			int unreadMisscalles=0 ;
+			
+			totalMisscallsOld=mySharedPreferences.getInt("OldMissCalls",0);
+			if(totalMisscallsOld==0){
+				totalMisscallsOld = currentMissCalls;
+				myEditor.putInt("OldMissCalls", totalMisscallsOld); 
+				myEditor.commit();
+				unreadMisscalles = 0;
+			}
+			else if(currentMissCalls>totalMisscallsOld){
+				unreadMisscalles = currentMissCalls-totalMisscallsOld;
+			}
+			
+			System.out.println(" totalMisscallsOld = "+totalMisscallsOld+"currentMissCalls"+currentMissCalls
+					+"unreadMisscalles"+unreadMisscalles);
+			myEditor.putInt("unreadMissCalls", unreadMisscalles); 
+			myEditor.commit();
+			
+			if(unreadMisscalles!=0){
+				viewBeforeMissedCalls.setVisibility(View.VISIBLE);
+				txtStatusMissedCalls.setVisibility(View.VISIBLE);
+				
+//				txtStatusMissedCalls.setContentDescription(Integer
+//						.toString(unreadMisscalles)
+//						+ " "
+//						+ getString(R.string.txtStatusMissedCalls));
+				
+				txtStatusMissedCalls.setContentDescription(unreadMisscalles
+						+ " "
+						+ getString(R.string.txtStatusMissedCalls));
+				txtStatusMissedCalls.setText(unreadMisscalles
+						+ " " + getString(R.string.txtStatusMissedCalls));
+				attachListener(txtStatusMissedCalls);
+				attachListener(txtStatusMissedCalls);
+				
+				
+				txtStatusMissedCalls.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						
+						// Start inbox
+						startNewActivity(CallLogApp.class);
+						
+					}
+				});
+			}
+			else {
+				viewBeforeMissedCalls.setVisibility(View.GONE);
+				txtStatusMissedCalls.setVisibility(View.GONE);
+			}
+		
+	
 		} else {
 			viewBeforeMissedCalls.setVisibility(View.GONE);
 			txtStatusMissedCalls.setVisibility(View.GONE);
@@ -415,7 +468,6 @@ public class StatusApp extends EasyAccessActivity {
 		else
 			tv_Wifi.setText("WiFi is OFF");
 
-		
 
 		boolean mobileDataEnabled = false;
 		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -451,9 +503,20 @@ public class StatusApp extends EasyAccessActivity {
 				tvMobileData.setText("Mobile Data is OFF");
 				}
 		
-
-
 		
+		OnClickListener internetSetting = new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+
+				startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+				
+			}
+		};
+		
+		tv_Wifi.setOnClickListener(internetSetting);
+		tvMobileData.setOnClickListener(internetSetting);
+
 	}
 	
 	private static boolean isMobileDataEnabledFromLollipop(Context context) {
@@ -491,6 +554,35 @@ public class StatusApp extends EasyAccessActivity {
 					+ " "
 					+ getString(R.string.txtStatusUnreadTextMessages));
 			attachListener(txtStatusUnreadTextMessages);
+			
+			txtStatusUnreadTextMessages.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					
+					// Commented to allow opening of default SMS application.
+					// Start inbox
+					//tartNewActivity(TextMessagesApp.class);
+					
+					/*Intent sendIntent = new Intent(Intent.ACTION_VIEW);         
+					sendIntent.setData(Uri.parse("sms:"));
+					startActivity(sendIntent);*/
+					openTextMessageInbox();
+				}
+			});
+		}
+	}
+	
+	private void openTextMessageInbox() {
+		try {
+			Intent intent = new Intent(Intent.ACTION_MAIN);
+			intent.addCategory(Intent.CATEGORY_DEFAULT);
+			intent.setType("vnd.android-dir/mms-sms");
+			if (intent.resolveActivity(getPackageManager()) != null) {
+				startActivity(intent);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -514,6 +606,18 @@ public class StatusApp extends EasyAccessActivity {
 			txtStatusUnreadEmails.setContentDescription(msg.getData()
 					.getString("unreadMails"));
 			attachListener(txtStatusUnreadEmails);
+			
+			
+			txtStatusUnreadEmails.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					
+					// Start gmail
+					Intent intent = getPackageManager().getLaunchIntentForPackage("com.google.android.gm");
+					startActivity(intent);
+				}
+			});
 		}
 	}
 
@@ -549,6 +653,7 @@ public class StatusApp extends EasyAccessActivity {
 	 *            The current time and date are retrieved from the data in msg.
 	 **/
 	public void displayCurrentTimeAndDate(Message msg) {
+
 		Time today = new Time(Time.getCurrentTimezone());
 		today.setToNow();
 		txtStatusTimeDate.setText(today.format("%k:%M") + " on "
@@ -556,6 +661,7 @@ public class StatusApp extends EasyAccessActivity {
 		txtStatusTimeDate.setContentDescription(today.format("%k:%M") + " on "
 				+ msg.getData().getString("currentTime"));
 		attachListener(txtStatusTimeDate);
+	
 	}
 
 	/**
@@ -563,6 +669,8 @@ public class StatusApp extends EasyAccessActivity {
 	 */
 
 	public void displayGpsStatus() {
+		
+		
 		if (isGpsEnabled()) {
 			txtStatusLocation.setText(getString(R.string.txtStatusLocation));
 			txtStatusLocation
@@ -572,6 +680,8 @@ public class StatusApp extends EasyAccessActivity {
 			txtStatusLocation.setVisibility(View.GONE);
 		}
 		attachListener(txtStatusLocation);
+	
+	
 	}
 
 	/**
@@ -579,6 +689,7 @@ public class StatusApp extends EasyAccessActivity {
 	 * displayed.
 	 */
 	public void displayBluetoothStatus() {
+		
 		if (isBluetoothEnabled()) {
 			txtStatusBluetooth
 					.setContentDescription(getString(R.string.txtStatusBluetooth));
@@ -587,6 +698,7 @@ public class StatusApp extends EasyAccessActivity {
 			viewBeforeBluetooth.setVisibility(View.GONE);
 			txtStatusBluetooth.setVisibility(View.GONE);
 		}
+	
 	}
 
 	/**
@@ -810,6 +922,7 @@ public class StatusApp extends EasyAccessActivity {
 	public int getMissedCallCount() {
 		int count;
 		String[] projection = { CallLog.Calls.TYPE };
+		
 		String where = CallLog.Calls.TYPE + "=" + CallLog.Calls.MISSED_TYPE;
 		Cursor cursor = this.getContentResolver().query(
 				CallLog.Calls.CONTENT_URI, projection, where, null, null);
@@ -971,6 +1084,7 @@ public class StatusApp extends EasyAccessActivity {
 	 */
 
 	public String getAllUnreadMails() {
+		
 		Account[] accounts = AccountManager.get(this).getAccountsByType(
 				"com.google");
 		ArrayList<String> accountName = new ArrayList<String>();
@@ -991,7 +1105,7 @@ public class StatusApp extends EasyAccessActivity {
 					}
 					unreadEmails += count + " "
 							+ getString(R.string.txtStatusUnreadEmails)
-							+ " in " + account.name + ".";
+							+ " in " + account.name;
 					line++;
 				}
 			}
@@ -1090,4 +1204,10 @@ public class StatusApp extends EasyAccessActivity {
 			}
 		}
 	};
+	void startNewActivity(@SuppressWarnings("rawtypes") Class className) {
+		Intent intent = new Intent(getApplicationContext(),
+				className);
+		startActivity(intent);
+	}
+
 }

@@ -74,6 +74,14 @@ public class SettingsMenu extends EasyAccessActivity {
 		turnOffScreenCurtain();
 		finish();
 	}
+	
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		turnOffScreenCurtain();
+	}
 
 	/** Launches the Font Settings menu. **/
 	void startSettingsFont() {

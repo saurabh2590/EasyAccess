@@ -50,8 +50,8 @@ public class CameraAppsMenu extends EasyAccessActivity {
 				MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
 		setButtonClickUri(R.id.btnGoogleGoggles,
 				"com.google.android.apps.unveil");
-		setButtonClickUri(R.id.btnOCRScanner,
-				"com.smartmobilesoftware.mobileocrfree");
+//		setButtonClickUri(R.id.btnOCRScanner,
+//				"com.smartmobilesoftware.mobileocrfree");
 		setButtonClickUri(R.id.btnColorIdentifier, "com.loomatix.colorgrab");
 		setButtonClickUri(R.id.btnMoneyIdentifier,
 				"com.ndu.mobile.darwinwallet");

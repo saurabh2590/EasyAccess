@@ -25,10 +25,12 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.text.Editable;
@@ -60,6 +62,7 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 	private static final String SENT = "1";
 	private static final String DELIVERED = "2";
 	private int deletedFlag = 0;
+	private int typeOfMessage=-1;
 
 	/**
 	 * Attaches onKey listener to the button passed as a parameter to the
@@ -178,7 +181,13 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.textmessages_composer);
 		super.onCreate(savedInstanceState);
-
+		
+		
+		if (getIntent().hasExtra("typeOfMessage")) {
+			this.typeOfMessage = getIntent().getExtras().getInt("typeOfMessage");
+		}
+		else
+			typeOfMessage=8;
 		statusReceiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context arg0, Intent arg1) {
@@ -221,11 +230,7 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 		Button btnNavigationHome = (Button) findViewById(R.id.btnNavigationHome);
 
 		// If Back navigation button is pressed, go back to previous activity
-		btnNavigationBack.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				finish();
-			}
-		});
+		
 
 		// If Home navigation button is pressed, go back to previous activity
 		btnNavigationHome.setOnClickListener(new View.OnClickListener() {
@@ -257,6 +262,7 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 		if (getIntent().hasExtra("name")) {
 			this.name = getIntent().getExtras().getString("name");
 			this.type = getIntent().getExtras().getString("type");
+			this.number = getIntent().getExtras().getString("number");
 			txtRecipient.setText(this.name + " " + this.type);
 			txtRecipient.setContentDescription(this.name.replaceAll(
 					".(?=[0-9])", "$0 ") + " " + this.type);
@@ -267,12 +273,15 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 			txtRecipient.setContentDescription(this.number.replaceAll(
 					".(?=[0-9])", "$0 "));
 		}
+		
+		
 
 		// If Send button is pressed, send the text message to the selected
 		// recipient
 		btnTextMsgsSend.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				sendMessage();
+				//editMessage.setText("");
 			}
 		});
 
@@ -321,6 +330,21 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 
 			}
 		});
+		
+		btnNavigationBack.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if(typeOfMessage!=8){
+					Intent intent = new Intent(getApplicationContext(),
+							TextMessagesViewerApp.class);
+					intent.putExtra("address", number);
+					intent.putExtra("typeOfMessage", typeOfMessage);
+					startActivity(intent);
+					finish();
+				}
+				else
+					finish();
+			}
+		});
 	}
 
 	/**
@@ -359,6 +383,18 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 						Toast.makeText(getApplicationContext(),
 								getString(R.string.sentSms), Toast.LENGTH_SHORT)
 								.show();
+						
+						
+						ContentValues values = new ContentValues();
+						values.put("address", TextMessagesComposerApp.this.number); // phone number to send
+						values.put("date", System.currentTimeMillis()+""); 
+						values.put("read", "1"); // if you want to mark is as unread set to 0
+						values.put("type", "2"); // 2 means sent message
+						values.put("body", editMessage.getText().toString());
+
+						Uri uri = Uri.parse("content://sms/sent");
+						Uri rowUri = TextMessagesComposerApp.this.getContentResolver().insert(uri,values);
+						
 						break;
 					case SmsManager.RESULT_ERROR_NO_SERVICE:
 						TTS.stop();
@@ -457,4 +493,31 @@ public class TextMessagesComposerApp extends Activity implements KeyListener {
 	public boolean onKeyUp(View arg0, Editable arg1, int arg2, KeyEvent arg3) {
 		return false;
 	}
+	
+	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		
+		if(typeOfMessage!=8){
+			System.out.println("typeOfMessage UP + "+typeOfMessage);
+			Intent intent = new Intent(getApplicationContext(),
+					TextMessagesViewerApp.class);
+			System.out.println("number+ "+number);
+			intent.putExtra("address", number);
+			intent.putExtra("typeOfMessage", typeOfMessage);
+			startActivity(intent);
+			finish();
+		}
+		else{
+			System.out.println("typeOfMessage+ "+typeOfMessage);
+			finish();
+		}
+			
+		
+	}
+	
+	
+	
 }

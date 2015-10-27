@@ -102,7 +102,7 @@ public class CallingScreen extends Activity {
 
 				if (getIntent().getExtras().getInt("type", -1) == Utils.OUTGOING) {
 					// outgoing call
-					callerDetails = getString(R.string.calling) + name + ": " + typeOfNumber;
+					callerDetails = getString(R.string.calling) +" "+ name + ": " + typeOfNumber;
 					hideAnswerButton();
 				} else {
 					// incoming call
@@ -146,11 +146,7 @@ public class CallingScreen extends Activity {
 
 			@Override
 			public void onClick(View view) {
-				//rejectCall();
-				
-				//telephonyService.setMute(true);
-			
-				mute();
+				rejectCall();
 			}
 		});
 		
@@ -168,7 +164,7 @@ public class CallingScreen extends Activity {
 						myTimer = null;
 					}
 					
-					
+					System.out.println("calling "+intent.getExtras().getString("message"));
 					if (!Utils.isAccessibilityEnabled(getApplicationContext()) && getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS)
 						TTS.speak(intent.getExtras().getString("message"));
 					Toast.makeText(getApplicationContext(), intent.getExtras().getString("message"), Toast.LENGTH_SHORT).show();
@@ -266,24 +262,7 @@ static void stopTask() {
 	}
 
 	
-	private void mute (){
-		
-//		try {
-//			TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-//			Class clazz = Class.forName(telephonyManager.getClass().getName());
-//			Method method = clazz.getDeclaredMethod("getITelephony");
-//			method.setAccessible(true);
-//			ITelephony telephonyService = (ITelephony) method.invoke(telephonyManager);
-//			//telephonyService.endCall();
-//			telephonyService.setMute(true);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		Intent buttonUp = new Intent(Intent.ACTION_MEDIA_BUTTON);
-		buttonUp.putExtra(Intent.EXTRA_KEY_EVENT,new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_HEADSETHOOK));
-		getBaseContext().sendOrderedBroadcast(buttonUp,"android.permission.CALL_PRIVILEGED");
-		
-	}
+	
 	private void showAnswerAndRejectButtons() {
 		btnAnswerCall.setVisibility(View.VISIBLE);
 		btnRejectCall.setVisibility(View.VISIBLE);
@@ -400,10 +379,10 @@ static void stopTask() {
 
 		if (Utils.callingDetails.get("name") != null) {
 			btnAnswerCall.setText(getString(R.string.btnAnswerCall) + " " + Utils.callingDetails.get("name"));
-			btnRejectCall.setText(getString(R.string.btnRejectCall) + " " + Utils.callingDetails.get("name"));
+			btnRejectCall.setText(getString(R.string.btnEndCall) + " " + Utils.callingDetails.get("name"));
 		} else {
 			btnAnswerCall.setText(getString(R.string.btnAnswerCall) + " " + number);
-			btnRejectCall.setText(getString(R.string.btnRejectCall) + " " + number);
+			btnRejectCall.setText(getString(R.string.btnEndCall) + " " + number);
 		}
 
 		// store outgoing call details

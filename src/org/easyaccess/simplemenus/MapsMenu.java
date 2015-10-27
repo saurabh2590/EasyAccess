@@ -43,7 +43,8 @@ public class MapsMenu extends EasyAccessActivity {
 		/** Launch respective app, depending on which button is pressed **/
 		setButtonClickUri(R.id.btnGoogleMaps, "com.google.android.apps.maps");
 		setButtonClickUri(R.id.btnPlaceSaver, "com.dylanrjames.PlaceSaver");
-		setButtonClickUri(R.id.btnTalkingCompass, "com.reincloud.compasstalk");
+		// Commented as Compass Talk application is not available on play store.
+		//setButtonClickUri(R.id.btnTalkingCompass, "com.reincloud.compasstalk");
 		
 		/** Put most everything before here **/
 	}		

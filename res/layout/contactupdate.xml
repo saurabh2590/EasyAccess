@@ -80,7 +80,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:contentDescription="@string/numberType"
-                        android:entries="@array/type"
+                       
                         android:focusable="true"
                         android:hint="@string/numberType"
                         android:textColor="@drawable/card_textcolor"

@@ -22,6 +22,7 @@
     <string name="callHistory">Call History</string>
     <string name="contacts">Contacts</string>
     <string name="textMessages">Text Messages</string>
+   <string name="textMessagesNotSelected">No Messages are selected.</string>
     <string name="composeTextMessage">Compose Text Message</string>
  	<string name="textMessageRecipient">Text Message Recipient</string>
  	<string name="textSize">19</string>
@@ -44,6 +45,7 @@
     <string name="call_rejected">Call Rejected</string>
     <string name="btnAnswerCall">Answer Call</string>
     <string name="btnRejectCall">Reject Call</string>
+    <string name="btnEndCall">End Call</string>
     <string name="deleted">Deleted</string>
 	<string name="current_call_on_hold">Putting the current call on hold and calling </string>
 	<string name="calling">Calling </string>
@@ -348,7 +350,7 @@
     <string name="txtWiFiStatusDataConnection">Wi fi enabled</string>
     <string name="txtStatusMissedCalls">missed calls</string>
     <string name="txtStatusUnreadTextMessages">unread text messages</string>
-    <string name="txtStatusUnreadEmails">unread eMails</string>
+    <string name="txtStatusUnreadEmails">unread emails</string>
     <string name="txtStatusNextAlarm">Next alarm at </string>
     <string name="txtStatusTimeDate">XX:XX on Month XX, 20xx</string>
     <string name="txtStatusLocation">Location data enabled</string>
@@ -367,6 +369,8 @@
     <string name="tabTextMsgsInbox">Inbox</string>
     <string name="tabTextMsgsSent">Sent</string>
     <string name="tabTextMsgsWrite">Write</string>
+    <string name="btnDeleteSelectedMessage">Delete all the messages from the selected contact.</string>
+     <string name="btnDeSelectMessage">Deselect all the messages.</string>
     <string name="emptymessages">No messages</string>
     <string name="read">Read</string>
     <string name="unread">Unread</string>
@@ -375,7 +379,7 @@
     <string name="reachedBeginning">Reached beginning of list</string>
     <string name="reachedEnd">Reached end of list</string>
     <string name="tabTextMsgsWriteTalkBackFriendly">Write new message</string>
-    <string name="setAsDefault">Use Easy Access instead of Messaging as your SMS app?</string>
+   <!--  <string name="setAsDefault">Use Easy Access instead of Messaging as your SMS app?</string> -->
     
     <!-- TextMessagesComposerApp.java -->
     <string name="btnTextMsgsSend">Send Text Message</string>
@@ -415,16 +419,18 @@
     <string name="received_on">Received on </string>
     <string name="sent_on">Sent on</string>
     <!-- About.java -->
+    <string name="txtAboutTitle">Easy Access 2.0</string>
     <string name="txtAboutHeaderMission">Easy Access mission</string>
+    <string name="playStoreButton">Go to play store</string>
     <string name="txtAboutMission">\"Easy Access\'s mission is to invent a completely new operating mode, embedded in the Android DNA, to make mobile technology accessible for seniors, the blind and visually impaired.\"</string>
     <string name="txtAboutSignature">\nEva Krueger and Caspar Isemer</string>
     <string name="txtAboutHeaderFactFinding">Focus group research</string>
     <string name="txtAboutFactFinding">We thank the following people in particular for their amazing openness and utmost patience during our focus group research in India:</string>
     <string name="txtAboutFocusGroup">
-        \nZainab Chinikamwala, project co-ordinator
+        \nZainab Chinikamwala, Project Coordinator - Bookshare India.
         \nKetan Khotari, Sight Savers
         \nDipendra Manocha, President, DAISY Forum of India
-        \nDr. Homiyar Mobedji, CEO, Technical Training Institute of the Poona Blind Men\'s Association
+        \nDr. Homiyar Mobedji, CEO - National Asssociation for the Blind - Delhi and Training Consultant - CIS for NVDA - Espeak Project.
         \nDr. Sam Taraporevala, Director, Xavier\'s Resource Centre for the Visually Challenged
     </string>
     <string name="txtAboutHeaderSupporters">Supporters</string>

@@ -86,7 +86,7 @@
                     android:text="@string/txtEmpty" />
             </TableRow>
 
-            <TableRow
+           <!--  <TableRow
                 android:layout_weight="1"
                 android:gravity="center_vertical" >
 
@@ -104,7 +104,7 @@
                     android:textSize="@dimen/card_textsize_regular"
                     android:textStyle="bold" />
             </TableRow>
-
+ -->
             <TableRow
                 android:layout_weight="0"
                 android:gravity="center_vertical" >
