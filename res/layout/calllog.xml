@@ -35,6 +35,9 @@
                 android:text="@string/tabCallsDialled"
                 android:textColor="@drawable/card_textcolor"
                 android:textSize="@dimen/card_textsize_tabs"
+                android:maxWidth="75dp"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:textStyle="bold" />
 
             <Button
@@ -47,6 +50,9 @@
                 android:text="@string/tabCallsReceived"
                 android:textColor="@drawable/card_textcolor"
                 android:textSize="@dimen/card_textsize_tabs"
+                  android:maxWidth="55dp"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:textStyle="bold" />
 
             <Button
@@ -59,6 +65,9 @@
                 android:text="@string/tabCallsMissed"
                 android:textColor="@drawable/card_textcolor"
                 android:textSize="@dimen/card_textsize_tabs"
+                  android:maxWidth="110dp"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:textStyle="bold" />
 
             <Button
@@ -71,6 +80,9 @@
                 android:text="@string/tabCallsAll"
                 android:textColor="@drawable/card_textcolor"
                 android:textSize="@dimen/card_textsize_tabs"
+                  android:maxWidth="60dp"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:textStyle="bold" />
 
             <Button
@@ -81,6 +93,9 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:text="@string/totalTime"
+                 android:maxWidth="90dp"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:textColor="@drawable/card_textcolor"
                 android:textSize="@dimen/card_textsize_tabs"
                 android:textStyle="bold" />
