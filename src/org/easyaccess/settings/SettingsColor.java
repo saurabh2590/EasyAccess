@@ -16,6 +16,8 @@
  */
 package org.easyaccess.settings;
 
+import java.util.ArrayList;
+
 import org.easyaccess.EasyAccessActivity;
 import org.easyaccess.R;
 import org.easyaccess.TTS;
@@ -72,7 +74,10 @@ public class SettingsColor extends EasyAccessActivity {
 	 */
 	@SuppressLint("DefaultLocale")
 	void applyColor(Spinner spinner, int position) {
-		String color = getResources().getStringArray(R.array.colors)[position];
+		
+		 String color = (Utils.colorNames).get(position);
+		//String color = getResources().getStringArray(R.array.displaycolors)[position];
+		
 		int resId = getResources().getIdentifier(color.toLowerCase(), "color",
 				SettingsColor.this.getPackageName());
 
@@ -382,10 +387,10 @@ public class SettingsColor extends EasyAccessActivity {
 		txtBackground = (TextView) findViewById(R.id.txtSettingsColorHeaderBackground);
 		btnReset = (Button) findViewById(R.id.btnApplyColors);
 
-		adapter = new SpinnerAdapter(getApplicationContext(), Utils.colorNames);
+		/*adapter = new SpinnerAdapter(getApplicationContext(), Utils.colorNames);
 		spinnerFg.setAdapter(adapter);
 		adapter = new SpinnerAdapter(getApplicationContext(), Utils.colorNames);
-		spinnerBg.setAdapter(adapter);
+		spinnerBg.setAdapter(adapter);*/
 		spinnerFg.setSelection(0);
 		spinnerBg.setSelection(1);
 		// Attach onFocusChanged listener to both the Spinners
