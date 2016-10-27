@@ -16,8 +16,6 @@
  */
 package org.easyaccess;
 
-
-
 public class Log {
 
 	public static int DEBUG = 1;

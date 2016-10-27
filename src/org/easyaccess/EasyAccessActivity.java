@@ -75,9 +75,11 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 		});
 	}
 
-	/** Launch the respective Android intent, depending on which button is pressed **/
-	protected void setButtonClickIntent(int buttonInt, final String intentTarget) {
-		Button button = (Button) findViewById(buttonInt);
+	/** Launch the respective Android intent, depending on which button is pressed
+	 * @param buttonInt
+	 * @param intentTarget**/
+	protected void setButtonClickIntent(String buttonInt, final String intentTarget) {
+		Button button = (Button) findViewById(Integer.parseInt(buttonInt));
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(intentTarget);
@@ -85,6 +87,8 @@ public class EasyAccessActivity extends Activity implements KeyListener {
 			}
 		});
 	}
+
+
 
 	/** Launch the respective Android app, depending on which button is pressed **/
 	protected void setButtonClickUri(int buttonInt, final String uriTarget) {

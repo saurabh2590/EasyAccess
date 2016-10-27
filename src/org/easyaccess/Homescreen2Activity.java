@@ -27,8 +27,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.easyaccess.alarms.AlarmCalendarMenu;
+import org.easyaccess.alarms.DailyUtilities;
+import org.easyaccess.simplemenus.BooksMenu;
+import org.easyaccess.simplemenus.BooksNewsWeatherMenu;
 import org.easyaccess.simplemenus.BooksNewspapersMenu;
+import org.easyaccess.simplemenus.InternetMenu;
 import org.easyaccess.simplemenus.MapsMenu;
+import org.easyaccess.simplemenus.EntertainmentMenu;
 import org.easyaccess.simplemenus.MusicVideoMenu;
 
 public class Homescreen2Activity extends AbstractHomescreenActivity implements
@@ -48,31 +53,21 @@ public class Homescreen2Activity extends AbstractHomescreenActivity implements
 		// pressed
 		// attachListenerToOpenExternalApp((Button)
 		// v.findViewById(R.id.btnInternet), "com.android.chrome");
-		Button btnInternet = (Button) v.findViewById(R.id.btnInternet);
-		btnInternet.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View arg0) {
-				try {
-
-					Intent intent = new Intent(Intent.ACTION_VIEW);
-					intent.setData(Uri.parse("http://www.google.com"));
-					startActivity(intent);
-
-				} catch (Exception e) {
-					launchOrDownloadFromFragment("com.android.chrome");
-				}
-			}
-		});
 		attachListenerToOpenActivity(
-				(Button) v.findViewById(R.id.btnAlarmCalendar),
-				AlarmCalendarMenu.class);
+				(Button) v.findViewById(R.id.btnDailyUtilities),
+				DailyUtilities.class);
+		
+		attachListenerToOpenActivity(
+				(Button) v.findViewById(R.id.btnInternet),
+				InternetMenu.class);		
+		
 		attachListenerToOpenExternalApp((Button) v.findViewById(R.id.btnRadio),
 				"tunein.player");
 
 		attachListenerToOpenActivity(
-				(Button) v.findViewById(R.id.btnMusicVideo),
-				MusicVideoMenu.class);
+				(Button) v.findViewById(R.id.btnEntertainment),
+				EntertainmentMenu.class);
 
 		/*
 		 * Button btnMusicVideo = (Button) v.findViewById(R.id.btnMusicVideo);
@@ -87,8 +82,18 @@ public class Homescreen2Activity extends AbstractHomescreenActivity implements
 		 * 
 		 * } } });
 		 */attachListenerToOpenActivity(
+				(Button) v.findViewById(R.id.btnBooksNewsWeather),
+				BooksNewsWeatherMenu.class);
+
+		attachListenerToOpenActivity(
 				(Button) v.findViewById(R.id.btnBooksNewspapers),
 				BooksNewspapersMenu.class);
+		attachListenerToOpenActivity(
+				(Button) v.findViewById(R.id.btnAlarmCalendar),
+				AlarmCalendarMenu.class);
+		attachListenerToOpenActivity(
+				(Button) v.findViewById(R.id.btnMusicVideo),
+				MusicVideoMenu.class);
 		attachListenerToOpenActivity((Button) v.findViewById(R.id.btnMaps),
 				MapsMenu.class);
 
@@ -103,16 +108,16 @@ public class Homescreen2Activity extends AbstractHomescreenActivity implements
 			launchOrDownloadFromFragment("com.android.chrome");
 			break;
 		case R.id.btnAlarmCalendar:
-			startNewActivity(AlarmCalendarMenu.class);
+			startNewActivity(DailyUtilities.class);
 			break;
 		case R.id.btnRadio:
 			launchOrDownloadFromFragment("tunein.player");
 			break;
 		case R.id.btnMusicVideo:
-			startNewActivity(MusicVideoMenu.class);
+			startNewActivity(EntertainmentMenu.class);
 			break;
 		case R.id.btnBooksNewspapers:
-			startNewActivity(BooksNewspapersMenu.class);
+			startNewActivity(BooksNewsWeatherMenu.class);
 			break;
 		case R.id.btnMaps:
 			startNewActivity(MapsMenu.class);
