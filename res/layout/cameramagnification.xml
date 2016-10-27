@@ -1,6 +1,6 @@
  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:id="@+id/mapsMenu"
+    android:id="@+id/cameraMagnificationMenu"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
     android:background="@color/homescreen_background" > 
@@ -27,9 +27,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnGoogleMaps"
-					android:text="@string/btnGoogleMaps"
-					android:contentDescription="@string/btnGoogleMaps"
+					android:id="@+id/btnPhoneCamera"
+					android:text="@string/btnPhoneCamera"
+					android:contentDescription="@string/btnPhoneCamera"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -61,9 +61,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnPlaceSaver"
-					android:text="@string/btnPlaceSaver"
-					android:contentDescription="@string/btnPlaceSaver"
+					android:id="@+id/btnOCR"
+					android:text="@string/btnOCR"
+					android:contentDescription="@string/btnOCR"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -97,9 +97,9 @@
 			    android:visibility="gone" >
 			   
 				<Button  
-					android:id="@+id/btnFoursquare"
-					android:text="@string/btnFoursquare"
-					android:contentDescription="@string/btnFoursquare"
+					android:id="@+id/btnDigitalMagnifier"
+					android:text="@string/btnDigitalMagnifier"
+					android:contentDescription="@string/btnDigitalMagnifier"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -133,9 +133,9 @@
 			    android:visibility="gone" >
 			   
 				<Button  
-					android:id="@+id/btnAroundMe"
-					android:text="@string/btnAroundMe"
-					android:contentDescription="@string/btnAroundMe"
+					android:id="@+id/btnOtherCameraUtilities"
+					android:text="@string/btnOtherCameraUtilities"
+					android:contentDescription="@string/btnOtherCameraUtilities"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -146,44 +146,8 @@
 				    android:gravity="center"
 					android:focusable="true"
 				/>	
-			</TableRow>
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty4"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="1px" 
-				    android:layout_height="12px"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				/>			
 			</TableRow>			
-			
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
-			   
-				<Button  
-					android:id="@+id/btnGoodFoodTalks"
-					android:text="@string/btnGoodFoodTalks"
-					android:contentDescription="@string/btnGoodFoodTalks"
-					android:layout_weight="1"
-				    android:layout_width="fill_parent" 
-				    android:layout_height="match_parent" 
-				    android:background="@drawable/card"
-				    android:textColor="@drawable/card_textcolor" 
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_regular"
-				    android:gravity="center"
-					android:focusable="true"
-				/>	
-			</TableRow>
-						
+				
 		</TableLayout> 	    
 	</LinearLayout>
   

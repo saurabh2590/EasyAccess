@@ -1,6 +1,6 @@
  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:id="@+id/mapsMenu"
+    android:id="@+id/fileBrowsingSharingMenu"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
     android:background="@color/homescreen_background" > 
@@ -27,9 +27,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnGoogleMaps"
-					android:text="@string/btnGoogleMaps"
-					android:contentDescription="@string/btnGoogleMaps"
+					android:id="@+id/btnESFileExplorer"
+					android:text="@string/btnESFileExplorer"
+					android:contentDescription="@string/btnESFileExplorer"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -61,9 +61,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnPlaceSaver"
-					android:text="@string/btnPlaceSaver"
-					android:contentDescription="@string/btnPlaceSaver"
+					android:id="@+id/btnTotalCommander"
+					android:text="@string/btnTotalCommander"
+					android:contentDescription="@string/btnTotalCommander"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -74,12 +74,11 @@
 				    android:gravity="center"
 					android:focusable="true"
 				/>	
-			</TableRow> 			
+			</TableRow>
 			
 			<TableRow
 			    android:layout_weight="0" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
+			    android:gravity="center_vertical" >
 		
 				<TextView  
 					android:id="@+id/txtEmpty2"
@@ -93,13 +92,12 @@
 			
 			<TableRow
 			    android:layout_weight="1" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
+			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnFoursquare"
-					android:text="@string/btnFoursquare"
-					android:contentDescription="@string/btnFoursquare"
+					android:id="@+id/btnDropbox"
+					android:text="@string/btnDropbox"
+					android:contentDescription="@string/btnDropbox"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -110,12 +108,11 @@
 				    android:gravity="center"
 					android:focusable="true"
 				/>	
-			</TableRow>
+			</TableRow> 
 			
 			<TableRow
 			    android:layout_weight="0" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
+			    android:gravity="center_vertical" >
 		
 				<TextView  
 					android:id="@+id/txtEmpty3"
@@ -129,13 +126,12 @@
 			
 			<TableRow
 			    android:layout_weight="1" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
+			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnAroundMe"
-					android:text="@string/btnAroundMe"
-					android:contentDescription="@string/btnAroundMe"
+					android:id="@+id/btnGoogleDrive"
+					android:text="@string/btnGoogleDrive"
+					android:contentDescription="@string/btnGoogleDrive"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -146,43 +142,7 @@
 				    android:gravity="center"
 					android:focusable="true"
 				/>	
-			</TableRow>
-			
-			<TableRow
-			    android:layout_weight="0" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
-		
-				<TextView  
-					android:id="@+id/txtEmpty4"
-				    android:text="@string/txtEmpty"			
-				    android:layout_width="1px" 
-				    android:layout_height="12px"
-				    android:background="@color/homescreen_background"
-				    android:focusable="false"
-				/>			
-			</TableRow>			
-			
-			<TableRow
-			    android:layout_weight="1" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
-			   
-				<Button  
-					android:id="@+id/btnGoodFoodTalks"
-					android:text="@string/btnGoodFoodTalks"
-					android:contentDescription="@string/btnGoodFoodTalks"
-					android:layout_weight="1"
-				    android:layout_width="fill_parent" 
-				    android:layout_height="match_parent" 
-				    android:background="@drawable/card"
-				    android:textColor="@drawable/card_textcolor" 
-				    android:textStyle="bold"
-				    android:textSize="@dimen/card_textsize_regular"
-				    android:gravity="center"
-					android:focusable="true"
-				/>	
-			</TableRow>
+			</TableRow> 
 						
 		</TableLayout> 	    
 	</LinearLayout>

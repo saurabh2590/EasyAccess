@@ -1,6 +1,6 @@
  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:id="@+id/mapsMenu"
+    android:id="@+id/dailyUtilitiesMenu"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
     android:background="@color/homescreen_background" > 
@@ -27,9 +27,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnGoogleMaps"
-					android:text="@string/btnGoogleMaps"
-					android:contentDescription="@string/btnGoogleMaps"
+					android:id="@+id/btnAlarm"
+					android:text="@string/btnAlarm"
+					android:contentDescription="@string/btnAlarm"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -40,7 +40,7 @@
 				    android:gravity="center"
 					android:focusable="true"
 				/>			
-			</TableRow> 
+			</TableRow>
 			
 			<TableRow
 			    android:layout_weight="0" 
@@ -61,9 +61,9 @@
 			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnPlaceSaver"
-					android:text="@string/btnPlaceSaver"
-					android:contentDescription="@string/btnPlaceSaver"
+					android:id="@+id/btnSimpleAlarmClock"
+					android:text="@string/btnSimpleAlarmClock"
+					android:contentDescription="@string/btnSimpleAlarmClock"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -78,8 +78,7 @@
 			
 			<TableRow
 			    android:layout_weight="0" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
+			    android:gravity="center_vertical" >
 		
 				<TextView  
 					android:id="@+id/txtEmpty2"
@@ -93,13 +92,12 @@
 			
 			<TableRow
 			    android:layout_weight="1" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
+			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnFoursquare"
-					android:text="@string/btnFoursquare"
-					android:contentDescription="@string/btnFoursquare"
+					android:id="@+id/btnCalendar"
+					android:text="@string/btnCalendar"
+					android:contentDescription="@string/btnCalendar"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -114,8 +112,7 @@
 			
 			<TableRow
 			    android:layout_weight="0" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
+			    android:gravity="center_vertical" >
 		
 				<TextView  
 					android:id="@+id/txtEmpty3"
@@ -129,13 +126,12 @@
 			
 			<TableRow
 			    android:layout_weight="1" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
+			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnAroundMe"
-					android:text="@string/btnAroundMe"
-					android:contentDescription="@string/btnAroundMe"
+					android:id="@+id/btnNoteTakerTodo"
+					android:text="@string/btnNoteTakerTodo"
+					android:contentDescription="@string/btnNoteTakerTodo"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -150,8 +146,7 @@
 			
 			<TableRow
 			    android:layout_weight="0" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
+			    android:gravity="center_vertical" >
 		
 				<TextView  
 					android:id="@+id/txtEmpty4"
@@ -165,13 +160,80 @@
 			
 			<TableRow
 			    android:layout_weight="1" 
-			    android:gravity="center_vertical"
-			    android:visibility="gone" >
+			    android:gravity="center_vertical" >
 			   
 				<Button  
-					android:id="@+id/btnGoodFoodTalks"
-					android:text="@string/btnGoodFoodTalks"
-					android:contentDescription="@string/btnGoodFoodTalks"
+					android:id="@+id/btnVoiceRecorder"
+					android:text="@string/btnVoiceRecorder"
+					android:contentDescription="@string/btnVoiceRecorder"
+					android:layout_weight="1"
+				    android:layout_width="fill_parent" 
+				    android:layout_height="match_parent" 
+				    android:background="@drawable/card"
+				    android:textColor="@drawable/card_textcolor" 
+				    android:textStyle="bold"
+				    android:textSize="@dimen/card_textsize_regular"
+				    android:gravity="center"
+					android:focusable="true"
+				/>	
+			</TableRow>
+			
+			<TableRow
+			    android:layout_weight="0" 
+			    android:gravity="center_vertical" >
+		
+				<TextView  
+					android:id="@+id/txtEmpty5"
+				    android:text="@string/txtEmpty"			
+				    android:layout_width="1px" 
+				    android:layout_height="12px"
+				    android:background="@color/homescreen_background"
+				    android:focusable="false"
+				/>			
+			</TableRow>			
+			
+			<TableRow
+			    android:layout_weight="1" 
+			    android:gravity="center_vertical" >
+			   
+				<Button  
+					android:id="@+id/btnCalculator"
+					android:text="@string/btnCalculator"
+					android:contentDescription="@string/btnCalculator"
+					android:layout_weight="1"
+				    android:layout_width="fill_parent" 
+				    android:layout_height="match_parent" 
+				    android:background="@drawable/card"
+				    android:textColor="@drawable/card_textcolor" 
+				    android:textStyle="bold"
+				    android:textSize="@dimen/card_textsize_regular"
+				    android:gravity="center"
+					android:focusable="true"
+				/>	
+			</TableRow>
+			
+			<TableRow
+			    android:layout_weight="0" 
+			    android:gravity="center_vertical" >
+		
+				<TextView  
+					android:id="@+id/txtEmpty6"
+				    android:text="@string/txtEmpty"			
+				    android:layout_width="1px" 
+				    android:layout_height="12px"
+				    android:background="@color/homescreen_background"
+				    android:focusable="false"
+				/>			
+			</TableRow>			
+			
+			<TableRow
+			    android:layout_weight="1" 
+			    android:gravity="center_vertical" >
+			   
+				<Button  
+					android:id="@+id/btnEnglishHindiDictionary"
+					android:text="@string/btnEnglishHindiDictionary"
+					android:contentDescription="@string/btnEnglishHindiDictionary"
 					android:layout_weight="1"
 				    android:layout_width="fill_parent" 
 				    android:layout_height="match_parent" 
@@ -224,7 +286,7 @@
 				/>	
 				
 				<TextView  
-					android:id="@+id/txtEmpty5"
+					android:id="@+id/txtEmpty7"
 					android:text="@string/txtEmpty"
 				    android:layout_width="12px" 
 				    android:layout_height="1px"
