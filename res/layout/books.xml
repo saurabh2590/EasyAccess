@@ -1,0 +1,262 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/booksMenu"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/homescreen_background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/homescreen_background"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingBottom="12px"
+            android:paddingLeft="12px"
+            android:paddingRight="12px"
+            android:paddingTop="12px" >
+
+            <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnEasyDaisyReader"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:textColor="@drawable/card_textcolor"
+                    android:textSize="@dimen/card_textsize_regular"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="0"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/txtEmpty1"
+                    android:layout_width="1px"
+                    android:layout_height="12px"
+                    android:background="@color/homescreen_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnAccessibleReader"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    android:contentDescription="@string/btnAccessibleReader"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnAccessibleReader"
+                    android:textColor="@drawable/card_textcolor"
+                    android:textSize="@dimen/card_textsize_regular"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="0"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/txtEmpty2"
+                    android:layout_width="1px"
+                    android:layout_height="12px"
+                    android:background="@color/homescreen_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnVoiceDreamReader"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    android:contentDescription="@string/btnVoiceDreamReader"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnVoiceDreamReader"
+                    android:textColor="@drawable/card_textcolor"
+                    android:textSize="@dimen/card_textsize_regular"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="0"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/txtEmpty3"
+                    android:layout_width="1px"
+                    android:layout_height="12px"
+                    android:background="@color/homescreen_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnDarwinReader"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    android:contentDescription="@string/btnDarwinReader"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnDarwinReader"
+                    android:textColor="@drawable/card_textcolor"
+                    android:textSize="@dimen/card_textsize_regular"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="0"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="1px"
+                    android:layout_height="12px"
+                    android:background="@color/homescreen_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnBookshareGoRead"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    android:contentDescription="@string/btnBookshareGoRead"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnBookshareGoRead"
+                    android:textColor="@drawable/card_textcolor"
+                    android:textSize="@dimen/card_textsize_regular"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_weight="0"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/txtEmpty4"
+                    android:layout_width="1px"
+                    android:layout_height="12px"
+                    android:background="@color/homescreen_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+            </TableRow>
+            
+             <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnDDReaderPlus"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    android:contentDescription="@string/btnDDReaderPlus"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnDDReaderPlus"
+                    android:textColor="@drawable/card_textcolor"
+                    android:textSize="@dimen/card_textsize_regular"
+                    android:textStyle="bold" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/navigation_bar_background"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingBottom="12px"
+            android:paddingTop="1px"
+            android:stretchColumns="0,2"
+            android:weightSum="3" >
+
+            <TableRow
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/btnNavigationBack"
+                    android:layout_width="0dip"
+                    android:layout_height="@dimen/navigation_bar_height"
+                    android:layout_weight="1"
+                    android:background="@color/navigation_bar_background"
+                    android:contentDescription="@string/btnNavigationBack"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnNavigationBack"
+                    android:textColor="@color/navigation_bar_textcolor"
+                    android:textSize="@dimen/card_textsize_navigation"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="12px"
+                    android:layout_height="1px"
+                    android:background="@color/navigation_bar_background"
+                    android:focusable="false"
+                    android:text="@string/txtEmpty" />
+
+                <Button
+                    android:id="@+id/btnNavigationHome"
+                    android:layout_width="0dip"
+                    android:layout_height="@dimen/navigation_bar_height"
+                    android:layout_weight="1"
+                    android:background="@color/navigation_bar_background"
+                    android:contentDescription="@string/btnNavigationHome"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/btnNavigationHome"
+                    android:textColor="@color/navigation_bar_textcolor"
+                    android:textSize="@dimen/card_textsize_navigation"
+                    android:textStyle="bold" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</LinearLayout>

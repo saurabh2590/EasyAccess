@@ -332,7 +332,6 @@
         <activity android:name="org.easyaccess.simplemenus.MusicVideoMenu"></activity>
         <activity android:name="org.easyaccess.simplemenus.SocialNetworksMenu"></activity>
         <activity android:name="org.easyaccess.AllAppsActivity"></activity>
-
      
      </application>
 

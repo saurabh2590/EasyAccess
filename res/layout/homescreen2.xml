@@ -37,6 +37,7 @@
 			android:focusable="true"
 		/>	
 		
+		
 		<TextView  
 			android:id="@+id/txtEmpty1"
 			android:text="@string/txtEmpty"
@@ -44,12 +45,37 @@
 		    android:layout_height="1px"
 		    android:background="@color/homescreen_background"		    
 		    android:focusable="false"
-		/>		
+		/>	
+		
 		
 		<Button  
 			android:id="@+id/btnAlarmCalendar"
 			android:text="@string/btnAlarmCalendar"
 			android:contentDescription="@string/btnAlarmCalendar"
+			android:layout_weight="1"
+		    android:layout_width="0dip" 
+		    android:layout_height="match_parent" 
+			android:background="@drawable/card"
+		    android:textColor="@drawable/card_textcolor" 		    
+		    android:textStyle="bold"
+		    android:textSize="@dimen/card_textsize_regular"
+		    android:gravity="center"
+			android:focusable="true"
+		/>
+
+
+		<TextView
+			android:id="@+id/txtEmpty2"
+			android:text="@string/txtEmpty"
+			android:layout_width="12px"
+			android:layout_height="1px"
+			android:background="@color/homescreen_background"
+			android:focusable="false"
+			/>
+		<Button  
+			android:id="@+id/btnDailyUtilities"
+			android:text="@string/btnDailyUtilities"
+			android:contentDescription="@string/btnDailyUtilities"
 			android:layout_weight="1"
 		    android:layout_width="0dip" 
 		    android:layout_height="match_parent" 
@@ -67,7 +93,7 @@
 	    android:gravity="center_vertical" >
 
 		<TextView  
-			android:id="@+id/txtEmpty2"
+			android:id="@+id/txtEmpty3"
 		    android:text="@string/txtEmpty"			
 		    android:layout_width="1px" 
 		    android:layout_height="12px"
@@ -98,18 +124,41 @@
 		/>
 		
 		<TextView  
-			android:id="@+id/txtEmpty3"
+			android:id="@+id/txtEmpty4"
 		    android:text="@string/txtEmpty"			
 		    android:layout_width="12px" 
 		    android:layout_height="1px"
 		    android:background="@color/homescreen_background"
 		    android:focusable="false"
-		/>			
+		/>	
 		
 		<Button  
 			android:id="@+id/btnMusicVideo"
 			android:text="@string/btnMusicVideo"
 			android:contentDescription="@string/btnMusicVideo"			
+			android:layout_weight="1"
+		    android:layout_width="0dip" 
+		    android:layout_height="match_parent" 
+		    android:background="@drawable/card" 
+		    android:textColor="@drawable/card_textcolor" 
+		    android:textStyle="bold"
+		    android:textSize="@dimen/card_textsize_regular"
+		    android:gravity="center"
+			android:focusable="true"
+		/>
+
+		<TextView
+			android:id="@+id/txtEmpty5"
+			android:text="@string/txtEmpty"
+			android:layout_width="12px"
+			android:layout_height="1px"
+			android:background="@color/homescreen_background"
+			android:focusable="false"
+			/>
+		<Button  
+			android:id="@+id/btnEntertainment"
+			android:text="@string/btnEntertainment"
+			android:contentDescription="@string/btnEntertainment"			
 			android:layout_weight="1"
 		    android:layout_width="0dip" 
 		    android:layout_height="match_parent" 
@@ -127,7 +176,7 @@
 	    android:gravity="center_vertical" >
 
 		<TextView  
-			android:id="@+id/txtEmpty4"
+			android:id="@+id/txtEmpty6"
 		    android:text="@string/txtEmpty"			
 		    android:layout_width="1px" 
 		    android:layout_height="12px"
@@ -143,6 +192,30 @@
 	    android:gravity="center_vertical" >
 		
 		<Button  
+			android:id="@+id/btnBooksNewsWeather"
+			android:text="@string/btnBooksNewsWeather"
+			android:contentDescription="@string/btnBooksNewsWeather"			
+			android:layout_weight="1"
+		    android:layout_width="0dip" 
+		    android:layout_height="match_parent" 
+		    android:background="@drawable/card" 
+		    android:textColor="@drawable/card_textcolor"
+		    android:textStyle="bold"
+		    android:textSize="@dimen/card_textsize_regular"
+		    android:gravity="center"
+			android:focusable="true"		
+		/>
+		
+		<TextView  
+			android:id="@+id/txtEmpty7"
+		    android:text="@string/txtEmpty"			
+		    android:layout_width="12px" 
+		    android:layout_height="1px"
+		    android:background="@color/homescreen_background"
+		    android:focusable="false"
+		/>	
+		
+		<Button  
 			android:id="@+id/btnBooksNewspapers"
 			android:text="@string/btnBooksNewspapers"
 			android:contentDescription="@string/btnBooksNewspapers"			
@@ -156,16 +229,17 @@
 		    android:gravity="center"
 			android:focusable="true"		
 		/>
-		
-		<TextView  
-			android:id="@+id/txtEmpty5"
-		    android:text="@string/txtEmpty"			
-		    android:layout_width="12px" 
-		    android:layout_height="1px"
-		    android:background="@color/homescreen_background"
-		    android:focusable="false"
-		/>			
-		
+
+		<TextView
+			android:id="@+id/txtEmpty8"
+			android:text="@string/txtEmpty"
+			android:layout_width="12px"
+			android:layout_height="1px"
+			android:background="@color/homescreen_background"
+			android:focusable="false"
+			/>
+
+
 		<Button  
 			android:id="@+id/btnMaps"
 			android:text="@string/btnMaps"

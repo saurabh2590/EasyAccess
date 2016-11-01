@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!--  System-wide -->
+	<!--  System-wide main file-->
     <string name="appName">EasyAccess</string>
     <string name="appNameTalkBackFriendly">Easy Access</string>
     <string name="txtEmpty"></string>
@@ -63,15 +63,20 @@
 
     <!-- Homescreen2.java -->
     <string name="btnInternet">Internet</string>
-    <string name="btnAlarmCalendar">Alarm +\nCalendar</string>
+    <string name="btnDailyUtilities">Daily Utilities</string>
     <string name="btnRadio">Radio</string>
+	<string name="btnAlarmCalendar">Alarm +\nCalendar</string>
     <string name="btnMusicVideo">Music +\nVideo</string>
     <string name="btnBooksNewspapers">Books + News\npapers</string>
+    <string name="btnEntertainment">Entertainment</string>
+    <string name="btnBooksNewsWeather">Books, News\n+ Weather</string>
     <string name="btnMaps">Maps</string>
 
     <!-- Homescreen3.java -->
-    <string name="btnFileBrowser">File\nBrowser</string>
+    <string name="btnFileBrowsingSharing">File Browsing\n+Sharing</string>
+	   <string name="btnFileBrowser">File\nBrowser</string>
     <string name="btnCameraApps">Camera\nApps</string>
+    <string name="btnCameraMagnification">Camera +\nMagnification</string>
     <string name="btnSocialNetworks">Social\nNetworks</string>
     <string name="btnSettings">Settings</string>
     <string name="btnMoreAccessibleApps">More\nAccessible\nApps</string>
@@ -80,7 +85,12 @@
 
     <!-- AlarmMenu.java -->
     <string name="btnAlarm">Alarm</string>
+    <string name="btnSimpleAlarmClock">Simple Alarm Clock</string>
     <string name="btnCalendar">Calendar</string>
+    <string name="btnNoteTakerTodo">Note Taker + To Do</string>
+    <string name="btnVoiceRecorder">Voice Recorder</string>
+    <string name="btnCalculator">Calculator</string>
+    <string name="btnEnglishHindiDictionary">English Hindi Dictionary</string>
 
     <!-- AlarmApp.java -->
     <string name="btnSetNewAlarm">Set New Alarm</string>
@@ -101,19 +111,34 @@
 
     <!-- AlarmSnoozeApp.java -->
     <string name="btnAlarmTurnOff">Turn Off Alarm</string>
-
-    <!-- BooksNewspapersMenu.java -->
+    
+   <!-- BooksMenu.java -->
+    <string name="btnEasyDaisyReader">Easy Daisy Reader</string>
+    <string name="btnAccessibleReader">Accessible Reader</string>
+    <string name="btnVoiceDreamReader">Voice Dream Reader</string>
+    <string name="btnBookshareGoRead">Bookshare Go Read</string>
+    <string name="btnDDReaderPlus">DD Reader Plus</string>
+    
+    <!-- BooksNewsWeatherMenu.java -->
+    <string name="btnBooks">Books</string>
+    <string name="btnNews">News</string>
+    <string name="btnAccuWeather">Accu Weather</string>    
+	
+	  <!-- BooksNewspapersMenu.java -->
     <string name="btnDarwinReader">DARWIN Reader</string>
     <string name="btnIdealGroupReader">IDEAL Group Reader</string>
-    <string name="btnBookshareGoRead">Bookshare Go Read</string>
     <string name="btnGooglePlayBooks">Google Play Books</string>
     <string name="btnGoogleNewsstand">Google Play Newsstand</string>
     <string name="btnGoogleDocs">Google Docs</string>
-     <string name="btnDDReaderPlus">DD Reader Plus</string>
    
-    
- 	<!-- CameraMenu.java -->
+ 	<!-- CameraMagnificationMenu.java -->
     <string name="btnPhoneCamera">Camera</string>
+    <string name="btnOCR">OCR</string>
+    <string name="btnDigitalMagnifier">Digital Magnifier</string>
+    <string name="btnOtherCameraUtilities">Other Camera Utilities</string>    
+	
+	
+	<!-- CameraMenu.java -->
     <string name="btnGoogleGoggles">Google Goggles</string>
     <string name="btnOCRScanner">OCR Scanner</string>
     <string name="btnColorIdentifier">Color Identifier</string>
@@ -121,6 +146,9 @@
     <string name="btnLightDetector">Light Detector</string> 
     <string name="btnTapTapSeeRead">Tap Tap see</string>
     <string name="btnTapTapSee">TapTapSee</string> 
+    
+ 	<!-- OtherCameraUtilitiesMenu.java -->
+   
     
  	<!-- CallLogApp.java -->
     <string name="tabCallsDialled">\nOut</string>
@@ -190,6 +218,8 @@
     <string name="mediaunmounted">SD card is not mounted</string>
     <string name="edit">Edit </string>
     <string name="more_options">More Options</string>
+	
+
     
     <!-- SaveContact.java -->
     <string name="contactsaved">Contact saved</string>
@@ -221,14 +251,43 @@
     <string name="setprimarymailsuccess">Email ID has been set as primary</string> 
     <string name="setprimarymailfailed">Email ID could not be set as primary</string> 
     
+    <!-- EmailMenu.java -->
+    <string name="btnGmail">Google Mail</string>
+    <string name="btnAquaMail">Aqua Mail</string>
+    
+    <!-- FileBrowsingSharingMenu.java -->
+    <string name="btnESFileExplorer">ES File Explorer</string>
+    <string name="btnTotalCommander">Total Commander</string> 
+    <string name="btnDropbox">Dropbox</string>
+    <string name="btnGoogleDrive">Google Drive</string>   
+    
+    <!-- InternetMenu.java -->
+    <string name="btnChrome">Chrome</string>
+    <string name="btnFirefox">Firefox</string>     
+    
     <!-- MapsMenu.java -->
     <string name="btnGoogleMaps">Google Maps</string>
     <string name="btnPlaceSaver">Place Saver</string>
-    <string name="btnTalkingCompass">Talking Compass</string>    
+    <string name="btnFoursquare">Foursquare</string>
+    <string name="btnAroundMe">Around Me</string>
+    <string name="btnGoodFoodTalks">Good Food Talks</string> 
     
-    <!-- MusicVideoMenu.java -->
+    <!-- NewsMenu.java -->
+    <string name="btnBBCNews">BBC News</string>
+    <string name="btnNDTV">NDTV</string>
+    <string name="btnTimesNow">Times Now</string>
+    <string name="btnAajTak">Aaj Tak</string>
+    <string name="btnZeeNews">Zee News</string>
+    
+    <!-- EntertainmentMenu.java -->
     <string name="btnMP3Player">MP3 Player</string>
     <string name="btnYouTube">YouTube</string>
+    <string name="btnVLCPlayer">VLC Player</string>
+    <string name="btnAudioGamesHub">Audio Games Hub</string>
+    
+ 	<!-- OCRMenu.java -->
+    <string name="btnTextFairy">Text Fairy</string>
+    <string name="btnOfficeLens">Office Lens</string>      
     
     <!-- PhoneDialerApp.java -->
     <string name="phoneDialer">Phone Dialer</string>
@@ -331,14 +390,22 @@
     <string name="louder">Louder</string>
     <string name="loudest">Loudest</string>
     
+    <!--  SettingsVoiceTTS.java -->
+    <string name="btnAssistant">Assistant</string>
+    <string name="btnEspeak">Espeak</string>
+    <string name="btnGoogleTTS">Google TTS</string>
+    <string name="btnAutoTTS">Auto TTS</string>
+    
  	<!-- SocialNetworksMenu.java -->
-    <string name="btnWhatsApp">WhatsApp</string>
-    <string name="btnFacebook">Facebook</string>
+    <string name="btnWhatsApp">WhatsApp Messenger</string>
     <string name="btnFacebookMessenger">Facebook Messenger</string>
+    <string name="btnFacebookLite">Facebook Lite</string>
+    <string name="btnFacebookApp">Facebook App</string>
+	 <string name="btnFacebook">Facebook</string>
     <string name="btnGooglePlus">Google+</string>
-    <string name="btnTwitter">Twitter</string>
     <string name="btnLinkedIn">LinkedIn</string>
     <string name="btnLinkedInRead">Linked In</string>
+    <string name="btnTwitter">Twitter</string>
     <string name="btnSkype">Skype</string>
     <string name="btnViber">Viber</string>      
     
@@ -423,7 +490,7 @@
     <string name="txtAboutHeaderMission">Easy Access mission</string>
     <string name="playStoreButton">Go to play store</string>
     <string name="txtAboutMission">\"Easy Access\'s mission is to invent a completely new operating mode, embedded in the Android DNA, to make mobile technology accessible for seniors, the blind and visually impaired.\"</string>
-    <string name="txtAboutSignature">\nEva Krueger and Caspar Isemer</string>
+    <string name="txtAboutSignature">\nEva Kloepper and Caspar Isemer</string>
     <string name="txtAboutHeaderFactFinding">Focus group research</string>
     <string name="txtAboutFactFinding">We thank the following people in particular for their amazing openness and utmost patience during our focus group research in India:</string>
     <string name="txtAboutFocusGroup">

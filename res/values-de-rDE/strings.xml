@@ -63,15 +63,15 @@
 
     <!-- Homescreen2.java -->
     <string name="btnInternet">Internet</string>
-    <string name="btnAlarmCalendar">Wecker +\nKalender</string>
+    <string name="btnDailyUtilities">Tägliche Helfer</string>
     <string name="btnRadio">Radio</string>
-    <string name="btnMusicVideo">Musik +\nVideo</string>
-    <string name="btnBooksNewspapers">Bücher + \nZeitungen</string>
+    <string name="btnEntertainment">Entertainment</string>
+    <string name="btnBooksNewsWeather">Bücher, \nZeitungen + \nWetter</string>
     <string name="btnMaps">Karte</string>
 
     <!-- Homescreen3.java -->
-    <string name="btnFileBrowser">Datei\nBrowser</string>
-    <string name="btnCameraApps">Kamera</string>
+    <string name="btnFileBrowsingSharing">File Browsing\n+Sharing</string>
+    <string name="btnCameraMagnification">Kamera +\nVergrößerung</string>
     <string name="btnSocialNetworks">Soziale\nNetzwerke</string>
     <string name="btnSettings">Einstellungen</string>
     <string name="btnMoreAccessibleApps">Weitere\nbarrierefreie\nApps</string>
@@ -80,7 +80,13 @@
 
     <!-- AlarmMenu.java -->
     <string name="btnAlarm">Wecker</string>
+    <string name="btnSimpleAlarmClock">Einfacher Wecker</string>
     <string name="btnCalendar">Kalender</string>
+    <string name="btnNoteTakerTodo">Notizzettel + To Do</string>
+    <string name="btnVoiceRecorder">Diktiergerät</string>
+    <string name="btnCalculator">Taschenrechner</string>
+    <string name="btnEnglishHindiDictionary">Englisch Hindi Wörterbuch</string>
+    
 
     <!-- AlarmApp.java -->
     <string name="btnSetNewAlarm">Neue Weckzeit</string>
@@ -102,25 +108,29 @@
     <!-- AlarmSnoozeApp.java -->
     <string name="btnAlarmTurnOff">Wecker ausschalten</string>
 
-    <!-- BooksNewspapersMenu.java -->
-    <string name="btnDarwinReader">DARWIN Reader</string>
-    <string name="btnIdealGroupReader">IDEAL Group Reader</string>
+    <!-- BooksMenu.java -->
+    <string name="btnEasyDaisyReader">Easy Daisy Reader</string>
+    <string name="btnAccessibleReader">Accessible Reader</string>
+    <string name="btnVoiceDreamReader">Voice Dream Reader</string>
     <string name="btnBookshareGoRead">Bookshare Go Read</string>
-    <string name="btnGooglePlayBooks">Google Play Books</string>
-    <string name="btnGoogleNewsstand">Google Play Newsstand</string>
-    <string name="btnGoogleDocs">Google Docs</string>
-    <string name="btnDDReaderPlus">DD Reader Plus</string>
-
-
-    <!-- CameraMenu.java -->
+    
+    <!-- BooksNewsWeatherMenu.java -->
+    <string name="btnBooks">Lesen</string>
+    <string name="btnNews">Informieren</string>
+    <string name="btnAccuWeather">Wetter</string>   
+    
+ 	<!-- CameraMagnificationMenu.java -->
     <string name="btnPhoneCamera">Kamera</string>
-    <string name="btnGoogleGoggles">Google Goggles</string>
-    <string name="btnOCRScanner">OCR Scanner</string>
-    <string name="btnColorIdentifier">Farberkennung</string>
+    <string name="btnOCR">OCR Scanner</string>
+    <string name="btnDigitalMagnifier">Digitale Lupe</string>
+    <string name="btnOtherCameraUtilities">Weitere Kamera Apps</string>        
+
+    <!-- OtherCameraUtilitiesMenu.java -->
     <string name="btnMoneyIdentifier">Gelderkennung</string>
+    <string name="btnColorIdentifier">Farberkennung</string>
     <string name="btnLightDetector">Lichterkennung</string>
-    <string name="btnTapTapSeeRead">TapTapSee</string>
-    <string name="btnTapTapSee">TapTapSee</string>
+    <string name="btnTapTapSeeRead">Tap Tap See</string>
+    <string name="btnTapTapSee">Tap Tap See</string>
 
     <!-- CallLogApp.java -->
     <string name="tabCallsDialled">\nAusgehend</string>
@@ -164,6 +174,35 @@
     <string name="mail">E-Mail</string>
     <string name="send_msg_to">SMS senden an </string>
 
+    <string name="btnAlarmCalendar">Alarm +\nCalendar</string>
+    <string name="btnMusicVideo">Music +\nVideo</string>
+    <string name="btnBooksNewspapers">Books + News\npapers</string>
+      <string name="btnFileBrowser">File\nBrowser</string>
+    <string name="btnCameraApps">Camera\nA</string>
+          <string name="btnDDReaderPlus">DD Reader Plus</string>
+          
+          	  <!-- BooksNewspapersMenu.java -->
+    <string name="btnDarwinReader">DARWIN Reader</string>
+    <string name="btnIdealGroupReader">IDEAL Group Reader</string>
+    <string name="btnGooglePlayBooks">Google Play Books</string>
+    <string name="btnGoogleNewsstand">Google Play Newsstand</string>
+    <string name="btnGoogleDocs">Google Docs</string>
+     <string name="btnGoogleGoggles">Google Goggles</string>
+    <string name="btnOCRScanner">OCR Scanner</string>
+    
+        <string name="txtContactsDemoEntryREMOVE">Demo Entry</string>
+            <string name="btnContactsNumber1">Call Cellphone\n+49 177 111 1111</string>
+    <string name="btnContactsNumber2">Call Home\n+49 40 1111 1111</string>
+    <string name="btnContactsNumber3">Call Work\n+49 40 80817 1111</string>
+            <string name="btnGmail">Google Mail</string>
+            	 <string name="btnFacebook">Facebook</string>    <string name="btnGooglePlus">Google+
+</string>
+     <string name="txtTextMsgsContent">Hey, it is so awesome that Kannan, TV and Eve are so excited, too, and willing to help us to build Easy Access for real! Woohoo :) Eva</string>
+    <string name="txtTextMsgsAuthorReceived">From: Eva Krueger</string>
+    <string name="txtTextMsgsTimestampReceived">Received: 18:37 on Sunday, August 4, 2013</string>
+    
+    
+    
     <!-- ContactsOtherOptions.java -->
     <string name="otheroptions">Weitere Optionen</string>
     <string name="btnDelete">Löschen</string>
@@ -217,14 +256,43 @@
     <string name="setprimarymailsuccess">E-Mail ID als Favorit gespeichert</string>
     <string name="setprimarymailfailed">E-Mail ID konnte nicht als Favorit gespeichert werden</string>
 
+    <!-- EmailMenu.java -->
+    <string name="btnGMail">Google Mail</string>
+    <string name="btnAquaMail">Aqua Mail</string>
+    
+    <!-- FileSharingBrowsingMenu.java -->
+    <string name="btnESFileExplorer">ES File Explorer</string>
+    <string name="btnTotalCommander">Total Commander</string> 
+    <string name="btnDropbox">Dropbox</string>
+    <string name="btnGoogleDrive">Google Drive</string>      
+    
+    <!-- InternetMenu.java -->
+    <string name="btnChrome">Chrome</string>
+    <string name="btnFirefox">Firefox</string>    
+    
     <!-- MapsMenu.java -->
     <string name="btnGoogleMaps">Google Maps</string>
     <string name="btnPlaceSaver">Place Saver</string>
-    <string name="btnTalkingCompass">Talking Compass</string>
+    <string name="btnFoursquare">Foursquare</string>
+    <string name="btnAroundMe">Meine Umgebung</string>
+    <string name="btnGoodFoodTalks">Good Food Talks</string> 
+    
+    <!-- NewsMenu.java -->
+    <string name="btnBBCNews">BBC News</string>
+    <string name="btnNDTV">NDTV</string>
+    <string name="btnTimesNow">Times Now</string>
+    <string name="btnAajTak">Aaj Tak</string>
+    <string name="btnZeeNews">Zee News</string>    
 
-    <!-- MusicVideoMenu.java -->
+    <!-- EntertainmentMenu.java -->
     <string name="btnMP3Player">MP3 Player</string>
     <string name="btnYouTube">YouTube</string>
+    <string name="btnVLCPlayer">VLC Player</string>
+    <string name="btnAudioGamesHub">Audio Spiele Center</string>
+    
+ 	<!-- OCRMenu.java -->
+    <string name="btnTextFairy">Text Fairy</string>
+    <string name="btnOfficeLens">Office Lens</string>      
 
     <!-- PhoneDialerApp.java -->
     <string name="phoneDialer">Telefon</string>
@@ -326,15 +394,21 @@
     <string name="loud">Laut</string>
     <string name="louder">Lauter</string>
     <string name="loudest">Sehr Laut</string>
+    
+    <!--  SettingsVoiceTTS.java -->
+    <string name="btnAssistant">Assistent</string>
+    <string name="btnEspeak">Espeak</string>
+    <string name="btnGoogleTTS">Google TTS</string>
+    <string name="btnAutoTTS">Auto TTS</string>    
 
     <!-- SocialNetworksMenu.java -->
-    <string name="btnWhatsApp">WhatsApp</string>
-    <string name="btnFacebook">Facebook</string>
+    <string name="btnWhatsApp">WhatsApp Messenger</string>
     <string name="btnFacebookMessenger">Facebook Messenger</string>
-    <string name="btnGooglePlus">Google+</string>
-    <string name="btnTwitter">Twitter</string>
+    <string name="btnFacebookLite">Facebook Lite</string>    
+    <string name="btnFacebookApp">Facebook App</string>
     <string name="btnLinkedIn">LinkedIn</string>
     <string name="btnLinkedInRead">Linked In</string>
+    <string name="btnTwitter">Twitter</string>
     <string name="btnSkype">Skype</string>
     <string name="btnViber">Viber</string>
 
